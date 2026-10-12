@@ -1,8 +1,10 @@
 import json
 import random
 import re
+import io
 import streamlit as st
-import streamlit.components.v1 as components
+import speech_recognition as sr
+from audio_recorder_streamlit import audio_recorder
 
 # Sayfa Yapılandırması
 st.set_page_config(
@@ -12,39 +14,74 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 🎨 MODERN UI & ANİMASYON CSS KODLARI
+# 🎨 ÖNCEKİ MODERN VE ŞIK UI & ANİMASYON CSS KODLARI
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    * { font-family: 'Inter', sans-serif; }
-
-    .stApp { background-color: #f1f5f9 !important; color: #0f172a !important; }
-    
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(18px); }
-        to { opacity: 1; transform: translateY(0); }
+    * {
+        font-family: 'Inter', sans-serif;
     }
 
-    .animated-element { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    /* Sayfa Arka Planı */
+    .stApp { 
+        background-color: #f1f5f9 !important; 
+        color: #0f172a !important; 
+    }
+    
+    /* Fade In & Slide Up Animasyonu */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    .animated-element {
+        animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Sol Menü (Sidebar) */
     section[data-testid="stSidebar"] { 
         background-color: #0b1e36 !important; 
         border-right: 1px solid #1e293b;
     }
-    section[data-testid="stSidebar"] label { color: #f8fafc !important; font-weight: 600 !important; }
+    section[data-testid="stSidebar"] label { 
+        color: #f8fafc !important; 
+        font-weight: 600 !important; 
+    }
 
+    /* Selectbox Düzeltmeleri */
+    div[data-baseweb="select"] {
+        background-color: #ffffff !important;
+        border-radius: 8px !important;
+    }
+    div[data-baseweb="select"] * {
+        color: #0f172a !important;
+        font-weight: 700 !important;
+    }
+
+    /* Modern Hero Banner */
     .hero-banner {
         background: linear-gradient(135deg, #0b2559 0%, #1d4ed8 50%, #3b82f6 100%);
         border-radius: 20px; 
-        padding: 32px; 
+        padding: 36px; 
         color: #ffffff !important; 
         margin-bottom: 24px;
         box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.25);
+        transition: transform 0.3s ease;
+    }
+    .hero-banner:hover {
+        transform: translateY(-2px);
     }
     .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
     .hero-subtitle { font-size: 1.05rem; color: #e2e8f0 !important; margin-top: 6px; }
 
+    /* Modern Soru Kartı */
     .main-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -52,6 +89,11 @@ st.markdown("""
         padding: 28px; 
         margin-bottom: 20px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        transition: all 0.3s ease;
+    }
+    .main-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        border-color: #cbd5e1;
     }
     .question-title { 
         font-size: 1.35rem; 
@@ -61,6 +103,7 @@ st.markdown("""
         line-height: 1.5;
     }
     
+    /* Rozetler */
     .badge-category {
         background-color: #eff6ff !important; 
         color: #1d4ed8 !important;
@@ -81,6 +124,7 @@ st.markdown("""
         margin-left: 8px;
     }
 
+    /* Text Area */
     .stTextArea textarea {
         background-color: #ffffff !important; 
         color: #0f172a !important;
@@ -88,8 +132,14 @@ st.markdown("""
         border-radius: 14px !important; 
         padding: 16px !important;
         font-size: 1rem !important;
+        transition: all 0.2s ease !important;
+    }
+    .stTextArea textarea:focus {
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
     }
 
+    /* Sağ Panel Kartı */
     .side-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -105,16 +155,18 @@ st.markdown("""
         letter-spacing: -1px;
     }
 
+    /* Metrik Kartları */
     div[data-testid="stMetric"] {
         background: #ffffff !important;
         padding: 16px;
         border-radius: 16px;
         border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 </style>
 """, unsafe_allow_html=True)
 
-# 🛠️ TÜRKÇE HARF DÖNÜŞTÜRÜCÜ
+# 🛠️ TÜRKÇE MÜKEMMEL HARF DÖNÜŞTÜRÜCÜ
 def turkish_lower(text: str) -> str:
     if not text:
         return ""
@@ -122,6 +174,18 @@ def turkish_lower(text: str) -> str:
     for search, replace in rep.items():
         text = text.replace(search, replace)
     return text.lower()
+
+# 🛠️ SESİ TÜRKÇE METNE ÇEVİREN SERVER-SIDE MOTOR
+def transcribe_audio(audio_bytes):
+    recognizer = sr.Recognizer()
+    try:
+        audio_file = io.BytesIO(audio_bytes)
+        with sr.AudioFile(audio_file) as source:
+            audio_data = recognizer.record(source)
+            text = recognizer.recognize_google(audio_data, language="tr-TR")
+            return text
+    except Exception:
+        return ""
 
 # 🛠️ ESNEK KELİME EŞLEŞTİRME
 def is_flexible_match(keyword: str, clean_answer: str) -> bool:
@@ -155,7 +219,7 @@ def is_flexible_match(keyword: str, clean_answer: str) -> bool:
 
     return False
 
-# 🛠️ ESNEK SKORLAMA
+# 🛠️ ESNEK SKORLAMA (0, 30, 60, 80, 100)
 def calculate_score(user_answer: str, keywords: list) -> dict:
     if not user_answer or not user_answer.strip():
         return {
@@ -220,6 +284,8 @@ if "son_analiz" not in st.session_state:
     st.session_state.son_analiz = None
 if "secilen_kategori" not in st.session_state:
     st.session_state.secilen_kategori = "Tüm Kategoriler"
+if "last_processed_audio" not in st.session_state:
+    st.session_state.last_processed_audio = None
 
 def yeni_soru_getir(kategori_filtresi):
     if kategori_filtresi == "Tüm Kategoriler":
@@ -242,6 +308,7 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.mevcut_soru = secilen
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
+        st.session_state.last_processed_audio = None
 
 # Sidebar
 st.sidebar.markdown("""
@@ -279,7 +346,7 @@ st.markdown("""
     <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
     <div class="hero-subtitle">
         Gerçek mülakat simülasyonu ile kendinizi sınayın. 
-        Teknik bilginizi sesinizle veya yazarak anında test edin.
+        Teknik bilginizi sesle yanıtlayın, anında tam otomatik değerlendirilsin.
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -323,162 +390,56 @@ with col_left:
                     st.write(f"- **{kp}**")
                 st.write("*...ve diğer ilgili havacılık terimleri.*")
 
-        st.write("### 📝 Cevap Yöntemi Seçin")
-        
-        # YANIT YÖNTEMİ SEÇİMİ (SEKME YAPISI)
-        tab_voice, tab_text = st.tabs(["🎙️ Sesli Yanıt Ver (Anında Otomatik)", "⌨️ Yazılı Yanıt Ver"])
+        st.write("### 🎙️ Sesli Yanıt Verin")
+        st.caption("Mikrofona basıp konuşun. 5 saniye susursanız veya butona tekrar basarsanız **otomatik metne çevrilip puanlanacaktır.**")
 
-        with tab_voice:
-            st.caption("Konuşmanızı tamamladıktan sonra sistem **otomatik olarak** metne çevirip puanlayacaktır.")
-            
-            # HTML Web Speech API
-            speech_html = f"""
-            <style>
-                @keyframes pulse-red {{
-                    0% {{ box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }}
-                    70% {{ box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }}
-                    100% {{ box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }}
-                }}
-                .recording-active {{
-                    animation: pulse-red 1.5s infinite;
-                    background-color: #e11d48 !important;
-                }}
-            </style>
+        # 🎙️ OTOMATİK TAM DEĞERLENDİRMELİ SES KAYDEDİCİ
+        audio_bytes = audio_recorder(
+            text="Mikrofona Bas ve Konuş",
+            recording_color="#e11d48",
+            neutral_color="#2563eb",
+            icon_name="microphone",
+            icon_size="2x",
+            pause_threshold=5.0
+        )
 
-            <div style="background: #ffffff; padding: 18px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
-                <div>
-                    <button id="start-btn" type="button" style="background-color: #2563eb; color: white; border: none; padding: 12px 24px; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 15px;">
-                        🎙️ Konuşmayı Başlat
-                    </button>
-                    <button id="stop-btn" type="button" style="background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 12px 20px; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 15px; margin-left: 8px;">
-                        🛑 Durdur
-                    </button>
-                </div>
-                <span id="status" style="font-weight: 700; font-size: 14px; color: #64748b;">Mikrofon Hazır</span>
-            </div>
-            
-            <div id="live-preview" style="background:#f8fafc; padding:12px; border-radius:10px; border:1px dashed #cbd5e1; font-size:14px; color:#334155; min-height:50px;">
-                <i>Konuşmaya başladığınızda sesiniz burada canlı dökülecek...</i>
-            </div>
-
-            <script>
-                const startBtn = document.getElementById('start-btn');
-                const stopBtn = document.getElementById('stop-btn');
-                const status = document.getElementById('status');
-                const preview = document.getElementById('live-preview');
-
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-                if (!SpeechRecognition) {{
-                    status.innerText = "Tarayıcınız ses tanımayı desteklemiyor (Chrome/Edge kullanın).";
-                    status.style.color = "#ef4444";
-                }} else {{
-                    const recognition = new SpeechRecognition();
-                    recognition.lang = 'tr-TR';
-                    recognition.continuous = true;
-                    recognition.interimResults = true;
-
-                    let timer = null;
-                    let lastText = '';
-
-                    function processFinalResult(text) {{
-                        if (!text || text.trim().length === 0) return;
-                        // Metni gizli form alanına yazıp formu otomatik submit ettir
-                        const input = window.parent.document.querySelector('input[data-testid="stTextInput"]');
-                        if (input) {{
-                            const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
-                            nativeSetter.call(input, text);
-                            input.dispatchEvent(new Event('input', {{ bubbles: true }}));
-                            input.dispatchEvent(new Event('change', {{ bubbles: true }}));
-                        }}
-                    }}
-
-                    function resetTimer() {{
-                        clearTimeout(timer);
-                        timer = setTimeout(() => {{
-                            recognition.stop();
-                            status.innerText = "5 sn sessizlik: Otomatik değerlendiriliyor...";
-                            status.style.color = "#d97706";
-                            startBtn.classList.remove('recording-active');
-                        }}, 5000);
-                    }}
-
-                    recognition.onstart = () => {{
-                        status.innerText = "🔴 Dinleniyor... (Konuşabilirsiniz)";
-                        status.style.color = "#e11d48";
-                        startBtn.classList.add('recording-active');
-                        lastText = '';
-                        resetTimer();
-                    }};
-
-                    recognition.onresult = (event) => {{
-                        resetTimer();
-                        let transcript = '';
-                        for (let i = 0; i < event.results.length; i++) {{
-                            transcript += event.results[i][0].transcript;
-                        }}
-                        lastText = transcript;
-                        preview.innerText = transcript;
-                    }};
-
-                    recognition.onerror = (event) => {{
-                        status.innerText = "Mikrofon hatası: " + event.error;
-                        status.style.color = "#ef4444";
-                        startBtn.classList.remove('recording-active');
-                    }};
-
-                    recognition.onend = () => {{
-                        clearTimeout(timer);
-                        startBtn.classList.remove('recording-active');
-                        if (lastText.trim().length > 0) {{
-                            status.innerText = "✅ Ses İşlendi — Otomatik Skorlanıyor...";
-                            status.style.color = "#16a34a";
-                        }}
-                    }};
-
-                    startBtn.onclick = () => recognition.start();
-                    stopBtn.onclick = () => recognition.stop();
-                }}
-            </script>
-            """
-            components.html(speech_html, height=150)
-            
-            # Gizli veya Otomatik Ses Metni Girişi
-            voice_direct_input = st.text_input(
-                "Sesli Yanıt Metniniz (Otomatik Algılanır):", 
-                key=f"voice_input_{soru.get('id')}", 
-                placeholder="Mikrofona konuştuğunuzda metin buraya dökülecektir..."
-            )
-            
-            if voice_direct_input.strip() and not st.session_state.son_analiz:
-                keywords = soru.get("keywords", [])
-                eval_result = calculate_score(voice_direct_input, keywords)
+        # Otomatik Tetikleme Mantığı: Yeni bir ses kaydı geldiğinde anında çalışır
+        if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
+            st.session_state.last_processed_audio = audio_bytes
+            with st.spinner("🔊 Sesiniz metne dönüştürülüp otomatik değerlendiriliyor..."):
+                transcribed_text = transcribe_audio(audio_bytes)
                 
-                puan = eval_result["score"]
-                st.session_state.puanlar.append(puan)
-                
-                st.session_state.son_analiz = {
-                    "puan": puan,
-                    "matched_count": eval_result["matched_count"],
-                    "bulunanlar": eval_result["matched_keywords"],
-                    "bulunamayanlar": eval_result["missing_keywords"],
-                    "metin": voice_direct_input
-                }
-
-        with tab_text:
-            kullanici_cevabi = st.text_area(
-                "Yazılı Cevabınız:",
-                placeholder="Cevabınızı buraya yazabilirsiniz...",
-                height=150,
-                key=f"text_input_{soru.get('id')}"
-            )
-
-            cevapla_btn = st.button("💾 Yazılı Yanıtı Kaydet ve Değerlendir", type="primary", use_container_width=True)
-
-            if cevapla_btn:
-                if not kullanici_cevabi.strip():
-                    st.warning("⚠️ Lütfen değerlendirme yapabilmek için cevabınızı yazın.")
+                if transcribed_text.strip():
+                    keywords = soru.get("keywords", [])
+                    eval_result = calculate_score(transcribed_text, keywords)
+                    
+                    puan = eval_result["score"]
+                    st.session_state.puanlar.append(puan)
+                    
+                    st.session_state.son_analiz = {
+                        "puan": puan,
+                        "matched_count": eval_result["matched_count"],
+                        "bulunanlar": eval_result["matched_keywords"],
+                        "bulunamayanlar": eval_result["missing_keywords"],
+                        "metin": transcribed_text
+                    }
                 else:
+                    st.warning("⚠️ Sesiniz net anlaşılamadı. Lütfen mikrofona biraz daha yakın konuşarak tekrar deneyin.")
+
+        # Alternatif Yazılı Cevap Kutusu (İstenirse Elle Düzenleme / Yazma için)
+        current_text = st.session_state.son_analiz.get("metin", "") if st.session_state.son_analiz else ""
+        kullanici_cevabi = st.text_area(
+            "Algılanan / Yazılan Yanıtınız:",
+            value=current_text,
+            placeholder="Sesli konuştuğunuzda metin buraya dökülür veya buraya elle yanıt yazabilirsiniz...",
+            height=120,
+            key=f"text_input_{soru.get('id')}"
+        )
+
+        btn_c1, btn_c2 = st.columns([1, 1])
+        with btn_c1:
+            if st.button("💾 Yazılı Yanıtı Değerlendir", type="primary", use_container_width=True):
+                if kullanici_cevabi.strip():
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
                     
@@ -492,12 +453,14 @@ with col_left:
                         "bulunamayanlar": eval_result["missing_keywords"],
                         "metin": kullanici_cevabi
                     }
-
-        # İLERİ SORU BUTONU
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Sonraki Soruya Geç ➔", use_container_width=True):
-            yeni_soru_getir(st.session_state.secilen_kategori)
-            st.rerun()
+                    st.rerun()
+                else:
+                    st.warning("⚠️ Lütfen değerlendirmek için bir metin yazın.")
+        
+        with btn_c2:
+            if st.button("Sonraki Soruya Geç ➔", use_container_width=True):
+                yeni_soru_getir(st.session_state.secilen_kategori)
+                st.rerun()
 
         # Karnedeki Değerlendirme Çıktısı (Animasyonlu)
         if st.session_state.son_analiz:
@@ -508,7 +471,7 @@ with col_left:
             st.markdown("---")
             st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
-            st.caption(f"Değerlendirilen Yanıt: *\"{res.get('metin', '')}\"*")
+            st.info(f"🎤 **Değerlendirilen Cümle:** *\"{res.get('metin', '')}\"*")
             
             if puan == 100:
                 st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! Konuya tam hakimsiniz ({matched_cnt} kilit kavram yakalandı).")
