@@ -276,8 +276,6 @@ if "secilen_kategori" not in st.session_state:
     st.session_state.secilen_kategori = "Tüm Kategoriler"
 if "last_processed_audio" not in st.session_state:
     st.session_state.last_processed_audio = None
-if "mevcut_cevap_metni" not in st.session_state:
-    st.session_state.mevcut_cevap_metni = ""
 
 def yeni_soru_getir(kategori_filtresi):
     if kategori_filtresi == "Tüm Kategoriler":
@@ -301,7 +299,6 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
         st.session_state.last_processed_audio = None
-        st.session_state.mevcut_cevap_metni = ""
 
 # Sidebar
 st.sidebar.markdown("""
@@ -363,6 +360,7 @@ col_left, col_right = st.columns([2.5, 1])
 with col_left:
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
+        input_key = f"answer_input_{soru.get('id')}"
         
         # Soru Kartı
         st.markdown(f"""
@@ -396,14 +394,16 @@ with col_left:
             pause_threshold=5.0
         )
 
-        # Otomatik İşleme
+        # Ses Çözümleme ve State Güncelleme
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
             st.session_state.last_processed_audio = audio_bytes
-            with st.spinner("🔊 Sesiniz metne dönüştürülüp değerlendiriliyor..."):
+            with st.spinner("🔊 Sesiniz metne dönüştürülüyor..."):
                 transcribed_text = transcribe_audio(audio_bytes)
                 
                 if transcribed_text.strip():
-                    st.session_state.mevcut_cevap_metni = transcribed_text
+                    # Doğrudan text_area'nın bağlı olduğu state tuşunu güncelle
+                    st.session_state[input_key] = transcribed_text
+                    
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(transcribed_text, keywords)
                     
@@ -424,17 +424,15 @@ with col_left:
         # Algılanan veya Yazılan Yanıt Kutusu
         kullanici_cevabi = st.text_area(
             "Algılanan / Yazılan Yanıtınız:",
-            value=st.session_state.mevcut_cevap_metni,
             placeholder="Sesli konuştuğunuzda metin buraya aktarılır veya buraya yazabilirsiniz...",
             height=120,
-            key=f"text_area_{soru.get('id')}"
+            key=input_key
         )
 
         btn_c1, btn_c2 = st.columns([1, 1])
         with btn_c1:
-            if st.button("💾 Yazılı Yanıtı Değerlendir", type="primary", use_container_width=True):
+            if st.button("💾 Yanıtı Değerlendir", type="primary", use_container_width=True):
                 if kullanici_cevabi.strip():
-                    st.session_state.mevcut_cevap_metni = kullanici_cevabi
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
                     
