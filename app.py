@@ -21,13 +21,11 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sayfa Arka Planı */
     .stApp { 
         background-color: #f1f5f9 !important; 
         color: #0f172a !important; 
     }
     
-    /* Fade In & Slide Up Animasyonu */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -43,7 +41,6 @@ st.markdown("""
         animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Sol Menü (Sidebar) */
     section[data-testid="stSidebar"] { 
         background-color: #0b1e36 !important; 
         border-right: 1px solid #1e293b;
@@ -53,7 +50,6 @@ st.markdown("""
         font-weight: 600 !important; 
     }
 
-    /* Modern Hero Banner */
     .hero-banner {
         background: linear-gradient(135deg, #0b2559 0%, #1d4ed8 50%, #3b82f6 100%);
         border-radius: 20px; 
@@ -61,15 +57,10 @@ st.markdown("""
         color: #ffffff !important; 
         margin-bottom: 24px;
         box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.25);
-        transition: transform 0.3s ease;
-    }
-    .hero-banner:hover {
-        transform: translateY(-2px);
     }
     .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
     .hero-subtitle { font-size: 1.05rem; color: #e2e8f0 !important; margin-top: 6px; }
 
-    /* Modern Soru Kartı */
     .main-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -77,11 +68,6 @@ st.markdown("""
         padding: 28px; 
         margin-bottom: 20px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        transition: all 0.3s ease;
-    }
-    .main-card:hover {
-        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-        border-color: #cbd5e1;
     }
     .question-title { 
         font-size: 1.35rem; 
@@ -91,7 +77,6 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Rozetler */
     .badge-category {
         background-color: #eff6ff !important; 
         color: #1d4ed8 !important;
@@ -112,7 +97,6 @@ st.markdown("""
         margin-left: 8px;
     }
 
-    /* Text Area */
     .stTextArea textarea {
         background-color: #ffffff !important; 
         color: #0f172a !important;
@@ -120,14 +104,8 @@ st.markdown("""
         border-radius: 14px !important; 
         padding: 16px !important;
         font-size: 1rem !important;
-        transition: all 0.2s ease !important;
-    }
-    .stTextArea textarea:focus {
-        border-color: #2563eb !important;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
     }
 
-    /* Sağ Panel Kartı */
     .side-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -143,13 +121,11 @@ st.markdown("""
         letter-spacing: -1px;
     }
 
-    /* Metrik Kartları Özelleştirme */
     div[data-testid="stMetric"] {
         background: #ffffff !important;
         padding: 16px;
         border-radius: 16px;
         border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -260,6 +236,15 @@ if "son_analiz" not in st.session_state:
     st.session_state.son_analiz = None
 if "secilen_kategori" not in st.session_state:
     st.session_state.secilen_kategori = "Tüm Kategoriler"
+if "auto_speech_text" not in st.session_state:
+    st.session_state.auto_speech_text = ""
+
+# URL Parametresinden Gelen Otomatik Ses Cevabını Yakala
+query_params = st.query_params
+if "speech_eval" in query_params:
+    st.session_state.auto_speech_text = query_params["speech_eval"]
+    # Temizle ki tekrar döngüye girmesin
+    st.query_params.clear()
 
 def yeni_soru_getir(kategori_filtresi):
     if kategori_filtresi == "Tüm Kategoriler":
@@ -282,6 +267,7 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.mevcut_soru = secilen
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
+        st.session_state.auto_speech_text = ""
 
 # Sidebar
 st.sidebar.markdown("""
@@ -319,7 +305,7 @@ st.markdown("""
     <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
     <div class="hero-subtitle">
         Gerçek mülakat simülasyonu ile kendinizi sınayın. 
-        Teknik bilginizi sesle veya yazarak anında test edin.
+        Teknik bilginizi sesle yanıtlayın, anında tam otomatik değerlendirilsin.
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -344,7 +330,7 @@ with col_left:
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         
-        # Soru Kartı (Animasyonlu)
+        # Soru Kartı
         st.markdown(f"""
         <div class="main-card animated-element">
             <div>
@@ -365,7 +351,7 @@ with col_left:
 
         st.write("### 📝 Cevap Alanı")
 
-        # 🎙️ ANİMASYONLU SES KONTROLÜ (HTML / CSS ANİMASYONLARI DÂHİL)
+        # 🎙️ OTOMATİK URL TETİKLEMELİ DİREKT SES MOTORU
         speech_control_html = """
         <style>
             @keyframes pulse-red {
@@ -377,15 +363,11 @@ with col_left:
                 animation: pulse-red 1.5s infinite;
                 background-color: #e11d48 !important;
             }
-            .btn-voice {
-                transition: all 0.2s ease;
-            }
-            .btn-voice:hover {
-                transform: scale(1.02);
-            }
+            .btn-voice { transition: all 0.2s ease; }
+            .btn-voice:hover { transform: scale(1.02); }
         </style>
 
-        <div style="background: #ffffff; padding: 14px 18px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+        <div style="background: #ffffff; padding: 14px 18px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px;">
             <button id="start-btn" class="btn-voice" type="button" style="background-color: #2563eb; color: white; border: none; padding: 10px 20px; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 14px;">
                 🎙️ Konuşmayı Başlat
             </button>
@@ -412,12 +394,22 @@ with col_left:
                 recognition.interimResults = true;
 
                 let timer = null;
+                let finalTranscript = '';
+
+                function sendToStreamlit(text) {
+                    if (!text || text.trim().length === 0) return;
+                    
+                    // Streamlit pencerelerarası URL parametresi göndererek st.rerun tetikler
+                    const url = new URL(window.parent.location.href);
+                    url.searchParams.set('speech_eval', text);
+                    window.parent.location.href = url.href;
+                }
 
                 function resetTimer() {
                     clearTimeout(timer);
                     timer = setTimeout(() => {
                         recognition.stop();
-                        status.innerText = "5 sn sessizlik nedeniyle kayıt tamamlandı.";
+                        status.innerText = "5 sn sessizlik: Otomatik değerlendiriliyor...";
                         status.style.color = "#d97706";
                         startBtn.classList.remove('recording-active');
                     }, 5000);
@@ -427,6 +419,7 @@ with col_left:
                     status.innerText = "🔴 Dinleniyor... (Konuşabilirsiniz)";
                     status.style.color = "#e11d48";
                     startBtn.classList.add('recording-active');
+                    finalTranscript = '';
                     resetTimer();
                 };
 
@@ -436,18 +429,14 @@ with col_left:
                     for (let i = 0; i < event.results.length; i++) {
                         transcript += event.results[i][0].transcript;
                     }
-                    
+                    finalTranscript = transcript;
+
                     try {
                         const parentTextareas = window.parent.document.querySelectorAll('textarea');
                         if (parentTextareas.length > 0) {
-                            const target = parentTextareas[0];
-                            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value").set;
-                            nativeInputValueSetter.call(target, transcript);
-                            target.dispatchEvent(new Event('input', { bubbles: true }));
+                            parentTextareas[0].value = transcript;
                         }
-                    } catch (e) {
-                        console.log("Hata:", e);
-                    }
+                    } catch (e) {}
                 };
 
                 recognition.onerror = (event) => {
@@ -459,9 +448,10 @@ with col_left:
                 recognition.onend = () => {
                     clearTimeout(timer);
                     startBtn.classList.remove('recording-active');
-                    if (!status.innerText.includes("sessizlik")) {
-                        status.innerText = "✅ Ses Aktarıldı";
+                    if (finalTranscript.trim().length > 0) {
+                        status.innerText = "⏳ Cevap Gönderiliyor...";
                         status.style.color = "#16a34a";
+                        sendToStreamlit(finalTranscript);
                     }
                 };
 
@@ -472,9 +462,12 @@ with col_left:
         """
         components.html(speech_control_html, height=80)
 
-        # TEXTAREA
+        # TEXTAREA (Otomatik doldurulabilir veya elle yazılabilir)
+        initial_val = st.session_state.auto_speech_text if st.session_state.auto_speech_text else ""
+        
         kullanici_cevabi = st.text_area(
             "Cevabınız:",
+            value=initial_val,
             placeholder="Cevabınızı buraya yazabilir veya mikrofona basarak konuşabilirsiniz...",
             height=150,
             key=f"text_input_{soru.get('id')}"
@@ -488,12 +481,13 @@ with col_left:
                 yeni_soru_getir(st.session_state.secilen_kategori)
                 st.rerun()
 
-        if cevapla_btn:
-            if not kullanici_cevabi.strip():
-                st.warning("⚠️ Lütfen değerlendirme yapabilmek için cevabınızı metin alanına yazın veya konuşarak doldurun.")
-            else:
+        # Otomatik Değerlendirme Tetikleme Şartı (Sesten geldiyse veya Butona basıldıysa)
+        if cevapla_btn or (st.session_state.auto_speech_text and not st.session_state.son_analiz):
+            metin_to_eval = kullanici_cevabi if kullanici_cevabi.strip() else st.session_state.auto_speech_text
+            
+            if metin_to_eval.strip():
                 keywords = soru.get("keywords", [])
-                eval_result = calculate_score(kullanici_cevabi, keywords)
+                eval_result = calculate_score(metin_to_eval, keywords)
                 
                 puan = eval_result["score"]
                 st.session_state.puanlar.append(puan)
@@ -504,6 +498,10 @@ with col_left:
                     "bulunanlar": eval_result["matched_keywords"],
                     "bulunamayanlar": eval_result["missing_keywords"]
                 }
+                # Temizle
+                st.session_state.auto_speech_text = ""
+            else:
+                st.warning("⚠️ Lütfen değerlendirme yapabilmek için cevabınızı metin alanına yazın veya konuşarak doldurun.")
 
         # Karnedeki Değerlendirme Çıktısı (Animasyonlu)
         if st.session_state.son_analiz:
@@ -544,7 +542,7 @@ with col_left:
                     st.success("Tüm kilit noktalar yanıtınızda mevcut!")
             st.markdown("</div>", unsafe_allow_html=True)
 
-# SADELEŞTİRİLMİŞ SAĞ PANEL (Sadece İlerleme Göstergesi)
+# SAĞ PANEL
 with col_right:
     yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
     
