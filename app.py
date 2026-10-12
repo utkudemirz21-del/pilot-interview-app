@@ -158,19 +158,19 @@ def save_user_progress():
                 "puanlar": st.session_state.puanlar
             }).execute()
         except Exception as e:
-            pass
+            st.error(f"Kayıt Hatası: {e}")
 
 # Veritabanından İlerleme Yükle
 def load_user_progress():
     if supabase and st.session_state.user:
         try:
             res = supabase.table("user_progress").select("*").eq("user_id", st.session_state.user.id).execute()
-            if res.data:
+            if res.data and len(res.data) > 0:
                 data = res.data[0]
-                st.session_state.sorulan_ids = data.get("sorulan_ids", [])
-                st.session_state.puanlar = data.get("puanlar", [])
-        except Exception:
-            pass
+                st.session_state.sorulan_ids = data.get("sorulan_ids", []) or []
+                st.session_state.puanlar = data.get("puanlar", []) or []
+        except Exception as e:
+            st.error(f"Yükleme Hatası: {e}")
 
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
