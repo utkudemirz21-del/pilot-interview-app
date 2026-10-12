@@ -126,3 +126,4 @@ if soru:
                     st.write("*Tüm kelimeler yakalandı!*")
         else:
             st.warning("Lütfen değerlendirmek için bir cevap metni girin.")
+            
