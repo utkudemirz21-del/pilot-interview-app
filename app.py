@@ -11,53 +11,54 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Kesin Görünürlük ve Filtre Kararlılığı İçin CSS
+# Kesin Görünürlük ve Kontrast CSS'i
 st.markdown("""
 <style>
-    /* Streamlit Genel Temasını Aydınlık Moda Zorlama */
-    :root {
-        --background-color: #f8fafc;
-        --secondary-background-color: #ffffff;
-        --text-color: #0f172a;
-    }
-
+    /* Ana Arka Plan */
     .stApp {
         background-color: #f8fafc !important;
         color: #0f172a !important;
     }
 
-    /* Sol Menü (Sidebar) - Derin Lacivert Zemin */
+    /* Sol Menü (Sidebar) - Derin Lacivert */
     section[data-testid="stSidebar"] {
         background-color: #0b2559 !important;
     }
-    section[data-testid="stSidebar"] * {
+    section[data-testid="stSidebar"] label {
         color: #ffffff !important;
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
     }
 
-    /* SELECTBOX KUTUSU VE YAZI RENGİ DÜZELTMESİ (GÖRÜNMEYEN BEYAZ YAZI İÇİN) */
+    /* SELECTBOX KUTUSU VE SEÇİLİ YAZI REVGİ DÜZELTMESİ */
     div[data-baseweb="select"] {
         background-color: #ffffff !important;
         border-radius: 8px !important;
     }
-    div[data-baseweb="select"] > div {
-        background-color: #ffffff !important;
+    div[data-baseweb="select"] * {
         color: #0f172a !important;
-        border: 1.5px solid #cbd5e1 !important;
-        border-radius: 8px !important;
-    }
-    div[data-baseweb="select"] span, 
-    div[data-baseweb="select"] div,
-    div[data-baseweb="select"] input {
-        color: #0f172a !important;
+        fill: #0f172a !important;
         font-weight: 700 !important;
     }
-    /* Selectbox Açılır Menü Seçenekleri */
+    div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Açılır Menü Seçenek Listesi */
     ul[role="listbox"] {
         background-color: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
     }
     ul[role="listbox"] li {
         color: #0f172a !important;
+        background-color: #ffffff !important;
         font-weight: 600 !important;
+    }
+    ul[role="listbox"] li:hover {
+        background-color: #eff6ff !important;
+        color: #2563eb !important;
     }
 
     /* Hero Banner */
@@ -102,7 +103,7 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Kategori ve Zorluk Etiketleri (Badges) */
+    /* Kategori Rozetleri */
     .badge-category {
         background-color: #dbeafe !important;
         color: #1e40af !important;
@@ -224,7 +225,6 @@ st.sidebar.markdown("---")
 
 kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
 
-# Kategori Değiştiğinde Çalışacak Callback
 def on_kategori_change():
     yeni_kat = st.session_state.kat_select_box
     st.session_state.secilen_kategori = yeni_kat
