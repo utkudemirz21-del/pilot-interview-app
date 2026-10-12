@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "category": "Aerodinamik & Performans",
+    "difficulty": "PPL-CPL Seviyesi",
+    "question": "Stall nedir ve stall durumundan çıkış (recovery) prosedürü temel olarak nasıl gerçekleştirilir?",
+    "key_points": [
+      "Hücum açısının (AOA) kritik açıyı aşması",
+      "LIFT (Taşıma kuvveti) kaybı",
+      "Burun aşağı verme (Pitch down)",
+      "Güç ekleme (Power/Thrust)"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Aerodinamik & Performans",
+    "difficulty": "PPL-CPL Seviyesi",
+    "question": "Yer etkisi (Ground Effect) nedir ve kalkış/iniş esnasında uçağın performansını nasıl etkiler?",
+    "key_points": [
+      "Kanat ucu girdaplarının (wingtip vortices) yere yakınken engellenmesi",
+      "İndüklenmiş sürüklemenin (Induced drag) azalması",
+      "Yüzme (floating) eğilimi",
+      "Yaklaşık bir kanat açıklığı yükseklikte etkili olması"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Uçak Sistemleri & Motor",
+    "difficulty": "PPL-CPL Seviyesi",
+    "question": "FADEC (Full Authority Digital Engine Control) sistemi nedir ve pilot için ne gibi kolaylıklar ve emniyet avantajları sağlar?",
+    "key_points": [
+      "Motorun dijital bilgisayar (EEC/ECU) tarafından tam yetkiyle yönetilmesi",
+      "Limit aşımlarını (over-speed, over-temp) otomatik önleme",
+      "Optimum yakıt verimliliği ve performans sağlama",
+      "Pilot iş yükünü azaltma"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Meteoroloji & Altimetre",
+    "difficulty": "PPL-CPL Seviyesi",
+    "question": "QNH, QFE ve QNE altimetre alt ölçek değerleri arasındaki farklar nelerdir?",
+    "key_points": [
+      "QNH: Deniz seviyesine indirgenmiş basınç (Altimetre meydan irtifasını gösterir)",
+      "QFE: Meydan basıncı (Altimetre meydanda 0 feet gösterir)",
+      "QNE: Standart basınç 1013.25 hPa / 29.92 inHg (Geçiş irtifası üzerinde kullanılır)",
+      "İrtifa (Altitude) vs Yükseklik (Height) vs Uçuş Seviyesi (Flight Level)"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "Aletli Uçuş (IFR) & Seyir",
+    "difficulty": "PPL-CPL Seviyesi",
+    "question": "ILS (Instrument Landing System) ana bileşenleri nelerdir ve ne işe yararlar?",
+    "key_points": [
+      "Localizer: Yatay eksende pist eksenini sağlar",
+      "Glide Path / Glide Slope: Dikey eksende süzülüş açısını sağlar",
+      "Marker Beacons / DME: Piste olan mesafeyi bildirir",
+      "Pist Işıkları (Approach Lighting System)"
+    ]
+  }
+]
