@@ -5,3 +5,7 @@ streamlit
 audio-recorder-streamlit
 SpeechRecognition
 pydub
+streamlit
+audio-recorder-streamlit
+SpeechRecognition
+pydub
