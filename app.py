@@ -30,7 +30,7 @@ st.markdown("""
         font-size: 0.95rem !important;
     }
 
-    /* SELECTBOX KUTUSU VE SEÇİLİ YAZI REVGİ DÜZELTMESİ */
+    /* SELECTBOX KUTUSU VE SEÇİLİ YAZI RENK DÜZELTMESİ */
     div[data-baseweb="select"] {
         background-color: #ffffff !important;
         border-radius: 8px !important;
@@ -166,6 +166,59 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# 🛠️ TÜRKÇE MÜKEMMEL HARF DÖNÜŞTÜRÜCÜ
+def turkish_lower(text: str) -> str:
+    if not text:
+        return ""
+    rep = {'I': 'ı', 'İ': 'i', 'Ç': 'ç', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö'}
+    for search, replace in rep.items():
+        text = text.replace(search, replace)
+    return text.lower()
+
+# 🛠️ KELİME TARAMA VE PUANLAMA MOTORU
+def calculate_score(user_answer: str, keywords: list) -> dict:
+    if not user_answer or not user_answer.strip():
+        return {
+            "score": 0,
+            "matched_count": 0,
+            "matched_keywords": [],
+            "missing_keywords": keywords
+        }
+
+    clean_answer = turkish_lower(user_answer)
+    clean_answer = re.sub(r'[^\w\s]', ' ', clean_answer)  # Noktalama işaretlerini boşluğa çevir
+
+    matched_keywords = []
+    missing_keywords = []
+
+    for kw in keywords:
+        clean_kw = turkish_lower(str(kw).strip())
+        if clean_kw and clean_kw in clean_answer:
+            matched_keywords.append(kw)
+        else:
+            missing_keywords.append(kw)
+
+    match_count = len(matched_keywords)
+
+    # 🎯 ÖZEL SKORLAMA KURALI
+    if match_count >= 4:
+        score = 100
+    elif match_count == 3:
+        score = 80
+    elif match_count == 2:
+        score = 60
+    elif match_count == 1:
+        score = 30
+    else:
+        score = 0
+
+    return {
+        "score": score,
+        "matched_count": match_count,
+        "matched_keywords": matched_keywords,
+        "missing_keywords": missing_keywords
+    }
+
 # JSON Verisini Yükle
 @st.cache_data(ttl=60)
 def load_questions():
@@ -278,22 +331,29 @@ with col_left:
         st.markdown(f"""
         <div class="main-card">
             <div>
-                <span class="badge-category">{soru['category']}</span>
-                <span class="badge-difficulty">{soru['difficulty']}</span>
+                <span class="badge-category">{soru.get('category', 'Genel')}</span>
+                <span class="badge-difficulty">{soru.get('difficulty', 'Orta')}</span>
             </div>
-            <div class="question-title">❓ {soru['question']}</div>
+            <div class="question-title">❓ {soru.get('question', '')}</div>
         </div>
         """, unsafe_allow_html=True)
         
-        with st.expander("💡 Mülakatçı Beklentileri (Kilit Terimler)"):
-            st.write("Bu soruda yanıtınızda geçmesi beklenen anahtar kavramlar:")
-            for kp in soru.get("key_points", []):
-                st.write(f"- **{kp}**")
+        # İP UCU VE AÇIKLAMA ALANI
+        with st.expander("💡 Mülakatçı Beklentileri (Kilit Terim İpuçları)"):
+            st.write("Bu soruda yanıtınızda bulunması hedeflenen bazı kilit kavramlar:")
+            kw_list = soru.get("keywords", [])
+            if kw_list:
+                for kp in kw_list[:2]:  # İlk 2 tanesini ipucu olarak göster
+                    st.write(f"- **{kp}**")
+                st.write("*...ve diğer ilgili havacılık terimleri.*")
+            else:
+                st.write("Bu soru için özel kilit terim tanımlanmamış.")
 
         kullanici_cevabi = st.text_area(
             "Cevabınızı Yazılı Olarak Verin:",
             placeholder="Havacılık terminolojisine (ICAO/SOP) uygun şekilde yanıtınızı detaylıca açıklayın...",
-            height=150
+            height=150,
+            key=f"input_{soru.get('id')}"
         )
 
         btn_c1, btn_c2 = st.columns([1, 1])
@@ -309,54 +369,47 @@ with col_left:
             if not kullanici_cevabi.strip():
                 st.warning("⚠️ Lütfen önce mülakat yanıtınızı metin alanına yazın.")
             else:
-                key_points = soru.get("key_points", [])
-                cevabi_alt = kullanici_cevabi.lower()
+                keywords = soru.get("keywords", [])
+                eval_result = calculate_score(kullanici_cevabi, keywords)
                 
-                bulunanlar = []
-                bulunamayanlar = []
-
-                for kp in key_points:
-                    terimler = re.findall(r'\b\w{3,}\b', kp.lower())
-                    bulundu = any(t in cevabi_alt for t in terimler)
-                    
-                    if bulundu:
-                        bulunanlar.append(kp)
-                    else:
-                        bulunamayanlar.append(kp)
-
-                toplam_kriter = len(key_points)
-                puan = int((len(bulunanlar) / toplam_kriter) * 100) if toplam_kriter > 0 else 100
-
+                puan = eval_result["score"]
                 st.session_state.puanlar.append(puan)
+                
                 st.session_state.son_analiz = {
                     "puan": puan,
-                    "bulunanlar": bulunanlar,
-                    "bulunamayanlar": bulunamayanlar
+                    "matched_count": eval_result["matched_count"],
+                    "bulunanlar": eval_result["matched_keywords"],
+                    "bulunamayanlar": eval_result["missing_keywords"]
                 }
 
         # Değerlendirme Karnesi Çıktısı
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
+            matched_cnt = res["matched_count"]
             
             st.markdown("---")
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
             
-            if puan >= 80:
-                st.success(f"🏆 **Mülakat Skoru: {puan} / 100** — Harika! Konuya ve terminolojiye tam hakimsiniz.")
-            elif puan >= 50:
-                st.warning(f"⚠️ **Mülakat Skoru: {puan} / 100** — Geçer Seviye. Bazı kilit detayları unuttunuz.")
+            if puan == 100:
+                st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! En az 4 kilit terim tespit edildi ({matched_cnt} adet).")
+            elif puan == 80:
+                st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi! Tam 3 kilit terim yakalandı.")
+            elif puan == 60:
+                st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye. 2 kilit terim bulundu.")
+            elif puan == 30:
+                st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Sadece 1 kilit terim yakalandı.")
             else:
-                st.error(f"❌ **Mülakat Skoru: {puan} / 100** — Yetersiz. Temel teknik terimleri tekrar gözden geçirmelisiniz.")
+                st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda hiçbir anahtar kelime bulunamadı.")
 
             c_pos, c_neg = st.columns(2)
             with c_pos:
                 st.write("##### ✅ Tespit Edilen Doğru Noktalar")
                 if res["bulunanlar"]:
                     for b in res["bulunanlar"]:
-                        st.write(f"✔️ {b}")
+                        st.write(f"✔️ **{b}**")
                 else:
-                    st.info("Kilit kavramlar bulunamadı.")
+                    st.info("Cevabınızda kilit kavramlar yakalanamadı.")
 
             with c_neg:
                 st.write("##### ❌ Eksik veya Atlanan Noktalar")
@@ -364,7 +417,7 @@ with col_left:
                     for ex in res["bulunamayanlar"]:
                         st.write(f"✖️ {ex}")
                 else:
-                    st.success("Tüm kilit noktalar mevcut!")
+                    st.success("Tüm kilit noktalar yanıtınızda mevcut!")
 
 with col_right:
     # Sağ Taraf: Genel İlerleme (% Göstergeli) & İpucu Kutusu
@@ -386,10 +439,14 @@ with col_right:
     
     st.markdown("""
     <div class="side-card" style="background:#eff6ff !important; border-color:#bfdbfe !important;">
-        <h5 style="margin:0 0 8px 0; color:#1d4ed8 !important;">💡 Küçük Bir İpucu</h5>
+        <h5 style="margin:0 0 8px 0; color:#1d4ed8 !important;">💡 Değerlendirme Kriteri</h5>
         <p style="margin:0; color:#1e40af !important; font-size:0.88rem; line-height:1.5;">
-            Teknik sorularda sadece doğru cevabı vermek değil, mantığınızı açıklamak da çok önemlidir. 
-            Neden-sonuç ilişkisini kurmayı ve havacılık terminolojisini (ICAO) kullanmayı unutmayın.
+            <b>Skor Tablosu:</b><br>
+            • 4+ Keyword: <b>100 Puan</b><br>
+            • 3 Keyword: <b>80 Puan</b><br>
+            • 2 Keyword: <b>60 Puan</b><br>
+            • 1 Keyword: <b>30 Puan</b><br>
+            • 0 Keyword: <b>0 Puan</b>
         </p>
     </div>
     """, unsafe_allow_html=True)
