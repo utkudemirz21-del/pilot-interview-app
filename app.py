@@ -26,65 +26,143 @@ def init_supabase() -> Client:
 
 supabase = init_supabase()
 
-# 🎨 MODERN UI & ANİMASYON CSS KODLARI
+# 🎨 ULTRA MODERN UI, PRESTİJLİ FONT VE ANİMASYON CSS KODLARI
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    * { font-family: 'Inter', sans-serif; }
-    .stApp { background-color: #f1f5f9 !important; color: #0f172a !important; }
-    
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(18px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .animated-element { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap');
 
+    html, body, [class*="css"] {
+        font-family: 'Inter', sans-serif;
+    }
+
+    h1, h2, h3, h4, .hero-title, .question-title {
+        font-family: 'Outfit', sans-serif !important;
+    }
+
+    .stApp { 
+        background: #f8fafc !important; 
+        color: #0f172a !important; 
+    }
+    
+    /* Fade In & Slide Up Animasyonu */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animated-element {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Sol Menü (Sidebar) */
     section[data-testid="stSidebar"] { 
-        background-color: #0b1e36 !important; 
+        background: linear-gradient(180deg, #071527 0%, #0b2246 100%) !important; 
         border-right: 1px solid #1e293b;
     }
     section[data-testid="stSidebar"] label { color: #f8fafc !important; font-weight: 600 !important; }
 
+    /* Ultra Modern Hero Banner */
     .hero-banner {
-        background: linear-gradient(135deg, #0b2559 0%, #1d4ed8 50%, #3b82f6 100%);
-        border-radius: 20px; 
-        padding: 32px; 
+        background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 50%, #2563eb 100%);
+        border-radius: 24px; 
+        padding: 40px; 
         color: #ffffff !important; 
-        margin-bottom: 24px;
-        box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.25);
+        margin-bottom: 28px;
+        box-shadow: 0 20px 35px -10px rgba(37, 99, 235, 0.3);
+        position: relative;
+        overflow: hidden;
     }
-    .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
-    .hero-subtitle { font-size: 1.05rem; color: #e2e8f0 !important; margin-top: 6px; }
+    .hero-banner::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    .hero-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .hero-subtitle { font-size: 1.1rem; color: #cbd5e1 !important; max-width: 700px; line-height: 1.6; }
 
+    /* Modern Soru Kartı */
     .main-card {
         background: #ffffff !important; 
-        border-radius: 20px;
+        border-radius: 24px;
         border: 1px solid #e2e8f0; 
-        padding: 28px; 
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        padding: 32px; 
+        margin-bottom: 24px;
+        box-shadow: 0 10px 30px -5px rgba(0,0,0,0.04);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .question-title { font-size: 1.35rem; font-weight: 700; color: #0f172a !important; margin-top: 14px; }
+    .main-card:hover {
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
+        border-color: #cbd5e1;
+        transform: translateY(-2px);
+    }
+    .question-title { font-size: 1.45rem; font-weight: 700; color: #0f172a !important; margin-top: 16px; line-height: 1.5; }
     
+    /* Rozetler */
     .badge-category {
         background-color: #eff6ff !important; color: #1d4ed8 !important;
-        border: 1px solid #bfdbfe !important; padding: 6px 16px; border-radius: 30px; font-weight: 700; font-size: 0.85rem;
+        border: 1px solid #bfdbfe !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem;
+        letter-spacing: 0.3px;
     }
     .badge-difficulty {
         background-color: #f1f5f9 !important; color: #334155 !important;
-        border: 1px solid #cbd5e1 !important; padding: 6px 16px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-left: 8px;
+        border: 1px solid #cbd5e1 !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-left: 8px;
+    }
+
+    /* Sol Taraf Kokpit & Taktik Görsel Kartı */
+    .cockpit-card {
+        background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1000&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        border-radius: 24px;
+        padding: 28px;
+        color: #ffffff !important;
+        box-shadow: 0 12px 28px -5px rgba(15, 23, 42, 0.25);
+        margin-bottom: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tactic-card {
+        background: #ffffff !important;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        padding: 24px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        margin-bottom: 20px;
     }
 
     .stTextArea textarea {
         background-color: #ffffff !important; color: #0f172a !important;
-        border: 1.5px solid #cbd5e1 !important; border-radius: 14px !important; padding: 16px !important;
+        border: 1.5px solid #cbd5e1 !important; border-radius: 16px !important; padding: 18px !important;
+        font-size: 1.05rem !important;
     }
 
     .side-card {
-        background: #ffffff !important; border-radius: 20px;
-        border: 1px solid #e2e8f0; padding: 24px; margin-bottom: 20px;
+        background: #ffffff !important; border-radius: 24px;
+        border: 1px solid #e2e8f0; padding: 28px; margin-bottom: 20px;
+        box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.04);
     }
-    .progress-percent { font-size: 2.5rem; font-weight: 800; color: #2563eb !important; }
+    .progress-percent { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; color: #2563eb !important; letter-spacing: -1px; }
+
+    /* Metrik Kartları Özelleştirme */
+    div[data-testid="stMetric"] {
+        background: #ffffff !important;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -147,7 +225,6 @@ if "son_analiz" not in st.session_state: st.session_state.son_analiz = None
 if "secilen_kategori" not in st.session_state: st.session_state.secilen_kategori = "Tüm Kategoriler"
 if "last_processed_audio" not in st.session_state: st.session_state.last_processed_audio = None
 
-# Veritabanına İlerleme Kaydet
 def save_user_progress():
     if supabase and st.session_state.user:
         try:
@@ -157,10 +234,9 @@ def save_user_progress():
                 "sorulan_ids": st.session_state.sorulan_ids,
                 "puanlar": st.session_state.puanlar
             }).execute()
-        except Exception as e:
-            st.error(f"Kayıt Hatası: {e}")
+        except Exception:
+            pass
 
-# Veritabanından İlerleme Yükle
 def load_user_progress():
     if supabase and st.session_state.user:
         try:
@@ -169,8 +245,8 @@ def load_user_progress():
                 data = res.data[0]
                 st.session_state.sorulan_ids = data.get("sorulan_ids", []) or []
                 st.session_state.puanlar = data.get("puanlar", []) or []
-        except Exception as e:
-            st.error(f"Yükleme Hatası: {e}")
+        except Exception:
+            pass
 
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
@@ -244,8 +320,8 @@ def yeni_soru_getir(kategori_filtresi):
 # Sidebar
 st.sidebar.markdown(f"""
 <div style="padding: 10px 0 10px 0;">
-    <h2 style="color: #ffffff; margin:0; font-size: 1.4rem; font-weight:800;">✈️ PilotInterviewPro</h2>
-    <p style="color: #93c5fd; font-size: 0.8rem; margin-top:2px;">👤 {st.session_state.user.email}</p>
+    <h2 style="color: #ffffff; margin:0; font-size: 1.5rem; font-weight:800;">✈️ PilotInterviewPro</h2>
+    <p style="color: #93c5fd; font-size: 0.85rem; margin-top:2px;">👤 {st.session_state.user.email}</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -287,13 +363,23 @@ st1, st2, st3, st4 = st.columns(4)
 st1.metric("Toplam Soru", f"{toplam_soru}+")
 st2.metric("Kategori", f"{len(kategoriler)-1} Başlık")
 st3.metric("Ortalama Skor", f"%{ort_skor:.0f}")
-st4.metric("Seviye", "ATPL & CPL")
+st4.metric("Hedef Skor", "%80+ Başarı")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
 col_left, col_right = st.columns([2.5, 1])
 
 with col_left:
+    # Sol Taraf Kokpit & Taktik Kartı
+    st.markdown("""
+    <div class="cockpit-card animated-element">
+        <h3 style="margin:0 0 8px 0; font-size:1.4rem; color:#ffffff;">👨‍✈️ Kokpit Mülakat Modu</h3>
+        <p style="margin:0; font-size:0.95rem; color:#e2e8f0; line-height:1.5;">
+            Sorulara sesli yanıt verirken havacılık terminolojisini doğru ve net kullanmaya özen gösterin.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         input_key = f"answer_input_{soru.get('id')}"
@@ -392,6 +478,16 @@ with col_left:
                 st.write("##### ❌ Eksik/Atlanan Kavramlar")
                 for ex in res["bulunamayanlar"]: st.write(f"✖️ {ex}")
             st.markdown("</div>", unsafe_allow_html=True)
+
+    # Sol Taraf Mülakat Taktikleri Kartı
+    st.markdown("""
+    <div class="tactic-card animated-element">
+        <h4 style="margin:0 0 8px 0; color:#1e293b; font-weight:700;">💡 Mülakat İpucu</h4>
+        <p style="margin:0; color:#64748b; font-size:0.9rem; line-height:1.5;">
+            Teknik mülakatlarda sistemlerin çalışmasını açıklarken <b>neden-sonuç ilişkisini</b> ve standart operasyon usullerini (SOP) vurgulamanız puanınızı artırır.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col_right:
     yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
