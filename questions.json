@@ -1,601 +1,189 @@
 [
   {
-    "id": 1,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Stall nedir, Stall'a etki eden faktörler nelerdir ve Stall durumundan recovery (çıkış) prosedürü nasıl uygulanır?",
-    "key_points": [
-      "Hücum açısının (AOA) kritik açıyı aşması ve Lift kaybı",
-      "Ağırlık, Flap/Slat konfigürasyonu, Yatma açısı (Bank angle) ve CG konumunun stall süratine etkisi",
-      "Lövye ileri (Pitch Down) verilerek hücum açısının düşürülmesi",
-      "Güç/Thrust eklenmesi ve emniyetli sürat sağlandıktan sonra sakince düz uçuşa geçilmesi"
-    ]
+    "id": "Q001",
+    "category": "Air Law",
+    "question": "EASA, ICAO ve IATA’nın açılımları ve temel görevleri nelerdir?",
+    "keywords": ["easa", "icao", "iata", "otorite", "birlik"]
   },
   {
-    "id": 2,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "CG (Centre of Gravity - Ağırlık Merkezi) konumunun önde (Forward CG) veya arkada (Aft CG) olmasının uçak performansına ve kararlılığına (stability) etkileri nelerdir?",
-    "key_points": [
-      "Forward CG: Daha fazla longitudinal kararlılık (stability), ancak yüksek stall sürati, düşük tırmanma ve daha fazla yakıt tüketimi",
-      "Aft CG: Daha az kararlılık (daha hassas kumandalar), ancak düşük stall sürati, yüksek menzil/performans ve az yakıt tüketimi",
-      "Trim sürüklemesi (Trim drag) farkı",
-      "Lövye kuvvetleri (Stick forces) farkı"
-    ]
+    "id": "Q002",
+    "category": "Air Law",
+    "question": "Pist üzerindeki Threshold çizgileri ne ifade eder ve ne işe yarar?",
+    "keywords": ["threshold", "genişlik", "şerit", "eşik", "iniş"]
   },
   {
-    "id": 3,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "V1, VR, V2 ve Vmcg kalkış süratleri nelerdir? Islak pist (wet runway) V1 süratini nasıl etkiler?",
-    "key_points": [
-      "V1: Take-off decision speed (Kalkışa devam veya pas geçme/durma karar sürati)",
-      "VR: Rotate speed (Burun kaldırma sürati)",
-      "V2: Take-off safety speed (Tek motor arızasında emniyetli tırmanma sürati)",
-      "Vmcg: Minimum control speed on ground (Yerde yön kontrolünün sağlanabildiği min sürat)",
-      "Islak pistte durma mesafesi uzayacağı için V1 sürati düşürülür"
-    ]
+    "id": "Q003",
+    "category": "Air Law",
+    "question": "Centerline lights ne zaman kavisli renk değiştirir ve ne anlama gelir?",
+    "keywords": ["beyaz", "kırmızı-beyaz", "kırmızı", "900m", "300m"]
   },
   {
-    "id": 4,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Mcrit (Kritik Mach Sayısı) nedir ve ok açılı kanat (Swept Wing) yapısı Mcrit değerini nasıl etkiler?",
-    "key_points": [
-      "Mcrit: Uçak üzerindeki herhangi bir noktadaki hava akışının ilk kez Mach 1 seviyesine ulaştığı serbest akış Mach sayısı",
-      "Swept Wing: Hava akışının kanat boylamındaki bileşenini ayırarak Mcrit değerini yükseltir",
-      "Yüksek hızlarda şok dalgası oluşumunu ve dalga sürüklemesini (wave drag) geciktirir",
-      "Dezavantajı: Düşük hızlarda Tip Stall eğilimi ve Dutch Roll riski oluşturur"
-    ]
+    "id": "Q004",
+    "category": "Air Law",
+    "question": "PAPI nedir ve nasıl çalışır? 3 beyaz 1 kırmızı görünüyorsanız durum nedir?",
+    "keywords": ["papi", "süzülüş", "3 derece", "yüksek", "kırmızı"]
   },
   {
-    "id": 5,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Induced Drag ve Parasite Drag nedir? Uçağın hızı arttıkça bu iki sürükleme bileşeni nasıl değişir ve Vmd noktası neyi ifade eder?",
-    "key_points": [
-      "Induced Drag (İndüklenmiş Sürükleme): Taşıma kuvveti (Lift) üretilirken oluşan, kanat ucu girdapları kaynaklı sürükleme (Hız arttıkça azalır)",
-      "Parasite Drag (Parazit Sürükleme): Şekil, sürtünme ve girişim sürüklemelerinin toplamı (Hız arttıkça karesiyle orantılı artar)",
-      "Vmd: Toplam sürüklemenin en düşük olduğu minimum drag sürati (Maksimum süzülüş ve maksimum menzil açısı)"
-    ]
+    "id": "Q005",
+    "category": "Air Law",
+    "question": "Kalkışta kaç feet'ten önce dönüş yapmak yasaktır?",
+    "keywords": ["400", "der", "kalkış", "yükseklik", "manevra"]
   },
   {
-    "id": 6,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Ground Effect (Yer Etkisi) nedir? İniş ve kalkış esnasında uçağın performansını nasıl etkiler?",
-    "key_points": [
-      "Yaklaşık bir kanat açıklığı kadar yükseklikte kanat ucu girdaplarının yere yakınlık nedeniyle engellenmesi",
-      "Induced Drag (İndüklenmiş sürükleme) belirgin şekilde azalır",
-      "İnişte uçağın pist üzerinde yüzme (floating) eğilimi artar",
-      "Kalkışta uçağın henüz emniyetli uçuş süratine ulaşmadan erken yerden kesilmesine sebep olabilir"
-    ]
+    "id": "Q006",
+    "category": "Air Law",
+    "question": "IFR ve VFR uçuşlar arasındaki temel farklar nelerdir?",
+    "keywords": ["aletli", "görerek", "atc", "görüş", "yeterlilik"]
   },
   {
-    "id": 7,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Spoilers (Rüzgar kırıcılar) uçakta hangi amaçlarla kullanılır ve ne işe yararlar?",
-    "key_points": [
-      "Speedbrakes: Hava akışını bozup drag ekleyerek hızlanmadan hızlı alçalmayı sağlar",
-      "Roll Control: Dönüşlerde aileronlara yardımcı olarak yatış tarafındaki Lift'i düşürür",
-      "Ground Spoilers / Lift DumpERS: İnişte yere teker koyar koymaz 90 dereceye yakın açılarak Lift'i yok eder ve tekerleklere yük bindirip fren etkisini artırır"
-    ]
+    "id": "Q007",
+    "category": "Air Law",
+    "question": "Kontrolsüz hava sahasında ve kontrolsüz meydana inişte prosedür nedir?",
+    "keywords": ["blind", "gözlem", "tur", "class g", "radyo"]
   },
   {
-    "id": 8,
-    "category": "Aerodinamik & Performans",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Dutch Roll nedir, neden oluşur ve uçaktaki hangi sistem bunu engeller?",
-    "key_points": [
-      "Lateral stability (Yanal kararlılık) değerinin Directional stability (Yönsel kararlılık) değerinden güçlü olması sonucu oluşan yaw-roll salınımı",
-      "Swept wing (ok açılı) kanat yapısına sahip uçaklarda daha sık görülür",
-      "Yaw Damper sistemi otomatik olarak küçük rudder inputları vererek salınımı engeller",
-      "Yaw Damper arızasında manuel rudder yerine yumuşak aileron (roll) inputları ile düzeltilmelidir"
-    ]
+    "id": "Q008",
+    "category": "Air Law",
+    "question": "Wake Turbulence nedir, ne zaman oluşur ve ayırma usulleri nelerdir?",
+    "keywords": ["vortex", "ağırlık", "kalkış", "zaman", "kaldırma"]
   },
   {
-    "id": 9,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Kritik Motor (Critical Engine) nedir ve çok motorlu uçaklarda hangi faktörler bir motoru kritik yapar?",
-    "key_points": [
-      "Kritik Motor: Kaybı durumunda uçağın performansını ve kumanda edilebilirliğini en olumsuz etkileyen motor",
-      "P-Factor (Asymmetric blade effect / İtki merkezinin kayması)",
-      "Kayıp akım (Slipstream effect / Dikey stabilizeye etki)",
-      "Moment kolu (Accelerated slipstream ve Torque)"
-    ]
+    "id": "Q009",
+    "category": "Air Law",
+    "question": "RVSM nedir ve kuralları nasıldır?",
+    "keywords": ["rvsm", "1000", "fl290", "altimetre", "doğu"]
   },
   {
-    "id": 10,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "FADEC (Full Authority Digital Engine Control) sistemi nedir ve motorda ne gibi güvenlik/kontrol işlevleri üstlenir?",
-    "key_points": [
-      "EEC / ECU tam yetkili dijital motor yönetim bilgisayarı",
-      "Motor limit aşımlarını (Over-speed, Over-temperature / EGT) otomatik önleme",
-      "Otomatik starter kesme ve restart yönetimi",
-      "Optimum yakıt akışı ve verimlilik sağlama, pilot iş yükünü azaltma"
-    ]
+    "id": "Q010",
+    "category": "Air Law",
+    "question": "Isolated Runway nedir ve yakıt planlamasına etkisi nasıldır?",
+    "keywords": ["isolated", "alternate", "point of no return", "2 saat", "destinasyon"]
   },
   {
-    "id": 11,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Turbofan ve Turbojet motorlar arasındaki temel fark nedir? Bypass Ratio (Bayan Oranı) ne anlama gelir?",
-    "key_points": [
-      "Turbojet motorlarda motora giren tüm hava yanma odasından geçer",
-      "Turbofan motorlarda fandan geçen havanın bir kısmı çekirdeğe girerken büyük kısmı çekirdeğin etrafından (bypass) akar",
-      "Bypass Ratio: Yanma odasından geçmeyen havanın, yanma odasından geçen havaya kütlesel oranıdır",
-      "Turbofan motorlar alçak irtifada ve yüksek bypass oranlarında çok daha sessiz ve yakıt tasarrufludur"
-    ]
+    "id": "Q011",
+    "category": "Aircraft Systems",
+    "question": "Birincil ve ikincil kumanda yüzeyleri nelerdir?",
+    "keywords": ["aileron", "elevator", "rudder", "flap", "spoiler"]
   },
   {
-    "id": 12,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "APU (Auxiliary Power Unit) nedir, uçakta nerede bulunur ve ne amaçla kullanılır?",
-    "key_points": [
-      "Uçağın Genellikle kuyruk konisinde (tail cone) bulunan küçük gaz türbinli yardımcı güç ünitesi",
-      "Yerde ana motorlar çalışmazken uçak sistemlerine AC elektrik gücü sağlar",
-      "Ana motorları çalıştırmak için pnömatik basınçlı hava (pneumatic bleed air) ve iklimlendirme (air conditioning) sağlar",
-      "Gerekli durumlarda uçuş sırasında da yedek elektrik kaynağı olarak kullanılabilir"
-    ]
+    "id": "Q012",
+    "category": "Aircraft Systems",
+    "question": "Trim sistemleri nasıl çalışır ve kokpitte ne amaçla kullanılır?",
+    "keywords": ["kuvvet", "yük", "tab", "stabilizer", "denge"]
   },
   {
-    "id": 13,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Fly-By-Wire (FBW) teknolojisi nedir? Klasik mekanik kumanda sistemlerine göre avantajları nelerdir?",
-    "key_points": [
-      "Pilotun kumanda girdilerinin fiziksel kablolar yerine elektrik sinyalleriyle uçuş bilgisayarlarına iletilmesi",
-      "Flight Envelope Protection: Uçağın aşırı AOA, yüksek g yükü, aşırı hız ve aşırı yatışa girmesini otomatik engeller",
-      "Uçak ağırlığını azaltır ve yakıt tasarrufu sağlar",
-      "Pilot iş yükünü azaltır ve otomatik trim desteği sunar"
-    ]
+    "id": "Q013",
+    "category": "Aircraft Systems",
+    "question": "Uçak yapımında kompozit malzeme kullanımının avantajları nelerdir?",
+    "keywords": ["hafiflik", "korozyon", "mukavemet", "tasarruf", "esneklik"]
   },
   {
-    "id": 14,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Pitot-Statik sistem bileşenleri nelerdir? Pitot tüpünün tıkanması durumunda Hız Göstergesi (ASI) nasıl davranır?",
-    "key_points": [
-      "Bileşenler: Pitot Tube (Dinamik basınç), Static Port (Statik basınç) ve ASI, VSI, Altimetre göstergeleri",
-      "Pitot tüpü tıkandığında ASI (Airspeed Indicator) bir altimetre gibi davranmaya başlar",
-      "Tıkalı pitot tüpüyle tırmanırken gösterge sürati yapay olarak ARTAR",
-      "Tıkalı pitot tüpüyle alçalırken gösterge sürati yapay olarak AZALIR"
-    ]
+    "id": "Q014",
+    "category": "Aircraft Systems",
+    "question": "APU nedir ve uçakta ne sağlar?",
+    "keywords": ["apu", "elektrik", "pnömatik", "başlatma", "üretim"]
   },
   {
-    "id": 15,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "ATPL Seviyesi",
-    "question": "CFIT (Controlled Flight Into Terrain) nedir ve kokpitte bunu önleyen ana seyrüsefer ve ikaz sistemleri nelerdir?",
-    "key_points": [
-      "CFIT: Tamamen kontrol edilebilir durumdaki bir uçağın pilot farkındalıksızlığı sonucu yere, dağa veya suya çarpması",
-      "EGPWS / TAWS (Enhanced Ground Proximity Warning System)",
-      "TCAS / ACAS (Trafik Çatışmasını Önleme Sistemi)",
-      "MSA / MORA takibi ve Durumsal Farkındalık (Situational Awareness)"
-    ]
+    "id": "Q015",
+    "category": "Aircraft Systems",
+    "question": "Uçaklarda AC ve DC elektrik sistemlerinin kullanım alanları nelerdir?",
+    "keywords": ["ac", "dc", "batarya", "jeneratör", "kritik"]
   },
   {
-    "id": 16,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "QNH, QFE ve QNE altimetre alt ölçek değerleri arasındaki temel farklar nelerdir ve Transisyon İrtifası (TA) üzerinde hangisi set edilir?",
-    "key_points": [
-      "QNH: Deniz seviyesine indirgenmiş basınç (Meydanda altimetre meydan irtifasını/ELEV gösterir)",
-      "QFE: Meydan basıncı (Meydanda altimetre 0 feet gösterir)",
-      "QNE: Standart atmosfer basıncı (1013.25 hPa / 29.92 inHg)",
-      "Transition Altitude (TA) üzerinde QNE (1013.25) set edilerek Flight Level (FL) takibi yapılır"
-    ]
+    "id": "Q016",
+    "category": "Aircraft Systems",
+    "question": "Turbofan motorların çalışma prensibi nedir? Bypass Ratio ne ifade eder?",
+    "keywords": ["bypass", "fan", "çekirdek", "itki", "verimlilik"]
   },
   {
-    "id": 17,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Windshear ve Microburst nedir, uçuşun hangi safhasında en tehlikelidir ve kokpitte tespit edildiğinde ne yapılmalıdır?",
-    "key_points": [
-      "Windshear: Rüzgar yönünde veya şiddetinde aniden meydana gelen şiddetli değişim",
-      "Microburst: CB bulutundan aşağı doğru gelişen çok güçlü ve lokal çöküntü akımı (Downdraft)",
-      "En tehlikeli safha: Kalkış ve son yaklaşma (düşük irtifa ve düşük sürat)",
-      "Windshear ikazında veya tespitinde derhal Max Thrust/TOGA uygulanıp rüzgar makasından çıkılmalıdır"
-    ]
+    "id": "Q017",
+    "category": "Aircraft Systems",
+    "question": "Jet motorları alçak irtifada neden az verimli, yüksekte verimlidir?",
+    "keywords": ["yoğunluk", "sıcaklık", "sıkıştırma", "tüketim", "türbin"]
   },
   {
-    "id": 18,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Sıcak bir bölgeden soğuk bir bölgeye doğru sabit altimetre gösterge irtifasıyla (örneğin 3000 ft) uçarken gerçek irtifanız (True Altitude) nasıl değişir?",
-    "key_points": [
-      "Soğuk havada hava molekülleri sıkışır ve basınç katmanları alçalır",
-      "GÖSTERGE irtifası (Indicated Altitude) 3000 ft kalsa da GERÇEK irtifa (True Altitude) göstergeden daha DÜŞÜKTÜR",
-      "\"High to Low / Hot to Cold -> Look out below\" kuralı geçerlidir",
-      "Aşırı soğuk havalarda mania emniyeti için altimetre soğuk hava düzeltmesi (Cold Temperature Correction) yapılır"
-    ]
+    "id": "Q018",
+    "category": "Aircraft Systems",
+    "question": "Motor Compressor Stall nedir ve nasıl anlaşılır?",
+    "keywords": ["ayrılma", "egt", "patlama", "aoa", "thrust"]
   },
   {
-    "id": 19,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Cumulonimbus (CB) bulutunun özellikleri nelerdir ve uçuş emniyeti açısından ne gibi tehlikeler barındırır?",
-    "key_points": [
-      "Dikey gelişmeli, fırtına üreten en tehlikeli bulut tipi",
-      "Şiddetli türbülans (Severe turbulence) ve aşırı buzlanma (Severe icing) riski",
-      "Dolu (Hail), yıldırım (Lightning) ve rüzgar makası (Windshear / Microburst) tehdidi",
-      "Radar üzerinden ve görsel olarak en az 20 NM mesafe bırakılarak etrafından dolaşılmalıdır"
-    ]
+    "id": "Q019",
+    "category": "Aircraft Systems",
+    "question": "Thrust Reverse çalışma prensibi ve kullanım koşulları nelerdir?",
+    "keywords": ["reverse", "yavaşlama", "mesafe", "yönlendirme", "teker"]
   },
   {
-    "id": 20,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Temperature / Dewpoint (Sıcaklık / İşkence Noktası) değerlerinin birbirine yaklaşması (örn: 15/14) meteorolojik olarak ne anlama gelir?",
-    "key_points": [
-      "Havanın bağıl neminin (Relative Humidity) %100'e yaklaştığını gösterir",
-      "Görüşte azalma, sis (Fog) veya pus (Mist) oluşma ihtimali çok yüksektir",
-      "Alçak tabanlı bulutların (Stratus/ST) oluşacağını haber verir",
-      "Ayrıca karbüratör veya gövde buzlanması riskini artırır"
-    ]
+    "id": "Q020",
+    "category": "Aircraft Systems",
+    "question": "Magneto ve Alternatör çalışma prensibi farkı nedir?",
+    "keywords": ["magneto", "bağımsız", "buji", "alternatör", "destek"]
   },
   {
-    "id": 21,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Inversion (Sıcaklık Terselmesi) nedir? Meteorolojik etkileri ve uçuş emniyetine etkileri nelerdir?",
-    "key_points": [
-      "Yükseklik arttıkça sıcaklığın düşmesi gerekirken aksine sıcaklığın artması durumu",
-      "Stabil bir hava katmanı oluşturur, dikey hava hareketlerini engeller",
-      "Alt katmanlarda sis, pus ve dumanın birikmesine (kötü görüşe) neden olur",
-      "Inversion katmanının geçişinde belirgin rüzgar makası (Windshear) ve türbülans görülebilir"
-    ]
+    "id": "Q021",
+    "category": "Instrumentation",
+    "question": "Pitot tüpü tıkandığında ASI nasıl davranır?",
+    "keywords": ["pitot", "altimetre", "yüksek", "düşük", "dinamik"]
   },
   {
-    "id": 22,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Mountain Waves (Dağ Dalgaları) nasıl oluşur ve oluşturduğu uçuş tehlikeleri nelerdir?",
-    "key_points": [
-      "Dik dağ silsilelerine dik açıyla esen en az 20-25 knot rüzgar ve stabil hava kütlesi varlığında oluşur",
-      "Rotor bulutları (Roll clouds) ve Altocumulus Lenticularis (Lens bulutları) oluşumu görülür",
-      "Rotor bölgesinde çok şiddetli türbülans ve dakikada 5000 ft'i aşan çöküntü akımları oluşur",
-      "Rüzgar altı (Leeward) tarafta dağ sırtından yüksekte uçulmalıdır"
-    ]
+    "id": "Q022",
+    "category": "Instrumentation",
+    "question": "Statik port tıkandığında Altimetre, VSI ve ASI nasıl etkilenir?",
+    "keywords": ["sabit", "sıfır", "hata", "hapsolma", "yedek"]
   },
   {
-    "id": 23,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "ATPL Seviyesi",
-    "question": "METAR ve TAF raporlarında geçen TEMPO ile BECMG kısaltmaları arasındaki temel fark nedir?",
-    "key_points": [
-      "BECMG (Becoming): Hava durumunda kalıcı ve kademeli bir değişimi ifade eder",
-      "TEMPO (Temporary): Belirtilen periyot içinde 1 saatten kısa sürecek geçici hava değişimlerini ifade eder",
-      "Geçici durumların toplam süresi belirtilen zaman aralığının yarısını geçemez",
-      "Yedek meydan (Alternate) ve yakıt planlamasında kritik öneme sahiptir"
-    ]
+    "id": "Q023",
+    "category": "Instrumentation",
+    "question": "IAS, CAS, EAS, TAS, Mach ve GS hızı dönüşüm sırası nasıldır?",
+    "keywords": ["ias", "cas", "eas", "tas", "ground"]
   },
   {
-    "id": 24,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "ILS (Instrument Landing System) ana bileşenleri nelerdir ve hassas yaklaşma (Precision Approach) ile hassas olmayan yaklaşma (Non-Precision) farkı nedir?",
-    "key_points": [
-      "ILS Ana Bileşenleri: Localizer (Yatay/Pist ekseni), Glide Path/Slope (Dikey/Süzülüş hattı), Marker Beacons/DME",
-      "Precision Approach: Hem yatay (Lateral) hem dikey (Vertical) süzülüş rehberliği sağlar (DA/DH kullanılır)",
-      "Non-Precision Approach: Sadece yatay (Lateral) rehberlik sağlar, dikey süzülüş hattı yoktur (MDA/MDH kullanılır)",
-      "Precision örnekleri: ILS, GLS, MLS"
-    ]
+    "id": "Q024",
+    "category": "Instrumentation",
+    "question": "Radio Altimeter nedir ve ne kadar irtifaya kadar aktif bilgi verir?",
+    "keywords": ["radyo", "agl", "2500", "karar", "hassas"]
   },
   {
-    "id": 25,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Stabilized Approach (Stabilize Yaklaşma) kriterleri nelerdir ve stabilize olunmazsa ne yapılmalıdır?",
-    "key_points": [
-      "Görerek şartlarda 500 ft AGL, IFR şartlarda 1000 ft AGL seviyesinde tüm kriterler sağlanmalıdır",
-      "Doğru uçuş yolu (Flight Path) ve doğru iniş konfigürasyonu (Flap/Landing Gear)",
-      "Hedef yaklaşma süratinde (Vref + katkı) kalmak ve doğru varyo/süzülüş oranı (genellikle max 1000 fpm)",
-      "Stabilize kriterleri sağlanamıyorsa tereddütsüz Pas Geçilmelidir (Go-Around)"
-    ]
+    "id": "Q025",
+    "category": "Instrumentation",
+    "question": "EGPWS nedir ve ne işe yarar?",
+    "keywords": ["veritabanı", "pull up", "erken", "arazi", "cfit"]
   },
   {
-    "id": 26,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "DA (Decision Altitude) ile MDA (Minimum Descent Altitude) arasındaki fark nedir?",
-    "key_points": [
-      "DA (Decision Altitude): Hassas yaklaşmada (Precision) karar yüksekliği; pas geçme kararı verildiği an uçak dikey momentumla irtifa kaybetmeye devam edebilir",
-      "MDA (Minimum Descent Altitude): Hassas olmayan yaklaşmada (Non-Precision) inilebilecek en düşük irtifa; görsel temas sağlanamadığı sürece kesinlikle MDA altına inilemez",
-      "DA barometrik deniz seviyesinden (MSL), DH ise pist eşiğinden (AGL) ölçülür"
-    ]
+    "id": "Q026",
+    "category": "Instrumentation",
+    "question": "TCAS ikaz türleri olan TA ve RA arasındaki fark nedir?",
+    "keywords": ["ta", "ra", "kaçınma", "dikey", "transponder"]
   },
   {
-    "id": 27,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "RVSM (Reduced Vertical Separation Minimum) nedir ve bu hava sahasında uçabilmek için hangi ekipmanlar zorunludur?",
-    "key_points": [
-      "FL290 ile FL410 arasında dikey ayırmanın 2000 feet'ten 1000 feet'e düşürülmesidir",
-      "Kapasiteyi ve yakıt verimliliğini artırmayı hedefler",
-      "Zorunlu Ekipmanlar: 2 bağımsız Primary Altimeter",
-      "1 Otomatik İrtifa Kontrol Sistemi (Autopilot) ve 1 İrtifa Uyarı Sistemi (Altitude Alerting System) + Transponder (Mode C/S)"
-    ]
+    "id": "Q027",
+    "category": "Instrumentation",
+    "question": "Auto-Pilot modları ve otomasyon kullanım riskleri nelerdir?",
+    "keywords": ["autopilot", "fd", "karışıklık", "farkındalık", "manuel"]
   },
   {
-    "id": 28,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "PBN (Performance Based Navigation) ve RNAV / RNP konseptleri arasındaki fark nedir?",
-    "key_points": [
-      "PBN: Doğrudan kara konuşlu istasyonlar yerine sensör ve uydu bazlı seyrüsefer performansı konseptidir",
-      "RNAV (Area Navigation): Belirlenmiş hava sahası içinde istenen uçuş rotasını takip edebilme yeteneğidir",
-      "RNP (Required Navigation Performance): On-board Performance Monitoring and Alerting (Uçak içi performans izleme ve uyarı) özelliğine sahip RNAV sistemidir",
-      "RNP yaklaşmalarda uçak belirlenen koridor dışına çıktığında uyarır"
-    ]
+    "id": "Q028",
+    "category": "Instrumentation",
+    "question": "ECAM / EICAS sistemlerinin kokpitteki işlevi nedir?",
+    "keywords": ["izleme", "arıza", "kontrol", "ecam", "ekran"]
   },
   {
-    "id": 29,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Holding (Bekleme Paterni) standart özellikleri nelerdir ve 14.000 ft altında ve üstünde outbound süresi ne kadardır?",
-    "key_points": [
-      "Standart holding sağa dönüşlüdür (Right Turns) ve 1 dakikalık bacaklardan oluşur",
-      "14.000 ft ve altında Outbound bacağı zamanı 1 dakikadır (60 saniye)",
-      "14.000 ft üzerinde Outbound bacağı zamanı 1.5 dakikadır (90 saniye)",
-      "Holding'e giriş usulleri: Direct, Parallel ve Teardrop (Outbound offset)"
-    ]
+    "id": "Q029",
+    "category": "Mass & Balance",
+    "question": "Center of Gravity (CG) nedir ve nerede bulunmalıdır?",
+    "keywords": ["cg", "cp", "limit", "referans", "denge"]
   },
   {
-    "id": 30,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "MSA (Minimum Sector Altitude) ve MORA (Minimum Off-Route Altitude) nedir?",
-    "key_points": [
-      "MSA: Bir seyrüsefer yardımcısı merkezli 25 NM yarıçap içinde en az 1000 ft (dağlık alanda 2000 ft) mania emniyeti sağlayan en düşük irtifadır",
-      "MORA: Rota dışına çıkıldığında harita kareleri (Grid MORA) bazında emniyet sağlayan minimum irtifadır",
-      "Grid MORA 5000 ft ve altındaki mania için 1000 ft, 5000 ft üzerindeki dağlık mania için 2000 ft emniyet marjı verir",
-      "Acil durumlarda ve rotadan sapmalarda hayati önem taşır"
-    ]
+    "id": "Q030",
+    "category": "Mass & Balance",
+    "question": "Forward CG (Önde CG) olmasının uçuş performansına etkileri nelerdir?",
+    "keywords": ["kararlılık", "stall", "zorlaşma", "tüketim", "elevator"]
   },
   {
-    "id": 31,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "ATPL Seviyesi",
-    "question": "SID (Standard Instrument Departure) ve STAR (Standard Terminal Arrival) nedir?",
-    "key_points": [
-      "SID: Kalkıştan hemen sonra uçağı pistten en-route (yol boyu) airway rotasına emniyetle bağlayan standart IFR tırmanış rotasıdır",
-      "STAR: Yol boyu rotasından (en-route) uçağı yaklaşma başlangıç noktasına (IAF/IF) getiren standart IFR alçalış rotasıdır",
-      "ATC iletişim iş yükünü azaltır ve gürültü önleme (Noise abatement) prosedürlerine uyum sağlar",
-      "Mania emniyeti ve tırmanma/alçalma gradient sınırlamaları içerir"
-    ]
+    "id": "Q031",
+    "category": "Mass & Balance",
+    "question": "Aft CG (Arkada CG) olmasının uçuş emniyetine etkileri nelerdir?",
+    "keywords": ["azalma", "stall", "recovery", "tasarruf", "hassas"]
   },
   {
-    "id": 32,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "TORA, TODA ve ASDA nedir? Stopway ve Clearway ne amaçla kullanılır?",
-    "key_points": [
-      "TORA (Take-Off Run Available): Kalkış koşusu için kullanılabilir pist mesafesi",
-      "ASDA (Accelerate-Stop Distance Available): TORA + Stopway (Kalkıştan vazgeçildiğinde emniyetle durulabilecek toplam mesafe)",
-      "TODA (Take-Off Distance Available): TORA + Clearway (Kalkışta tırmanma engellerinden temiz alan içeren toplam mesafe)",
-      "Stopway sadece rejected take-off durma içindir, iniş mesafesine dahil edilmez"
-    ]
-  },
-  {
-    "id": 33,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Uçuş planlamasında almamız gereken standart yakıt bileşenleri (Fuel Policy) nelerdir?",
-    "key_points": [
-      "Taxi Fuel: Yerde çalıştırma ve taksi için ayrılan yakıt",
-      "Trip Fuel: Kalkıştan varış pistine inişe kadar tüketilen yakıt",
-      "Contingency Fuel: Beklenmeyen durumlar için Trip Fuel'in %5'i (veya min 5 dk hold)",
-      "Alternate Fuel: Varıştan yedek meydana gidiş yakıtı + Final Reserve Fuel (30 dk 1500 ft hold yakıtı)"
-    ]
-  },
-  {
-    "id": 34,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Destination Alternate (Yedek Meydan) seçme zorunluluğu hangi durumlarda oluşur ve kaç tane alternate seçilir?",
-    "key_points": [
-      "Meydan hava tahmini (METAR/TAF) limitlerin altındaysa veya hava durumu değişkense yedek meydan seçimi zorunludur",
-      "Genellikle en az 1 yedek meydan seçilir; varış meydanı hava şartları çok kötüyse 2 yedek meydan seçilmelidir",
-      "Tek pistli ve izolasyon/yaklaşma yardımcısı kısıtlı meydanlarda da yedek meydan zorunludur",
-      "Yedek meydan hava şartlarının marjin seviyelerinde emniyetli olması gerekir"
-    ]
-  },
-  {
-    "id": 35,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "De-Icing ve Anti-Icing işlemleri arasındaki fark nedir ve Holdover Time (HOT) ne anlama gelir?",
-    "key_points": [
-      "De-Icing: Uçak yüzeyinde birikmiş kar, buz ve kırağıyı sıcak su/sıvı karışımıyla temizleme işlemi",
-      "Anti-Icing: Temizlenmiş yüzeye koruyucu tip-4 gibi kıvamlı sıvılar sıkılarak yeniden buzlanmayı geciktirme işlemi",
-      "Holdover Time (HOT): Anti-Icing sıvısının uygulanmasıyla başlayıp koruyuculuğunu yitirdiği ana kadar geçen tahmini süre",
-      "yağış şiddetine ve sıcaklığa göre HOT tablolarından takip edilir"
-    ]
-  },
-  {
-    "id": 36,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Hydroplaning (Suda Kayma) nedir, çeşitleri nelerdir ve dinamik hydroplaning hızı yaklaşık nasıl hesaplanır?",
-    "key_points": [
-      "Lastik ile pist yüzeyi arasında su katmanı birikerek lastiğin zeminle temasının tamamen kesilmesi",
-      "Çeşitleri: Dynamic, Viscous ve Rubber Reversion Hydroplaning",
-      "Dinamik Hydroplaning sürati hesabı (Knot): 9 x √P (Lastik basıncı PSI cinsinden)",
-      "Uçağın fren ve yön kontrolünün tamamen kaybolmasına neden olur"
-    ]
-  },
-  {
-    "id": 37,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Kalkış koşusu esnasında V1 öncesi ve V1 sonrası motor arızası/yangını durumunda hareket tarzı nasıl olmalıdır?",
-    "key_points": [
-      "V1 öncesi motor arızasında: Kalkış Derhal Reddedilir (Rejected Take-Off / RTO), gazlar çekilir, Max Braking ve Thrust Reverser uygulanır",
-      "V1 sonrası motor arızasında: Kalkışa Kesinlikle Devam Edilir; engeller geçilene ve emniyetli irtifaya ulaşılana kadar RTO yapılmaz",
-      "V2 sürati muhafaza edilerek pozitif tırmanma ile iniş takımları toplanır",
-      "400 ft AGL üzerinde hafıza kalemleri ve acil durum kontrol listesi (Memory items & Checklist) uygulanır"
-    ]
-  },
-  {
-    "id": 38,
-    "category": "Operasyonel Prosedürler",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Kabin Basınç Kaybı (Rapid Depressurization) durumunda kokpitte yapılması gereken Emergency Descent prosedürü adımları nelerdir?",
-    "key_points": [
-      "Oksijen maskeleri derhal takılır ve %100 Oksijen ayarına getirilir, iletişim kurulur",
-      "Otopilot/Thrust çekilir, Speedbrakes açılır ve burun ezilerek maksimum emniyetli alçalışa geçilir",
-      "Target Altitude: MEA/MORA göz önüne alınarak 10.000 ft veya minimum emniyetli irtifa seçilir",
-      "Transponder 7700 set edilir ve ATC'ye Mayday çağrısı yapılır"
-    ]
-  },
-  {
-    "id": 39,
-    "category": "İnsan Kaynakları & Şirket",
-    "difficulty": "Genel Seviye",
-    "question": "Mevcut mesleğinizi/bölümünüzü bırakıp neden pilot olmak istiyorsunuz? Sizi motive eden somut nedenler nelerdir?",
-    "key_points": [
-      "Görüşmeye gelmeden önce geçmiş kariyer/eğitim ile pilotaj arasında mantıksal köprü kurma",
-      "Dinamik çalışma ortamı, yüksek sorumluluk ve kriz yönetimi tutkusu",
-      "Sadece çocukluk hevesi olmadığını destekleyen somut araştırmalar ve adımlar",
-      "Mesleğin dezavantajlarının (düzensiz mesai, yorgunluk, sürekli sınavlar) farkında olunduğunu hissettirme"
-    ]
-  },
-  {
-    "id": 40,
-    "category": "İnsan Kaynakları & Şirket",
-    "difficulty": "Genel Seviye",
-    "question": "Başvurduğunuz havayolu şirketinin filosundaki uçak modelleri, destinasyon ağı ve en son havacılık yatırımları hakkında bilgi verir misiniz?",
-    "key_points": [
-      "Şirketin dar ve geniş gövde filosundaki uçak tipleri ve yaklaşık sayıları",
-      "Şirketin ana hub/merkez meydanları ve uçtuğu kıta/destinasyon sayısı",
-      "Son uçak siparişleri, yeni hatlar ve şirket vizyonu/sloganı",
-      "Şirket CEO'su ve Yönetim Kurulu Başkanı isimlerine hakimiyet"
-    ]
-  },
-  {
-    "id": 41,
-    "category": "İnsan Kaynakları & Şirket",
-    "difficulty": "Genel Seviye",
-    "question": "Pilotluk mesleğinin sizce en büyük 3 avantajı ve en büyük 3 dezavantajı nelerdir?",
-    "key_points": [
-      "Advantage: Yüksek tatmin duygusu, sürekli gelişen teknik ortam, ekip çalışması ve global yaşam",
-      "Disadvantage: Düzensiz uçuş saatleri/jetlag, aile hayatından uzak kalma ve her 6 ayda bir simülatör/sağlık sınavı stresi",
-      "Dezavantajlarla başa çıkmak için özdisiplin ve sağlıklı yaşam vurgusu",
-      "Mesleğe karşı gerçekçi ve olgun yaklaşım sergileme"
-    ]
-  },
-  {
-    "id": 42,
-    "category": "İnsan Kaynakları & Şirket",
-    "difficulty": "Genel Seviye",
-    "question": "Sizi arkadaşlarınıza sorsak hakkınızda olumlu ve olumsuz/geliştirilmesi gereken hangi özellikleri söylerlerdi?",
-    "key_points": [
-      "Olumlu Özellikler: Soğukkanlılık, disiplin, güçlü iletişim ve sorumluluk bilinci",
-      "Olumsuz Özellikler: Aşırı detaycılık, mükemmeliyetçilik veya bazen hayır demekte zorlanma",
-      "Yapay veya sahte kusurlar söylemek yerine gerçek ama yönetilebilir zayıf yönleri paylaşma",
-      "Zayıf yönü düzeltmek için güncel olarak atılan somut adımları anlatma"
-    ]
-  },
-  {
-    "id": 43,
-    "category": "İnsan Kaynakları & Şirket",
-    "difficulty": "Genel Seviye",
-    "question": "İş veya eğitim hayatınızda yaşadığınız en büyük başarısızlık veya stresli kriz anı neydi ve bunu nasıl yönettiniz?",
-    "key_points": [
-      "STAR tekniği ile anlatım: Situation (Durum), Task (Görev), Action (Aksiyon), Result (Sonuç)",
-      "Başarısızlığı gizlemek yerine oradan çıkarılan dersi (Lesson Learned) ön plana çıkarma",
-      "Stres anında duygusal tepki yerine mantıksal çözüm odaklı kalındığını kanıtlama",
-      "Öz-eleştiri (Self-reflection) yeteneğini sergileme"
-    ]
-  },
-  {
-    "id": 44,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "CRM (Crew Resource Management) nedir, temel bileşenleri nelerdir ve kokpitte neden hayati önem taşır?",
-    "key_points": [
-      "Uçuş emniyetini artırmak için mevcut tüm kaynakların (insan, donanım, bilgi) etkin kullanımı",
-      "Bileşenler: Situational Awareness (Durumsal Farkındalık), Communication, Teamwork, Leadership, Decision Making",
-      "Kaza istatistiklerinde insan faktörü (%80) oranını düşürmeyi hedefler",
-      "Kokpitte diktatörlük veya pasiflik yerine açık iletişim ve kararlılık sağlar"
-    ]
-  },
-  {
-    "id": 45,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Situational Awareness (Durumsal Farkındalık) nedir? Kokpitte durumsal farkındalığın kaybolduğu nasıl anlaşılır?",
-    "key_points": [
-      "Uçağın durumunun, çevrenin, zamanın ve gelecekte ne olacağının doğru algılanması ve kavranması",
-      "Farkındalığın Kaybolması: Belirlenen plana uyamama, uçuşun gerisinde kalma (behind the aircraft), sapmaları fark edememe",
-      "Aşırı iş yükü (High workload), yorgunluk ve complacency (aşırı rahatlık) farkındalığı düşürür",
-      "Düzeltme: Task-sharing düzenleme, otopilot kullanma veya pas geçerek zaman kazanma"
-    ]
-  },
-  {
-    "id": 46,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Siz F/O konumundayken Kaptan Pilot SOP (Standart Operasyon Prosedürü) dışına çıkarsa ve uyarınıza rağmen ısrar ederse hareket tarzınız ne olmalıdır?",
-    "key_points": [
-      "Graded Assertiveness (Dereceli Kararlılık) tekniği uygulanır: Probe, Suggest, Protest, Emergency (PACA kuralı)",
-      "1. Aşırı saygılı uyarım yaparım (Capt, süratimiz yüksek)",
-      "2. Net durumu ifade ederim (Capt, stabil değiliz pas geçmeliyiz)",
-      "3. Tehlikeyi söylerim (Uçuş emniyeti riske giriyor)",
-      "4. Cevap alınamazsa ve yere yaklaşılıyorsa uçağın kumandalarını devralırım (I have controls)"
-    ]
-  },
-  {
-    "id": 47,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Uçuş öncesi brifingde veya kokpitte Kaptan Pilotun alkol koktuğunu veya uçuşa elverişsiz (incapacitated/unfit) olduğunu fark ederseniz ne yaparsınız?",
-    "key_points": [
-      "Uçuş emniyeti her türlü kişisel veya hiyerarşik ilişkiden önce gelir",
-      "Uçağın emniyetle blok çekmesine/durmasına izin verilir, uçuş kesinlikle başlatılmaz",
-      "Kaptan sakin bir şekilde kenara çekilerek durum ikaz edilir",
-      "Gerekli durumda nöbetçi müdürlük (Flight Operations / Duty Manager) ve Tabiplik bilgilendirilir"
-    ]
-  },
-  {
-    "id": 48,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Aşırı Özgüven (Over-confidence / Complacency) nedir? Kokpitte ne gibi tehlikelere yol açar ve bir kazayla örneklendirebilir misiniz?",
-    "key_points": [
-      "Tecrübe arttıkça kuralların esnetilebileceği veya tehlikenin göz ardı edilebileceği algısı",
-      "Checklistlerin ezberden veya yüzeysel yapılmasına sebep olur",
-      "Cross-check mekanizmasını kırar ve durumsal farkındalığı yok eder",
-      "Örnek Kaza: Asiana Airlines Flight 214 veya KLM Tenerife kazası (hiyerarşi ve aşırı rahatlık)"
-    ]
-  },
-  {
-    "id": 49,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "TEM (Threat and Error Management - Tehdit ve Hata Yönetimi) modeli nedir ve kokpitte nasıl uygulanır?",
-    "key_points": [
-      "Tehdit (Threat): Pilotun kontrolü dışında oluşan durumlar (kötü hava, sistem arızası, ATC yoğunluğu)",
-      "Hata (Error): Pilotun yaptığı yanlış aksiyonlar (yanlış irtifa set etme, checklist maddesini atlama)",
-      "Undecommanded Aircraft State: Tehdit ve hatanın yönetilemeyip uçağın istenmeyen duruma girmesi",
-      "Temel Amacı: Tehditleri önceden öngörmek (Anticipate), hataları anında tespit edip düzeltmektir (Mitigate)"
-    ]
-  },
-  {
-    "id": 50,
-    "category": "CRM & Psikolojik",
-    "difficulty": "ATPL Seviyesi",
-    "question": "Pilot Incapacitation (Uçuş esnasında pilotlardan birinin rahatsızlanması/bayılması) durumunda izlenecek adımlar nelerdir?",
-    "key_points": [
-      "Sağlam kalan pilot derhal kumandayı alır (I have controls) ve Otopilotu bağlar",
-      "Uçağı emniyetli tutum ve irtifaya getirir (Fly the aircraft first)",
-      "Kabin ekibini (Senior Cabin Crew) çağırarak rahatsızlanan pilotun sandalyeden geriye çekilmesini ve kilitlenmesini sağlar",
-      "ATC'ye Mayday / Medical Emergency bildirimi yapılarak en yakın uygun meydana iniş planlanır"
-    ]
-  }
-]
+    "id": "
