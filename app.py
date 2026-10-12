@@ -17,13 +17,11 @@ st.set_page_config(
 # Kesin Görünürlük ve Kontrast CSS'i
 st.markdown("""
 <style>
-    /* Ana Arka Plan */
     .stApp {
         background-color: #f8fafc !important;
         color: #0f172a !important;
     }
 
-    /* Sol Menü (Sidebar) - Derin Lacivert */
     section[data-testid="stSidebar"] {
         background-color: #0b2559 !important;
     }
@@ -33,7 +31,6 @@ st.markdown("""
         font-size: 0.95rem !important;
     }
 
-    /* SELECTBOX KUTUSU VE SEÇİLİ YAZI RENK DÜZELTMESİ */
     div[data-baseweb="select"] {
         background-color: #ffffff !important;
         border-radius: 8px !important;
@@ -49,7 +46,6 @@ st.markdown("""
         border-radius: 8px !important;
     }
     
-    /* Açılır Menü Seçenek Listesi */
     ul[role="listbox"] {
         background-color: #ffffff !important;
         border: 1px solid #cbd5e1 !important;
@@ -64,7 +60,6 @@ st.markdown("""
         color: #2563eb !important;
     }
 
-    /* Hero Banner */
     .hero-banner {
         background: linear-gradient(135deg, rgba(11, 37, 89, 0.95) 0%, rgba(29, 78, 216, 0.85) 100%), 
                     url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop');
@@ -89,7 +84,6 @@ st.markdown("""
         line-height: 1.5;
     }
 
-    /* Soru Kartı */
     .main-card {
         background: #ffffff !important;
         border-radius: 16px;
@@ -106,7 +100,6 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Kategori Rozetleri */
     .badge-category {
         background-color: #dbeafe !important;
         color: #1e40af !important;
@@ -129,7 +122,6 @@ st.markdown("""
         margin-left: 8px;
     }
 
-    /* Text Area */
     .stTextArea textarea {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -142,7 +134,6 @@ st.markdown("""
         border-color: #2563eb !important;
     }
 
-    /* Expander */
     .stExpander {
         background-color: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
@@ -152,7 +143,6 @@ st.markdown("""
         color: #0f172a !important;
     }
 
-    /* Sağ Panel Kartları */
     .side-card {
         background: #ffffff !important;
         border-radius: 16px;
@@ -169,7 +159,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 🛠️ TÜRKÇE MÜKEMMEL HARF DÖNÜŞTÜRÜCÜ
+# 🛠️ TÜRKÇE HARF DÖNÜŞTÜRÜCÜ
 def turkish_lower(text: str) -> str:
     if not text:
         return ""
@@ -178,24 +168,22 @@ def turkish_lower(text: str) -> str:
         text = text.replace(search, replace)
     return text.lower()
 
-# 🛠️ SESİ METNE ÇEVİREN MOCK/REAL SPEECH-TO-TEXT MOTORU
+# 🛠️ SESİ METNE DÖNÜŞTÜRME
 def transcribe_audio(audio_bytes):
     recognizer = sr.Recognizer()
     try:
         audio_file = io.BytesIO(audio_bytes)
         with sr.AudioFile(audio_file) as source:
             audio_data = recognizer.record(source)
-            # Türkçe ses tanıma
             text = recognizer.recognize_google(audio_data, language="tr-TR")
             return text
     except sr.UnknownValueError:
-        return "Ses anlaşılamadı, lütfen tekrar konuşun."
-    except sr.RequestError:
-        return "Ses tanıma servisine ulaşılamadı."
+        return ""
     except Exception as e:
-        return f"Ses işleme hatası: {e}"
+        st.error(f"Ses algılama hatası: {e}")
+        return ""
 
-# 🛠️ KELİME TARAMA VE PUANLAMA MOTORU
+# 🛠️ KELİME TARAMA VE SKORLAMA
 def calculate_score(user_answer: str, keywords: list) -> dict:
     if not user_answer or not user_answer.strip():
         return {
@@ -250,7 +238,7 @@ def load_questions():
 
 questions_data = load_questions()
 
-# Session State Yönetimi
+# Session State
 if "sorulan_ids" not in st.session_state:
     st.session_state.sorulan_ids = []
 if "mevcut_soru" not in st.session_state:
@@ -264,7 +252,6 @@ if "secilen_kategori" not in st.session_state:
 if "voice_text" not in st.session_state:
     st.session_state.voice_text = ""
 
-# Soru Seçim Motoru
 def yeni_soru_getir(kategori_filtresi):
     if kategori_filtresi == "Tüm Kategoriler":
         filtre = questions_data
@@ -288,7 +275,6 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.son_analiz = None
         st.session_state.voice_text = ""
 
-# Sol Menü (Sidebar)
 st.sidebar.markdown("""
 <div style="padding: 10px 0 15px 0;">
     <h2 style="color: #ffffff; margin:0; font-size: 1.4rem;">✈️ PilotInterviewPro</h2>
@@ -318,18 +304,16 @@ secilen_kategori = st.sidebar.selectbox(
 if st.session_state.mevcut_soru is None and questions_data:
     yeni_soru_getir(st.session_state.secilen_kategori)
 
-# Hero Banner
 st.markdown("""
 <div class="hero-banner">
     <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
     <div class="hero-subtitle">
         Gerçek mülakat deneyimini simüle eden sorularla kendinizi geliştirin. 
-        Teknik bilginizi sesli veya yazılı olarak test edin.
+        Teknik bilginizi sesli olarak yanıtlayın, otomatik analiz edilsin.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Üst Metrik Kartları
 toplam_soru = len(questions_data)
 tamamlanan = len(st.session_state.puanlar)
 ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
@@ -342,14 +326,12 @@ st4.metric("Seviye", "ATPL & CPL")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Ana İçerik Alanı
 col_left, col_right = st.columns([2.3, 1])
 
 with col_left:
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         
-        # Soru Kartı
         st.markdown(f"""
         <div class="main-card">
             <div>
@@ -360,7 +342,6 @@ with col_left:
         </div>
         """, unsafe_allow_html=True)
         
-        # İP UCU VE AÇIKLAMA ALANI
         with st.expander("💡 Mülakatçı Beklentileri (Kilit Terim İpuçları)"):
             st.write("Bu soruda yanıtınızda bulunması hedeflenen bazı kilit kavramlar:")
             kw_list = soru.get("keywords", [])
@@ -371,28 +352,29 @@ with col_left:
             else:
                 st.write("Bu soru için özel kilit terim tanımlanmamış.")
 
-        # 🎙️ SESLİ YANIT / MİKROFON ALANI
-        st.write("### 🎙️ Sesli Yanıt Verin (Mikrofon)")
-        st.info("Mikrofona basarak cevabınızı sözlü ifade edin. Sesiniz otomatik metne çevrilecektir.")
+        # 🎙️ SESLİ YANIT (5 SN OTOMATİK DURMA)
+        st.write("### 🎙️ Sesli Yanıt Verin")
+        st.caption("Mikrofona tıklayıp konuşmaya başlayın. **5 saniye susarsanız kayıt otomatik tamamlanır.**")
         
         audio_bytes = audio_recorder(
-            text="Mikrofona basarak konuşun",
+            text="Mikrofonu Aç / Konuş",
             recording_color="#e11d48",
             neutral_color="#2563eb",
             icon_name="microphone",
-            icon_size="2x"
+            icon_size="2x",
+            pause_threshold=5.0  # 5 saniye ses gelmezse otomatik bitir
         )
 
         if audio_bytes:
-            with st.spinner("🔊 Sesiniz metne dönüştürülüyor..."):
+            with st.spinner("🔊 Ses çözümleniyor..."):
                 transcribed_text = transcribe_audio(audio_bytes)
-                st.session_state.voice_text = transcribed_text
+                if transcribed_text:
+                    st.session_state.voice_text = transcribed_text
 
-        # YAZILI VEYA SESLE ÇEVRİLEN METİN ALANI
         kullanici_cevabi = st.text_area(
-            "Cevabınız (Mikrofondan Otomatik Doldurulur / Düzenlenebilir):",
+            "Metne Dönüştürülen Yanıtınız:",
             value=st.session_state.voice_text,
-            placeholder="İster mikrofona konuşun isterseniz buraya yazarak yanıtınızı tamamlayın...",
+            placeholder="Mikrofona konuştuğunuzda metin buraya aktarılır...",
             height=140,
             key=f"input_{soru.get('id')}"
         )
@@ -405,10 +387,9 @@ with col_left:
                 yeni_soru_getir(st.session_state.secilen_kategori)
                 st.rerun()
 
-        # Otomatik Değerlendirme Motoru
         if cevapla_btn:
             if not kullanici_cevabi.strip():
-                st.warning("⚠️ Lütfen önce sesli konuşun veya metin kutusuna yanıtınızı yazın.")
+                st.warning("⚠️ Lütfen önce mikrofona konuşun veya metin alanına bir yanıt yazın.")
             else:
                 keywords = soru.get("keywords", [])
                 eval_result = calculate_score(kullanici_cevabi, keywords)
@@ -423,7 +404,6 @@ with col_left:
                     "bulunamayanlar": eval_result["missing_keywords"]
                 }
 
-        # Değerlendirme Karnesi Çıktısı
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
@@ -461,7 +441,6 @@ with col_left:
                     st.success("Tüm kilit noktalar yanıtınızda mevcut!")
 
 with col_right:
-    # Sağ Taraf: Genel İlerleme (% Göstergeli) & İpucu Kutusu
     yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
     
     st.markdown(f"""
