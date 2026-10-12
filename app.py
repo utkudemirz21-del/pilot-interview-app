@@ -228,17 +228,16 @@ with col_left:
                     st.write(f"- **{kp}**")
                 st.write("*...ve diğer ilgili havacılık terimleri.*")
 
-        # 🎙️ SESLİ BUTON BİLEŞENİ (DOĞRUDAN METİN ALANINI DOLDURUR)
         st.write("### 📝 Cevap Alanı (Sesli veya Yazılı)")
-        st.caption("İster mikrofona basıp konuşun, ister klavye ile doğrudan yazın. Konuştuğunuz kelimeler aşağıdaki kutuya otomatik eklenir.")
+        st.caption("İster mikrofona basıp konuşun, ister klavye ile doğrudan yazın.")
 
-        # HTML/JS - Doğrudan Streamlit textarea'sına veya panoya aktarım yapan dinamik ses kontrolü
+        # HTML/JS Ses Kontrol Bileşeni
         speech_control_html = """
         <div style="background: #ffffff; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-            <button id="start-btn" style="background-color: #2563eb; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
+            <button id="start-btn" type="button" style="background-color: #2563eb; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
                 🎙️ Konuşmayı Başlat
             </button>
-            <button id="stop-btn" style="background-color: #ef4444; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
+            <button id="stop-btn" type="button" style="background-color: #ef4444; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
                 🛑 Durdur
             </button>
             <span id="status" style="font-weight: bold; font-size: 14px; color: #64748b;">Mikrofon Hazır</span>
@@ -272,7 +271,7 @@ with col_left:
                 }
 
                 recognition.onstart = () => {
-                    status.innerText = "🔴 Dinleniyor... (Sözleriniz metin kutusuna aktarılıyor)";
+                    status.innerText = "🔴 Dinleniyor... (Konuşabilirsiniz)";
                     status.style.color = "#e11d48";
                     resetTimer();
                 };
@@ -284,16 +283,16 @@ with col_left:
                         transcript += event.results[i][0].transcript;
                     }
                     
-                    // Parent penceredeki textarea alanını bul ve güncelle
                     try {
                         const parentTextareas = window.parent.document.querySelectorAll('textarea');
                         if (parentTextareas.length > 0) {
-                            const lastArea = parentTextareas[parentTextareas.length - 1];
-                            lastArea.value = transcript;
-                            lastArea.dispatchEvent(new Event('input', { bubbles: true }));
+                            const target = parentTextareas[0];
+                            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value").set;
+                            nativeInputValueSetter.call(target, transcript);
+                            target.dispatchEvent(new Event('input', { bubbles: true }));
                         }
                     } catch (e) {
-                        console.log("Textarea erişim hatası:", e);
+                        console.log("Hata:", e);
                     }
                 };
 
@@ -317,12 +316,12 @@ with col_left:
         """
         components.html(speech_control_html, height=75)
 
-        # TEK VE ORTAK METİN GİRDİ ALANI
+        # TEK VE OTOMATİK DOLDURULABİLİR TEXTAREA
         kullanici_cevabi = st.text_area(
             "Cevabınız:",
             placeholder="Cevabınızı buraya yazabilir veya yukarıdaki mikrofona basarak konuşabilirsiniz...",
             height=150,
-            key=f"input_{soru.get('id')}"
+            key=f"text_input_{soru.get('id')}"
         )
 
         btn_c1, btn_c2 = st.columns([1, 1])
