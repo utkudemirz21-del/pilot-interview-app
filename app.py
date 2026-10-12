@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- SUPABASE BAĞLANTISI ---
+# --- SUPABASE BAĞLANTISI VE OTURUM YÖNETİMİ ---
 @st.cache_resource
 def init_supabase() -> Client:
     url = st.secrets.get("SUPABASE_URL", "")
@@ -44,7 +44,6 @@ st.markdown("""
         color: #0f172a !important; 
     }
     
-    /* Fade In & Slide Up Animasyonu */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -60,14 +59,12 @@ st.markdown("""
         animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Sol Menü (Sidebar) */
     section[data-testid="stSidebar"] { 
         background: linear-gradient(180deg, #071527 0%, #0b2246 100%) !important; 
         border-right: 1px solid #1e293b;
     }
     section[data-testid="stSidebar"] label { color: #f8fafc !important; font-weight: 600 !important; }
 
-    /* Ultra Modern Hero Banner */
     .hero-banner {
         background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 50%, #2563eb 100%);
         border-radius: 24px; 
@@ -92,7 +89,6 @@ st.markdown("""
     .hero-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
     .hero-subtitle { font-size: 1.1rem; color: #cbd5e1 !important; max-width: 700px; line-height: 1.6; }
 
-    /* Modern Soru Kartı */
     .main-card {
         background: #ffffff !important; 
         border-radius: 24px;
@@ -109,7 +105,6 @@ st.markdown("""
     }
     .question-title { font-size: 1.45rem; font-weight: 700; color: #0f172a !important; margin-top: 16px; line-height: 1.5; }
     
-    /* Rozetler */
     .badge-category {
         background-color: #eff6ff !important; color: #1d4ed8 !important;
         border: 1px solid #bfdbfe !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem;
@@ -120,7 +115,6 @@ st.markdown("""
         border: 1px solid #cbd5e1 !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-left: 8px;
     }
 
-    /* Sol Taraf Kokpit & Taktik Görsel Kartı */
     .cockpit-card {
         background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1000&auto=format&fit=crop');
         background-size: cover;
@@ -155,7 +149,6 @@ st.markdown("""
     }
     .progress-percent { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; color: #2563eb !important; letter-spacing: -1px; }
 
-    /* Metrik Kartları Özelleştirme */
     div[data-testid="stMetric"] {
         background: #ffffff !important;
         padding: 20px;
@@ -218,12 +211,23 @@ questions_data = load_questions()
 
 # Session State Başlatma
 if "user" not in st.session_state: st.session_state.user = None
+if "session" not in st.session_state: st.session_state.session = None
 if "sorulan_ids" not in st.session_state: st.session_state.sorulan_ids = []
 if "puanlar" not in st.session_state: st.session_state.puanlar = []
 if "mevcut_soru" not in st.session_state: st.session_state.mevcut_soru = None
 if "son_analiz" not in st.session_state: st.session_state.son_analiz = None
 if "secilen_kategori" not in st.session_state: st.session_state.secilen_kategori = "Tüm Kategoriler"
 if "last_processed_audio" not in st.session_state: st.session_state.last_processed_audio = None
+
+# SUPABASE KONTROLÜ VE OTURUMU GERİ YÜKLEME
+if supabase and not st.session_state.user:
+    try:
+        curr_session = supabase.auth.get_session()
+        if curr_session and curr_session.user:
+            st.session_state.user = curr_session.user
+            st.session_state.session = curr_session
+    except Exception:
+        pass
 
 def save_user_progress():
     if supabase and st.session_state.user:
@@ -269,6 +273,7 @@ if not st.session_state.user:
                     try:
                         res = supabase.auth.sign_in_with_password({"email": login_email, "password": login_pass})
                         st.session_state.user = res.user
+                        st.session_state.session = res.session
                         load_user_progress()
                         st.success("Giriş başarılı!")
                         st.rerun()
@@ -285,12 +290,17 @@ if not st.session_state.user:
                     try:
                         res = supabase.auth.sign_up({"email": signup_email, "password": signup_pass})
                         st.session_state.user = res.user
+                        st.session_state.session = res.session
                         save_user_progress()
                         st.success("Hesabınız oluşturuldu!")
                         st.rerun()
                     except Exception as e:
                         st.error(f"Kayıt hatası: {e}")
     st.stop()
+
+# Oturum Açık ise İlerlemeyi Yükle (İlk Yüklemede)
+if st.session_state.user and not st.session_state.sorulan_ids and not st.session_state.puanlar:
+    load_user_progress()
 
 # --- GİRİŞ YAPILDIKTAN SONRAKİ UYGULAMA AKIŞI ---
 
@@ -326,7 +336,13 @@ st.sidebar.markdown(f"""
 """, unsafe_allow_html=True)
 
 if st.sidebar.button("🚪 Çıkış Yap"):
+    if supabase:
+        try:
+            supabase.auth.sign_out()
+        except Exception:
+            pass
     st.session_state.user = None
+    st.session_state.session = None
     st.session_state.sorulan_ids = []
     st.session_state.puanlar = []
     st.rerun()
