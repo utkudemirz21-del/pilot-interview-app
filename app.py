@@ -11,32 +11,52 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Kırılma Yapmayan Güvenli ve Şık CSS
+# Kesin Aydınlık Mod ve Yüksek Kontrastlı Renk CSS'i
 st.markdown("""
 <style>
-    /* Ana Arka Plan */
-    .stApp {
-        background-color: #f4f6f9;
-        color: #1e293b;
+    /* Streamlit Genel Temasını Aydınlık Moda Zorlama */
+    :root {
+        --background-color: #f8fafc;
+        --secondary-background-color: #ffffff;
+        --text-color: #0f172a;
     }
 
-    /* Sol Menü - Derin Lacivert */
+    /* Ana Arka Plan */
+    .stApp {
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
+    }
+
+    /* Sol Menü (Sidebar) - Lacivert Zemin Üzerine Bembeyaz Okunur Yazılar */
     section[data-testid="stSidebar"] {
         background-color: #0b2559 !important;
     }
-    section[data-testid="stSidebar"] * {
+    section[data-testid="stSidebar"] *, 
+    section[data-testid="stSidebar"] label, 
+    section[data-testid="stSidebar"] p {
         color: #ffffff !important;
+    }
+
+    /* Selectbox (Kategori Seçim Kutusu) Düzeltmesi */
+    div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 8px !important;
+    }
+    div[data-baseweb="select"] * {
+        color: #0f172a !important;
     }
 
     /* Hero Banner */
     .hero-banner {
-        background: linear-gradient(135deg, rgba(11, 37, 89, 0.9) 0%, rgba(29, 78, 216, 0.75) 100%), 
+        background: linear-gradient(135deg, rgba(11, 37, 89, 0.95) 0%, rgba(29, 78, 216, 0.85) 100%), 
                     url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop');
         background-size: cover;
         background-position: center;
         border-radius: 16px;
         padding: 32px;
-        color: #ffffff;
+        color: #ffffff !important;
         margin-bottom: 24px;
         box-shadow: 0 8px 20px rgba(11, 37, 89, 0.12);
     }
@@ -44,68 +64,91 @@ st.markdown("""
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 6px;
-        color: #ffffff;
+        color: #ffffff !important;
     }
     .hero-subtitle {
         font-size: 1rem;
-        color: #e2e8f0;
+        color: #e2e8f0 !important;
         max-width: 600px;
         line-height: 1.5;
     }
 
-    /* Soru Alanı Kartı */
+    /* Soru Kartı */
     .main-card {
-        background: #ffffff;
+        background: #ffffff !important;
         border-radius: 16px;
         border: 1px solid #e2e8f0;
         padding: 24px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         margin-bottom: 16px;
     }
     .question-title {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #0f172a;
-        margin-top: 10px;
+        color: #0f172a !important;
+        margin-top: 12px;
         line-height: 1.5;
     }
     
-    /* Rozetler */
-    .badge-blue {
-        background-color: #eff6ff;
-        color: #2563eb;
-        border: 1px solid #bfdbfe;
-        padding: 4px 12px;
+    /* Kategori ve Zorluk Etiketleri (Badges) */
+    .badge-category {
+        background-color: #eff6ff !important;
+        color: #1d4ed8 !important;
+        border: 1px solid #bfdbfe !important;
+        padding: 6px 14px;
         border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: 0.88rem;
+        font-weight: 700;
         display: inline-block;
     }
+    .badge-difficulty {
+        background-color: #f1f5f9 !important;
+        color: #475569 !important;
+        border: 1px solid #cbd5e1 !important;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-left: 8px;
+    }
 
-    /* Metin Giriş Kutusu */
+    /* Text Area (Cevap Kutusu) Düzeltmesi */
     .stTextArea textarea {
         background-color: #ffffff !important;
         color: #0f172a !important;
         border: 1.5px solid #cbd5e1 !important;
         border-radius: 12px !important;
         padding: 14px !important;
+        font-size: 1rem !important;
     }
     .stTextArea textarea:focus {
         border-color: #2563eb !important;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+    }
+
+    /* Expander (Mülakatçı Beklentileri Okları ve Başlığı) */
+    .stExpander {
+        background-color: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+    }
+    .stExpander * {
+        color: #0f172a !important;
     }
 
     /* Sağ Panel Kartları */
     .side-card {
-        background: #ffffff;
+        background: #ffffff !important;
         border-radius: 16px;
         border: 1px solid #e2e8f0;
         padding: 20px;
         margin-bottom: 16px;
     }
     .progress-percent {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #2563eb;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #2563eb !important;
         margin-bottom: 4px;
     }
 </style>
@@ -217,8 +260,8 @@ with col_left:
         st.markdown(f"""
         <div class="main-card">
             <div>
-                <span class="badge-blue">{soru['category']}</span>
-                <span style="color:#64748b; font-size:0.85rem; margin-left:8px;">{soru['difficulty']}</span>
+                <span class="badge-category">{soru['category']}</span>
+                <span class="badge-difficulty">{soru['difficulty']}</span>
             </div>
             <div class="question-title">❓ {soru['question']}</div>
         </div>
@@ -324,9 +367,9 @@ with col_right:
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown("""
-    <div class="side-card" style="background:#eff6ff; border-color:#bfdbfe;">
-        <h5 style="margin:0 0 8px 0; color:#1d4ed8;">💡 Küçük Bir İpucu</h5>
-        <p style="margin:0; color:#1e40af; font-size:0.88rem; line-height:1.5;">
+    <div class="side-card" style="background:#eff6ff !important; border-color:#bfdbfe !important;">
+        <h5 style="margin:0 0 8px 0; color:#1d4ed8 !important;">💡 Küçük Bir İpucu</h5>
+        <p style="margin:0; color:#1e40af !important; font-size:0.88rem; line-height:1.5;">
             Teknik sorularda sadece doğru cevabı vermek değil, mantığınızı açıklamak da çok önemlidir. 
             Neden-sonuç ilişkisini kurmayı ve havacılık terminolojisini (ICAO) kullanmayı unutmayın.
         </p>
