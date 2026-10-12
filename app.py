@@ -5,151 +5,14 @@ import streamlit as st
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="PilotInterviewPro - Mülakat Hazırlık Platformu",
+    page_title="PilotInterviewPro",
     page_icon="✈️",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Görseldeki Profesyonel Tasarıma (PilotInterviewPro) Birebir Uygun CSS
-st.markdown("""
-<style>
-    /* Global Temizlik ve Font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    
-    html, body, [class*="st-"] {
-        font-family: 'Inter', sans-serif !important;
-    }
-    
-    .stApp {
-        background-color: #f4f6f9 !important;
-        color: #1e293b !important;
-    }
-
-    /* Sol Menü - Derin Lacivert (Sidebar) */
-    section[data-testid="stSidebar"] {
-        background-color: #0b2559 !important;
-        color: #ffffff !important;
-        border: none !important;
-    }
-    section[data-testid="stSidebar"] * {
-        color: #ffffff !important;
-    }
-    
-    /* Hero Banner (Üst Görsel Alanı) */
-    .hero-banner {
-        position: relative;
-        background: linear-gradient(135deg, rgba(11, 37, 89, 0.85) 0%, rgba(29, 78, 216, 0.7) 100%), 
-                    url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center;
-        border-radius: 16px;
-        padding: 36px 40px;
-        color: #ffffff;
-        margin-bottom: 24px;
-        box-shadow: 0 10px 25px -5px rgba(11, 37, 89, 0.15);
-    }
-    .hero-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-        color: #ffffff !important;
-    }
-    .hero-subtitle {
-        font-size: 1.05rem;
-        color: #e2e8f0 !important;
-        max-width: 650px;
-        line-height: 1.5;
-    }
-
-    /* İstatistik Mini Kartları */
-    .stat-card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 16px 20px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-    .stat-icon {
-        font-size: 1.8rem;
-        color: #2563eb;
-    }
-    .stat-label {
-        font-size: 0.85rem;
-        color: #64748b;
-        font-weight: 500;
-    }
-    .stat-value {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #0f172a;
-    }
-
-    /* Soru ve Çalışma Kartı */
-    .main-card {
-        background: #ffffff;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        padding: 28px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
-        margin-bottom: 20px;
-    }
-    .question-title {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin: 16px 0;
-        line-height: 1.5;
-    }
-    
-    /* Rozetler */
-    .badge-blue {
-        background-color: #eff6ff;
-        color: #2563eb;
-        border: 1px solid #bfdbfe;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    /* Input & Textarea Özelleştirme */
-    .stTextArea textarea {
-        background-color: #f8fafc !important;
-        color: #0f172a !important;
-        border: 1.5px solid #cbd5e1 !important;
-        border-radius: 12px !important;
-        padding: 16px !important;
-        font-size: 1rem !important;
-    }
-    .stTextArea textarea:focus {
-        border-color: #2563eb !important;
-        background-color: #ffffff !important;
-    }
-
-    /* Mavi Butonlar */
-    .stButton > button[data-baseweb="button"] {
-        border-radius: 10px !important;
-        font-weight: 600 !important;
-        padding: 10px 20px !important;
-    }
-
-    /* Sağ Panel Kartları */
-    .side-card {
-        background: #ffffff;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        padding: 20px;
-        margin-bottom: 16px;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # JSON Verisini Yükle
-@st.cache_data
+@st.cache_data(ttl=60)
 def load_questions():
     try:
         with open("questions.json", "r", encoding="utf-8") as f:
@@ -160,7 +23,7 @@ def load_questions():
 
 questions_data = load_questions()
 
-# Session State
+# Session State Başlatma
 if "sorulan_ids" not in st.session_state:
     st.session_state.sorulan_ids = []
 if "mevcut_soru" not in st.session_state:
@@ -170,27 +33,22 @@ if "puanlar" not in st.session_state:
 if "son_analiz" not in st.session_state:
     st.session_state.son_analiz = None
 
-# Sol Menü (Sidebar) Logo & Navigasyon
-st.sidebar.markdown("""
-<div style="padding: 10px 0 20px 0; text-align: left;">
-    <h2 style="color: #ffffff; margin:0; font-size: 1.5rem;">✈️ PilotInterviewPro</h2>
-    <p style="color: #93c5fd; font-size: 0.8rem; margin-top:2px;">Practice. Improve. Fly.</p>
-</div>
-""", unsafe_allow_html=True)
-
-st.sidebar.markdown("---")
-kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
-secilen_kategori = st.sidebar.selectbox("🎯 Mülakat Kategorisi", kategoriler, key="kat_secim")
-
-def yeni_soru_getir():
-    filtre = questions_data
-    if secilen_kategori != "Tüm Kategoriler":
-        filtre = [q for q in questions_data if q["category"] == secilen_kategori]
+# Soru Değiştirme ve Filtreleme Fonksiyonu
+def yeni_soru_getir(kategori_filtresi):
+    if kategori_filtresi == "Tüm Kategoriler":
+        filtre = questions_data
+    else:
+        filtre = [q for q in questions_data if q.get("category") == kategori_filtresi]
     
+    if not filtre:
+        st.session_state.mevcut_soru = None
+        return
+
     kullanilabilir = [q for q in filtre if q["id"] not in st.session_state.sorulan_ids]
     
+    # Tüm sorular sorulduysa geçmişi sıfırla
     if not kullanilabilir:
-        st.session_state.sorulan_ids = []
+        st.session_state.sorulan_ids = [q_id for q_id in st.session_state.sorulan_ids if q_id not in [q["id"] for q in filtre]]
         kullanilabilir = filtre
 
     if kullanilabilir:
@@ -199,110 +57,85 @@ def yeni_soru_getir():
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
 
+# SOL MENÜ (Sidebar)
+st.sidebar.title("✈️ PilotInterviewPro")
+st.sidebar.caption("Practice. Improve. Fly.")
+st.sidebar.markdown("---")
+
+kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
+
+# Kategori Değiştiğinde Anında Yeni Soru Getir
+def on_kategori_change():
+    secilen = st.session_state.kat_secim_key
+    yeni_soru_getir(secilen)
+
+secilen_kategori = st.sidebar.selectbox(
+    "🎯 Mülakat Kategorisi Seçin",
+    kategoriler,
+    key="kat_secim_key",
+    on_change=on_kategori_change
+)
+
+# İlk Açılışta Soru Getir
 if st.session_state.mevcut_soru is None and questions_data:
-    yeni_soru_getir()
+    yeni_soru_getir(secilen_kategori)
 
-# Hero Banner
-st.markdown("""
-<div class="hero-banner">
-    <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
-    <div class="hero-subtitle">
-        Gerçek mülakat deneyimini simüle eden sorularla kendinizi geliştirin. 
-        Teknik bilginizi, CRM becerilerinizi ve iletişim yeteneklerinizi test edin.
-    </div>
-</div>
-""", unsafe_allow_html=True)
+st.sidebar.markdown("---")
+st.sidebar.subheader("📊 Genel İlerleme")
+toplam_soru = len(questions_data)
+tamamlanan = len(st.session_state.puanlar)
+ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
 
-# 4'lü Üst İstatistik Barı
-st1, st2, st3, st4 = st.columns(4)
-with st1:
-    st.markdown(f"""
-    <div class="stat-card">
-        <div class="stat-icon">🎯</div>
-        <div>
-            <div class="stat-label">Toplam Soru</div>
-            <div class="stat-value">{len(questions_data)}+</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+st.sidebar.progress(min(tamamlanan / toplam_soru, 1.0) if toplam_soru > 0 else 0.0)
+st.sidebar.write(f"**Tamamlanan:** {tamamlanan} / {toplam_soru} Soru")
+st.sidebar.write(f"**Ortalama Başarı:** %{ort_skor:.0f}")
 
-with st2:
-    st.markdown(f"""
-    <div class="stat-card">
-        <div class="stat-icon">📊</div>
-        <div>
-            <div class="stat-label">Kategori</div>
-            <div class="stat-value">{len(kategoriler)-1} Ana Başlık</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+# ANA SAYFA BAŞLIK & İSTATİSTİKLER
+st.title("✈️ Pilot Mülakatına Hazırlanın")
+st.write("Gerçek mülakat deneyimini simüle eden teknik sorularla kendinizi geliştirin.")
 
-with st3:
-    ort = (sum(st.session_state.puanlar) / len(st.session_state.puanlar)) if st.session_state.puanlar else 0
-    st.markdown(f"""
-    <div class="stat-card">
-        <div class="stat-icon">📈</div>
-        <div>
-            <div class="stat-label">Ortalama Skor</div>
-            <div class="stat-value">%{ort:.0f}</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Toplam Soru", f"{toplam_soru}+")
+col2.metric("Kategori", f"{len(kategoriler)-1} Başlık")
+col3.metric("Ortalama Skor", f"%{ort_skor:.0f}")
+col4.metric("Seviye", "ATPL & CPL")
 
-with st4:
-    st.markdown(f"""
-    <div class="stat-card">
-        <div class="stat-icon">⭐</div>
-        <div>
-            <div class="stat-label">Seviye</div>
-            <div class="stat-value">ATPL & CPL</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("---")
 
-st.markdown("<br>", unsafe_allow_html=True)
+# ANA İÇERİK ALANI
+col_main, col_info = st.columns([2.5, 1])
 
-# Ana Düzen: Sol (Mülakat Alanı) & Sağ (Açıklama/İlerleme Paneli)
-col_left, col_right = st.columns([2.2, 1])
-
-with col_left:
+with col_main:
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         
         # Soru Kartı
-        st.markdown(f"""
-        <div class="main-card">
-            <div>
-                <span class="badge-blue">{soru['category']}</span>
-                <span style="color:#64748b; font-size:0.85rem; margin-left:8px;">{soru['difficulty']}</span>
-            </div>
-            <div class="question-title">❓ {soru['question']}</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.subheader(f"📌 {soru['category']}  ·  ({soru['difficulty']})")
+        st.info(f"### ❓ {soru['question']}")
         
         with st.expander("💡 Mülakatçı Beklentileri (Kilit Terimler)"):
-            st.write("Bu soruda yanıtınızda geçmesi beklenen anahtar kavramlar:")
+            st.write("Cevabınızda değerlendirilecek temel noktalar:")
             for kp in soru.get("key_points", []):
-                st.markdown(f"- **{kp}**")
+                st.write(f"- **{kp}**")
 
         kullanici_cevabi = st.text_area(
             "Cevabınızı Yazılı Olarak Verin:",
-            placeholder="Havacılık terminolojisine (ICAO/SOP) uygun şekilde yanıtınızı detaylıca açıklayın...",
-            height=160
+            placeholder="Havacılık terminolojisine (ICAO/SOP) uygun şekilde detaylıca yanıtlayın...",
+            height=150
         )
 
-        btn_c1, btn_c2 = st.columns([1, 1])
-        with btn_c1:
-            cevapla_btn = st.button("💾 Yanıtı Kaydet ve Değerlendir", type="primary", use_container_width=True)
-        with btn_c2:
+        c1, c2 = st.columns(2)
+        with c1:
+            cevapla_btn = st.button("🚀 Yanıtı Kaydet ve Değerlendir", type="primary", use_container_width=True)
+        with c2:
             if st.button("Sonraki Soru ➔", use_container_width=True):
-                yeni_soru_getir()
+                yeni_soru_getir(secilen_kategori)
                 st.rerun()
 
-        # Değerlendirme Motoru
+        # Otomatik Değerlendirme Motoru
         if cevapla_btn:
             if not kullanici_cevabi.strip():
-                st.warning("⚠️ Lütfen önce mülakat yanıtınızı metin alanına yazın.")
+                st.warning("⚠️ Lütfen önce bir cevap yazın.")
             else:
                 key_points = soru.get("key_points", [])
                 cevabi_alt = kullanici_cevabi.lower()
@@ -329,59 +162,41 @@ with col_left:
                     "bulunamayanlar": bulunamayanlar
                 }
 
-        # Değerlendirme Karnesi Çıktısı
+        # Değerlendirme Sonucu
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
             
-            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown("---")
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
             
             if puan >= 80:
-                st.success(f"🏆 **Mülakat Skoru: {puan} / 100** — Harika! Konuya ve terminolojiye tam hakimsiniz.")
+                st.success(f"🏆 **Mülakat Skoru: {puan} / 100** — Harika! Konuya ve terminolojiye hakimsiniz.")
             elif puan >= 50:
-                st.warning(f"⚠️ **Mülakat Skoru: {puan} / 100** — Geçer Seviye. Bazı kilit detayları unuttunuz.")
+                st.warning(f"⚠️ **Mülakat Skoru: {puan} / 100** — Geçer Seviye. Bazı kilit detaylar eksik kaldı.")
             else:
                 st.error(f"❌ **Mülakat Skoru: {puan} / 100** — Yetersiz. Temel teknik terimleri tekrar gözden geçirmelisiniz.")
 
-            c_pos, c_neg = st.columns(2)
-            with c_pos:
-                st.markdown("##### ✅ Tespit Edilen Doğru Noktalar")
+            col_pos, col_neg = st.columns(2)
+            with col_pos:
+                st.write("##### ✅ Tespit Edilen Doğru Noktalar")
                 if res["bulunanlar"]:
                     for b in res["bulunanlar"]:
-                        st.write(f"✔️ {b}")
+                        st.success(f"✔️ {b}")
                 else:
                     st.info("Kilit kavramlar bulunamadı.")
 
-            with c_neg:
-                st.markdown("##### ❌ Eksik veya Atlanan Noktalar")
+            with col_neg:
+                st.write("##### ❌ Eksik veya Atlanan Noktalar")
                 if res["bulunamayanlar"]:
                     for ex in res["bulunamayanlar"]:
-                        st.write(f"✖️ {ex}")
+                        st.error(f"✖️ {ex}")
                 else:
                     st.success("Tüm kilit noktalar mevcut!")
 
-with col_right:
-    # Sağ Taraf: Genel İlerleme & İpucu Kutusu (Görseldeki gibi)
-    st.markdown("""
-    <div class="side-card">
-        <h4 style="margin:0 0 12px 0; color:#0f172a;">📊 Genel İlerleme</h4>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    toplam_cevap = len(st.session_state.puanlar)
-    yuzde = int((toplam_cevap / len(questions_data)) * 100) if questions_data else 0
-    st.progress(min(yuzde / 100, 1.0))
-    st.caption(f"Toplam {len(questions_data)} sorudan {toplam_cevap} tanesini tamamladınız (%{yuzde}).")
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="side-card" style="background:#eff6ff; border-color:#bfdbfe;">
-        <h5 style="margin:0 0 8px 0; color:#1d4ed8;">💡 Küçük Bir İpucu</h5>
-        <p style="margin:0; color:#1e40af; font-size:0.9rem; line-height:1.5;">
-            Teknik sorularda sadece doğru cevabı vermek değil, mantığınızı açıklamak da çok önemlidir. 
-            Neden-sonuç ilişkisini kurmayı unutmayın.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+with col_info:
+    st.write("### 💡 Mülakat İpucu")
+    st.info(
+        "Teknik sorularda sadece doğru cevabı vermek değil, mantığınızı açıklamak da çok önemlidir. "
+        "Neden-sonuç ilişkisini kurmayı ve havacılık terminolojisini (ICAO) kullanmayı unutmayın."
+    )
