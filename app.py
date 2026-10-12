@@ -1,7 +1,10 @@
 import json
 import random
 import re
+import io
 import streamlit as st
+import speech_recognition as sr
+from audio_recorder_streamlit import audio_recorder
 
 # Sayfa Yapılandırması
 st.set_page_config(
@@ -175,6 +178,23 @@ def turkish_lower(text: str) -> str:
         text = text.replace(search, replace)
     return text.lower()
 
+# 🛠️ SESİ METNE ÇEVİREN MOCK/REAL SPEECH-TO-TEXT MOTORU
+def transcribe_audio(audio_bytes):
+    recognizer = sr.Recognizer()
+    try:
+        audio_file = io.BytesIO(audio_bytes)
+        with sr.AudioFile(audio_file) as source:
+            audio_data = recognizer.record(source)
+            # Türkçe ses tanıma
+            text = recognizer.recognize_google(audio_data, language="tr-TR")
+            return text
+    except sr.UnknownValueError:
+        return "Ses anlaşılamadı, lütfen tekrar konuşun."
+    except sr.RequestError:
+        return "Ses tanıma servisine ulaşılamadı."
+    except Exception as e:
+        return f"Ses işleme hatası: {e}"
+
 # 🛠️ KELİME TARAMA VE PUANLAMA MOTORU
 def calculate_score(user_answer: str, keywords: list) -> dict:
     if not user_answer or not user_answer.strip():
@@ -186,7 +206,7 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
         }
 
     clean_answer = turkish_lower(user_answer)
-    clean_answer = re.sub(r'[^\w\s]', ' ', clean_answer)  # Noktalama işaretlerini boşluğa çevir
+    clean_answer = re.sub(r'[^\w\s]', ' ', clean_answer)
 
     matched_keywords = []
     missing_keywords = []
@@ -200,7 +220,6 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
 
     match_count = len(matched_keywords)
 
-    # 🎯 ÖZEL SKORLAMA KURALI
     if match_count >= 4:
         score = 100
     elif match_count == 3:
@@ -242,6 +261,8 @@ if "son_analiz" not in st.session_state:
     st.session_state.son_analiz = None
 if "secilen_kategori" not in st.session_state:
     st.session_state.secilen_kategori = "Tüm Kategoriler"
+if "voice_text" not in st.session_state:
+    st.session_state.voice_text = ""
 
 # Soru Seçim Motoru
 def yeni_soru_getir(kategori_filtresi):
@@ -265,6 +286,7 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.mevcut_soru = secilen
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
+        st.session_state.voice_text = ""
 
 # Sol Menü (Sidebar)
 st.sidebar.markdown("""
@@ -302,7 +324,7 @@ st.markdown("""
     <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
     <div class="hero-subtitle">
         Gerçek mülakat deneyimini simüle eden sorularla kendinizi geliştirin. 
-        Teknik bilginizi ve havacılık terminolojinizi test edin.
+        Teknik bilginizi sesli veya yazılı olarak test edin.
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -343,16 +365,35 @@ with col_left:
             st.write("Bu soruda yanıtınızda bulunması hedeflenen bazı kilit kavramlar:")
             kw_list = soru.get("keywords", [])
             if kw_list:
-                for kp in kw_list[:2]:  # İlk 2 tanesini ipucu olarak göster
+                for kp in kw_list[:2]:
                     st.write(f"- **{kp}**")
                 st.write("*...ve diğer ilgili havacılık terimleri.*")
             else:
                 st.write("Bu soru için özel kilit terim tanımlanmamış.")
 
+        # 🎙️ SESLİ YANIT / MİKROFON ALANI
+        st.write("### 🎙️ Sesli Yanıt Verin (Mikrofon)")
+        st.info("Mikrofona basarak cevabınızı sözlü ifade edin. Sesiniz otomatik metne çevrilecektir.")
+        
+        audio_bytes = audio_recorder(
+            text="Mikrofona basarak konuşun",
+            recording_color="#e11d48",
+            neutral_color="#2563eb",
+            icon_name="microphone",
+            icon_size="2x"
+        )
+
+        if audio_bytes:
+            with st.spinner("🔊 Sesiniz metne dönüştürülüyor..."):
+                transcribed_text = transcribe_audio(audio_bytes)
+                st.session_state.voice_text = transcribed_text
+
+        # YAZILI VEYA SESLE ÇEVRİLEN METİN ALANI
         kullanici_cevabi = st.text_area(
-            "Cevabınızı Yazılı Olarak Verin:",
-            placeholder="Havacılık terminolojisine (ICAO/SOP) uygun şekilde yanıtınızı detaylıca açıklayın...",
-            height=150,
+            "Cevabınız (Mikrofondan Otomatik Doldurulur / Düzenlenebilir):",
+            value=st.session_state.voice_text,
+            placeholder="İster mikrofona konuşun isterseniz buraya yazarak yanıtınızı tamamlayın...",
+            height=140,
             key=f"input_{soru.get('id')}"
         )
 
@@ -367,7 +408,7 @@ with col_left:
         # Otomatik Değerlendirme Motoru
         if cevapla_btn:
             if not kullanici_cevabi.strip():
-                st.warning("⚠️ Lütfen önce mülakat yanıtınızı metin alanına yazın.")
+                st.warning("⚠️ Lütfen önce sesli konuşun veya metin kutusuna yanıtınızı yazın.")
             else:
                 keywords = soru.get("keywords", [])
                 eval_result = calculate_score(kullanici_cevabi, keywords)
