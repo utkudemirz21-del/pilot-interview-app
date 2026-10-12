@@ -2,7 +2,10 @@ import streamlit as st
 import json
 import re
 
-# 1. Türkçe Harf Dönüştürücü (Karakter hatasını önler)
+# Page Config
+st.set_page_config(page_title="ATPL Mülakat Koçu", page_icon="✈️", layout="wide")
+
+# 1. Türkçe Harf Dönüştürücü (Karakter hatalarını önler)
 def turkish_lower(text: str) -> str:
     if not text:
         return ""
@@ -21,18 +24,14 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
             "missing_keywords": keywords
         }
 
-    # Kullanıcı yanıtını temizle
     clean_answer = turkish_lower(user_answer)
-    clean_answer = re.sub(r'[^\w\s]', ' ', clean_answer)  # Noktalamaları temizle
+    clean_answer = re.sub(r'[^\w\s]', ' ', clean_answer)
 
     matched_keywords = []
     missing_keywords = []
 
-    # Her bir keyword'ü tek tek kullanıcı cevabında ara
     for kw in keywords:
         clean_kw = turkish_lower(str(kw).strip())
-        
-        # Tam kelime veya kelime öbeği eşleşmesi kontrolü
         if clean_kw and clean_kw in clean_answer:
             matched_keywords.append(kw)
         else:
@@ -40,7 +39,6 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
 
     match_count = len(matched_keywords)
 
-    # Katı Puanlama Kuralları
     if match_count >= 4:
         score = 100
     elif match_count == 3:
@@ -59,71 +57,137 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
         "missing_keywords": missing_keywords
     }
 
-# --- KULLANICI ARAYÜZÜ VE İPUCU ALANI ---
+# 3. JSON Sorularını Yükle
+@st.cache_data
+def load_questions():
+    try:
+        with open("questions.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        st.error(f"questions.json dosyası yüklenemedi: {e}")
+        return []
 
-# Aktif soruyu al (Örnek: session_state veya listeden)
-soru = st.session_state.get("current_question", filtered_questions[0] if 'filtered_questions' in locals() and filtered_questions else None)
+all_questions = load_questions()
 
-if soru:
-    # Soru Bilgileri
-    st.markdown(f"### ❓ Soru {soru.get('id', '')}: {soru.get('question', '')}")
-    
-    col_info1, col_info2 = st.columns(2)
-    with col_info1:
-        st.info(f"📁 **Kategori:** {soru.get('category', 'Genel')}")
-    with col_info2:
-        st.warning(f"🎯 **Zorluk:** {soru.get('difficulty', 'Orta')}")
+# Header
+st.title("✈️ Pilot Teknik Mülakat Hazırlık Modülü")
+st.write("Cevabınızdaki anahtar kelime (keyword) sayısına göre skorlama yapılır.")
 
-    # 💡 İPUCU ALANI (Açılır İpucu Kutusu)
-    with st.expander("💡 İpucu Göster / Gizle"):
-        st.write("Bu soruda aranacak kavramlardan bazıları:")
-        # İlk 2 keyword'ü ipucu olarak gösterir, cevabı tamamen ifşa etmez
-        sample_hints = soru.get("keywords", [])[:2]
-        if sample_hints:
-            st.markdown(f"👉 *Harf/Kavram ipuçları:* **{', '.join(sample_hints)}**")
+if not all_questions:
+    st.error("Soru verisi bulunamadı. Lütfen questions.json dosyasını kontrol edin.")
+    st.stop()
+
+# --- SIDEBAR FİLTRELERİ ---
+st.sidebar.title("🎯 Filtreler & Ayarlar")
+
+selected_difficulty = st.sidebar.multiselect(
+    "Zorluk Derecesi:",
+    options=["Kolay", "Orta", "Zor"],
+    default=["Kolay", "Orta", "Zor"]
+)
+
+all_categories = sorted(list(set(q.get("category", "Genel") for q in all_questions)))
+selected_categories = st.sidebar.multiselect(
+    "Kategori:",
+    options=all_categories,
+    default=all_categories
+)
+
+# Filtreleme
+filtered_questions = [
+    q for q in all_questions
+    if q.get("difficulty", "Orta") in selected_difficulty
+    and q.get("category", "Genel") in selected_categories
+]
+
+st.sidebar.write(f"Mevcut Soru Sayısı: **{len(filtered_questions)}**")
+
+if not filtered_questions:
+    st.warning("Seçilen filtrelere uygun soru bulunamadı. Lütfen sidebar'dan seçim yapın.")
+    st.stop()
+
+# --- SORU SEÇİMİ VE SESSION STATE ---
+if "question_index" not in st.session_state:
+    st.session_state.question_index = 0
+
+# İndex sınır kontrolü
+if st.session_state.question_index >= len(filtered_questions):
+    st.session_state.question_index = 0
+
+col_nav1, col_nav2, col_nav3 = st.columns([1, 4, 1])
+with col_nav1:
+    if st.button("⬅️ Önceki Soru"):
+        st.session_state.question_index = (st.session_state.question_index - 1) % len(filtered_questions)
+        st.rerun()
+
+with col_nav3:
+    if st.button("Sonraki Soru ➡️"):
+        st.session_state.question_index = (st.session_state.question_index + 1) % len(filtered_questions)
+        st.rerun()
+
+soru = filtered_questions[st.session_state.question_index]
+
+st.divider()
+
+# --- EKRAN GÖSTERİMİ ---
+st.markdown(f"### ❓ Soru {soru.get('id', '')}: {soru.get('question', '')}")
+
+col_m1, col_m2 = st.columns(2)
+with col_m1:
+    st.info(f"📁 **Kategori:** {soru.get('category', 'Genel')}")
+with col_m2:
+    st.warning(f"🎯 **Zorluk:** {soru.get('difficulty', 'Orta')}")
+
+# 💡 İPUCU ALANI
+with st.expander("💡 İpucu Göster"):
+    kws = soru.get("keywords", [])
+    if kws:
+        st.write("Bu soruda aranacak bazı temel kavramlar:")
+        st.write(f"👉 **{', '.join(kws[:2])}** ...")
+    else:
+        st.write("Bu soru için özel ipucu yok.")
+
+# CEVAP ALANI
+user_input = st.text_area(
+    "Yanıtınızı buraya yazınız:", 
+    height=140, 
+    key=f"input_{soru.get('id')}"
+)
+
+if st.button("Cevabı Değerlendir", type="primary", key=f"btn_{soru.get('id')}"):
+    if user_input.strip():
+        result = calculate_score(user_input, soru.get("keywords", []))
+        score = result["score"]
+        
+        st.markdown("---")
+        st.subheader("📊 Değerlendirme Sonucu")
+        
+        if score == 100:
+            st.success(f"🎉 **100 Puan (Tam Uygun)** - Yakalanan Keyword: {result['matched_count']}")
+        elif score == 80:
+            st.info(f"🟡 **80 Puan (İyi)** - Yakalanan Keyword: {result['matched_count']}")
+        elif score == 60:
+            st.warning(f"🟠 **60 Puan (Orta)** - Yakalanan Keyword: {result['matched_count']}")
+        elif score == 30:
+            st.error(f"🔴 **30 Puan (Zayıf)** - Yakalanan Keyword: {result['matched_count']}")
         else:
-            st.write("Bu soru için özel ipucu bulunmuyor.")
+            st.error(f"❌ **0 Puan (Yetersiz)** - Yanıtınızda anahtar kelime bulunamadı.")
 
-    # CEVAP GİRDİ ALANI
-    user_input = st.text_area("Cevabınızı buraya yazın:", height=150, key=f"input_{soru.get('id')}")
-
-    if st.button("Cevabı Değerlendir", key=f"btn_{soru.get('id')}"):
-        if user_input.strip():
-            result = calculate_score(user_input, soru.get("keywords", []))
-            
-            # Puan Gösterimi
-            score = result["score"]
-            st.divider()
-            
-            if score == 100:
-                st.balloons()
-                st.success(f"🎉 Mükemmel! Puanınız: **{score}** (Eşleşen Keyword: {result['matched_count']})")
-            elif score == 80:
-                st.info(f"👍 Çok İyi! Puanınız: **{score}** (Eşleşen Keyword: {result['matched_count']})")
-            elif score == 60:
-                st.warning(f"⚠️ Orta! Puanınız: **{score}** (Eşleşen Keyword: {result['matched_count']})")
-            elif score == 30:
-                st.error(f"🔴 Zayıf! Puanınız: **{score}** (Eşleşen Keyword: {result['matched_count']})")
+        res_col1, res_col2 = st.columns(2)
+        with res_col1:
+            st.markdown("#### ✅ Yakalanan Kelimeler")
+            if result["matched_keywords"]:
+                for kw in result["matched_keywords"]:
+                    st.success(f"• {kw}")
             else:
-                st.error(f"❌ Yetersiz! Puanınız: **0** (Hiçbir anahtar kelime bulunamadı)")
+                st.write("*Hiçbiri yakalanamadı.*")
 
-            # Keyword Detay Tablosu
-            res_col1, res_col2 = st.columns(2)
-            with res_col1:
-                st.markdown("### ✅ Yakalanan Kelimeler")
-                if result["matched_keywords"]:
-                    for kw in result["matched_keywords"]:
-                        st.success(f"• {kw}")
-                else:
-                    st.write("*Hiçbiri yakalanamadı.*")
-
-            with res_col2:
-                st.markdown("### ❌ Kaçırılan Kelimeler")
-                if result["missing_keywords"]:
-                    for kw in result["missing_keywords"]:
-                        st.error(f"• {kw}")
-                else:
-                    st.write("*Tüm kelimeler yakalandı!*")
-        else:
-            st.warning("Lütfen değerlendirmek için bir cevap metni girin.")
-            
+        with res_col2:
+            st.markdown("#### ❌ Kaçırılan Kelimeler")
+            if result["missing_keywords"]:
+                for kw in result["missing_keywords"]:
+                    st.error(f"• {kw}")
+            else:
+                st.write("*Tüm kelimeler yakalandı!*")
+    else:
+        st.warning("Lütfen değerlendirilmesi için bir metin girin.")
