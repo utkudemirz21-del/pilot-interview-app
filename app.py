@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Kesin Aydınlık Mod ve Yüksek Kontrastlı Renk CSS'i
+# Kesin Görünürlük ve Filtre Kararlılığı İçin CSS
 st.markdown("""
 <style>
     /* Streamlit Genel Temasını Aydınlık Moda Zorlama */
@@ -21,31 +21,43 @@ st.markdown("""
         --text-color: #0f172a;
     }
 
-    /* Ana Arka Plan */
     .stApp {
         background-color: #f8fafc !important;
         color: #0f172a !important;
     }
 
-    /* Sol Menü (Sidebar) - Lacivert Zemin Üzerine Bembeyaz Okunur Yazılar */
+    /* Sol Menü (Sidebar) - Derin Lacivert Zemin */
     section[data-testid="stSidebar"] {
         background-color: #0b2559 !important;
     }
-    section[data-testid="stSidebar"] *, 
-    section[data-testid="stSidebar"] label, 
-    section[data-testid="stSidebar"] p {
+    section[data-testid="stSidebar"] * {
         color: #ffffff !important;
     }
 
-    /* Selectbox (Kategori Seçim Kutusu) Düzeltmesi */
+    /* SELECTBOX KUTUSU VE YAZI RENGİ DÜZELTMESİ (GÖRÜNMEYEN BEYAZ YAZI İÇİN) */
+    div[data-baseweb="select"] {
+        background-color: #ffffff !important;
+        border-radius: 8px !important;
+    }
     div[data-baseweb="select"] > div {
         background-color: #ffffff !important;
         color: #0f172a !important;
-        border: 1px solid #cbd5e1 !important;
+        border: 1.5px solid #cbd5e1 !important;
         border-radius: 8px !important;
     }
-    div[data-baseweb="select"] * {
+    div[data-baseweb="select"] span, 
+    div[data-baseweb="select"] div,
+    div[data-baseweb="select"] input {
         color: #0f172a !important;
+        font-weight: 700 !important;
+    }
+    /* Selectbox Açılır Menü Seçenekleri */
+    ul[role="listbox"] {
+        background-color: #ffffff !important;
+    }
+    ul[role="listbox"] li {
+        color: #0f172a !important;
+        font-weight: 600 !important;
     }
 
     /* Hero Banner */
@@ -90,7 +102,7 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Kategori ve Zorluk Etiketleri (Badges) - Kalınlaştırılmış ve Renklendirilmiş */
+    /* Kategori ve Zorluk Etiketleri (Badges) */
     .badge-category {
         background-color: #dbeafe !important;
         color: #1e40af !important;
@@ -113,7 +125,7 @@ st.markdown("""
         margin-left: 8px;
     }
 
-    /* Text Area (Cevap Kutusu) Düzeltmesi */
+    /* Text Area */
     .stTextArea textarea {
         background-color: #ffffff !important;
         color: #0f172a !important;
@@ -124,10 +136,9 @@ st.markdown("""
     }
     .stTextArea textarea:focus {
         border-color: #2563eb !important;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
     }
 
-    /* Expander (Mülakatçı Beklentileri Okları ve Başlığı) */
+    /* Expander */
     .stExpander {
         background-color: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
@@ -166,7 +177,7 @@ def load_questions():
 
 questions_data = load_questions()
 
-# Session State
+# Session State Yönetimi
 if "sorulan_ids" not in st.session_state:
     st.session_state.sorulan_ids = []
 if "mevcut_soru" not in st.session_state:
@@ -175,6 +186,8 @@ if "puanlar" not in st.session_state:
     st.session_state.puanlar = []
 if "son_analiz" not in st.session_state:
     st.session_state.son_analiz = None
+if "secilen_kategori" not in st.session_state:
+    st.session_state.secilen_kategori = "Tüm Kategoriler"
 
 # Soru Seçim Motoru
 def yeni_soru_getir(kategori_filtresi):
@@ -211,19 +224,24 @@ st.sidebar.markdown("---")
 
 kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
 
+# Kategori Değiştiğinde Çalışacak Callback
 def on_kategori_change():
-    secilen = st.session_state.kat_secim_key
-    yeni_soru_getir(secilen)
+    yeni_kat = st.session_state.kat_select_box
+    st.session_state.secilen_kategori = yeni_kat
+    yeni_soru_getir(yeni_kat)
+
+kat_index = kategoriler.index(st.session_state.secilen_kategori) if st.session_state.secilen_kategori in kategoriler else 0
 
 secilen_kategori = st.sidebar.selectbox(
     "🎯 Mülakat Kategorisi",
     kategoriler,
-    key="kat_secim_key",
+    index=kat_index,
+    key="kat_select_box",
     on_change=on_kategori_change
 )
 
 if st.session_state.mevcut_soru is None and questions_data:
-    yeni_soru_getir(secilen_kategori)
+    yeni_soru_getir(st.session_state.secilen_kategori)
 
 # Hero Banner
 st.markdown("""
@@ -283,7 +301,7 @@ with col_left:
             cevapla_btn = st.button("💾 Yanıtı Kaydet ve Değerlendir", type="primary", use_container_width=True)
         with btn_c2:
             if st.button("Sonraki Soru ➔", use_container_width=True):
-                yeni_soru_getir(secilen_kategori)
+                yeni_soru_getir(st.session_state.secilen_kategori)
                 st.rerun()
 
         # Otomatik Değerlendirme Motoru
