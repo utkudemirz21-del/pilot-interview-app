@@ -54,7 +54,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 🛠️ TÜRKÇE MÜKEMMEL HARF DÖNÜŞTÜRÜCÜ
+# 🛠️ TÜRKÇE HARF DÖNÜŞTÜRÜCÜ
 def turkish_lower(text: str) -> str:
     if not text:
         return ""
@@ -63,7 +63,45 @@ def turkish_lower(text: str) -> str:
         text = text.replace(search, replace)
     return text.lower()
 
-# 🛠️ KELİME TARAMA VE PUANLAMA MOTORU
+# 🛠️ GEVŞETİLMİŞ VE ESNEK (STEM / FUZZY) KELİME EŞLEŞTİRME MOTORU
+def is_flexible_match(keyword: str, clean_answer: str) -> bool:
+    clean_kw = turkish_lower(str(keyword).strip())
+    clean_kw = re.sub(r'[^\w\s]', '', clean_kw)  # Noktalamaları temizle
+    
+    if not clean_kw:
+        return False
+
+    # 1. Birebir Tam Eşleşme veya Alt Cümle
+    if clean_kw in clean_answer:
+        return True
+
+    # 2. Türkçe Kök / Gövde Yakalama (Kelime 4 harften uzunsa ilk 4-5 harfi kontrol et)
+    words_in_kw = clean_kw.split()
+    
+    # Çoklu kelimeler için (Örn: "süzülüş hattı", "point of no return")
+    if len(words_in_kw) > 1:
+        # Anahtar kelimedeki en az 1 ana kelime cevapta geçiyor mu?
+        matched_parts = 0
+        for w in words_in_kw:
+            if len(w) >= 3:
+                stem = w[:4] if len(w) >= 4 else w
+                if stem in clean_answer:
+                    matched_parts += 1
+        if matched_parts >= 1:  # En az 1 parçası geçiyorsa esnek kabul et
+            return True
+    else:
+        # Tekli kelimeler için (Örn: "altimetre" -> "altimetrenin", "altimetreye")
+        single_w = words_in_kw[0]
+        if len(single_w) >= 4:
+            stem = single_w[:4]  # İlk 4 harf kök kabul edilir
+            if stem in clean_answer:
+                return True
+        elif single_w in clean_answer:
+            return True
+
+    return False
+
+# 🛠️ ESNEK SKORLAMA
 def calculate_score(user_answer: str, keywords: list) -> dict:
     if not user_answer or not user_answer.strip():
         return {
@@ -80,14 +118,14 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
     missing_keywords = []
 
     for kw in keywords:
-        clean_kw = turkish_lower(str(kw).strip())
-        if clean_kw and clean_kw in clean_answer:
+        if is_flexible_match(kw, clean_answer):
             matched_keywords.append(kw)
         else:
             missing_keywords.append(kw)
 
     match_count = len(matched_keywords)
 
+    # 🎯 GEVŞETİLMİŞ PUAN KURALI
     if match_count >= 4:
         score = 100
     elif match_count == 3:
@@ -316,7 +354,7 @@ with col_left:
         """
         components.html(speech_control_html, height=75)
 
-        # TEK VE OTOMATİK DOLDURULABİLİR TEXTAREA
+        # TEXTAREA ALANI
         kullanici_cevabi = st.text_area(
             "Cevabınız:",
             placeholder="Cevabınızı buraya yazabilir veya yukarıdaki mikrofona basarak konuşabilirsiniz...",
