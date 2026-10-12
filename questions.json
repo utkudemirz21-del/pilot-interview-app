@@ -2,61 +2,181 @@
   {
     "id": 1,
     "category": "Aerodinamik & Performans",
-    "difficulty": "PPL-CPL Seviyesi",
-    "question": "Stall nedir ve stall durumundan çıkış (recovery) prosedürü temel olarak nasıl gerçekleştirilir?",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Stall nedir, Stall'a etki eden faktörler nelerdir ve Stall durumundan recovery (çıkış) prosedürü nasıl uygulanır?",
     "key_points": [
-      "Hücum açısının (AOA) kritik açıyı aşması",
-      "LIFT (Taşıma kuvveti) kaybı",
-      "Burun aşağı verme (Pitch down)",
-      "Güç ekleme (Power/Thrust)"
+      "Hücum açısının (AOA) kritik açıyı aşması ve Lift kaybı",
+      "Ağırlık, Flap/Slat konfigürasyonu, Yatma açısı (Bank angle) ve CG konumunun stall süratine etkisi",
+      "Lövye ileri (Pitch Down) verilerek hücum açısının düşürülmesi",
+      "Güç/Thrust eklenmesi ve emniyetli sürat sağlandıktan sonra sakince düz uçuşa geçilmesi"
     ]
   },
   {
     "id": 2,
     "category": "Aerodinamik & Performans",
-    "difficulty": "PPL-CPL Seviyesi",
-    "question": "Yer etkisi (Ground Effect) nedir ve kalkış/iniş esnasında uçağın performansını nasıl etkiler?",
+    "difficulty": "ATPL Seviyesi",
+    "question": "CG (Centre of Gravity - Ağırlık Merkezi) konumunun önde (Forward CG) veya arkada (Aft CG) olmasının uçak performansına ve kararlılığına (stability) etkileri nelerdir?",
     "key_points": [
-      "Kanat ucu girdaplarının (wingtip vortices) yere yakınken engellenmesi",
-      "İndüklenmiş sürüklemenin (Induced drag) azalması",
-      "Yüzme (floating) eğilimi",
-      "Yaklaşık bir kanat açıklığı yükseklikte etkili olması"
+      "Forward CG: Daha fazla longitudinal kararlılık (stability), ancak yüksek stall sürati, düşük tırmanma ve daha fazla yakıt tüketimi",
+      "Aft CG: Daha az kararlılık (daha hassas kumandalar), ancak düşük stall sürati, yüksek menzil/performans ve az yakıt tüketimi",
+      "Trim sürüklemesi (Trim drag) farkı",
+      "Lövye kuvvetleri (Stick forces) farkı"
     ]
   },
   {
     "id": 3,
-    "category": "Uçak Sistemleri & Motor",
-    "difficulty": "PPL-CPL Seviyesi",
-    "question": "FADEC (Full Authority Digital Engine Control) sistemi nedir ve pilot için ne gibi kolaylıklar ve emniyet avantajları sağlar?",
+    "category": "Aerodinamik & Performans",
+    "difficulty": "ATPL Seviyesi",
+    "question": "V1, VR, V2 ve Vmcg kalkış süratleri nelerdir? Islak pist (wet runway) V1 süratini nasıl etkiler?",
     "key_points": [
-      "Motorun dijital bilgisayar (EEC/ECU) tarafından tam yetkiyle yönetilmesi",
-      "Limit aşımlarını (over-speed, over-temp) otomatik önleme",
-      "Optimum yakıt verimliliği ve performans sağlama",
-      "Pilot iş yükünü azaltma"
+      "V1: Take-off decision speed (Kalkışa devam veya pas geçme/durma karar sürati)",
+      "VR: Rotate speed (Burun kaldırma sürati)",
+      "V2: Take-off safety speed (Tek motor arızasında emniyetli tırmanma sürati)",
+      "Vmcg: Minimum control speed on ground (Yerde yön kontrolünün sağlanabildiği min sürat)",
+      "Islak pistte durma mesafesi uzayacağı için V1 sürati düşürülür"
     ]
   },
   {
     "id": 4,
-    "category": "Meteoroloji & Altimetre",
-    "difficulty": "PPL-CPL Seviyesi",
-    "question": "QNH, QFE ve QNE altimetre alt ölçek değerleri arasındaki farklar nelerdir?",
+    "category": "Aerodinamik & Performans",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Mcrit (Kritik Mach Sayısı) nedir ve ok açılı kanat (Swept Wing) yapısı Mcrit değerini nasıl etkiler?",
     "key_points": [
-      "QNH: Deniz seviyesine indirgenmiş basınç (Altimetre meydan irtifasını gösterir)",
-      "QFE: Meydan basıncı (Altimetre meydanda 0 feet gösterir)",
-      "QNE: Standart basınç 1013.25 hPa / 29.92 inHg (Geçiş irtifası üzerinde kullanılır)",
-      "İrtifa (Altitude) vs Yükseklik (Height) vs Uçuş Seviyesi (Flight Level)"
+      "Mcrit: Uçak üzerindeki herhangi bir noktadaki hava akışının ilk kez Mach 1 (ses hızı) seviyesine ulaştığı serbest akış Mach sayısı",
+      "Swept Wing (Ok Açılı Kanat): Hava akışının kanat boylamındaki bileşenini ayırarak Mcrit değerini yükseltir",
+      "Yüksek hızlarda şok dalgası oluşumunu ve dalga sürüklemesini (wave drag) geciktirir",
+      "Dezavantajı: Düşük hızlarda Tip Stall eğilimi ve Dutch Roll riski oluşturur"
     ]
   },
   {
     "id": 5,
-    "category": "Aletli Uçuş (IFR) & Seyir",
-    "difficulty": "PPL-CPL Seviyesi",
-    "question": "ILS (Instrument Landing System) ana bileşenleri nelerdir ve ne işe yararlar?",
+    "category": "Uçak Sistemleri & Motor",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Kritik Motor (Critical Engine) nedir ve çok motorlu uçaklarda hangi faktörler bir motoru kritik yapar?",
     "key_points": [
-      "Localizer: Yatay eksende pist eksenini sağlar",
-      "Glide Path / Glide Slope: Dikey eksende süzülüş açısını sağlar",
-      "Marker Beacons / DME: Piste olan mesafeyi bildirir",
-      "Pist Işıkları (Approach Lighting System)"
+      "Kritik Motor: Kaybı durumunda uçağın performansını ve kumanda edilebilirliğini en olumsuz etkileyen motor",
+      "P-Factor (Asymmetric blade effect / İtki merkezinin kayması)",
+      "Kayıp akım (Slipstream effect / Dikey stabilizeye etki)",
+      "Moment kolu (Accelerated slipstream ve Torque)"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "Uçak Sistemleri & Motor",
+    "difficulty": "ATPL Seviyesi",
+    "question": "FADEC (Full Authority Digital Engine Control) sistemi nedir ve motorda ne gibi güvenlik/kontrol işlevleri üstlenir?",
+    "key_points": [
+      "EEC / ECU tam yetkili dijital motor yönetim bilgisayarı",
+      "Motor limit aşımlarını (Over-speed, Over-temperature / EGT) otomatik önleme",
+      "Otomatik starter kesme ve restart yönetimi",
+      "Optimum yakıt akışı ve verimlilik sağlama, pilot iş yükünü azaltma"
+    ]
+  },
+  {
+    "id": 7,
+    "category": "Meteoroloji & Altimetre",
+    "difficulty": "ATPL Seviyesi",
+    "question": "QNH, QFE ve QNE altimetre alt ölçek değerleri arasındaki temel farklar nelerdir ve Transisyon İrtifası (TA) üzerinde hangisi set edilir?",
+    "key_points": [
+      "QNH: Deniz seviyesine indirgenmiş basınç (Meydanda altimetre meydan irtifasını/ELEV gösterir)",
+      "QFE: Meydan basıncı (Meydanda altimetre 0 feet gösterir)",
+      "QNE: Standart atmosfer basıncı (1013.25 hPa / 29.92 inHg)",
+      "Transition Altitude (TA) üzerinde QNE (1013.25) set edilerek Flight Level (FL) takibi yapılır"
+    ]
+  },
+  {
+    "id": 8,
+    "category": "Meteoroloji & Altimetre",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Windshear ve Microburst nedir, uçuşun hangi safhasında en tehlikelidir ve kokpitte tespit edildiğinde ne yapılmalıdır?",
+    "key_points": [
+      "Windshear: Rüzgar yönünde veya şiddetinde aniden meydana gelen şiddetli değişim",
+      "Microburst: CB bulutundan aşağı doğru gelişen çok güçlü ve lokal çöküntü akımı (Downdraft)",
+      "En tehlikeli safha: Kalkış ve son yaklaşma (düşük irtifa ve düşük sürat)",
+      "Windshear ikazında veya tespitinde derhal Max Thrust/TOGA uygulanıp rüzgar makasından çıkılmalıdır"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "Meteoroloji & Altimetre",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Sıcak bir bölgeden soğuk bir bölgeye doğru sabit altimetre gösterge irtifasıyla (örneğin 3000 ft) uçarken gerçek irtifanız (True Altitude) nasıl değişir?",
+    "key_points": [
+      "Soğuk havada hava molekülleri sıkışır ve basınç katmanları alçalır",
+      "GÖSTERGE irtifası (Indicated Altitude) 3000 ft kalsa da GERÇEK irtifa (True Altitude) göstergeden daha DÜŞÜKTÜR",
+      "\"High to Low / Hot to Cold -> Look out below\" kuralı geçerlidir",
+      "Aşırı soğuk havalarda mania emniyeti için altimetre soğuk hava düzeltmesi (Cold Temperature Correction) yapılır"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "Aletli Uçuş (IFR) & Seyir",
+    "difficulty": "ATPL Seviyesi",
+    "question": "ILS (Instrument Landing System) ana bileşenleri nelerdir ve hassas yaklaşma (Precision Approach) ile hassas olmayan yaklaşma (Non-Precision) farkı nedir?",
+    "key_points": [
+      "ILS Ana Bileşenleri: Localizer (Yatay/Pist ekseni), Glide Path/Slope (Dikey/Süzülüş hattı), Marker Beacons/DME",
+      "Precision Approach: Hem yatay (Lateral) hem dikey (Vertical) süzülüş rehberliği sağlar (DA/DH kullanılır)",
+      "Non-Precision Approach: Sadece yatay (Lateral) rehberlik sağlar, dikey süzülüş hattı yoktur (MDA/MDH kullanılır)",
+      "Precision örnekleri: ILS, GLS, MLS"
+    ]
+  },
+  {
+    "id": 11,
+    "category": "Aletli Uçuş (IFR) & Seyir",
+    "difficulty": "ATPL Seviyesi",
+    "question": "Stabilized Approach (Stabilize Yaklaşma) kriterleri nelerdir ve stabilize olunmazsa ne yapılmalıdır?",
+    "key_points": [
+      "Görerek şartlarda 500 ft AGL, IFR şartlarda 1000 ft AGL seviyesinde tüm kriterler sağlanmalıdır",
+      "Doğru uçuş yolu (Flight Path) ve doğru iniş konfigürasyonu (Flap/Landing Gear)",
+      "Hedef yaklaşma süratinde (Vref + katkı) kalmak ve doğru varyo/süzülüş oranı (genellikle max 1000 fpm)",
+      "Stabilize kriterleri sağlanamıyorsa tereddütsüz Pas Geçilmelidir (Go-Around)"
+    ]
+  },
+  {
+    "id": 12,
+    "category": "Aletli Uçuş (IFR) & Seyir",
+    "difficulty": "ATPL Seviyesi",
+    "question": "DA (Decision Altitude) ile MDA (Minimum Descent Altitude) arasındaki fark nedir?",
+    "key_points": [
+      "DA (Decision Altitude): Hassas yaklaşmada (Precision) karar yüksekliği; pas geçme kararı verildiği an uçak dikey momentumla irtifa kaybetmeye devam edebilir",
+      "MDA (Minimum Descent Altitude): Hassas olmayan yaklaşmada (Non-Precision) inilebilecek en düşük irtifa; görsel temas sağlanamadığı sürece kesinlikle MDA altına inilemez",
+      "DA barometrik deniz seviyesinden (MSL), DH ise pist eşiğinden (AGL) ölçülür"
+    ]
+  },
+  {
+    "id": 13,
+    "category": "Operasyonel Prosedürler",
+    "difficulty": "ATPL Seviyesi",
+    "question": "TORA, TODA ve ASDA nedir? Stopway ve Clearway ne amaçla kullanılır?",
+    "key_points": [
+      "TORA (Take-Off Run Available): Kalkış koşusu için kullanılabilir pist mesafesi",
+      "ASDA (Accelerate-Stop Distance Available): TORA + Stopway (Kalkıştan vazgeçildiğinde emniyetle durulabilecek toplam mesafe)",
+      "TODA (Take-Off Distance Available): TORA + Clearway (Kalkışta tırmanma engellerinden temiz alan içeren toplam mesafe)",
+      "Stopway sadece rejected take-off durma içindir, iniş mesafesine dahil edilmez"
+    ]
+  },
+  {
+    "id": 14,
+    "category": "Aletli Uçuş (IFR) & Seyir",
+    "difficulty": "ATPL Seviyesi",
+    "question": "RVSM (Reduced Vertical Separation Minimum) nedir ve bu hava sahasında uçabilmek için hangi ekipmanlar zorunludur?",
+    "key_points": [
+      "FL290 ile FL410 arasında dikey ayırmanın 2000 feet'ten 1000 feet'e düşürülmesidir",
+      "Kapasiteyi ve yakıt verimliliğini artırmayı hedefler",
+      "Zorunlu Ekipmanlar: 2 bağımsız Primary Altimeter",
+      "1 Otomatik İrtifa Kontrol Sistemi (Autopilot) ve 1 İrtifa Uyarı Sistemi (Altitude Alerting System) + Transponder (Mode C/S)"
+    ]
+  },
+  {
+    "id": 15,
+    "category": "Uçak Sistemleri & Motor",
+    "difficulty": "ATPL Seviyesi",
+    "question": "CFIT (Controlled Flight Into Terrain) nedir ve kokpitte bunu önleyen ana seyrüsefer ve ikaz sistemleri nelerdir?",
+    "key_points": [
+      "CFIT: Tamamen kontrol edilebilir durumdaki bir uçağın pilot farkındalıksızlığı sonucu yere, dağa veya suya çarpması",
+      "EGPWS / TAWS (Enhanced Ground Proximity Warning System)",
+      "TCAS / ACAS (Trafik Çatışmasını Önleme Sistemi)",
+      "MSA / MORA takibi ve Durumsal Farkındalık (Situational Awareness)"
     ]
   }
 ]
