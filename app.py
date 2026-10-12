@@ -12,45 +12,145 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS Tasarımı
+# 🎨 MODERN UI & ANİMASYON CSS KODLARI
 st.markdown("""
 <style>
-    .stApp { background-color: #f8fafc !important; color: #0f172a !important; }
-    section[data-testid="stSidebar"] { background-color: #0b2559 !important; }
-    section[data-testid="stSidebar"] label { color: #ffffff !important; font-weight: 700 !important; }
-    
-    .hero-banner {
-        background: linear-gradient(135deg, rgba(11, 37, 89, 0.95) 0%, rgba(29, 78, 216, 0.85) 100%);
-        border-radius: 16px; padding: 32px; color: #ffffff !important; margin-bottom: 24px;
-    }
-    .hero-title { font-size: 2rem; font-weight: 700; }
-    .hero-subtitle { font-size: 1rem; color: #e2e8f0 !important; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    .main-card {
-        background: #ffffff !important; border-radius: 16px;
-        border: 1px solid #e2e8f0; padding: 24px; margin-bottom: 16px;
+    * {
+        font-family: 'Inter', sans-serif;
     }
-    .question-title { font-size: 1.25rem; font-weight: 700; color: #0f172a !important; margin-top: 12px; }
+
+    /* Sayfa Arka Planı */
+    .stApp { 
+        background-color: #f1f5f9 !important; 
+        color: #0f172a !important; 
+    }
     
+    /* Fade In & Slide Up Animasyonu */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animated-element {
+        animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Sol Menü (Sidebar) */
+    section[data-testid="stSidebar"] { 
+        background-color: #0b1e36 !important; 
+        border-right: 1px solid #1e293b;
+    }
+    section[data-testid="stSidebar"] label { 
+        color: #f8fafc !important; 
+        font-weight: 600 !important; 
+    }
+
+    /* Modern Hero Banner */
+    .hero-banner {
+        background: linear-gradient(135deg, #0b2559 0%, #1d4ed8 50%, #3b82f6 100%);
+        border-radius: 20px; 
+        padding: 36px; 
+        color: #ffffff !important; 
+        margin-bottom: 24px;
+        box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.25);
+        transition: transform 0.3s ease;
+    }
+    .hero-banner:hover {
+        transform: translateY(-2px);
+    }
+    .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+    .hero-subtitle { font-size: 1.05rem; color: #e2e8f0 !important; margin-top: 6px; }
+
+    /* Modern Soru Kartı */
+    .main-card {
+        background: #ffffff !important; 
+        border-radius: 20px;
+        border: 1px solid #e2e8f0; 
+        padding: 28px; 
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        transition: all 0.3s ease;
+    }
+    .main-card:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        border-color: #cbd5e1;
+    }
+    .question-title { 
+        font-size: 1.35rem; 
+        font-weight: 700; 
+        color: #0f172a !important; 
+        margin-top: 14px; 
+        line-height: 1.5;
+    }
+    
+    /* Rozetler */
     .badge-category {
-        background-color: #dbeafe !important; color: #1e40af !important;
-        border: 1.5px solid #93c5fd !important; padding: 6px 14px; border-radius: 20px; font-weight: 800;
+        background-color: #eff6ff !important; 
+        color: #1d4ed8 !important;
+        border: 1px solid #bfdbfe !important; 
+        padding: 6px 16px; 
+        border-radius: 30px; 
+        font-weight: 700;
+        font-size: 0.85rem;
     }
     .badge-difficulty {
-        background-color: #e2e8f0 !important; color: #1e293b !important;
-        border: 1.5px solid #cbd5e1 !important; padding: 6px 14px; border-radius: 20px; font-weight: 800; margin-left: 8px;
+        background-color: #f1f5f9 !important; 
+        color: #334155 !important;
+        border: 1px solid #cbd5e1 !important; 
+        padding: 6px 16px; 
+        border-radius: 30px; 
+        font-weight: 700; 
+        font-size: 0.85rem;
+        margin-left: 8px;
     }
 
+    /* Text Area */
     .stTextArea textarea {
-        background-color: #ffffff !important; color: #0f172a !important;
-        border: 1.5px solid #cbd5e1 !important; border-radius: 12px !important; padding: 14px !important;
+        background-color: #ffffff !important; 
+        color: #0f172a !important;
+        border: 1.5px solid #cbd5e1 !important; 
+        border-radius: 14px !important; 
+        padding: 16px !important;
+        font-size: 1rem !important;
+        transition: all 0.2s ease !important;
     }
-    
+    .stTextArea textarea:focus {
+        border-color: #2563eb !important;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
+    }
+
+    /* Sağ Panel Kartı */
     .side-card {
-        background: #ffffff !important; border-radius: 16px;
-        border: 1px solid #e2e8f0; padding: 20px; margin-bottom: 16px;
+        background: #ffffff !important; 
+        border-radius: 20px;
+        border: 1px solid #e2e8f0; 
+        padding: 24px; 
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
-    .progress-percent { font-size: 2.2rem; font-weight: 800; color: #2563eb !important; }
+    .progress-percent { 
+        font-size: 2.5rem; 
+        font-weight: 800; 
+        color: #2563eb !important; 
+        letter-spacing: -1px;
+    }
+
+    /* Metrik Kartları Özelleştirme */
+    div[data-testid="stMetric"] {
+        background: #ffffff !important;
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -63,37 +163,31 @@ def turkish_lower(text: str) -> str:
         text = text.replace(search, replace)
     return text.lower()
 
-# 🛠️ GEVŞETİLMİŞ VE ESNEK (STEM / FUZZY) KELİME EŞLEŞTİRME MOTORU
+# 🛠️ ESNEK KELİME EŞLEŞTİRME
 def is_flexible_match(keyword: str, clean_answer: str) -> bool:
     clean_kw = turkish_lower(str(keyword).strip())
-    clean_kw = re.sub(r'[^\w\s]', '', clean_kw)  # Noktalamaları temizle
+    clean_kw = re.sub(r'[^\w\s]', '', clean_kw)
     
     if not clean_kw:
         return False
 
-    # 1. Birebir Tam Eşleşme veya Alt Cümle
     if clean_kw in clean_answer:
         return True
 
-    # 2. Türkçe Kök / Gövde Yakalama (Kelime 4 harften uzunsa ilk 4-5 harfi kontrol et)
     words_in_kw = clean_kw.split()
-    
-    # Çoklu kelimeler için (Örn: "süzülüş hattı", "point of no return")
     if len(words_in_kw) > 1:
-        # Anahtar kelimedeki en az 1 ana kelime cevapta geçiyor mu?
         matched_parts = 0
         for w in words_in_kw:
             if len(w) >= 3:
                 stem = w[:4] if len(w) >= 4 else w
                 if stem in clean_answer:
                     matched_parts += 1
-        if matched_parts >= 1:  # En az 1 parçası geçiyorsa esnek kabul et
+        if matched_parts >= 1:
             return True
     else:
-        # Tekli kelimeler için (Örn: "altimetre" -> "altimetrenin", "altimetreye")
         single_w = words_in_kw[0]
         if len(single_w) >= 4:
-            stem = single_w[:4]  # İlk 4 harf kök kabul edilir
+            stem = single_w[:4]
             if stem in clean_answer:
                 return True
         elif single_w in clean_answer:
@@ -125,7 +219,6 @@ def calculate_score(user_answer: str, keywords: list) -> dict:
 
     match_count = len(matched_keywords)
 
-    # 🎯 GEVŞETİLMİŞ PUAN KURALI
     if match_count >= 4:
         score = 100
     elif match_count == 3:
@@ -190,11 +283,11 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
 
-# Sol Menü (Sidebar)
+# Sidebar
 st.sidebar.markdown("""
-<div style="padding: 10px 0 15px 0;">
-    <h2 style="color: #ffffff; margin:0; font-size: 1.4rem;">✈️ PilotInterviewPro</h2>
-    <p style="color: #93c5fd; font-size: 0.8rem; margin-top:2px;">Practice. Improve. Fly.</p>
+<div style="padding: 10px 0 20px 0;">
+    <h2 style="color: #ffffff; margin:0; font-size: 1.5rem; font-weight:800;">✈️ PilotInterviewPro</h2>
+    <p style="color: #93c5fd; font-size: 0.85rem; margin-top:4px;">Practice. Improve. Fly.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -220,16 +313,18 @@ secilen_kategori = st.sidebar.selectbox(
 if st.session_state.mevcut_soru is None and questions_data:
     yeni_soru_getir(st.session_state.secilen_kategori)
 
+# Hero Banner
 st.markdown("""
-<div class="hero-banner">
+<div class="hero-banner animated-element">
     <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
     <div class="hero-subtitle">
-        Gerçek mülakat deneyimini simüle eden sorularla kendinizi geliştirin. 
-        Teknik bilginizi ister sesinizle ister yazarak test edin.
+        Gerçek mülakat simülasyonu ile kendinizi sınayın. 
+        Teknik bilginizi sesle veya yazarak anında test edin.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
+# Üst Metrikler
 toplam_soru = len(questions_data)
 tamamlanan = len(st.session_state.puanlar)
 ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
@@ -242,14 +337,16 @@ st4.metric("Seviye", "ATPL & CPL")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-col_left, col_right = st.columns([2.3, 1])
+# Ana Ekran
+col_left, col_right = st.columns([2.5, 1])
 
 with col_left:
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         
+        # Soru Kartı (Animasyonlu)
         st.markdown(f"""
-        <div class="main-card">
+        <div class="main-card animated-element">
             <div>
                 <span class="badge-category">{soru.get('category', 'Genel')}</span>
                 <span class="badge-difficulty">{soru.get('difficulty', 'Orta')}</span>
@@ -266,19 +363,36 @@ with col_left:
                     st.write(f"- **{kp}**")
                 st.write("*...ve diğer ilgili havacılık terimleri.*")
 
-        st.write("### 📝 Cevap Alanı (Sesli veya Yazılı)")
-        st.caption("İster mikrofona basıp konuşun, ister klavye ile doğrudan yazın.")
+        st.write("### 📝 Cevap Alanı")
 
-        # HTML/JS Ses Kontrol Bileşeni
+        # 🎙️ ANİMASYONLU SES KONTROLÜ (HTML / CSS ANİMASYONLARI DÂHİL)
         speech_control_html = """
-        <div style="background: #ffffff; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-            <button id="start-btn" type="button" style="background-color: #2563eb; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
+        <style>
+            @keyframes pulse-red {
+                0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }
+                70% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+            }
+            .recording-active {
+                animation: pulse-red 1.5s infinite;
+                background-color: #e11d48 !important;
+            }
+            .btn-voice {
+                transition: all 0.2s ease;
+            }
+            .btn-voice:hover {
+                transform: scale(1.02);
+            }
+        </style>
+
+        <div style="background: #ffffff; padding: 14px 18px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+            <button id="start-btn" class="btn-voice" type="button" style="background-color: #2563eb; color: white; border: none; padding: 10px 20px; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 14px;">
                 🎙️ Konuşmayı Başlat
             </button>
-            <button id="stop-btn" type="button" style="background-color: #ef4444; color: white; border: none; padding: 8px 16px; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 14px;">
+            <button id="stop-btn" class="btn-voice" type="button" style="background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 10px 20px; font-weight: 700; border-radius: 10px; cursor: pointer; font-size: 14px;">
                 🛑 Durdur
             </button>
-            <span id="status" style="font-weight: bold; font-size: 14px; color: #64748b;">Mikrofon Hazır</span>
+            <span id="status" style="font-weight: 600; font-size: 14px; color: #64748b; margin-left: 6px;">Mikrofon Hazır</span>
         </div>
 
         <script>
@@ -290,7 +404,7 @@ with col_left:
 
             if (!SpeechRecognition) {
                 status.innerText = "Tarayıcınız ses tanımayı desteklemiyor (Chrome/Edge kullanın).";
-                status.style.color = "red";
+                status.style.color = "#ef4444";
             } else {
                 const recognition = new SpeechRecognition();
                 recognition.lang = 'tr-TR';
@@ -305,12 +419,14 @@ with col_left:
                         recognition.stop();
                         status.innerText = "5 sn sessizlik nedeniyle kayıt tamamlandı.";
                         status.style.color = "#d97706";
+                        startBtn.classList.remove('recording-active');
                     }, 5000);
                 }
 
                 recognition.onstart = () => {
                     status.innerText = "🔴 Dinleniyor... (Konuşabilirsiniz)";
                     status.style.color = "#e11d48";
+                    startBtn.classList.add('recording-active');
                     resetTimer();
                 };
 
@@ -336,11 +452,13 @@ with col_left:
 
                 recognition.onerror = (event) => {
                     status.innerText = "Mikrofon hatası: " + event.error;
-                    status.style.color = "red";
+                    status.style.color = "#ef4444";
+                    startBtn.classList.remove('recording-active');
                 };
 
                 recognition.onend = () => {
                     clearTimeout(timer);
+                    startBtn.classList.remove('recording-active');
                     if (!status.innerText.includes("sessizlik")) {
                         status.innerText = "✅ Ses Aktarıldı";
                         status.style.color = "#16a34a";
@@ -352,12 +470,12 @@ with col_left:
             }
         </script>
         """
-        components.html(speech_control_html, height=75)
+        components.html(speech_control_html, height=80)
 
-        # TEXTAREA ALANI
+        # TEXTAREA
         kullanici_cevabi = st.text_area(
             "Cevabınız:",
-            placeholder="Cevabınızı buraya yazabilir veya yukarıdaki mikrofona basarak konuşabilirsiniz...",
+            placeholder="Cevabınızı buraya yazabilir veya mikrofona basarak konuşabilirsiniz...",
             height=150,
             key=f"text_input_{soru.get('id')}"
         )
@@ -387,28 +505,30 @@ with col_left:
                     "bulunamayanlar": eval_result["missing_keywords"]
                 }
 
+        # Karnedeki Değerlendirme Çıktısı (Animasyonlu)
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
             matched_cnt = res["matched_count"]
             
             st.markdown("---")
+            st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
             
             if puan == 100:
-                st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! En az 4 kilit terim tespit edildi ({matched_cnt} adet).")
+                st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! Konuya tam hakimsiniz ({matched_cnt} kilit kavram yakalandı).")
             elif puan == 80:
-                st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi! Tam 3 kilit terim yakalandı.")
+                st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi! Kilit terimler büyük oranda mevcut.")
             elif puan == 60:
-                st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye. 2 kilit terim bulundu.")
+                st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye. Bazı detayları unuttunuz.")
             elif puan == 30:
-                st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Sadece 1 kilit terim yakalandı.")
+                st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Temel terminolojiden uzak kalındı.")
             else:
-                st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda hiçbir anahtar kelime bulunamadı.")
+                st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda anahtar kavramlar bulunamadı.")
 
             c_pos, c_neg = st.columns(2)
             with c_pos:
-                st.write("##### ✅ Tespit Edilen Doğru Noktalar")
+                st.write("##### ✅ Yakalanan Kilit Kavramlar")
                 if res["bulunanlar"]:
                     for b in res["bulunanlar"]:
                         st.write(f"✔️ **{b}**")
@@ -416,40 +536,26 @@ with col_left:
                     st.info("Cevabınızda kilit kavramlar yakalanamadı.")
 
             with c_neg:
-                st.write("##### ❌ Eksik veya Atlanan Noktalar")
+                st.write("##### ❌ Eksik/Atlanan Kavramlar")
                 if res["bulunamayanlar"]:
                     for ex in res["bulunamayanlar"]:
                         st.write(f"✖️ {ex}")
                 else:
                     st.success("Tüm kilit noktalar yanıtınızda mevcut!")
+            st.markdown("</div>", unsafe_allow_html=True)
 
+# SADELEŞTİRİLMİŞ SAĞ PANEL (Sadece İlerleme Göstergesi)
 with col_right:
     yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
     
     st.markdown(f"""
-    <div class="side-card">
-        <h4 style="margin:0 0 8px 0; color:#0f172a;">📊 Genel İlerleme</h4>
+    <div class="side-card animated-element">
+        <h4 style="margin:0 0 10px 0; color:#0f172a; font-weight:700;">📊 Genel İlerleme</h4>
         <div class="progress-percent">%{yuzde}</div>
-        <p style="margin:0; color:#64748b; font-size:0.88rem;">
+        <p style="margin:6px 0 0 0; color:#64748b; font-size:0.9rem;">
             Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.
         </p>
     </div>
     """, unsafe_allow_html=True)
     
     st.progress(min(yuzde / 100, 1.0))
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="side-card" style="background:#eff6ff !important; border-color:#bfdbfe !important;">
-        <h5 style="margin:0 0 8px 0; color:#1d4ed8 !important;">💡 Değerlendirme Kriteri</h5>
-        <p style="margin:0; color:#1e40af !important; font-size:0.88rem; line-height:1.5;">
-            <b>Skor Tablosu:</b><br>
-            • 4+ Keyword: <b>100 Puan</b><br>
-            • 3 Keyword: <b>80 Puan</b><br>
-            • 2 Keyword: <b>60 Puan</b><br>
-            • 1 Keyword: <b>30 Puan</b><br>
-            • 0 Keyword: <b>0 Puan</b>
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
