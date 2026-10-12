@@ -186,4 +186,417 @@
     "keywords": ["azalma", "stall", "recovery", "tasarruf", "hassas"]
   },
   {
-    "id": "
+    "id": "Q032",
+    "category": "Mass & Balance",
+    "question": "MTOM, MLM ve MZFM limitlerinin anlamı nedir?",
+    "keywords": ["mtom", "mlm", "mzfm", "mukavemet", "yapısal"]
+  },
+  {
+    "id": "Q033",
+    "category": "Mass & Balance",
+    "question": "TOM, DOM, TOF ve ZFM arasındaki matematiksel bağıntı nedir?",
+    "keywords": ["dom", "trafik", "zfm", "tof", "tom"]
+  },
+  {
+    "id": "Q034",
+    "category": "Mass & Balance",
+    "question": "Load & Trim Sheet üzerinde Stabilizer Trim ayarı nasıl tespit edilir?",
+    "keywords": ["mac", "trim", "kalkış", "dağılım", "zarf"]
+  },
+  {
+    "id": "Q035",
+    "category": "Performance",
+    "question": "TORA, TODA ve ASDA mesafeleri ne anlama gelir?",
+    "keywords": ["tora", "asda", "toda", "stopway", "clearway"]
+  },
+  {
+    "id": "Q036",
+    "category": "Performance",
+    "question": "Stopway ve Clearway nedir? Stopway iniş için neden kullanılamaz?",
+    "keywords": ["stopway", "clearway", "rto", "taşıma", "dahil değil"]
+  },
+  {
+    "id": "Q037",
+    "category": "Performance",
+    "question": "Balanced Airfield (Dengeli Pist) kavramı ne demektir?",
+    "keywords": ["asda=toda", "eşit", "minimum", "karar", "senaryo"]
+  },
+  {
+    "id": "Q038",
+    "category": "Performance",
+    "question": "V1, VR, VLOF ve V2 hızlarının tanımları ve ilişkisi nedir?",
+    "keywords": ["v1", "vr", "vlof", "v2", "sıralama"]
+  },
+  {
+    "id": "Q039",
+    "category": "Performance",
+    "question": "V1 hızı öncesinde ve sonrasında motor arızası aksiyonu ne olur?",
+    "keywords": ["rto", "devam", "yükseklik", "tek motor", "checklist"]
+  },
+  {
+    "id": "Q040",
+    "category": "Performance",
+    "question": "Pist ıslaklığı, eğim ve yüksek sıcaklık V1 hızını nasıl etkiler?",
+    "keywords": ["ıslaklık", "sıcaklık", "eğim", "frenleme", "yoğunluk"]
+  },
+  {
+    "id": "Q041",
+    "category": "Performance",
+    "question": "Screen Height nedir? Kuru ve ıslak pistteki değerleri kaçtır?",
+    "keywords": ["screen height", "35 ft", "15 ft", "segment", "engel"]
+  },
+  {
+    "id": "Q042",
+    "category": "Performance",
+    "question": "Reduced / Flex Take-off Thrust nedir ve ne amaçla uygulanır?",
+    "keywords": ["flex", "ömür", "illüzyon", "tasarruf", "itki"]
+  },
+  {
+    "id": "Q043",
+    "category": "Performance",
+    "question": "Vx ve Vy tırmanış hızları arasındaki fark nedir?",
+    "keywords": ["vx", "vy", "engel", "kısa", "aoa"]
+  },
+  {
+    "id": "Q044",
+    "category": "Performance",
+    "question": "Cost Index (CI) nedir? CI = 0 seçilirse ne olur?",
+    "keywords": ["cost index", "maliyet", "ci=0", "econ", "hız"]
+  },
+  {
+    "id": "Q045",
+    "category": "Performance",
+    "question": "VREF nedir ve hesaplama formülü nedir?",
+    "keywords": ["vref", "1.3", "iniş", "eşik", "stall"]
+  },
+  {
+    "id": "Q046",
+    "category": "Flight Planning",
+    "question": "NOTAM nedir ve uçuş öncesi nasıl değerlendirilir?",
+    "keywords": ["notam", "geçici", "meydan", "bilgilendirme", "süre"]
+  },
+  {
+    "id": "Q047",
+    "category": "Flight Planning",
+    "question": "Trip Fuel, Contingency Fuel, Final Reserve Fuel ve Extra Fuel nedir?",
+    "keywords": ["trip", "contingency", "final reserve", "extra", "alternate"]
+  },
+  {
+    "id": "Q048",
+    "category": "Flight Planning",
+    "question": "Block Fuel neleri kapsar?",
+    "keywords": ["taxi", "trip", "reserve", "alternate", "ramp"]
+  },
+  {
+    "id": "Q049",
+    "category": "Flight Planning",
+    "question": "Destination Alternate havalimanı seçilmesini zorunlu kılan durumlar nelerdir?",
+    "keywords": ["minima", "kapanma", "pist yokluğu", "prosedür", "alternate"]
+  },
+  {
+    "id": "Q050",
+    "category": "Flight Planning",
+    "question": "Yakıt alma işlemi neden hacim yerine kütle ile yapılır?",
+    "keywords": ["yoğunluk", "sıcaklık", "sabitlik", "denge", "kütle"]
+  },
+  {
+    "id": "Q051",
+    "category": "Meteorology",
+    "question": "ISA (International Standard Atmosphere) standart değerleri nelerdir?",
+    "keywords": ["15 °c", "1013.25", "2 °c", "deniz", "isa"]
+  },
+  {
+    "id": "Q052",
+    "category": "Meteorology",
+    "question": "Temperature Inversion nedir ve uçuşa etkileri nelerdir?",
+    "keywords": ["artış", "windshear", "sis", "kararlı", "türbülans"]
+  },
+  {
+    "id": "Q053",
+    "category": "Meteorology",
+    "question": "Sıcak ve kuru hava ile soğuk ve nemli havanın yoğunluk farkı nasıldır?",
+    "keywords": ["buhar", "nemli", "soğuk", "kuru", "performans"]
+  },
+  {
+    "id": "Q054",
+    "category": "Meteorology",
+    "question": "QFE, QNH ve Standard Pressure arasındaki farklar nelerdir?",
+    "keywords": ["qfe", "qnh", "standard", "fl", "altimetre"]
+  },
+  {
+    "id": "Q055",
+    "category": "Meteorology",
+    "question": "Transition Altitude ve Transition Level nedir?",
+    "keywords": ["transition altitude", "transition level", "layer", "set", "ayırma"]
+  },
+  {
+    "id": "Q056",
+    "category": "Meteorology",
+    "question": "Sıcak ve soğuk havada altimetre göstergesi nasıl hatalı okur?",
+    "keywords": ["soğukta yüksek", "sıcakta düşük", "gerçek", "emniyetsiz", "düzeltme"]
+  },
+  {
+    "id": "Q057",
+    "category": "Meteorology",
+    "question": "Sea Breeze ve Land Breeze rüzgarları nasıl oluşur?",
+    "keywords": ["deniz meltemi", "kara meltemi", "ısınma", "basınç", "kıyı"]
+  },
+  {
+    "id": "Q058",
+    "category": "Meteorology",
+    "question": "Dewpoint nedir? Sıcaklık ile Dewpoint yakınlaşırsa ne olur?",
+    "keywords": ["dewpoint", "%100", "sis", "alçak", "yoğuşma"]
+  },
+  {
+    "id": "Q059",
+    "category": "Meteorology",
+    "question": "Cumulonimbus (CB) bulutunun uçuş için yarattığı ana tehlikeler nelerdir?",
+    "keywords": ["türbülans", "buzlanma", "windshear", "dolu", "dikey"]
+  },
+  {
+    "id": "Q060",
+    "category": "Meteorology",
+    "question": "Fog ve Mist arasındaki görünürlük farkı nedir?",
+    "keywords": ["fog", "mist", "görüş", "damlacık", "nem"]
+  },
+  {
+    "id": "Q061",
+    "category": "Meteorology",
+    "question": "Windshear nedir ve yaklaştırmada karşılaşıldığında ne yapılır?",
+    "keywords": ["ani", "kayıp", "go-around", "itki", "warning"]
+  },
+  {
+    "id": "Q062",
+    "category": "Meteorology",
+    "question": "Microburst nedir ve aşamaları nelerdir?",
+    "keywords": ["downdraught", "4km", "kafa rüzgarı", "çöküş", "arka rüzgar"]
+  },
+  {
+    "id": "Q063",
+    "category": "Meteorology",
+    "question": "Mountain Waves ve Rotor Bulutlarının tehlikeleri nelerdir?",
+    "keywords": ["mountain wave", "rotor", "türbülans", "lenticularis", "çöküntü"]
+  },
+  {
+    "id": "Q064",
+    "category": "Meteorology",
+    "question": "METAR raporunda BECMG ve TEMPO arasındaki fark nedir?",
+    "keywords": ["becmg", "tempo", "saat", "tahmin", "metar"]
+  },
+  {
+    "id": "Q065",
+    "category": "Meteorology",
+    "question": "RVR nedir ve Metar'daki U, D, N harfleri ne anlama gelir?",
+    "keywords": ["rvr", "u", "d", "n", "transmissometer"]
+  },
+  {
+    "id": "Q066",
+    "category": "Navigation",
+    "question": "Dünyanın eksen eğikliği kaç derecedir ve uçuşa doğrudan etkisi nedir?",
+    "keywords": ["23.5", "mevsim", "açı", "kuşak", "sistem"]
+  },
+  {
+    "id": "Q067",
+    "category": "Navigation",
+    "question": "1 Nautical Mile (NM) kaç km ve kaç metreye eşittir?",
+    "keywords": ["1.852", "1852", "meridyen", "dakika", "deniz mili"]
+  },
+  {
+    "id": "Q068",
+    "category": "Navigation",
+    "question": "IAS'ten TAS'a pratik zihinsel dönüşüm hesabı nasıl yapılır?",
+    "keywords": ["1000 ft", "%2", "irtifa", "düzeltme", "tas"]
+  },
+  {
+    "id": "Q069",
+    "category": "Navigation",
+    "question": "Variation ve Deviation arasındaki fark nedir?",
+    "keywords": ["variation", "deviation", "true", "magnetic", "compass"]
+  },
+  {
+    "id": "Q070",
+    "category": "Navigation",
+    "question": "3 derece süzülüş hattındaki bir uçak için alçalış varyosu nasıl hesaplanır?",
+    "keywords": ["ground speed", "5", "3 derece", "varyo", "hesaplama"]
+  },
+  {
+    "id": "Q071",
+    "category": "Navigation",
+    "question": "VOR sisteminin çalışma prensibi nedir?",
+    "keywords": ["vor", "faz", "referans", "radyal", "vhf"]
+  },
+  {
+    "id": "Q072",
+    "category": "Navigation",
+    "question": "Sessizlik Konisi (Cone of Silence) nedir?",
+    "keywords": ["sessizlik", "üzeri", "kayıp", "vor", "düzensizlik"]
+  },
+  {
+    "id": "Q073",
+    "category": "Navigation",
+    "question": "NDB ve ADF çalışma prensibi nasıldır ve hangi hatalara duyarlıdır?",
+    "keywords": ["ndb", "lf/mf", "coastal", "gece", "dağ"]
+  },
+  {
+    "id": "Q074",
+    "category": "Navigation",
+    "question": "ILS sisteminin temel bileşenleri ve işlevleri nelerdir?",
+    "keywords": ["localizer", "glide slope", "marker", "merkez", "hassas"]
+  },
+  {
+    "id": "Q075",
+    "category": "Navigation",
+    "question": "DME cihazındaki Slant Range hatası ne zaman maksimum olur?",
+    "keywords": ["slant range", "yüksek", "üzeri", "hipotenüs", "fark"]
+  },
+  {
+    "id": "Q076",
+    "category": "Navigation",
+    "question": "QDM ve QDR yön tanımlarının farkı nedir?",
+    "keywords": ["qdm", "qdr", "manyetik", "navigasyon", "hat"]
+  },
+  {
+    "id": "Q077",
+    "category": "Navigation",
+    "question": "RNAV ve RNP seyrüsefer yöntemleri arasındaki fark nedir?",
+    "keywords": ["rnav", "rnp", "monitoring", "uyarı", "rnp 1"]
+  },
+  {
+    "id": "Q078",
+    "category": "Operational Procedures",
+    "question": "SOP havacılıkta neden kritik öneme sahiptir?",
+    "keywords": ["sop", "standart", "crm", "önleme", "prosedür"]
+  },
+  {
+    "id": "Q079",
+    "category": "Operational Procedures",
+    "question": "Precision Approach ile Non-Precision Approach farkı nedir?",
+    "keywords": ["dikey", "precision", "non-precision", "dh", "süzülüş"]
+  },
+  {
+    "id": "Q080",
+    "category": "Operational Procedures",
+    "question": "DA/DH ile MDA/MDH tanımları arasındaki temel fark nedir?",
+    "keywords": ["da", "mda", "barometrik", "karar", "tür"]
+  },
+  {
+    "id": "Q081",
+    "category": "Operational Procedures",
+    "question": "ILS CAT I, CAT II ve CAT III karar yüksekliği ve RVR farkları nelerdir?",
+    "keywords": ["cat i", "cat ii", "cat iii", "karar", "autoland"]
+  },
+  {
+    "id": "Q082",
+    "category": "Operational Procedures",
+    "question": "Uçak İniş Kategorileri (A, B, C, D) neye göre belirlenir?",
+    "keywords": ["vat", "1.3", "kategori c", "kategori d", "eşik"]
+  },
+  {
+    "id": "Q083",
+    "category": "Operational Procedures",
+    "question": "MEL nedir? CDL ile farkı nedir?",
+    "keywords": ["mel", "cdl", "elverişlilik", "kategori", "inisiyatif"]
+  },
+  {
+    "id": "Q084",
+    "category": "Operational Procedures",
+    "question": "Holdover Time (HOT) nedir ve ne zaman başlar?",
+    "keywords": ["holdover", "de-icing", "başlangıç", "tip", "koruma"]
+  },
+  {
+    "id": "Q085",
+    "category": "Operational Procedures",
+    "question": "Hydroplaning türleri ve dinamik hydroplaning formülü nedir?",
+    "keywords": ["dynamic", "viscous", "psi", "frenleme", "ıslaklık"]
+  },
+  {
+    "id": "Q086",
+    "category": "Operational Procedures",
+    "question": "Rapid Depressurization yaşandığında acil durum adımları nelerdir?",
+    "keywords": ["maske", "emergency descent", "10.000", "varyo", "mayday"]
+  },
+  {
+    "id": "Q087",
+    "category": "Principles of Flight",
+    "question": "Uçak nasıl uçar? Bernoulli ve Newton ilkeleri ile açıklayınız.",
+    "keywords": ["bernoulli", "farkı", "üst yüzey", "newton", "lift"]
+  },
+  {
+    "id": "Q088",
+    "category": "Principles of Flight",
+    "question": "Lift formülü nedir? Hız 2 katına çıkarsa Lift nasıl değişir?",
+    "keywords": ["formül", "karesi", "4 katı", "yoğunluk", "katsayı"]
+  },
+  {
+    "id": "Q089",
+    "category": "Principles of Flight",
+    "question": "Parasite Drag ve Induced Drag hızla nasıl değişim gösterir?",
+    "keywords": ["parasite", "induced", "vmd", "vorteks", "toplam"]
+  },
+  {
+    "id": "Q090",
+    "category": "Principles of Flight",
+    "question": "Winglet sisteminin temel görevi nedir ve hangi drag türünü azaltır?",
+    "keywords": ["induced", "vorteks", "denge", "tasarruf", "verim"]
+  },
+  {
+    "id": "Q091",
+    "category": "Principles of Flight",
+    "question": "Stall nedir? Critical Angle of Attack aşıldığında ne olur?",
+    "keywords": ["kritik", "ayrılma", "kayıp", "ezme", "itki"]
+  },
+  {
+    "id": "Q092",
+    "category": "Principles of Flight",
+    "question": "Slats ve Flaps sistemlerinin aerodinamik işlevi nedir?",
+    "keywords": ["camber", "alan", "cl", "düşme", "drag"]
+  },
+  {
+    "id": "Q093",
+    "category": "Principles of Flight",
+    "question": "Spoilers hangi 3 temel fonksiyonda kullanılır?",
+    "keywords": ["speedbrakes", "roll", "ground spoilers", "kırma", "artırma"]
+  },
+  {
+    "id": "Q094",
+    "category": "Principles of Flight",
+    "question": "Critical Mach Number (M_CRIT) nedir? Swept Wing tasarımı bunu nasıl etkiler?",
+    "keywords": ["m_crit", "şok", "swept wing", "sıkışma", "yükseltme"]
+  },
+  {
+    "id": "Q095",
+    "category": "Principles of Flight",
+    "question": "Swept Wing avantaj ve dezavantajları nelerdir?",
+    "keywords": ["verim", "dutch roll", "tip stall", "low speed", "m_crit"]
+  },
+  {
+    "id": "Q096",
+    "category": "Principles of Flight",
+    "question": "Dutch Roll nedir, hangi sistem engeller ve manuel kumandası nasıldır?",
+    "keywords": ["salınım", "yaw damper", "aileron", "rudder", "swept wing"]
+  },
+  {
+    "id": "Q097",
+    "category": "Principles of Flight",
+    "question": "Adverse Yaw nedir ve nasıl önlenir?",
+    "keywords": ["adverse yaw", "drag", "differential", "frise", "rudder"]
+  },
+  {
+    "id": "Q098",
+    "category": "Principles of Flight",
+    "question": "Çift motorlu uçaklarda Critical Engine tespiti neye göre yapılır?",
+    "keywords": ["p-factor", "kolu", "sol motor", "yaw", "vmc"]
+  },
+  {
+    "id": "Q099",
+    "category": "Charts",
+    "question": "Chart üzerinde MSA, MEA, MOCA, MORA ve FAF ifadeleri ne anlama gelir?",
+    "keywords": ["msa", "mea", "moca", "mora", "faf"]
+  },
+  {
+    "id": "100",
+    "category": "Navigation",
+    "question": "Fix-to-Fix seyrüsefer hesabı ve RMI ibre çizimi nasıl gerçekleştirilir?",
+    "keywords": ["fix-to-fix", "radyal", "üçgenleme", "heading", "rmi"]
+  }
+]
