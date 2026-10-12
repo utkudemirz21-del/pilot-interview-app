@@ -102,6 +102,12 @@ st.markdown("""
         padding: 20px;
         margin-bottom: 16px;
     }
+    .progress-percent {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2563eb;
+        margin-bottom: 4px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -300,16 +306,20 @@ with col_left:
                     st.success("Tüm kilit noktalar mevcut!")
 
 with col_right:
-    # Sağ Taraf: Genel İlerleme & İpucu Kutusu
-    st.markdown("""
+    # Sağ Taraf: Genel İlerleme (% Göstergeli) & İpucu Kutusu
+    yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
+    
+    st.markdown(f"""
     <div class="side-card">
-        <h4 style="margin:0 0 12px 0; color:#0f172a;">📊 Genel İlerleme</h4>
+        <h4 style="margin:0 0 8px 0; color:#0f172a;">📊 Genel İlerleme</h4>
+        <div class="progress-percent">%{yuzde}</div>
+        <p style="margin:0; color:#64748b; font-size:0.88rem;">
+            Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.
+        </p>
     </div>
     """, unsafe_allow_html=True)
     
-    yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
     st.progress(min(yuzde / 100, 1.0))
-    st.caption(f"Toplam {toplam_soru} sorudan {tamamlanan} tanesini tamamladınız (%{yuzde}).")
 
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -322,4 +332,3 @@ with col_right:
         </p>
     </div>
     """, unsafe_allow_html=True)
-    
