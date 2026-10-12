@@ -470,3 +470,27 @@ with col_right:
         </p>
     </div>
     """, unsafe_allow_html=True)
+from pydub import AudioSegment
+import io
+import speech_recognition as sr
+
+def transcribe_audio(audio_bytes):
+    recognizer = sr.Recognizer()
+    try:
+        # WebM / Ogg formatındaki gelen sesi WAV formatına dönüştür
+        audio_segment = AudioSegment.from_file(io.BytesIO(audio_bytes))
+        wav_io = io.BytesIO()
+        audio_segment.export(wav_io, format="wav")
+        wav_io.seek(0)
+        
+        # Google Speech Recognition ile Türkçe Çözümleme
+        with sr.AudioFile(wav_io) as source:
+            audio_data = recognizer.record(source)
+            text = recognizer.recognize_google(audio_data, language="tr-TR")
+            return text
+    except sr.UnknownValueError:
+        return "Ses anlaşılamadı, lütfen biraz daha net konuşun."
+    except sr.RequestError:
+        return "Google Ses Tanıma servisine ulaşılamadı."
+    except Exception as e:
+        return f"Ses işleme hatası: {e}"
