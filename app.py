@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 🎨 ÖNCEKİ MODERN VE ŞIK UI & ANİMASYON CSS KODLARI
+# 🎨 MODERN VE ŞIK UI & ANİMASYON CSS KODLARI
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -23,13 +23,11 @@ st.markdown("""
         font-family: 'Inter', sans-serif;
     }
 
-    /* Sayfa Arka Planı */
     .stApp { 
         background-color: #f1f5f9 !important; 
         color: #0f172a !important; 
     }
     
-    /* Fade In & Slide Up Animasyonu */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -45,7 +43,6 @@ st.markdown("""
         animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Sol Menü (Sidebar) */
     section[data-testid="stSidebar"] { 
         background-color: #0b1e36 !important; 
         border-right: 1px solid #1e293b;
@@ -55,7 +52,6 @@ st.markdown("""
         font-weight: 600 !important; 
     }
 
-    /* Selectbox Düzeltmeleri */
     div[data-baseweb="select"] {
         background-color: #ffffff !important;
         border-radius: 8px !important;
@@ -65,7 +61,6 @@ st.markdown("""
         font-weight: 700 !important;
     }
 
-    /* Modern Hero Banner */
     .hero-banner {
         background: linear-gradient(135deg, #0b2559 0%, #1d4ed8 50%, #3b82f6 100%);
         border-radius: 20px; 
@@ -81,7 +76,6 @@ st.markdown("""
     .hero-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
     .hero-subtitle { font-size: 1.05rem; color: #e2e8f0 !important; margin-top: 6px; }
 
-    /* Modern Soru Kartı */
     .main-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -103,7 +97,6 @@ st.markdown("""
         line-height: 1.5;
     }
     
-    /* Rozetler */
     .badge-category {
         background-color: #eff6ff !important; 
         color: #1d4ed8 !important;
@@ -124,7 +117,6 @@ st.markdown("""
         margin-left: 8px;
     }
 
-    /* Text Area */
     .stTextArea textarea {
         background-color: #ffffff !important; 
         color: #0f172a !important;
@@ -139,7 +131,6 @@ st.markdown("""
         box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1) !important;
     }
 
-    /* Sağ Panel Kartı */
     .side-card {
         background: #ffffff !important; 
         border-radius: 20px;
@@ -155,7 +146,6 @@ st.markdown("""
         letter-spacing: -1px;
     }
 
-    /* Metrik Kartları */
     div[data-testid="stMetric"] {
         background: #ffffff !important;
         padding: 16px;
@@ -166,7 +156,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 🛠️ TÜRKÇE MÜKEMMEL HARF DÖNÜŞTÜRÜCÜ
+# 🛠️ TÜRKÇE HARF DÖNÜŞTÜRÜCÜ
 def turkish_lower(text: str) -> str:
     if not text:
         return ""
@@ -286,6 +276,8 @@ if "secilen_kategori" not in st.session_state:
     st.session_state.secilen_kategori = "Tüm Kategoriler"
 if "last_processed_audio" not in st.session_state:
     st.session_state.last_processed_audio = None
+if "mevcut_cevap_metni" not in st.session_state:
+    st.session_state.mevcut_cevap_metni = ""
 
 def yeni_soru_getir(kategori_filtresi):
     if kategori_filtresi == "Tüm Kategoriler":
@@ -309,6 +301,7 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
         st.session_state.last_processed_audio = None
+        st.session_state.mevcut_cevap_metni = ""
 
 # Sidebar
 st.sidebar.markdown("""
@@ -391,7 +384,7 @@ with col_left:
                 st.write("*...ve diğer ilgili havacılık terimleri.*")
 
         st.write("### 🎙️ Sesli Yanıt Verin")
-        st.caption("Mikrofona basıp konuşun. 5 saniye susursanız veya butona tekrar basarsanız **otomatik metne çevrilip puanlanacaktır.**")
+        st.caption("Mikrofona basıp konuşun. 5 saniye susursanız veya mikrofona tekrar basarsanız **sesiniz yazılı alana aktarılır ve otomatik puanlanır.**")
 
         # 🎙️ OTOMATİK TAM DEĞERLENDİRMELİ SES KAYDEDİCİ
         audio_bytes = audio_recorder(
@@ -403,13 +396,14 @@ with col_left:
             pause_threshold=5.0
         )
 
-        # Otomatik Tetikleme Mantığı: Yeni bir ses kaydı geldiğinde anında çalışır
+        # Otomatik İşleme
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
             st.session_state.last_processed_audio = audio_bytes
-            with st.spinner("🔊 Sesiniz metne dönüştürülüp otomatik değerlendiriliyor..."):
+            with st.spinner("🔊 Sesiniz metne dönüştürülüp değerlendiriliyor..."):
                 transcribed_text = transcribe_audio(audio_bytes)
                 
                 if transcribed_text.strip():
+                    st.session_state.mevcut_cevap_metni = transcribed_text
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(transcribed_text, keywords)
                     
@@ -423,23 +417,24 @@ with col_left:
                         "bulunamayanlar": eval_result["missing_keywords"],
                         "metin": transcribed_text
                     }
+                    st.rerun()
                 else:
-                    st.warning("⚠️ Sesiniz net anlaşılamadı. Lütfen mikrofona biraz daha yakın konuşarak tekrar deneyin.")
+                    st.warning("⚠️ Ses anlaşılamadı. Lütfen biraz daha net konuşarak tekrar deneyin.")
 
-        # Alternatif Yazılı Cevap Kutusu (İstenirse Elle Düzenleme / Yazma için)
-        current_text = st.session_state.son_analiz.get("metin", "") if st.session_state.son_analiz else ""
+        # Algılanan veya Yazılan Yanıt Kutusu
         kullanici_cevabi = st.text_area(
             "Algılanan / Yazılan Yanıtınız:",
-            value=current_text,
-            placeholder="Sesli konuştuğunuzda metin buraya dökülür veya buraya elle yanıt yazabilirsiniz...",
+            value=st.session_state.mevcut_cevap_metni,
+            placeholder="Sesli konuştuğunuzda metin buraya aktarılır veya buraya yazabilirsiniz...",
             height=120,
-            key=f"text_input_{soru.get('id')}"
+            key=f"text_area_{soru.get('id')}"
         )
 
         btn_c1, btn_c2 = st.columns([1, 1])
         with btn_c1:
             if st.button("💾 Yazılı Yanıtı Değerlendir", type="primary", use_container_width=True):
                 if kullanici_cevabi.strip():
+                    st.session_state.mevcut_cevap_metni = kullanici_cevabi
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
                     
@@ -471,7 +466,6 @@ with col_left:
             st.markdown("---")
             st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
-            st.info(f"🎤 **Değerlendirilen Cümle:** *\"{res.get('metin', '')}\"*")
             
             if puan == 100:
                 st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! Konuya tam hakimsiniz ({matched_cnt} kilit kavram yakalandı).")
