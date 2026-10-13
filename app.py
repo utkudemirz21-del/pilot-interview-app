@@ -5,9 +5,140 @@ import io
 import html
 import streamlit as st
 import streamlit.components.v1 as components
+import tempfile
+from pathlib import Path
 import speech_recognition as sr
-from audio_recorder_streamlit import audio_recorder
 from supabase import create_client, Client
+
+
+
+# --- CANLI KONUŞMA TANIMA (ses dosyası kaydetmeden) ---
+@st.cache_resource
+def _live_speech_component():
+    component_dir = Path(tempfile.gettempdir()) / "pilotinterviewpro_live_speech_component"
+    component_dir.mkdir(parents=True, exist_ok=True)
+    html_path = component_dir / "index.html"
+    html_path.write_text(r"""<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin:0; font-family:Arial,sans-serif; background:transparent; color:#EAF2FF; }
+.wrap { display:flex; align-items:center; gap:15px; padding:9px 2px; min-height:82px; }
+.mic { width:64px;height:64px;flex:0 0 64px;border-radius:50%;border:2px solid #83DFFF;
+ background:radial-gradient(circle at 32% 24%,#63B8FF 0%,#287CE1 42%,#0B347B 100%);
+ color:#fff;font-size:27px;cursor:pointer;box-shadow:0 0 0 6px rgba(53,189,245,.12),0 0 28px rgba(41,132,255,.38);
+ transition:transform .18s,box-shadow .18s; }
+.mic:hover { transform:scale(1.05);box-shadow:0 0 0 9px rgba(53,189,245,.15),0 0 38px rgba(41,132,255,.5); }
+.mic.live { background:radial-gradient(circle at 32% 24%,#ff9a9a 0%,#d94358 48%,#711d39 100%);border-color:#ffb0ba; }
+.texts { min-width:0; }
+.title { font-size:14px;font-weight:700;margin-bottom:6px;color:#F3F7FF; }
+.status { font-size:12px;color:#9DB5D5;line-height:1.5; }
+.status.live { color:#55DCCB; }
+.pulse { display:inline-block;width:7px;height:7px;border-radius:50%;background:#39D6C6;margin-right:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <button id="mic" class="mic" aria-label="Mikrofonu başlat" title="Konuşmayı başlat">🎙</button>
+  <div class="texts">
+    <div class="title">Canlı sesli yanıt</div>
+    <div id="status" class="status">Başlamak için mikrofona dokunun. Konuşmanız anlık olarak yazıya çevrilir.</div>
+  </div>
+</div>
+<script>
+(() => {
+  const mic = document.getElementById('mic');
+  const statusEl = document.getElementById('status');
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null, active = false, finalText = '', lastSent = '';
+  function sendValue(text) {
+    if (text === lastSent) return;
+    lastSent = text;
+    window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setComponentValue',
+      value:text, dataType:'json'}, '*');
+  }
+  function setStatus(text, live=false) {
+    statusEl.textContent = text;
+    statusEl.className = live ? 'status live' : 'status';
+  }
+  function stop() {
+    active = false;
+    mic.classList.remove('live');
+    mic.setAttribute('aria-label','Mikrofonu başlat');
+    mic.title = 'Konuşmayı başlat';
+    try { if (recognition) recognition.stop(); } catch(e) {}
+    setStatus('Konuşma durduruldu. Metin yanıt kutusuna aktarıldı.');
+  }
+  function start() {
+    if (!SpeechRecognition) {
+      setStatus('Bu tarayıcı canlı konuşma tanımayı desteklemiyor. Güncel Chrome kullanın.');
+      return;
+    }
+    finalText = '';
+    lastSent = '';
+    recognition = new SpeechRecognition();
+    recognition.lang = 'tr-TR';
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 1;
+    recognition.onstart = () => {
+      active = true;
+      mic.classList.add('live');
+      mic.setAttribute('aria-label','Mikrofonu durdur');
+      mic.title = 'Konuşmayı durdur';
+      setStatus('Dinleniyor… Konuştukça metin güncellenir.', true);
+    };
+    recognition.onresult = (event) => {
+      let interim = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalText += transcript.trim() + ' ';
+        else interim += transcript;
+      }
+      const current = (finalText + interim).trim();
+      if (current) sendValue(current);
+      setStatus(current ? current : 'Dinleniyor…', true);
+    };
+    recognition.onerror = (event) => {
+      if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+        setStatus('Mikrofon izni verilmedi. Tarayıcı izinlerinden mikrofona izin verin.');
+      } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
+        setStatus('Konuşma tanıma hatası: ' + event.error);
+      }
+    };
+    recognition.onend = () => {
+      if (active) {
+        // Some browsers stop the recognition service periodically; resume while enabled.
+        try { recognition.start(); } catch(e) {}
+      } else {
+        mic.classList.remove('live');
+      }
+    };
+    try { recognition.start(); }
+    catch(e) { setStatus('Mikrofon başlatılamadı. Sayfayı yenileyip tekrar deneyin.'); }
+  }
+  mic.addEventListener('click', () => active ? stop() : start());
+  window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:componentReady', apiVersion:1}, '*');
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'streamlit:render') {
+      window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setFrameHeight', height:105}, '*');
+    }
+  });
+})();
+</script>
+</body>
+</html>""", encoding="utf-8")
+    return components.declare_component(
+        "pilotinterviewpro_live_speech",
+        path=str(component_dir)
+    )
+
+live_speech_input = _live_speech_component()
+
 
 # Sayfa Yapılandırması
 st.set_page_config(
@@ -1018,42 +1149,20 @@ with col_left:
             kw_list = soru.get("keywords", [])
             model_answer_text = "Bu soru için mülakatta açıklanması beklenen temel konu: " + ", ".join(kw_list) + " kavramlarının doğru usullerle ifade edilmesidir."
 
-        # MİKROFON PANELİ (key => .st-key-mic_card ile stillenir)
+        # CANLI MİKROFON: kayıt dosyası oluşturulmaz; tarayıcı konuşmayı anlık yazıya çevirir.
         with st.container(key="mic_card"):
             st.markdown("""
             <div class="mic-h">Sesli yanıt</div>
-            <div class="mic-s">Mikrofona basıp konuşun. 5 saniye sessizlik olursa yanıt otomatik değerlendirilir.</div>
+            <div class="mic-s">Mikrofonu açıp konuşun. Söyledikleriniz eş zamanlı olarak metne aktarılır; ses dosyası kaydedilmez.</div>
             """, unsafe_allow_html=True)
-            audio_file = st.audio_input(
-                "🎙️ Mikrofonla yanıt kaydet",
-                key=f"rec_{soru.get('id')}_{len(st.session_state.sorulan_ids)}"
+            live_text = live_speech_input(
+                key=f"live_{soru.get('id')}_{len(st.session_state.sorulan_ids)}",
+                default=""
             )
-            audio_bytes = audio_file.getvalue() if audio_file is not None else None
+            if isinstance(live_text, str) and live_text.strip():
+                st.session_state[input_key] = live_text
 
-        if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
-            st.session_state.last_processed_audio = audio_bytes
-            with st.spinner("Ses çözümleniyor ve değerlendiriliyor..."):
-                transcribed_text = transcribe_audio(audio_bytes)
-                if transcribed_text.strip():
-                    st.session_state[input_key] = transcribed_text
-                    keywords = soru.get("keywords", [])
-                    eval_result = calculate_score(transcribed_text, keywords)
-                    puan = eval_result["score"]
-                    puan_kaydet(soru.get("id"), puan)
-                    st.session_state.son_analiz = {
-                        "soru_id": soru.get("id"),
-                        "puan": puan,
-                        "metin": transcribed_text,
-                        "model_answer": model_answer_text,
-                        "matched": eval_result["matched_keywords"],
-                        "missing": eval_result["missing_keywords"],
-                    }
-                    save_user_progress()
-                    st.rerun()
-                else:
-                    st.warning("Ses anlaşılamadı. Mikrofona yakın konuşup tekrar deneyin ya da yanıtı aşağıya yazın.")
-
-        kullanici_cevabi = st.text_area("Algılanan / yazılan yanıtınız", placeholder="Konuştuğunuzda metin buraya yazılır. İsterseniz elle de düzenleyebilirsiniz.", height=130, key=input_key)
+        kullanici_cevabi = st.text_area("Algılanan / yazılan yanıtınız", placeholder="Mikrofonda konuştukça metin burada belirir. İsterseniz elle de düzenleyebilirsiniz.", height=130, key=input_key)
 
         btn_c1, btn_c2 = st.columns([1, 1])
         with btn_c1:
