@@ -808,6 +808,80 @@ st.markdown("""
         box-shadow: 0 0 0 8px rgba(53,189,245,.15), 0 0 34px rgba(41,132,255,.5) !important;
     }
 
+
+/* ---------- Login refresh: açık mavi, okunaklı alanlar, hafif hareket ---------- */
+.login-hero {
+    min-height: 245px;
+    padding: 30px 34px 26px !important;
+    margin-bottom: 24px;
+    background:
+      radial-gradient(ellipse at 80% 5%, rgba(110,202,255,.24), transparent 38%),
+      linear-gradient(125deg, #EAF6FF 0%, #D7EEFF 43%, #B8E0FF 100%) !important;
+    border: 1px solid #9BCDF5 !important;
+    border-radius: 28px !important;
+    color: #102C4B !important;
+    box-shadow: 0 18px 48px rgba(35,116,180,.16), inset 0 1px rgba(255,255,255,.8) !important;
+    animation: login-arrive .7s ease-out both;
+}
+.login-hero .title { color:#102C4B !important; font-size:clamp(2rem,4vw,3.2rem) !important; position:relative; z-index:2; }
+.login-hero .sub { color:#416582 !important; position:relative; z-index:2; }
+.login-kicker { display:inline-flex; align-items:center; gap:8px; color:#28618C; font-size:11px; font-weight:800; letter-spacing:.14em; margin-bottom:9px; position:relative; z-index:2; }
+.live-dot { width:8px; height:8px; background:#19B99A; border-radius:50%; box-shadow:0 0 0 4px rgba(25,185,154,.13); animation: dot-beat 1.8s ease-in-out infinite; }
+.login-orbit { position:absolute; width:230px; height:150px; right:5%; top:7px; opacity:.72; pointer-events:none; }
+.orbit-ring { position:absolute; border:1px solid rgba(39,117,177,.35); border-radius:50%; transform:rotate(-18deg); }
+.ring-a { width:210px;height:76px;top:22px;left:5px; }
+.ring-b { width:160px;height:115px;top:3px;left:30px;transform:rotate(38deg); }
+.orbit-plane { position:absolute; left:98px;top:48px;font-size:34px;color:#287FC0;filter:drop-shadow(0 4px 6px rgba(40,127,192,.22));animation: plane-float 4.5s ease-in-out infinite; }
+.orbit-dot { position:absolute;width:7px;height:7px;background:#F5A623;border-radius:50%;box-shadow:0 0 0 5px rgba(245,166,35,.13); }
+.dot-a { left:29px;top:56px;animation: dot-beat 2.2s infinite; }
+.dot-b { right:12px;top:94px;background:#19B99A;animation: dot-beat 1.7s infinite .4s; }
+.login-widgets { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:2; }
+.login-widget { display:flex;align-items:center;gap:10px;min-width:190px;text-align:left;padding:10px 13px;background:rgba(255,255,255,.58);border:1px solid rgba(93,155,202,.30);border-radius:15px;backdrop-filter:blur(8px);box-shadow:0 5px 15px rgba(47,116,168,.06);animation: widget-up .6s ease-out both; }
+.login-widget:nth-child(2) { animation-delay:.12s; }
+.login-widget:nth-child(3) { animation-delay:.24s; }
+.widget-icon { width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#D2EBFF;color:#176AA8;font-size:19px;font-weight:800; }
+.login-widget b { display:block;font-size:12px;color:#173E60;font-weight:800; }
+.login-widget small { display:block;font-size:10px;color:#587894;margin-top:2px; }
+.widget-pulse { width:8px;height:8px;margin-left:auto;background:#18B99A;border-radius:50%;box-shadow:0 0 0 4px rgba(24,185,154,.12);animation:dot-beat 1.8s infinite; }
+.mini-bars { margin-left:auto;height:23px;display:flex;align-items:end;gap:3px; }
+.mini-bars i { width:4px;border-radius:4px;background:#278DD0;animation:bar-bounce 1s ease-in-out infinite alternate; }
+.mini-bars i:nth-child(1){height:8px}.mini-bars i:nth-child(2){height:16px;animation-delay:.2s}.mini-bars i:nth-child(3){height:12px;animation-delay:.35s}.mini-bars i:nth-child(4){height:22px;animation-delay:.1s}.mini-bars i:nth-child(5){height:10px;animation-delay:.4s}
+.widget-check { margin-left:auto;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#D3F8EF;color:#078B76;font-weight:900; }
+div[data-testid="stTabs"] { margin-top: 8px; }
+div[data-testid="stTabs"] [role="tablist"] { background:#DCEFFF !important;border:1px solid #B7D9F4 !important;border-radius:16px !important;padding:5px !important;gap:5px !important; }
+div[data-testid="stTabs"] button[role="tab"] { border-radius:12px !important;color:#426582 !important;font-weight:750 !important;transition:all .2s ease !important; }
+div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] { background:#FFFFFF !important;color:#155A91 !important;box-shadow:0 3px 10px rgba(26,91,143,.12) !important; }
+div[data-testid="stTabs"] button[role="tab"] p { color:inherit !important;font-weight:800 !important; }
+div[data-testid="stTextInput"] { margin-bottom:12px; }
+div[data-testid="stTextInput"] label, div[data-testid="stTextInput"] label p { color:#BFDFFF !important;font-size:13px !important;font-weight:800 !important; }
+div[data-testid="stTextInput"] input {
+    height:50px !important;box-sizing:border-box !important;
+    background:#F7FBFF !important;color:#142D48 !important;
+    -webkit-text-fill-color:#142D48 !important;
+    border:1.5px solid #A9CBE8 !important;border-radius:14px !important;
+    padding:0 15px !important;box-shadow:0 4px 14px rgba(0,0,0,.08) !important;
+    caret-color:#176AA8 !important;
+}
+div[data-testid="stTextInput"] input::placeholder { color:#7893AA !important;opacity:1 !important; }
+div[data-testid="stTextInput"] input:focus { border-color:#4DADEB !important;box-shadow:0 0 0 4px rgba(77,173,235,.18) !important; }
+div[data-testid="stTextInput"] [data-baseweb="input"] { background:#F7FBFF !important;border-radius:14px !important; }
+div[data-testid="stTextInput"] [data-baseweb="input"] > div { background:transparent !important; }
+div[data-testid="stTextInput"] button { color:#254967 !important; }
+div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;border-radius:14px !important;font-weight:800 !important;letter-spacing:.01em; }
+@keyframes login-arrive { from { opacity:0; transform:translateY(10px); } to { opacity:1;transform:translateY(0); } }
+@keyframes widget-up { from { opacity:0;transform:translateY(8px); } to { opacity:1;transform:translateY(0); } }
+@keyframes plane-float { 0%,100% { transform:translate(0,0) rotate(-4deg); } 50% { transform:translate(8px,-5px) rotate(2deg); } }
+@keyframes dot-beat { 0%,100% { opacity:.75;transform:scale(1); } 50% { opacity:1;transform:scale(1.12); } }
+@keyframes bar-bounce { from { transform:scaleY(.55);opacity:.65; } to { transform:scaleY(1);opacity:1; } }
+@media (max-width: 800px) {
+ .login-hero { padding:24px 16px !important; }
+ .login-orbit { right:-65px;opacity:.35; }
+ .login-widget { min-width:100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .login-hero,.live-dot,.orbit-plane,.orbit-dot,.login-widget,.mini-bars i,.widget-pulse { animation:none !important; }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -951,13 +1025,25 @@ def chips_html(items, css_class):
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
     st.markdown("""
-    <div class="hero center">
+    <div class="hero center login-hero">
+        <div class="login-orbit" aria-hidden="true">
+            <span class="orbit-ring ring-a"></span>
+            <span class="orbit-ring ring-b"></span>
+            <span class="orbit-plane">✈</span>
+            <span class="orbit-dot dot-a"></span><span class="orbit-dot dot-b"></span>
+        </div>
+        <div class="login-kicker"><span class="live-dot"></span> FLIGHT DECK · INTERVIEW TRAINING</div>
         <div class="title">✈️ PilotInterviewPro</div>
         <div class="sub">Havayolu mülakatına teknik sorularla hazırlanın. İlerlemeniz hesabınızda saklanır.</div>
+        <div class="login-widgets">
+            <div class="login-widget"><span class="widget-icon">◉</span><span><b>Canlı pratik</b><small>Konuşarak yanıtlayın</small></span><i class="widget-pulse"></i></div>
+            <div class="login-widget"><span class="widget-icon">⌁</span><span><b>Uçuş göstergeleri</b><small>İlerlemenizi takip edin</small></span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span></div>
+            <div class="login-widget"><span class="widget-icon">✦</span><span><b>Akıllı değerlendirme</b><small>Yanıtınıza geri bildirim</small></span><span class="widget-check">✓</span></div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
-    col_auth1, col_auth2, col_auth3 = st.columns([1, 1.6, 1])
+    col_auth1, col_auth2, col_auth3 = st.columns([1, 1.7, 1])
     with col_auth2:
         tab_login, tab_signup = st.tabs(["Giriş yap", "Kayıt ol"])
 
