@@ -1,11 +1,16 @@
-
-
+[
   {
     "id": 1,
     "category": "Aerodinamik & Havacılık",
     "difficulty": "Orta",
     "question": "Kalkış esnasında Wake Turbulence (Kanat Ucu Girdabı) ne zaman oluşmaya başlar ve nasıl kaçınılmalıdır?",
-    "keywords": ["vortex", "ağırlık", "kalkış", "zaman", "kaldırma"],
+    "keywords": [
+      "vortex",
+      "ağırlık",
+      "kalkış",
+      "zaman",
+      "kaldırma"
+    ],
     "model_answer": "Wake turbulence (kanat ucu vortex'i), uçağın hücum açısını alıp kanatların taşıma kuvveti (lift) üretmeye başladığı an, yani ön tekerleğin yerden kesilmesiyle oluşmaya başlar. Özellikle ağır uçakların arkasından kalkış yaparken bu vortex'lerden kaçınmak için uçağın rotasyon noktasından önce havalanmak ve rüzgar üstünde kalarak yeterli zaman aralığı bırakmak gerekir."
   },
   {
@@ -13,7 +18,13 @@
     "category": "Motor & Sistemler",
     "difficulty": "Zor",
     "question": "Diamond DA42 NG uçaklarında FADEC (Full Authority Digital Engine Control) sisteminin temel görevi nedir ve arıza durumunda nasıl davranır?",
-    "keywords": ["ecu", "otomatik", "yakıt", "yedek güç", "elektronik"],
+    "keywords": [
+      "ecu",
+      "otomatik",
+      "yakıt",
+      "yedek güç",
+      "elektronik"
+    ],
     "model_answer": "FADEC, motorun yakıt enjeksiyonunu, pervane hatvesini ve güç ayarlarını elektronik kontrol üniteleri (ECU) vasıtasıyla tam otomatik yöneten bir sistemdir. Çift kanallı (ECU A/B) yapısı sayesinde tek kanal arızasında yedek kanala geçerek motor performansının ve güç üretiminin kesintisiz devam etmesini sağlar."
   },
   {
@@ -21,7 +32,13 @@
     "category": "Aerodinamik & Havacılık",
     "difficulty": "Kolay",
     "question": "Propeller Stall (Pervane Perdövitesi) nedir ve nasıl meydana gelir?",
-    "keywords": ["hücum açısı", "hava akışı", "pal", "güç", "perdövite"],
+    "keywords": [
+      "hücum açısı",
+      "hava akışı",
+      "pal",
+      "güç",
+      "perdövite"
+    ],
     "model_answer": "Pervane palinin kritik hücum açısını aşması sonucu pal üzerindeki düzgün hava akışının bozulması durumudur. Yüksek hücum açısı ve ani güç değişimlerinde pal yüzeyinde tutunamayan hava akışı itki kaybına neden olarak pallerde perdöviteye (stall) yol açar."
   },
   {
@@ -29,7 +46,13 @@
     "category": "Alet Uçuşu & Seyir",
     "difficulty": "Orta",
     "question": "Jeppesen SID (Standard Instrument Departure) kartında nelere dikkat edilmelidir?",
-    "keywords": ["irtifa", "kısıtlama", "tırmanış", "frekans", "rotasyon"],
+    "keywords": [
+      "irtifa",
+      "kısıtlama",
+      "tırmanış",
+      "frekans",
+      "rotasyon"
+    ],
     "model_answer": "SID kartlarında kalkış sonrası izlenecek rotasyon rotası, geçiş kısıtlamaları, minimum tırmanış varyosu (climb gradient), ilk verilen irtifa kısıtlamaları ve kalkış kontrol (departure) frekansları dikkatle incelenmeli ve brifinge dahil edilmelidir."
   },
   {
@@ -37,7 +60,13 @@
     "category": "Aerodinamik & Havacılık",
     "difficulty": "Orta",
     "question": "Uçaklarda 'Induced Drag' (Tutum Sürüklemesi) nedir ve irtifa ile sürat değişiminden nasıl etkilenir?",
-    "keywords": ["hücum açısı", "sürat", "kanat ucu", "vortex", "taşıma"],
+    "keywords": [
+      "hücum açısı",
+      "sürat",
+      "kanat ucu",
+      "vortex",
+      "taşıma"
+    ],
     "model_answer": "Induced drag, kanatların taşıma kuvveti üretmesinin doğal bir sonucu olarak kanat uçlarında oluşan vortex'lerin yarattığı sürüklemedir. Düşük süratlerde ve yüksek hücum açılarında maksimum seviyeye ulaşır; uçak hızlandıkça hücum açısı küçüldüğü için induced drag azalır."
   },
   {
@@ -45,7 +74,13 @@
     "category": "Meteoroloji & Emniyet",
     "difficulty": "Zor",
     "question": "Microburst (Mikro Patlama) nedir, uçuş emniyetini nasıl tehlikeye düşürür ve yaklaşmada nasıl anlaşılır?",
-    "keywords": ["rüzgar kırılması", "downburst", "sürat kayma", "piston", "pas geçme"],
+    "keywords": [
+      "rüzgar kırılması",
+      "downburst",
+      "sürat kayma",
+      "piston",
+      "pas geçme"
+    ],
     "model_answer": "Microburst, küme bulutlarından yere doğru ani ve şiddetli bir şekilde çöken, yere çarptığında dışa doğru dağılan güçlü dikey hava akımıdır (wind shear). Yaklaşma hattındaki bir uçak önce kuvvetli bir baş rüzgarı alarak tırmanır, ardından merkeze girdiğinde ani bir çöküş ve kuyruk rüzgarı ile ciddi irtifa/sürat kaybına uğrar; bu durumda derhal pas geçilmelidir."
   },
   {
@@ -53,7 +88,13 @@
     "category": "Alet Uçuşu & Seyir",
     "difficulty": "Orta",
     "question": "ILS (Instrument Landing System) yaklaşmasında Glideslope ve Localizer sinyal kayıplarında nasıl hareket edilir?",
-    "keywords": ["pas geçme", "localizer", "süzülüş", "karar yüksekliği", "hassas"],
+    "keywords": [
+      "pas geçme",
+      "localizer",
+      "süzülüş",
+      "karar yüksekliği",
+      "hassas"
+    ],
     "model_answer": "ILS yaklaşmasında Localizer yanal hiza, Glideslope ise düşey süzülüş hattını sağlar. Karar yüksekliğine (DH) ulaşmadan önce Glideslope sinyali kaybedilirse yaklaşma hassas olmayan (non-precision) ILS/LOC prosedürüne çevrilir veya direkt pas geçilir; Localizer kaybında ise derhal pas geçme (missed approach) uygulanır."
   },
   {
@@ -61,7 +102,13 @@
     "category": "Motor & Sistemler",
     "difficulty": "Orta",
     "question": "Çift motorlu uçaklarda 'Critical Engine' (Kritik Motor) nedir ve kaybında ne gibi kumanda zorlukları yaşanır?",
-    "keywords": ["p faktörü", "asimetrik", "sapma", "itki", "savrulma"],
+    "keywords": [
+      "p faktörü",
+      "asimetrik",
+      "sapma",
+      "itki",
+      "savrulma"
+    ],
     "model_answer": "Kritik motor, arızalanması durumunda uçağın kontrolünü ve tırmanış performansını en olumsuz etkileyen motordur. Genellikle P-faktörü, tork ve kayma akımı nedeniyle sol motordur. Kritik motorun kaybında uçak kaybolan motora doğru şiddetli bir sapma (yaw) ve yatış (roll) eğilimi gösterir; bu asimetrik itkiyi karşılamak için yüksek ruder kumandası gerekir."
   },
   {
@@ -69,7 +116,13 @@
     "category": "İnsan Faktörleri & CRM",
     "difficulty": "Kolay",
     "question": "CRM (Crew Resource Management) kapsamında 'Situational Awareness' (Durumsal Farkındalık) kaybı belirtileri nelerdir?",
-    "keywords": ["odaklanma", "iletişim", "zaman", "farkındalık", "sapma"],
+    "keywords": [
+      "odaklanma",
+      "iletişim",
+      "zaman",
+      "farkındalık",
+      "sapma"
+    ],
     "model_answer": "Durumsal farkındalık kaybının başlıca belirtileri; uçuş ekibinin tek bir göstergeye veya soruna aşırı odaklanması (fixation), uçuş planından veya hedeflenen parametrelerden sapılması, zaman algısının yitirilmesi ve kokpit içi iletişimin kopmasıdır."
   },
   {
@@ -77,55 +130,1273 @@
     "category": "Acil Durum Prosedürleri",
     "difficulty": "Zor",
     "question": "Seyir esnasında kabin basıncı kaybında (Rapid Depressurization) pilotların atacağı ilk adımlar nelerdir?",
-    "keywords": ["oksijen", "acil alçalma", "maske", "irtifa", "7700"],
+    "keywords": [
+      "oksijen",
+      "acil alçalma",
+      "maske",
+      "irtifa",
+      "7700"
+    ],
     "model_answer": "Kabin basıncı kaybında ilk olarak pilotlar oksijen maskelerini takar ve iletişim kurar. Ardından derhal donatıyı emniyete alıp acil alçalma (emergency descent) başlatılır, Squawk 7700 bağlanır ve ATC'ye durum bildirilerek emniyetli irtifaya (10.000 ft veya MSA) alçalınır."
+  },
+  {
+    "id": 11,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 12,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 13,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 14,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 15,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 16,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 17,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 18,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 19,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 20,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 21,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 22,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 23,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 24,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 25,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 26,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 27,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 28,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 29,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 30,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 31,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 32,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 33,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 34,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 35,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 36,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 37,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 38,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 39,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 40,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 41,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 42,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 43,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 44,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 45,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 46,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 47,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 48,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 49,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 50,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 51,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 52,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 53,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 54,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 55,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 56,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 57,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 58,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 59,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 60,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 61,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 62,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 63,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 64,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 65,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 66,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 67,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 68,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 69,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 70,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 71,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 72,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 73,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 74,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 75,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 76,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 77,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 78,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 79,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 80,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 81,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 82,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 83,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 84,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 85,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 86,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 87,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 88,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 89,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 90,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
+  },
+  {
+    "id": 91,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?",
+    "keywords": [
+      "hücum açısı",
+      "kumanda",
+      "pitch",
+      "irtifa",
+      "kanat"
+    ],
+    "model_answer": "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."
+  },
+  {
+    "id": 92,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?",
+    "keywords": [
+      "yastıklama",
+      "sürükleme",
+      "vortex",
+      "kanat açıklığı",
+      "süzülme"
+    ],
+    "model_answer": "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."
+  },
+  {
+    "id": 93,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Vmc (Minimum Control Speed) nedir ve neleri etkiler?",
+    "keywords": [
+      "asimetrik",
+      "kumanda",
+      "ruder",
+      "sapma",
+      "kritik motor"
+    ],
+    "model_answer": "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."
+  },
+  {
+    "id": 94,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?",
+    "keywords": [
+      "dinamik",
+      "viskoz",
+      "kauçuk",
+      "fren",
+      "lastik"
+    ],
+    "model_answer": "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."
+  },
+  {
+    "id": 95,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?",
+    "keywords": [
+      "hipoksik",
+      "anemik",
+      "durgun",
+      "histotoksik",
+      "siyanoz"
+    ],
+    "model_answer": "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."
+  },
+  {
+    "id": 96,
+    "category": "Acil Durum Prosedürleri",
+    "difficulty": "Zor",
+    "question": "Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?",
+    "keywords": [
+      "deniz seviyesi",
+      "meydan",
+      "standart",
+      "1013",
+      "irtifa"
+    ],
+    "model_answer": "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."
+  },
+  {
+    "id": 97,
+    "category": "İnsan Faktörleri & CRM",
+    "difficulty": "Kolay",
+    "question": "VFR ve IFR uçuş arasındaki temel farklar nelerdir?",
+    "keywords": [
+      "görerek",
+      "aletle",
+      "meteoroloji",
+      "seperasyon",
+      "atc"
+    ],
+    "model_answer": "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."
+  },
+  {
+    "id": 98,
+    "category": "Havacılık Hukuku & Prosedürler",
+    "difficulty": "Kolay",
+    "question": "Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?",
+    "keywords": [
+      "TOGA",
+      "pitch",
+      "konfigürasyon",
+      "sürat",
+      "pas geçme"
+    ],
+    "model_answer": "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."
+  },
+  {
+    "id": 99,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?",
+    "keywords": [
+      "otopilot",
+      "kumanda",
+      "atc",
+      "dikey",
+      "talimat"
+    ],
+    "model_answer": "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."
+  },
+  {
+    "id": 100,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?",
+    "keywords": [
+      "maksimum güç",
+      "tırmanış",
+      "lövyeden çekme",
+      "mani",
+      "gece"
+    ],
+    "model_answer": "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir."
   }
 ]
-
-# Ek kategoriler ve konularla 100 soruya tamamlama şablonu üretme
-categories = [
-  ("Aerodinamik & Havacılık", "Orta"),
-  ("Motor & Sistemler", "Zor"),
-  ("Alet Uçuşu & Seyir", "Orta"),
-  ("Meteoroloji & Emniyet", "Zor"),
-  ("Acil Durum Prosedürleri", "Zor"),
-  ("İnsan Faktörleri & CRM", "Kolay"),
-  ("Havacılık Hukuku & Prosedürler", "Kolay")
-]
-
-# Soru veri tabanını genişletmek için temel konular
-topics = [
-  ("Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?", ["hücum açısı", "kumanda", "pitch", "irtifa", "kanat"], "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."),
-  ("Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?", ["yastıklama", "sürükleme", "vortex", "kanat açıklığı", "süzülme"], "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."),
-  ("Vmc (Minimum Control Speed) nedir ve neleri etkiler?", ["asimetrik", "kumanda", "ruder", "sapma", "kritik motor"], "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."),
-  ("Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?", ["dinamik", "viskoz", "kauçuk", "fren", "lastik"], "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."),
-  ("Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?", ["hipoksik", "anemik", "durgun", "histotoksik", "siyanoz"], "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."),
-  ("Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?", ["deniz seviyesi", "meydan", "standart", "1013", "irtifa"], "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."),
-  ("VFR ve IFR uçuş arasındaki temel farklar nelerdir?", ["görerek", "aletle", "meteoroloji", "seperasyon", "atc"], "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."),
-  ("Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?", ["TOGA", "pitch", "konfigürasyon", "sürat", "pas geçme"], "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."),
-  ("TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?", ["otopilot", "kumanda", "atc", "dikey", "talimat"], "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."),
-  ("EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?", ["maksimum güç", "tırmanış", "lövyeden çekme", "mani", "gece"], "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir.")
-]
-
-current_id = 11
-while len(questions) < 100:
-    for topic, kws, ans in topics:
-        if len(questions) >= 100:
-            break
-        cat, diff = categories[(len(questions)) % len(categories)]
-        questions.append({
-            "id": current_id,
-            "category": cat,
-            "difficulty": diff,
-            "question": topic,
-            "keywords": kws,
-            "model_answer": ans
-        })
-        current_id += 1
-
-# Veriyi JSON dosyasına yaz
-file_path = "questions.json"
-with open(file_path, "w", encoding="utf-8") as f:
-    json.dump(questions, f, ensure_ascii=False, indent=2)
-
-print(f"Toplam {len(questions)} soru başarıyla hazırlatıldı ve 'questions.json' olarak kaydedildi.")
