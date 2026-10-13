@@ -844,4 +844,76 @@ with col_left:
             </div>
             <div class="model-answer">
                 <div class="h">Model Interview Answer</div>
-                <div class="t">{model_
+                <div class="t">{model_answer_html}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="tip">
+        <b>Interview Tip:</b> Explain system operations with clear <b>cause-and-effect relationships</b> and Standard Operating Procedures (SOPs).
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_right:
+    yuzde = min(int((tamamlanan / toplam_soru) * 100), 100) if toplam_soru > 0 else 0
+    st.markdown(f"""
+    <div class="flight">
+        <div class="h">Flight Progress</div>
+        <div class="pct">%{yuzde}</div>
+        <div class="track">
+            <div class="fill" style="width:{yuzde}%;"></div>
+            <div class="dot" style="left:{yuzde}%;"></div>
+            <div class="end"></div>
+        </div>
+        <div class="legend"><span>Departure</span><span>Arrival</span></div>
+        <div class="note">Out of <b>{toplam_soru}</b> questions, <b>{tamamlanan}</b> have been answered.</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+    components.html("""
+    <html><head><style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
+      html,body{margin:0;background:transparent;font-family:'Barlow Semi Condensed',sans-serif;}
+      .card{background:#0A1626;border-radius:12px;padding:16px 18px;color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-sizing:border-box;}
+      .adi{width:104px;height:104px;flex-shrink:0;}
+      .horizon{transform-origin:60px 60px;animation:bank 11s ease-in-out infinite alternate;}
+      @keyframes bank{from{transform:rotate(-4deg) translateY(-3px);}to{transform:rotate(5deg) translateY(4px);}}
+      .clk{min-width:120px;}
+      .row{margin-bottom:8px;}
+      .lab{color:#8FA8C8;font-size:12px;font-weight:500;}
+      .t{font-size:26px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;}
+      .t.utc{color:#F2A81D;}
+      @media (prefers-reduced-motion: reduce){.horizon{animation:none;}}
+    </style></head><body>
+    <div class="card">
+      <svg class="adi" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><clipPath id="c"><circle cx="60" cy="60" r="52"/></clipPath></defs>
+        <g clip-path="url(#c)"><g class="horizon">
+          <rect x="-60" y="-60" width="240" height="120" fill="#3C7DD9"/>
+          <rect x="-60" y="60" width="240" height="120" fill="#7A5230"/>
+          <line x1="-60" y1="60" x2="180" y2="60" stroke="#fff" stroke-width="1.5"/>
+          <line x1="46" y1="48" x2="74" y2="48" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="52" y1="36" x2="68" y2="36" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="46" y1="72" x2="74" y2="72" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="52" y1="84" x2="68" y2="84" stroke="#fff" stroke-width="1" opacity=".7"/>
+        </g></g>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#223A5A" stroke-width="5"/>
+        <path d="M60 4 L56 12 L64 12Z" fill="#F2A81D"/>
+        <path d="M28 62 H48 L52 66 M92 62 H72 L68 66" fill="none" stroke="#F2A81D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="60" cy="62" r="3" fill="#F2A81D"/>
+      </svg>
+      <div class="clk">
+        <div class="row"><div class="lab">UTC (Zulu)</div><div class="t utc" id="u">--:--:--</div></div>
+        <div class="row" style="margin-bottom:0"><div class="lab">Local Time (TR)</div><div class="t" id="l">--:--:--</div></div>
+      </div>
+    </div>
+    <script>
+      function tick(){
+        var d=new Date();
+        document.getElementById('u').textContent=d.toLocaleTimeString('en-GB',{timeZone:'UTC',hour12:false});
+        document.getElementById('l').textContent=d.toLocaleTimeString('en-GB',{timeZone:'Europe/Istanbul',hour12:false});
+      }
+      tick(); setInterval(tick,1000);
+    </script></body></html>
+    """, height=140)
