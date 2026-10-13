@@ -1,7 +1,5 @@
-# 100 adet mülakat sorusu ve detaylı model_answer cevapları içeren JSON verisini hazırlama scripti
-import json
 
-questions = [
+
   {
     "id": 1,
     "category": "Aerodinamik & Havacılık",
