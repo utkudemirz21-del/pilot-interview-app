@@ -621,6 +621,62 @@ st.markdown("""
         }
     }
 
+
+    /* FIX: white category select with readable dark value/menu text */
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] label,
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] label p {
+        color: #F3F7FF !important;
+        font-weight: 800 !important;
+    }
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] [role="combobox"],
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] [role="combobox"] * {
+        background-color: #FFFFFF !important;
+        color: #14243A !important;
+        -webkit-text-fill-color: #14243A !important;
+        font-weight: 700 !important;
+        opacity: 1 !important;
+    }
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] [role="combobox"] {
+        border: 1px solid #D5DFED !important;
+        border-radius: 12px !important;
+    }
+    div[data-baseweb="popover"] [role="option"],
+    div[data-baseweb="popover"] [role="option"] * {
+        color: #14243A !important;
+        -webkit-text-fill-color: #14243A !important;
+        font-weight: 700 !important;
+    }
+    div[data-baseweb="popover"] [role="option"]:hover {
+        background: #EAF2FC !important;
+    }
+
+    /* Native audio_input control: dark cockpit surface with cyan focus ring */
+    .st-key-mic_card [data-testid="stAudioInput"],
+    .st-key-mic_card [data-testid="stAudioInput"] > div {
+        background: #071A31 !important;
+        color: #EAF2FF !important;
+        border-radius: 18px !important;
+    }
+    .st-key-mic_card [data-testid="stAudioInput"] button {
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        min-height: 58px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(145deg, #4BA8FF, #1554B5) !important;
+        color: #FFFFFF !important;
+        border: 2px solid #83DFFF !important;
+        box-shadow: 0 0 0 5px rgba(53,189,245,.12), 0 0 25px rgba(41,132,255,.35) !important;
+    }
+    .st-key-mic_card [data-testid="stAudioInput"] button svg {
+        color: #FFFFFF !important;
+        fill: currentColor !important;
+    }
+    .st-key-mic_card [data-testid="stAudioInput"] button:hover {
+        transform: scale(1.04) !important;
+        box-shadow: 0 0 0 8px rgba(53,189,245,.15), 0 0 34px rgba(41,132,255,.5) !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -968,15 +1024,11 @@ with col_left:
             <div class="mic-h">Sesli yanıt</div>
             <div class="mic-s">Mikrofona basıp konuşun. 5 saniye sessizlik olursa yanıt otomatik değerlendirilir.</div>
             """, unsafe_allow_html=True)
-            audio_bytes = audio_recorder(
-                text="Mikrofona bas ve konuş",
-                recording_color="#D8483F",
-                neutral_color="#0A1626",
-                icon_name="microphone",
-                icon_size="2x",
-                pause_threshold=5.0,
+            audio_file = st.audio_input(
+                "🎙️ Mikrofonla yanıt kaydet",
                 key=f"rec_{soru.get('id')}_{len(st.session_state.sorulan_ids)}"
             )
+            audio_bytes = audio_file.getvalue() if audio_file is not None else None
 
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
             st.session_state.last_processed_audio = audio_bytes
