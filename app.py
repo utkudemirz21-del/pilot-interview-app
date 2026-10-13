@@ -40,16 +40,16 @@ st.markdown("""
         --panel: #0A1626;
         --panel-2: #12263F;
         --panel-line: #223A5A;
-        --paper: #EDF0F4;
-        --card: #FFFFFF;
-        --ink: #0E1A2B;
-        --ink-soft: #55657A;
-        --line: #D5DBE4;
-        --amber: #F2A81D;
-        --amber-deep: #B97A00;
-        --green: #2FBF8F;
-        --red: #D8483F;
-        --sky: #3C7DD9;
+        --paper: #030D1D;
+        --card: #0A1B32;
+        --ink: #EAF2FF;
+        --ink-soft: #9BB2D2;
+        --line: #1B3A61;
+        --amber: #FFB52E;
+        --amber-deep: #D98B12;
+        --green: #39D6C6;
+        --red: #FF6675;
+        --sky: #35BDF5;
     }
 
     html, body, [class*="css"] { font-family: 'IBM Plex Sans', sans-serif; }
@@ -407,6 +407,123 @@ st.markdown("""
         .q-text { font-size: 1.35rem; }
     }
     @media (prefers-reduced-motion: reduce) { .hero { animation: none; } }
+
+    /* ---------- Premium dark cockpit: son katman ---------- */
+    .stApp {
+        background:
+            radial-gradient(ellipse at 58% 0%, rgba(24,75,132,.22), transparent 42%),
+            radial-gradient(ellipse at 100% 65%, rgba(8,45,82,.22), transparent 36%),
+            #030D1D !important;
+        color: #EAF2FF !important;
+    }
+    .block-container { max-width: 1500px; padding-top: 1.5rem; padding-bottom: 3rem; }
+    [data-testid="stMain"] { background: transparent !important; }
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #07172C 0%, #061225 100%) !important;
+        border-right: 1px solid #1B3A61 !important;
+    }
+    section[data-testid="stSidebar"] * { color: #D9E7FC; }
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+        background: #0B203B !important; border: 1px solid #254A75 !important;
+        border-radius: 14px !important; color: #EAF2FF !important;
+    }
+    section[data-testid="stSidebar"] .side-stat {
+        border-bottom-color: #1B3A61 !important;
+    }
+    .hero {
+        background:
+            linear-gradient(90deg, rgba(3,15,34,.98) 0%, rgba(5,25,53,.88) 48%, rgba(6,29,57,.50) 100%),
+            radial-gradient(ellipse at 75% 35%, rgba(43,120,205,.30), transparent 42%),
+            linear-gradient(135deg, #0A2344, #07152B) !important;
+        border: 1px solid #28517D !important;
+        border-radius: 26px !important;
+        box-shadow: 0 20px 55px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.05);
+        overflow: hidden;
+    }
+    .hero::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: repeating-linear-gradient(90deg, transparent 0 43px, rgba(110,165,226,.045) 44px 45px);
+    }
+    .hero .title { color: #F4F8FF !important; }
+    .hero .title span, .hero .accent { color: var(--amber) !important; }
+    .hero .sub, .hero .hi { color: #AFC5E3 !important; }
+    .strip {
+        background: linear-gradient(145deg, rgba(13,35,62,.96), rgba(7,23,43,.96)) !important;
+        border: 1px solid #24486F !important; border-radius: 22px !important;
+        box-shadow: 0 12px 30px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.035);
+    }
+    .strip .cell { border-right-color: #24415F !important; }
+    .strip .k { color: #9DB5D5 !important; }
+    .strip .v { color: #F0F6FF !important; }
+    .brief, .st-key-mic_card, .report, .flight, .tip, .model-answer {
+        background: linear-gradient(145deg, rgba(12,33,59,.98), rgba(7,23,43,.98)) !important;
+        border: 1px solid #24486F !important;
+        border-radius: 23px !important;
+        box-shadow: 0 14px 34px rgba(0,0,0,.20), inset 0 1px rgba(255,255,255,.035) !important;
+        color: #EAF2FF !important;
+    }
+    .brief { border-left: 3px solid var(--amber) !important; padding: 28px 30px !important; }
+    .q-text, .mic-h, .flight .h, .flight .pct, .flight .note b,
+    .stTextArea label p, .verdict .label, .chips-title, .tip b {
+        color: #EDF5FF !important;
+    }
+    .mic-s, .strip .k, .flight .legend, .flight .note, .verdict .desc,
+    .chips-title, .tip { color: #9DB5D5 !important; }
+    .tag-cat { background: #17365E !important; border: 1px solid #315A88; border-radius: 999px !important; }
+    .tag-diff { border-radius: 999px !important; }
+    .tag-diff.kolay { color: #65E7C1 !important; border-color: #226C65 !important; background: #0C393B !important; }
+    .tag-diff.orta { color: #FFD16A !important; border-color: #745B29 !important; background: #3A2D17 !important; }
+    .tag-diff.zor { color: #FF9DA6 !important; border-color: #783D4A !important; background: #3A1E2B !important; }
+    .stTextArea textarea, .stTextInput input {
+        background: #06172D !important; color: #EAF2FF !important;
+        border: 1px solid #254A75 !important; border-radius: 17px !important;
+    }
+    .stTextArea textarea::placeholder, .stTextInput input::placeholder { color: #7894B9 !important; }
+    .stTextArea textarea:focus, .stTextInput input:focus {
+        border-color: #35BDF5 !important; box-shadow: 0 0 0 3px rgba(53,189,245,.13) !important;
+    }
+    .stButton button {
+        border-radius: 16px !important; min-height: 44px;
+        transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .stButton button[kind="primary"], .stButton button[data-testid="stBaseButton-primary"] {
+        background: linear-gradient(135deg, #FFC34F, #F4A91D) !important;
+        color: #07162B !important; border: 1px solid #FFC34F !important;
+        box-shadow: 0 7px 20px rgba(255,181,46,.16);
+    }
+    .stButton button[kind="secondary"], .stButton button[data-testid="stBaseButton-secondary"] {
+        background: #0C2340 !important; color: #DDEBFF !important;
+        border: 1px solid #2B507A !important;
+    }
+    .stButton button:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,.24); }
+    .st-key-mic_card { padding: 22px 24px 18px !important; }
+    .st-key-mic_card button {
+        min-width: 118px !important; min-height: 118px !important;
+        border-radius: 50% !important;
+        background: radial-gradient(circle at 35% 25%, #4B9BFF 0%, #2168C8 48%, #0A2D69 100%) !important;
+        border: 3px solid #74CFFF !important;
+        box-shadow: 0 0 0 8px rgba(53,189,245,.10), 0 0 34px rgba(40,126,255,.38), inset 0 2px 10px rgba(255,255,255,.22) !important;
+        color: white !important;
+    }
+    .st-key-mic_card button:hover {
+        transform: scale(1.035) !important;
+        box-shadow: 0 0 0 10px rgba(53,189,245,.13), 0 0 42px rgba(40,126,255,.52) !important;
+    }
+    .flight .track { background: #1B3A61 !important; height: 7px !important; border-radius: 99px !important; }
+    .flight .fill { background: linear-gradient(90deg, #2A8DFF, #44D8F0) !important; border-radius: 99px !important; }
+    .flight .dot { background: #07172C !important; border-color: #FFB52E !important; }
+    .flight .end { background: #D9E8FF !important; }
+    .report::before { background: #102A49 !important; color: #9BB5D7 !important; }
+    .gauge .num { fill: #F0F6FF !important; }
+    .gauge .of { fill: #9BB5D7 !important; }
+    .tip { border: 1px solid #24486F !important; }
+    div[data-testid="stAlert"] { border-radius: 16px !important; }
+    div[data-testid="stSpinner"] * { color: #DDEBFF !important; }
+    @media (max-width: 800px) {
+        .hero, .brief, .st-key-mic_card, .report, .flight { border-radius: 18px !important; }
+        .st-key-mic_card button { min-width: 92px !important; min-height: 92px !important; }
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
