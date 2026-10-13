@@ -2,6 +2,7 @@ import json
 import random
 import re
 import io
+import html
 import streamlit as st
 import speech_recognition as sr
 from audio_recorder_streamlit import audio_recorder
@@ -109,6 +110,16 @@ st.markdown("""
     .hero > * { position: relative; z-index: 1; }
     .hero .title { font-family:'Barlow Semi Condensed',sans-serif; font-size: 2.7rem; font-weight: 700; line-height: 1.05; margin: 0 0 10px 0; }
     .hero .sub { color: #B9C9DE; font-size: 1.02rem; max-width: 620px; line-height: 1.6; }
+    .welcome { display:flex; align-items:center; gap:14px; margin-bottom: 22px; }
+    .welcome .avatar {
+        width: 46px; height: 46px; border-radius: 50%;
+        background: var(--amber); color: #1A1203;
+        display:flex; align-items:center; justify-content:center;
+        font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size: 1.35rem;
+        flex-shrink: 0;
+    }
+    .welcome .hi { color:#8FA8C8; font-size: 0.85rem; line-height: 1.2; }
+    .welcome .name { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size: 1.45rem; color:#fff; line-height: 1.2; }
     .hero.center { text-align: center; }
     .hero.center .sub { margin: 0 auto; }
     @keyframes heroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -496,9 +507,30 @@ if st.sidebar.button("Çıkış yap", use_container_width=True):
 if st.session_state.mevcut_soru is None and questions_data:
     yeni_soru_getir(st.session_state.secilen_kategori)
 
+# Kullanıcı adı (e-postanın @ öncesi kısmından türetilir)
+def display_name(email: str) -> str:
+    local = (email or "").split("@")[0]
+    words = [w for w in re.split(r"[._\-\s]+", local) if w]
+    out = []
+    for w in words:
+        first = "İ" if w[0] == "i" else ("I" if w[0] == "ı" else w[0].upper())
+        out.append(first + turkish_lower(w[1:]))
+    return " ".join(out) if out else "Pilot Adayı"
+
+kullanici_adi = display_name(st.session_state.user.email)
+avatar_harf = html.escape(kullanici_adi[0])
+kullanici_adi_html = html.escape(kullanici_adi)
+
 # Hero Banner
-st.markdown("""
+st.markdown(f"""
 <div class="hero">
+    <div class="welcome">
+        <div class="avatar">{avatar_harf}</div>
+        <div>
+            <div class="hi">Hoş geldiniz</div>
+            <div class="name">{kullanici_adi_html}</div>
+        </div>
+    </div>
     <div class="title">Pilot mülakatına hazırlanın</div>
     <div class="sub">Teknik sorulara sesle yanıt verin, havacılık terminolojisini net kullanın. İlerlemeniz hesabınıza otomatik kaydedilir.</div>
 </div>
