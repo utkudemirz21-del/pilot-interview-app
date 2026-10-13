@@ -40,6 +40,19 @@ body { font-family:Arial,sans-serif; }
 .status { font-size:12px;color:#9DB5D5;line-height:1.5; }
 .status.live { color:#55DCCB; }
 .pulse { display:inline-block;width:7px;height:7px;border-radius:50%;background:#39D6C6;margin-right:6px; }
+
+    div[data-testid="stButton"] button {
+        min-height: 48px !important;
+        height: 48px !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
 </style>
 </head>
 <body>
@@ -979,7 +992,7 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 .strip .cell { padding-top: 8px !important; padding-bottom: 8px !important; }
 .strip .v { font-size: 1.45rem !important; }
 .brief { padding: 16px 22px !important; margin-bottom: 9px !important; }
-.brief .q-text, .q-text { font-size: 1.28rem !important; line-height: 1.32 !important; }
+.brief .q-text, .q-text { font-size: 1.85rem !important; line-height: 1.35 !important; font-weight: 700 !important; }
 .st-key-mic_card .mic-h { margin-bottom: 2px !important; font-size: 14px !important; }
 .st-key-mic_card .mic-s { margin-bottom: 2px !important; font-size: 11px !important; }
 div[data-testid="stTextArea"] { margin-top: 0 !important; margin-bottom: 2px !important; }
@@ -995,6 +1008,19 @@ div[data-testid="stButton"] button { min-height: 36px !important; padding-top: 5
     .brief .q-text, .q-text { font-size: 1.17rem !important; }
     .stTextArea textarea { height: 82px !important; min-height: 82px !important; }
 }
+
+
+    div[data-testid="stButton"] button {
+        min-height: 48px !important;
+        height: 48px !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
 
 </style>
 """, unsafe_allow_html=True)
@@ -1458,7 +1484,20 @@ with col_right:
       .t{font-size:26px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;}
       .t.utc{color:#F2A81D;}
       @media (prefers-reduced-motion: reduce){.horizon{animation:none;}}
-    </style></head><body>
+    
+    div[data-testid="stButton"] button {
+        min-height: 48px !important;
+        height: 48px !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+</style></head><body>
     <div class="card">
       <svg class="adi" viewBox="0 0 120 120" aria-hidden="true">
         <defs><clipPath id="c"><circle cx="60" cy="60" r="52"/></clipPath></defs>
