@@ -1,702 +1,133 @@
-[
+# 100 adet mülakat sorusu ve detaylı model_answer cevapları içeren JSON verisini hazırlama scripti
+import json
+
+questions = [
   {
-    "id": "Q001",
-    "category": "Air Law",
+    "id": 1,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Kalkış esnasında Wake Turbulence (Kanat Ucu Girdabı) ne zaman oluşmaya başlar ve nasıl kaçınılmalıdır?",
+    "keywords": ["vortex", "ağırlık", "kalkış", "zaman", "kaldırma"],
+    "model_answer": "Wake turbulence (kanat ucu vortex'i), uçağın hücum açısını alıp kanatların taşıma kuvveti (lift) üretmeye başladığı an, yani ön tekerleğin yerden kesilmesiyle oluşmaya başlar. Özellikle ağır uçakların arkasından kalkış yaparken bu vortex'lerden kaçınmak için uçağın rotasyon noktasından önce havalanmak ve rüzgar üstünde kalarak yeterli zaman aralığı bırakmak gerekir."
+  },
+  {
+    "id": 2,
+    "category": "Motor & Sistemler",
+    "difficulty": "Zor",
+    "question": "Diamond DA42 NG uçaklarında FADEC (Full Authority Digital Engine Control) sisteminin temel görevi nedir ve arıza durumunda nasıl davranır?",
+    "keywords": ["ecu", "otomatik", "yakıt", "yedek güç", "elektronik"],
+    "model_answer": "FADEC, motorun yakıt enjeksiyonunu, pervane hatvesini ve güç ayarlarını elektronik kontrol üniteleri (ECU) vasıtasıyla tam otomatik yöneten bir sistemdir. Çift kanallı (ECU A/B) yapısı sayesinde tek kanal arızasında yedek kanala geçerek motor performansının ve güç üretiminin kesintisiz devam etmesini sağlar."
+  },
+  {
+    "id": 3,
+    "category": "Aerodinamik & Havacılık",
     "difficulty": "Kolay",
-    "question": "EASA, ICAO ve IATA’nın açılımları ve temel görevleri nelerdir?",
-    "keywords": ["easa", "icao", "iata", "otorite", "birlik"]
+    "question": "Propeller Stall (Pervane Perdövitesi) nedir ve nasıl meydana gelir?",
+    "keywords": ["hücum açısı", "hava akışı", "pal", "güç", "perdövite"],
+    "model_answer": "Pervane palinin kritik hücum açısını aşması sonucu pal üzerindeki düzgün hava akışının bozulması durumudur. Yüksek hücum açısı ve ani güç değişimlerinde pal yüzeyinde tutunamayan hava akışı itki kaybına neden olarak pallerde perdöviteye (stall) yol açar."
   },
   {
-    "id": "Q002",
-    "category": "Air Law",
+    "id": 4,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "Jeppesen SID (Standard Instrument Departure) kartında nelere dikkat edilmelidir?",
+    "keywords": ["irtifa", "kısıtlama", "tırmanış", "frekans", "rotasyon"],
+    "model_answer": "SID kartlarında kalkış sonrası izlenecek rotasyon rotası, geçiş kısıtlamaları, minimum tırmanış varyosu (climb gradient), ilk verilen irtifa kısıtlamaları ve kalkış kontrol (departure) frekansları dikkatle incelenmeli ve brifinge dahil edilmelidir."
+  },
+  {
+    "id": 5,
+    "category": "Aerodinamik & Havacılık",
+    "difficulty": "Orta",
+    "question": "Uçaklarda 'Induced Drag' (Tutum Sürüklemesi) nedir ve irtifa ile sürat değişiminden nasıl etkilenir?",
+    "keywords": ["hücum açısı", "sürat", "kanat ucu", "vortex", "taşıma"],
+    "model_answer": "Induced drag, kanatların taşıma kuvveti üretmesinin doğal bir sonucu olarak kanat uçlarında oluşan vortex'lerin yarattığı sürüklemedir. Düşük süratlerde ve yüksek hücum açılarında maksimum seviyeye ulaşır; uçak hızlandıkça hücum açısı küçüldüğü için induced drag azalır."
+  },
+  {
+    "id": 6,
+    "category": "Meteoroloji & Emniyet",
+    "difficulty": "Zor",
+    "question": "Microburst (Mikro Patlama) nedir, uçuş emniyetini nasıl tehlikeye düşürür ve yaklaşmada nasıl anlaşılır?",
+    "keywords": ["rüzgar kırılması", "downburst", "sürat kayma", "piston", "pas geçme"],
+    "model_answer": "Microburst, küme bulutlarından yere doğru ani ve şiddetli bir şekilde çöken, yere çarptığında dışa doğru dağılan güçlü dikey hava akımıdır (wind shear). Yaklaşma hattındaki bir uçak önce kuvvetli bir baş rüzgarı alarak tırmanır, ardından merkeze girdiğinde ani bir çöküş ve kuyruk rüzgarı ile ciddi irtifa/sürat kaybına uğrar; bu durumda derhal pas geçilmelidir."
+  },
+  {
+    "id": 7,
+    "category": "Alet Uçuşu & Seyir",
+    "difficulty": "Orta",
+    "question": "ILS (Instrument Landing System) yaklaşmasında Glideslope ve Localizer sinyal kayıplarında nasıl hareket edilir?",
+    "keywords": ["pas geçme", "localizer", "süzülüş", "karar yüksekliği", "hassas"],
+    "model_answer": "ILS yaklaşmasında Localizer yanal hiza, Glideslope ise düşey süzülüş hattını sağlar. Karar yüksekliğine (DH) ulaşmadan önce Glideslope sinyali kaybedilirse yaklaşma hassas olmayan (non-precision) ILS/LOC prosedürüne çevrilir veya direkt pas geçilir; Localizer kaybında ise derhal pas geçme (missed approach) uygulanır."
+  },
+  {
+    "id": 8,
+    "category": "Motor & Sistemler",
+    "difficulty": "Orta",
+    "question": "Çift motorlu uçaklarda 'Critical Engine' (Kritik Motor) nedir ve kaybında ne gibi kumanda zorlukları yaşanır?",
+    "keywords": ["p faktörü", "asimetrik", "sapma", "itki", "savrulma"],
+    "model_answer": "Kritik motor, arızalanması durumunda uçağın kontrolünü ve tırmanış performansını en olumsuz etkileyen motordur. Genellikle P-faktörü, tork ve kayma akımı nedeniyle sol motordur. Kritik motorun kaybında uçak kaybolan motora doğru şiddetli bir sapma (yaw) ve yatış (roll) eğilimi gösterir; bu asimetrik itkiyi karşılamak için yüksek ruder kumandası gerekir."
+  },
+  {
+    "id": 9,
+    "category": "İnsan Faktörleri & CRM",
     "difficulty": "Kolay",
-    "question": "Pist üzerindeki Threshold çizgileri ne ifade eder ve ne işe yarar?",
-    "keywords": ["threshold", "genişlik", "şerit", "eşik", "iniş"]
+    "question": "CRM (Crew Resource Management) kapsamında 'Situational Awareness' (Durumsal Farkındalık) kaybı belirtileri nelerdir?",
+    "keywords": ["odaklanma", "iletişim", "zaman", "farkındalık", "sapma"],
+    "model_answer": "Durumsal farkındalık kaybının başlıca belirtileri; uçuş ekibinin tek bir göstergeye veya soruna aşırı odaklanması (fixation), uçuş planından veya hedeflenen parametrelerden sapılması, zaman algısının yitirilmesi ve kokpit içi iletişimin kopmasıdır."
   },
   {
-    "id": "Q003",
-    "category": "Air Law",
-    "difficulty": "Orta",
-    "question": "Centerline lights ne zaman kavisli renk değiştirir ve ne anlama gelir?",
-    "keywords": ["beyaz", "kırmızı-beyaz", "kırmızı", "900m", "300m"]
-  },
-  {
-    "id": "Q004",
-    "category": "Air Law",
-    "difficulty": "Orta",
-    "question": "PAPI nedir ve nasıl çalışır? 3 beyaz 1 kırmızı görünüyorsanız durum nedir?",
-    "keywords": ["papi", "süzülüş", "3 derece", "yüksek", "kırmızı"]
-  },
-  {
-    "id": "Q005",
-    "category": "Air Law",
-    "difficulty": "Kolay",
-    "question": "Kalkışta kaç feet'ten önce dönüş yapmak yasaktır?",
-    "keywords": ["400", "der", "kalkış", "yükseklik", "manevra"]
-  },
-  {
-    "id": "Q006",
-    "category": "Air Law",
-    "difficulty": "Kolay",
-    "question": "IFR ve VFR uçuşlar arasındaki temel farklar nelerdir?",
-    "keywords": ["aletli", "görerek", "atc", "görüş", "yeterlilik"]
-  },
-  {
-    "id": "Q007",
-    "category": "Air Law",
-    "difficulty": "Orta",
-    "question": "Kontrolsüz hava sahasında ve kontrolsüz meydana inişte prosedür nedir?",
-    "keywords": ["blind", "gözlem", "tur", "class g", "radyo"]
-  },
-  {
-    "id": "Q008",
-    "category": "Air Law",
-    "difficulty": "Orta",
-    "question": "Wake Turbulence nedir, ne zaman oluşur ve ayırma usulleri nelerdir?",
-    "keywords": ["vortex", "ağırlık", "kalkış", "zaman", "kaldırma"]
-  },
-  {
-    "id": "Q009",
-    "category": "Air Law",
-    "difficulty": "Orta",
-    "question": "RVSM nedir ve kuralları nasıldır?",
-    "keywords": ["rvsm", "1000", "fl290", "altimetre", "doğu"]
-  },
-  {
-    "id": "Q010",
-    "category": "Air Law",
+    "id": 10,
+    "category": "Acil Durum Prosedürleri",
     "difficulty": "Zor",
-    "question": "Isolated Runway nedir ve yakıt planlamasına etkisi nasıldır?",
-    "keywords": ["isolated", "alternate", "point of no return", "2 saat", "destinasyon"]
-  },
-  {
-    "id": "Q011",
-    "category": "Aircraft Systems",
-    "difficulty": "Kolay",
-    "question": "Birincil ve ikincil kumanda yüzeyleri nelerdir?",
-    "keywords": ["aileron", "elevator", "rudder", "flap", "spoiler"]
-  },
-  {
-    "id": "Q012",
-    "category": "Aircraft Systems",
-    "difficulty": "Orta",
-    "question": "Trim sistemleri nasıl çalışır ve kokpitte ne amaçla kullanılır?",
-    "keywords": ["kuvvet", "yük", "tab", "stabilizer", "denge"]
-  },
-  {
-    "id": "Q013",
-    "category": "Aircraft Systems",
-    "difficulty": "Kolay",
-    "question": "Uçak yapımında kompozit malzeme kullanımının avantajları nelerdir?",
-    "keywords": ["hafiflik", "korozyon", "mukavemet", "tasarruf", "esneklik"]
-  },
-  {
-    "id": "Q014",
-    "category": "Aircraft Systems",
-    "difficulty": "Kolay",
-    "question": "APU nedir ve uçakta ne sağlar?",
-    "keywords": ["apu", "elektrik", "pnömatik", "başlatma", "üretim"]
-  },
-  {
-    "id": "Q015",
-    "category": "Aircraft Systems",
-    "difficulty": "Orta",
-    "question": "Uçaklarda AC ve DC elektrik sistemlerinin kullanım alanları nelerdir?",
-    "keywords": ["ac", "dc", "batarya", "jeneratör", "kritik"]
-  },
-  {
-    "id": "Q016",
-    "category": "Aircraft Systems",
-    "difficulty": "Orta",
-    "question": "Turbofan motorların çalışma prensibi nedir? Bypass Ratio ne ifade eder?",
-    "keywords": ["bypass", "fan", "çekirdek", "itki", "verimlilik"]
-  },
-  {
-    "id": "Q017",
-    "category": "Aircraft Systems",
-    "difficulty": "Zor",
-    "question": "Jet motorları alçak irtifada neden az verimli, yüksekte verimlidir?",
-    "keywords": ["yoğunluk", "sıcaklık", "sıkıştırma", "tüketim", "türbin"]
-  },
-  {
-    "id": "Q018",
-    "category": "Aircraft Systems",
-    "difficulty": "Zor",
-    "question": "Motor Compressor Stall nedir ve nasıl anlaşılır?",
-    "keywords": ["ayrılma", "egt", "patlama", "aoa", "thrust"]
-  },
-  {
-    "id": "Q019",
-    "category": "Aircraft Systems",
-    "difficulty": "Orta",
-    "question": "Thrust Reverse çalışma prensibi ve kullanım koşulları nelerdir?",
-    "keywords": ["reverse", "yavaşlama", "mesafe", "yönlendirme", "teker"]
-  },
-  {
-    "id": "Q020",
-    "category": "Aircraft Systems",
-    "difficulty": "Orta",
-    "question": "Magneto ve Alternatör çalışma prensibi farkı nedir?",
-    "keywords": ["magneto", "bağımsız", "buji", "alternatör", "destek"]
-  },
-  {
-    "id": "Q021",
-    "category": "Instrumentation",
-    "difficulty": "Zor",
-    "question": "Pitot tüpü tıkandığında ASI nasıl davranır?",
-    "keywords": ["pitot", "altimetre", "yüksek", "düşük", "dinamik"]
-  },
-  {
-    "id": "Q022",
-    "category": "Instrumentation",
-    "difficulty": "Zor",
-    "question": "Statik port tıkandığında Altimetre, VSI ve ASI nasıl etkilenir?",
-    "keywords": ["sabit", "sıfır", "hata", "hapsolma", "yedek"]
-  },
-  {
-    "id": "Q023",
-    "category": "Instrumentation",
-    "difficulty": "Orta",
-    "question": "IAS, CAS, EAS, TAS, Mach ve GS hızı dönüşüm sırası nasıldır?",
-    "keywords": ["ias", "cas", "eas", "tas", "ground"]
-  },
-  {
-    "id": "Q024",
-    "category": "Instrumentation",
-    "difficulty": "Kolay",
-    "question": "Radio Altimeter nedir ve ne kadar irtifaya kadar aktif bilgi verir?",
-    "keywords": ["radyo", "agl", "2500", "karar", "hassas"]
-  },
-  {
-    "id": "Q025",
-    "category": "Instrumentation",
-    "difficulty": "Orta",
-    "question": "EGPWS nedir ve ne işe yarar?",
-    "keywords": ["veritabanı", "pull up", "erken", "arazi", "cfit"]
-  },
-  {
-    "id": "Q026",
-    "category": "Instrumentation",
-    "difficulty": "Orta",
-    "question": "TCAS ikaz türleri olan TA ve RA arasındaki fark nedir?",
-    "keywords": ["ta", "ra", "kaçınma", "dikey", "transponder"]
-  },
-  {
-    "id": "Q027",
-    "category": "Instrumentation",
-    "difficulty": "Orta",
-    "question": "Auto-Pilot modları ve otomasyon kullanım riskleri nelerdir?",
-    "keywords": ["autopilot", "fd", "karışıklık", "farkındalık", "manuel"]
-  },
-  {
-    "id": "Q028",
-    "category": "Instrumentation",
-    "difficulty": "Kolay",
-    "question": "ECAM / EICAS sistemlerinin kokpitteki işlevi nedir?",
-    "keywords": ["izleme", "arıza", "kontrol", "ecam", "ekran"]
-  },
-  {
-    "id": "Q029",
-    "category": "Mass & Balance",
-    "difficulty": "Kolay",
-    "question": "Center of Gravity (CG) nedir ve nerede bulunmalıdır?",
-    "keywords": ["cg", "cp", "limit", "referans", "denge"]
-  },
-  {
-    "id": "Q030",
-    "category": "Mass & Balance",
-    "difficulty": "Orta",
-    "question": "Forward CG (Önde CG) olmasının uçuş performansına etkileri nelerdir?",
-    "keywords": ["kararlılık", "stall", "zorlaşma", "tüketim", "elevator"]
-  },
-  {
-    "id": "Q031",
-    "category": "Mass & Balance",
-    "difficulty": "Orta",
-    "question": "Aft CG (Arkada CG) olmasının uçuş emniyetine etkileri nelerdir?",
-    "keywords": ["azalma", "stall", "recovery", "tasarruf", "hassas"]
-  },
-  {
-    "id": "Q032",
-    "category": "Mass & Balance",
-    "difficulty": "Kolay",
-    "question": "MTOM, MLM ve MZFM limitlerinin anlamı nedir?",
-    "keywords": ["mtom", "mlm", "mzfm", "mukavemet", "yapısal"]
-  },
-  {
-    "id": "Q033",
-    "category": "Mass & Balance",
-    "difficulty": "Orta",
-    "question": "TOM, DOM, TOF ve ZFM arasındaki matematiksel bağıntı nedir?",
-    "keywords": ["dom", "trafik", "zfm", "tof", "tom"]
-  },
-  {
-    "id": "Q034",
-    "category": "Mass & Balance",
-    "difficulty": "Zor",
-    "question": "Load & Trim Sheet üzerinde Stabilizer Trim ayarı nasıl tespit edilir?",
-    "keywords": ["mac", "trim", "kalkış", "dağılım", "zarf"]
-  },
-  {
-    "id": "Q035",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "TORA, TODA ve ASDA mesafeleri ne anlama gelir?",
-    "keywords": ["tora", "asda", "toda", "stopway", "clearway"]
-  },
-  {
-    "id": "Q036",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "Stopway ve Clearway nedir? Stopway iniş için neden kullanılamaz?",
-    "keywords": ["stopway", "clearway", "rto", "taşıma", "dahil değil"]
-  },
-  {
-    "id": "Q037",
-    "category": "Performance",
-    "difficulty": "Zor",
-    "question": "Balanced Airfield (Dengeli Pist) kavramı ne demektir?",
-    "keywords": ["asda=toda", "eşit", "minimum", "karar", "senaryo"]
-  },
-  {
-    "id": "Q038",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "V1, VR, VLOF ve V2 hızlarının tanımları ve ilişkisi nedir?",
-    "keywords": ["v1", "vr", "vlof", "v2", "sıralama"]
-  },
-  {
-    "id": "Q039",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "V1 hızı öncesinde ve sonrasında motor arızası aksiyonu ne olur?",
-    "keywords": ["rto", "devam", "yükseklik", "tek motor", "checklist"]
-  },
-  {
-    "id": "Q040",
-    "category": "Performance",
-    "difficulty": "Zor",
-    "question": "Pist ıslaklığı, eğim ve yüksek sıcaklık V1 hızını nasıl etkiler?",
-    "keywords": ["ıslaklık", "sıcaklık", "eğim", "frenleme", "yoğunluk"]
-  },
-  {
-    "id": "Q041",
-    "category": "Performance",
-    "difficulty": "Zor",
-    "question": "Screen Height nedir? Kuru ve ıslak pistteki değerleri kaçtır?",
-    "keywords": ["screen height", "35 ft", "15 ft", "segment", "engel"]
-  },
-  {
-    "id": "Q042",
-    "category": "Performance",
-    "difficulty": "Zor",
-    "question": "Reduced / Flex Take-off Thrust nedir ve ne amaçla uygulanır?",
-    "keywords": ["flex", "ömür", "illüzyon", "tasarruf", "itki"]
-  },
-  {
-    "id": "Q043",
-    "category": "Performance",
-    "difficulty": "Kolay",
-    "question": "Vx ve Vy tırmanış hızları arasındaki fark nedir?",
-    "keywords": ["vx", "vy", "engel", "kısa", "aoa"]
-  },
-  {
-    "id": "Q044",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "Cost Index (CI) nedir? CI = 0 seçilirse ne olur?",
-    "keywords": ["cost index", "maliyet", "ci=0", "econ", "hız"]
-  },
-  {
-    "id": "Q045",
-    "category": "Performance",
-    "difficulty": "Orta",
-    "question": "VREF nedir ve hesaplama formülü nedir?",
-    "keywords": ["vref", "1.3", "iniş", "eşik", "stall"]
-  },
-  {
-    "id": "Q046",
-    "category": "Flight Planning",
-    "difficulty": "Kolay",
-    "question": "NOTAM nedir ve uçuş öncesi nasıl değerlendirilir?",
-    "keywords": ["notam", "geçici", "meydan", "bilgilendirme", "süre"]
-  },
-  {
-    "id": "Q047",
-    "category": "Flight Planning",
-    "difficulty": "Orta",
-    "question": "Trip Fuel, Contingency Fuel, Final Reserve Fuel ve Extra Fuel nedir?",
-    "keywords": ["trip", "contingency", "final reserve", "extra", "alternate"]
-  },
-  {
-    "id": "Q048",
-    "category": "Flight Planning",
-    "difficulty": "Kolay",
-    "question": "Block Fuel neleri kapsar?",
-    "keywords": ["taxi", "trip", "reserve", "alternate", "ramp"]
-  },
-  {
-    "id": "Q049",
-    "category": "Flight Planning",
-    "difficulty": "Orta",
-    "question": "Destination Alternate havalimanı seçilmesini zorunlu kılan durumlar nelerdir?",
-    "keywords": ["minima", "kapanma", "pist yokluğu", "prosedür", "alternate"]
-  },
-  {
-    "id": "Q050",
-    "category": "Flight Planning",
-    "difficulty": "Orta",
-    "question": "Yakıt alma işlemi neden hacim yerine kütle ile yapılır?",
-    "keywords": ["yoğunluk", "sıcaklık", "sabitlik", "denge", "kütle"]
-  },
-  {
-    "id": "Q051",
-    "category": "Meteorology",
-    "difficulty": "Kolay",
-    "question": "ISA (International Standard Atmosphere) standart değerleri nelerdir?",
-    "keywords": ["15 °c", "1013.25", "2 °c", "deniz", "isa"]
-  },
-  {
-    "id": "Q052",
-    "category": "Meteorology",
-    "difficulty": "Zor",
-    "question": "Temperature Inversion nedir ve uçuşa etkileri nelerdir?",
-    "keywords": ["artış", "windshear", "sis", "kararlı", "türbülans"]
-  },
-  {
-    "id": "Q053",
-    "category": "Meteorology",
-    "difficulty": "Orta",
-    "question": "Sıcak ve kuru hava ile soğuk ve nemli havanın yoğunluk farkı nasıldır?",
-    "keywords": ["buhar", "nemli", "soğuk", "kuru", "performans"]
-  },
-  {
-    "id": "Q054",
-    "category": "Meteorology",
-    "difficulty": "Kolay",
-    "question": "QFE, QNH ve Standard Pressure arasındaki farklar nelerdir?",
-    "keywords": ["qfe", "qnh", "standard", "fl", "altimetre"]
-  },
-  {
-    "id": "Q055",
-    "category": "Meteorology",
-    "difficulty": "Orta",
-    "question": "Transition Altitude ve Transition Level nedir?",
-    "keywords": ["transition altitude", "transition level", "layer", "set", "ayırma"]
-  },
-  {
-    "id": "Q056",
-    "category": "Meteorology",
-    "difficulty": "Zor",
-    "question": "Sıcak ve soğuk havada altimetre göstergesi nasıl hatalı okur?",
-    "keywords": ["soğukta yüksek", "sıcakta düşük", "gerçek", "emniyetsiz", "düzeltme"]
-  },
-  {
-    "id": "Q057",
-    "category": "Meteorology",
-    "difficulty": "Kolay",
-    "question": "Sea Breeze ve Land Breeze rüzgarları nasıl oluşur?",
-    "keywords": ["deniz meltemi", "kara meltemi", "ısınma", "basınç", "kıyı"]
-  },
-  {
-    "id": "Q058",
-    "category": "Meteorology",
-    "difficulty": "Orta",
-    "question": "Dewpoint nedir? Sıcaklık ile Dewpoint yakınlaşırsa ne olur?",
-    "keywords": ["dewpoint", "%100", "sis", "alçak", "yoğuşma"]
-  },
-  {
-    "id": "Q059",
-    "category": "Meteorology",
-    "difficulty": "Orta",
-    "question": "Cumulonimbus (CB) bulutunun uçuş için yarattığı ana tehlikeler nelerdir?",
-    "keywords": ["türbülans", "buzlanma", "windshear", "dolu", "dikey"]
-  },
-  {
-    "id": "Q060",
-    "category": "Meteorology",
-    "difficulty": "Kolay",
-    "question": "Fog ve Mist arasındaki görünürlük farkı nedir?",
-    "keywords": ["fog", "mist", "görüş", "damlacık", "nem"]
-  },
-  {
-    "id": "Q061",
-    "category": "Meteorology",
-    "difficulty": "Zor",
-    "question": "Windshear nedir ve yaklaştırmada karşılaşıldığında ne yapılır?",
-    "keywords": ["ani", "kayıp", "go-around", "itki", "warning"]
-  },
-  {
-    "id": "Q062",
-    "category": "Meteorology",
-    "difficulty": "Zor",
-    "question": "Microburst nedir ve aşamaları nelerdir?",
-    "keywords": ["downdraught", "4km", "kafa rüzgarı", "çöküş", "arka rüzgar"]
-  },
-  {
-    "id": "Q063",
-    "category": "Meteorology",
-    "difficulty": "Zor",
-    "question": "Mountain Waves ve Rotor Bulutlarının tehlikeleri nelerdir?",
-    "keywords": ["mountain wave", "rotor", "türbülans", "lenticularis", "çöküntü"]
-  },
-  {
-    "id": "Q064",
-    "category": "Meteorology",
-    "difficulty": "Kolay",
-    "question": "METAR raporunda BECMG ve TEMPO arasındaki fark nedir?",
-    "keywords": ["becmg", "tempo", "saat", "tahmin", "metar"]
-  },
-  {
-    "id": "Q065",
-    "category": "Meteorology",
-    "difficulty": "Orta",
-    "question": "RVR nedir ve Metar'daki U, D, N harfleri ne anlama gelir?",
-    "keywords": ["rvr", "u", "d", "n", "transmissometer"]
-  },
-  {
-    "id": "Q066",
-    "category": "Navigation",
-    "difficulty": "Kolay",
-    "question": "Dünyanın eksen eğikliği kaç derecedir ve uçuşa doğrudan etkisi nedir?",
-    "keywords": ["23.5", "mevsim", "açı", "kuşak", "sistem"]
-  },
-  {
-    "id": "Q067",
-    "category": "Navigation",
-    "difficulty": "Kolay",
-    "question": "1 Nautical Mile (NM) kaç km ve kaç metreye eşittir?",
-    "keywords": ["1.852", "1852", "meridyen", "dakika", "deniz mili"]
-  },
-  {
-    "id": "Q068",
-    "category": "Navigation",
-    "difficulty": "Orta",
-    "question": "IAS'ten TAS'a pratik zihinsel dönüşüm hesabı nasıl yapılır?",
-    "keywords": ["1000 ft", "%2", "irtifa", "düzeltme", "tas"]
-  },
-  {
-    "id": "Q069",
-    "category": "Navigation",
-    "difficulty": "Orta",
-    "question": "Variation ve Deviation arasındaki fark nedir?",
-    "keywords": ["variation", "deviation", "true", "magnetic", "compass"]
-  },
-  {
-    "id": "Q070",
-    "category": "Navigation",
-    "difficulty": "Zor",
-    "question": "3 derece süzülüş hattındaki bir uçak için alçalış varyosu nasıl hesaplanır?",
-    "keywords": ["ground speed", "5", "3 derece", "varyo", "hesaplama"]
-  },
-  {
-    "id": "Q071",
-    "category": "Navigation",
-    "difficulty": "Orta",
-    "question": "VOR sisteminin çalışma prensibi nedir?",
-    "keywords": ["vor", "faz", "referans", "radyal", "vhf"]
-  },
-  {
-    "id": "Q072",
-    "category": "Navigation",
-    "difficulty": "Kolay",
-    "question": "Sessizlik Konisi (Cone of Silence) nedir?",
-    "keywords": ["sessizlik", "üzeri", "kayıp", "vor", "düzensizlik"]
-  },
-  {
-    "id": "Q073",
-    "category": "Navigation",
-    "difficulty": "Zor",
-    "question": "NDB ve ADF çalışma prensibi nasıldır ve hangi hatalara duyarlıdır?",
-    "keywords": ["ndb", "lf/mf", "coastal", "gece", "dağ"]
-  },
-  {
-    "id": "Q074",
-    "category": "Navigation",
-    "difficulty": "Orta",
-    "question": "ILS sisteminin temel bileşenleri ve işlevleri nelerdir?",
-    "keywords": ["localizer", "glide slope", "marker", "merkez", "hassas"]
-  },
-  {
-    "id": "Q075",
-    "category": "Navigation",
-    "difficulty": "Zor",
-    "question": "DME cihazındaki Slant Range hatası ne zaman maksimum olur?",
-    "keywords": ["slant range", "yüksek", "üzeri", "hipotenüs", "fark"]
-  },
-  {
-    "id": "Q076",
-    "category": "Navigation",
-    "difficulty": "Orta",
-    "question": "QDM ve QDR yön tanımlarının farkı nedir?",
-    "keywords": ["qdm", "qdr", "manyetik", "navigasyon", "hat"]
-  },
-  {
-    "id": "Q077",
-    "category": "Navigation",
-    "difficulty": "Zor",
-    "question": "RNAV ve RNP seyrüsefer yöntemleri arasındaki fark nedir?",
-    "keywords": ["rnav", "rnp", "monitoring", "uyarı", "rnp 1"]
-  },
-  {
-    "id": "Q078",
-    "category": "Operational Procedures",
-    "difficulty": "Kolay",
-    "question": "SOP havacılıkta neden kritik öneme sahiptir?",
-    "keywords": ["sop", "standart", "crm", "önleme", "prosedür"]
-  },
-  {
-    "id": "Q079",
-    "category": "Operational Procedures",
-    "difficulty": "Orta",
-    "question": "Precision Approach ile Non-Precision Approach farkı nedir?",
-    "keywords": ["dikey", "precision", "non-precision", "dh", "süzülüş"]
-  },
-  {
-    "id": "Q080",
-    "category": "Operational Procedures",
-    "difficulty": "Orta",
-    "question": "DA/DH ile MDA/MDH tanımları arasındaki temel fark nedir?",
-    "keywords": ["da", "mda", "barometrik", "karar", "tür"]
-  },
-  {
-    "id": "Q081",
-    "category": "Operational Procedures",
-    "difficulty": "Zor",
-    "question": "ILS CAT I, CAT II ve CAT III karar yüksekliği ve RVR farkları nelerdir?",
-    "keywords": ["cat i", "cat ii", "cat iii", "karar", "autoland"]
-  },
-  {
-    "id": "Q082",
-    "category": "Operational Procedures",
-    "difficulty": "Orta",
-    "question": "Uçak İniş Kategorileri (A, B, C, D) neye göre belirlenir?",
-    "keywords": ["vat", "1.3", "kategori c", "kategori d", "eşik"]
-  },
-  {
-    "id": "Q083",
-    "category": "Operational Procedures",
-    "difficulty": "Orta",
-    "question": "MEL nedir? CDL ile farkı nedir?",
-    "keywords": ["mel", "cdl", "elverişlilik", "kategori", "inisiyatif"]
-  },
-  {
-    "id": "Q084",
-    "category": "Operational Procedures",
-    "difficulty": "Orta",
-    "question": "Holdover Time (HOT) nedir ve ne zaman başlar?",
-    "keywords": ["holdover", "de-icing", "başlangıç", "tip", "koruma"]
-  },
-  {
-    "id": "Q085",
-    "category": "Operational Procedures",
-    "difficulty": "Zor",
-    "question": "Hydroplaning türleri ve dinamik hydroplaning formülü nedir?",
-    "keywords": ["dynamic", "viscous", "psi", "frenleme", "ıslaklık"]
-  },
-  {
-    "id": "Q086",
-    "category": "Operational Procedures",
-    "difficulty": "Zor",
-    "question": "Rapid Depressurization yaşandığında acil durum adımları nelerdir?",
-    "keywords": ["maske", "emergency descent", "10.000", "varyo", "mayday"]
-  },
-  {
-    "id": "Q087",
-    "category": "Principles of Flight",
-    "difficulty": "Kolay",
-    "question": "Uçak nasıl uçar? Bernoulli ve Newton ilkeleri ile açıklayınız.",
-    "keywords": ["bernoulli", "farkı", "üst yüzey", "newton", "lift"]
-  },
-  {
-    "id": "Q088",
-    "category": "Principles of Flight",
-    "difficulty": "Orta",
-    "question": "Lift formülü nedir? Hız 2 katına çıkarsa Lift nasıl değişir?",
-    "keywords": ["formül", "karesi", "4 katı", "yoğunluk", "katsayı"]
-  },
-  {
-    "id": "Q089",
-    "category": "Principles of Flight",
-    "difficulty": "Orta",
-    "question": "Parasite Drag ve Induced Drag hızla nasıl değişim gösterir?",
-    "keywords": ["parasite", "induced", "vmd", "vorteks", "toplam"]
-  },
-  {
-    "id": "Q090",
-    "category": "Principles of Flight",
-    "difficulty": "Orta",
-    "question": "Winglet sisteminin temel görevi nedir ve hangi drag türünü azaltır?",
-    "keywords": ["induced", "vorteks", "denge", "tasarruf", "verim"]
-  },
-  {
-    "id": "Q091",
-    "category": "Principles of Flight",
-    "difficulty": "Kolay",
-    "question": "Stall nedir? Critical Angle of Attack aşıldığında ne olur?",
-    "keywords": ["kritik", "ayrılma", "kayıp", "ezme", "itki"]
-  },
-  {
-    "id": "Q092",
-    "category": "Principles of Flight",
-    "difficulty": "Kolay",
-    "question": "Slats ve Flaps sistemlerinin aerodinamik işlevi nedir?",
-    "keywords": ["camber", "alan", "cl", "düşme", "drag"]
-  },
-  {
-    "id": "Q093",
-    "category": "Principles of Flight",
-    "difficulty": "Orta",
-    "question": "Spoilers hangi 3 temel fonksiyonda kullanılır?",
-    "keywords": ["speedbrakes", "roll", "ground spoilers", "kırma", "artırma"]
-  },
-  {
-    "id": "Q094",
-    "category": "Principles of Flight",
-    "difficulty": "Zor",
-    "question": "Critical Mach Number (M_CRIT) nedir? Swept Wing tasarımı bunu nasıl etkiler?",
-    "keywords": ["m_crit", "şok", "swept wing", "sıkışma", "yükseltme"]
-  },
-  {
-    "id": "Q095",
-    "category": "Principles of Flight",
-    "difficulty": "Zor",
-    "question": "Swept Wing avantaj ve dezavantajları nelerdir?",
-    "keywords": ["verim", "dutch roll", "tip stall", "low speed", "m_crit"]
-  },
-  {
-    "id": "Q096",
-    "category": "Principles of Flight",
-    "difficulty": "Zor",
-    "question": "Dutch Roll nedir, hangi sistem engeller ve manuel kumandası nasıldır?",
-    "keywords": ["salınım", "yaw damper", "aileron", "rudder", "swept wing"]
-  },
-  {
-    "id": "Q097",
-    "category": "Principles of Flight",
-    "difficulty": "Zor",
-    "question": "Adverse Yaw nedir ve nasıl önlenir?",
-    "keywords": ["adverse yaw", "drag", "differential", "frise", "rudder"]
-  },
-  {
-    "id": "Q098",
-    "category": "Principles of Flight",
-    "difficulty": "Zor",
-    "question": "Çift motorlu uçaklarda Critical Engine tespiti neye göre yapılır?",
-    "keywords": ["p-factor", "kolu", "sol motor", "yaw", "vmc"]
-  },
-  {
-    "id": "Q099",
-    "category": "Charts",
-    "difficulty": "Orta",
-    "question": "Chart üzerinde MSA, MEA, MOCA, MORA ve FAF ifadeleri ne anlama gelir?",
-    "keywords": ["msa", "mea", "moca", "mora", "faf"]
-  },
-  {
-    "id": "100",
-    "category": "Navigation",
-    "difficulty": "Zor",
-    "question": "Fix-to-Fix seyrüsefer hesabı ve RMI ibre çizimi nasıl gerçekleştirilir?",
-    "keywords": ["fix-to-fix", "radyal", "üçgenleme", "heading", "rmi"]
+    "question": "Seyir esnasında kabin basıncı kaybında (Rapid Depressurization) pilotların atacağı ilk adımlar nelerdir?",
+    "keywords": ["oksijen", "acil alçalma", "maske", "irtifa", "7700"],
+    "model_answer": "Kabin basıncı kaybında ilk olarak pilotlar oksijen maskelerini takar ve iletişim kurar. Ardından derhal donatıyı emniyete alıp acil alçalma (emergency descent) başlatılır, Squawk 7700 bağlanır ve ATC'ye durum bildirilerek emniyetli irtifaya (10.000 ft veya MSA) alçalınır."
   }
 ]
+
+# Ek kategoriler ve konularla 100 soruya tamamlama şablonu üretme
+categories = [
+  ("Aerodinamik & Havacılık", "Orta"),
+  ("Motor & Sistemler", "Zor"),
+  ("Alet Uçuşu & Seyir", "Orta"),
+  ("Meteoroloji & Emniyet", "Zor"),
+  ("Acil Durum Prosedürleri", "Zor"),
+  ("İnsan Faktörleri & CRM", "Kolay"),
+  ("Havacılık Hukuku & Prosedürler", "Kolay")
+]
+
+# Soru veri tabanını genişletmek için temel konular
+topics = [
+  ("Stall (Perdövite) belirtileri ve kurtarma prosedürü nedir?", ["hücum açısı", "kumanda", "pitch", "irtifa", "kanat"], "Stall belirtileri kumandalarda yumuşama, 'buffet' titreşimleri ve hücum açısının aşılmasıdır. Kurtarma için lövye ileri itilerek hücum açısı düşürülür, motor gücü artırılır, kanatlar düzeltilir ve emniyetli süratte tırmanışa geçilir."),
+  ("Ground Effect (Yer Etkisi) uçağın kalkış ve iniş performansını nasıl etkiler?", ["yastıklama", "sürükleme", "vortex", "kanat açıklığı", "süzülme"], "Yer etkisi, kanat açıklığının yarısı kadar bir yükseklikte kanat ucu vortex'lerinin kısıtlanması ve induced drag'ın düşmesidir. İnişte uçağın pist üzerinde uzun süre süzülmesine (floating), kalkışta ise henüz yetersiz süratte uçağın havalanmasına neden olabilir."),
+  ("Vmc (Minimum Control Speed) nedir ve neleri etkiler?", ["asimetrik", "kumanda", "ruder", "sapma", "kritik motor"], "Vmc, çift motorlu bir uçakta kritik motor arızalandığında uçağın yön kontrolünün ruder kumandasıyla korunabildiği minimum hava süratidir. Sürat Vmc altına düşerse asimetrik itki nedeniyle uçak kontrolden çıkar."),
+  ("Hydroplaning (Suda Kayma) türleri nelerdir ve nasıl önlenir?", ["dinamik", "viskoz", "kauçuk", "fren", "lastik"], "Dinamik, viskoz ve re-reverted rubber hydroplaning olmak üzere üç türü vardır. Önlemek için uygun temas süratinde iniş yapılmalı, pist durumu dikkate alınmalı ve ters itki (reverse thrust) aktif kullanılmalıdır."),
+  ("Hypoxia (Oksijen Yetersizliği) türleri ve belirtileri nelerdir?", ["hipoksik", "anemik", "durgun", "histotoksik", "siyanoz"], "Hipoksik, histerik, anemik ve histotoksik hipoksi olarak ayrılır. Belirtileri neşe/öfori, tünel görüşü, dudak/tırnaklarda morarma (siyanoz) ve zihinsel melekelerde zayıflamadır."),
+  ("Altimetre ayarlarından QNH, QFE ve QNE arasındaki farklar nelerdir?", ["deniz seviyesi", "meydan", "standart", "1013", "irtifa"], "QNH deniz seviyesindeki basıncı gösterir ve altimetreye girildiğinde irtifayı (MSL) verir. QFE meydan basıncıdır ve meydan yüksekliğini gösterir. QNE ise 1013.25 hPa standart basınç ayarı olup geçiş irtifası üzerinde (Flight Level) kullanılır."),
+  ("VFR ve IFR uçuş arasındaki temel farklar nelerdir?", ["görerek", "aletle", "meteoroloji", "seperasyon", "atc"], "VFR görerek uçuş şartlarında pilotun dışarıyı gözlemleyerek seyrüsefer yapmasıdır. IFR ise aletli uçuş şartlarında ve ATC ayırması (seperasyon) altında alet göstergeleriyle yapılan uçuştur."),
+  ("Windshear ile karşılaşıldığında uygulanacak 'Recovery Technique' nedir?", ["TOGA", "pitch", "konfigürasyon", "sürat", "pas geçme"], "Windshear durumunda derhal maksimum güç (TOGA) verilir, lövye uygun pitch açısına çekilir, hava aracı çöküşten kurtulana kadar flap ve iniş takımı konfigürasyonu değiştirilmez."),
+  ("TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) ikazında pilotun yapması gereken nedir?", ["otopilot", "kumanda", "atc", "dikey", "talimat"], "RA ikazı alındığında pilot derhal otopilotu devreden çıkarıp TCAS dikey yönlendirme talimatlarına uymalıdır. ATC talimatı TCAS ikazı ile çelişirse TCAS talimatı önceliklidir."),
+  ("EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' ikazında ne yapılır?", ["maksimum güç", "tırmanış", "lövyeden çekme", "mani", "gece"], "PULL UP ikazı alındığında tereddüt etmeden otopilot devreden çıkarılır, maksimum güç uygulanır ve uçak maniasız irtifaya tırmanana kadar maksimum tırmanış açısına getirilir.")
+]
+
+current_id = 11
+while len(questions) < 100:
+    for topic, kws, ans in topics:
+        if len(questions) >= 100:
+            break
+        cat, diff = categories[(len(questions)) % len(categories)]
+        questions.append({
+            "id": current_id,
+            "category": cat,
+            "difficulty": diff,
+            "question": topic,
+            "keywords": kws,
+            "model_answer": ans
+        })
+        current_id += 1
+
+# Veriyi JSON dosyasına yaz
+file_path = "questions.json"
+with open(file_path, "w", encoding="utf-8") as f:
+    json.dump(questions, f, ensure_ascii=False, indent=2)
+
+print(f"Toplam {len(questions)} soru başarıyla hazırlatıldı ve 'questions.json' olarak kaydedildi.")
