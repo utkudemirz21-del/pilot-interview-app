@@ -190,7 +190,7 @@ st.markdown("""
     .stApp { background: var(--paper) !important; color: var(--ink) !important; }
     header[data-testid="stHeader"] { background: transparent !important; }
     footer, #MainMenu { visibility: hidden; }
-    .block-container { padding-top: 2rem; max-width: 1280px; }
+    .block-container { padding-top: 2rem; max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; }
 
     /* ---------- Yan panel (kokpit paneli) ---------- */
     section[data-testid="stSidebar"] {
@@ -548,7 +548,7 @@ st.markdown("""
             #030D1D !important;
         color: #EAF2FF !important;
     }
-    .block-container { max-width: 1500px; padding-top: 1.5rem; padding-bottom: 3rem; }
+    .block-container { max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; padding-top: 1.5rem; padding-bottom: 3rem; }
     [data-testid="stMain"] { background: transparent !important; }
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #07172C 0%, #061225 100%) !important;
