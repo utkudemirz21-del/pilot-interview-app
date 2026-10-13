@@ -26,153 +26,214 @@ def init_supabase() -> Client:
 
 supabase = init_supabase()
 
-# 🎨 ULTRA MODERN UI, PRESTİJLİ FONT VE ANİMASYON CSS KODLARI
+# 🎨 TASARIM SİSTEMİ — "Flight Deck"
+# Palet : Gece paneli #0A1626 · Harita kâğıdı #EDF0F4 · Mürekkep #0E1A2B
+#         Kehribar (uyarı lambası) #F2A81D · Enstrüman yeşili #2FBF8F · Alarm kırmızısı #D8483F · Gökyüzü #3C7DD9
+# Yazı  : Barlow Semi Condensed (başlık / sayısal okumalar, hava yolu tabelası havası) + IBM Plex Sans (metin)
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-    }
-
-    h1, h2, h3, h4, .hero-title, .question-title {
-        font-family: 'Outfit', sans-serif !important;
-    }
-
-    .stApp { 
-        background: #f8fafc !important; 
-        color: #0f172a !important; 
-    }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    :root {
+        --panel: #0A1626;
+        --panel-2: #12263F;
+        --panel-line: #223A5A;
+        --paper: #EDF0F4;
+        --card: #FFFFFF;
+        --ink: #0E1A2B;
+        --ink-soft: #55657A;
+        --line: #D5DBE4;
+        --amber: #F2A81D;
+        --amber-deep: #B97A00;
+        --green: #2FBF8F;
+        --red: #D8483F;
+        --sky: #3C7DD9;
     }
 
-    .animated-element {
-        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+    html, body, [class*="css"] { font-family: 'IBM Plex Sans', sans-serif; }
+    h1, h2, h3, h4, .display { font-family: 'Barlow Semi Condensed', sans-serif !important; letter-spacing: 0.1px; }
 
-    section[data-testid="stSidebar"] { 
-        background: linear-gradient(180deg, #071527 0%, #0b2246 100%) !important; 
-        border-right: 1px solid #1e293b;
-    }
-    section[data-testid="stSidebar"] label { color: #f8fafc !important; font-weight: 600 !important; }
+    .stApp { background: var(--paper) !important; color: var(--ink) !important; }
+    header[data-testid="stHeader"] { background: transparent !important; }
+    footer, #MainMenu { visibility: hidden; }
+    .block-container { padding-top: 2rem; max-width: 1280px; }
 
-    .hero-banner {
-        background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 50%, #2563eb 100%);
-        border-radius: 24px; 
-        padding: 40px; 
-        color: #ffffff !important; 
-        margin-bottom: 28px;
-        box-shadow: 0 20px 35px -10px rgba(37, 99, 235, 0.3);
-        position: relative;
-        overflow: hidden;
+    /* ---------- Yan panel (kokpit paneli) ---------- */
+    section[data-testid="stSidebar"] {
+        background: var(--panel) !important;
+        border-right: 1px solid var(--panel-line);
     }
-    .hero-banner::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -10%;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
+    section[data-testid="stSidebar"] label p,
+    section[data-testid="stSidebar"] label { color: #C9D6E8 !important; font-weight: 500 !important; }
+    section[data-testid="stSidebar"] hr { border-color: var(--panel-line) !important; }
+    section[data-testid="stSidebar"] .stButton button {
+        background: transparent !important;
+        color: #E6EEF8 !important;
+        border: 1px solid var(--panel-line) !important;
+        border-radius: 8px !important;
+        font-weight: 500;
+    }
+    section[data-testid="stSidebar"] .stButton button:hover {
+        border-color: var(--amber) !important;
+        color: var(--amber) !important;
+    }
+    .side-brand { padding: 6px 0 14px 0; }
+    .side-brand .name { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 1.55rem; color: #fff; line-height: 1.1; }
+    .side-brand .name span { color: var(--amber); }
+    .side-brand .who { color: #8FA8C8; font-size: 0.82rem; margin-top: 6px; word-break: break-all; }
+    .side-stat { display:flex; justify-content:space-between; align-items:baseline; padding: 8px 0; border-bottom: 1px solid var(--panel-line); color:#8FA8C8; font-size:0.85rem; }
+    .side-stat b { color:#fff; font-family:'Barlow Semi Condensed',sans-serif; font-size:1.15rem; font-weight:600; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+        position: relative; overflow: hidden;
+        background: var(--panel);
+        border-radius: 14px;
+        padding: 36px 40px 40px 40px;
+        margin-bottom: 20px;
+        color: #fff;
+        animation: heroIn .7s cubic-bezier(.16,1,.3,1) both;
+    }
+    .hero::before { /* ufuk çizgisi + irtifa çentikleri */
+        content: ''; position: absolute; inset: 0;
+        background:
+            linear-gradient(180deg, transparent 0 58%, rgba(60,125,217,.22) 58.2%, rgba(60,125,217,.06) 100%),
+            repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 48px);
         pointer-events: none;
     }
-    .hero-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .hero-subtitle { font-size: 1.1rem; color: #cbd5e1 !important; max-width: 700px; line-height: 1.6; }
+    .hero::after { /* sağda kehribar kılavuz çizgisi */
+        content: ''; position: absolute; right: 40px; top: 0; bottom: 0; width: 3px;
+        background: linear-gradient(180deg, var(--amber), rgba(242,168,29,0));
+        opacity: .9;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero .title { font-family:'Barlow Semi Condensed',sans-serif; font-size: 2.7rem; font-weight: 700; line-height: 1.05; margin: 0 0 10px 0; }
+    .hero .sub { color: #B9C9DE; font-size: 1.02rem; max-width: 620px; line-height: 1.6; }
+    .hero.center { text-align: center; }
+    .hero.center .sub { margin: 0 auto; }
+    @keyframes heroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-    .main-card {
-        background: #ffffff !important; 
-        border-radius: 24px;
-        border: 1px solid #e2e8f0; 
-        padding: 32px; 
-        margin-bottom: 24px;
-        box-shadow: 0 10px 30px -5px rgba(0,0,0,0.04);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* ---------- Enstrüman şeridi (özet metrikler) ---------- */
+    .strip {
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+        margin-bottom: 22px; overflow: hidden;
     }
-    .main-card:hover {
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
-        border-color: #cbd5e1;
-        transform: translateY(-2px);
-    }
-    .question-title { font-size: 1.45rem; font-weight: 700; color: #0f172a !important; margin-top: 16px; line-height: 1.5; }
-    
-    .badge-category {
-        background-color: #eff6ff !important; color: #1d4ed8 !important;
-        border: 1px solid #bfdbfe !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem;
-        letter-spacing: 0.3px;
-    }
-    .badge-difficulty {
-        background-color: #f1f5f9 !important; color: #334155 !important;
-        border: 1px solid #cbd5e1 !important; padding: 8px 18px; border-radius: 30px; font-weight: 700; font-size: 0.85rem; margin-left: 8px;
-    }
+    .strip .cell { padding: 16px 20px; border-right: 1px solid var(--line); }
+    .strip .cell:last-child { border-right: none; }
+    .strip .k { color: var(--ink-soft); font-size: 0.8rem; margin-bottom: 4px; }
+    .strip .v { font-family:'Barlow Semi Condensed',sans-serif; font-size: 1.9rem; font-weight: 600; color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .strip .v small { font-size: 0.95rem; color: var(--ink-soft); font-weight: 500; margin-left: 4px; }
 
-    .cockpit-card {
-        background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1000&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center;
-        border-radius: 24px;
-        padding: 28px;
-        color: #ffffff !important;
-        box-shadow: 0 12px 28px -5px rgba(15, 23, 42, 0.25);
-        margin-bottom: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+    /* ---------- Soru kartı (briefing) ---------- */
+    .brief {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 5px solid var(--amber);
+        border-radius: 12px;
+        padding: 26px 30px;
+        margin-bottom: 22px;
     }
+    .tags { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
+    .tag-cat { background: var(--panel); color:#fff; border-radius: 6px; padding: 5px 12px; font-size: 0.82rem; font-weight: 500; }
+    .tag-diff { border-radius: 6px; padding: 5px 12px; font-size: 0.82rem; font-weight: 600; border: 1px solid; }
+    .tag-diff.kolay { color:#13795B; border-color:#9ADBC4; background:#EAF8F2; }
+    .tag-diff.orta  { color:#8A5B00; border-color:#F2D18A; background:#FEF6E1; }
+    .tag-diff.zor   { color:#A82F28; border-color:#EFB1AC; background:#FDEEEC; }
+    .q-text { font-family:'Barlow Semi Condensed',sans-serif; font-size: 1.7rem; font-weight: 600; color: var(--ink); line-height: 1.3; max-width: 760px; }
 
-    .tactic-card {
-        background: #ffffff !important;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        padding: 24px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        margin-bottom: 20px;
+    /* ---------- Mikrofon paneli ---------- */
+    .st-key-mic_card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 18px 22px 8px 22px;
+        margin-bottom: 18px;
     }
+    .mic-h { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:1.15rem; color:var(--ink); }
+    .mic-s { color: var(--ink-soft); font-size: 0.88rem; margin: 2px 0 10px 0; }
 
-    .mic-button-wrapper {
-        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-        border: 2px solid #e2e8f0;
-        border-radius: 20px;
-        padding: 16px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-        margin-bottom: 16px;
-        transition: all 0.3s ease;
-    }
-    .mic-button-wrapper:hover {
-        border-color: #2563eb;
-        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.12);
-    }
-
+    /* ---------- Form elemanları ---------- */
+    .stTextArea label p { font-weight: 600; color: var(--ink); }
     .stTextArea textarea {
-        background-color: #ffffff !important; color: #0f172a !important;
-        border: 1.5px solid #cbd5e1 !important; border-radius: 16px !important; padding: 18px !important;
-        font-size: 1.05rem !important;
+        background: var(--card) !important; color: var(--ink) !important;
+        border: 1.5px solid var(--line) !important; border-radius: 10px !important;
+        padding: 14px 16px !important; font-size: 1rem !important; line-height: 1.55;
     }
+    .stTextArea textarea:focus { border-color: var(--sky) !important; box-shadow: 0 0 0 3px rgba(60,125,217,.18) !important; }
+    .stTextInput input { border-radius: 10px !important; }
 
-    .side-card {
-        background: #ffffff !important; border-radius: 24px;
-        border: 1px solid #e2e8f0; padding: 28px; margin-bottom: 20px;
-        box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.04);
+    .stButton button { border-radius: 10px; font-weight: 600; padding: 0.55rem 1rem; transition: background .15s, border-color .15s; }
+    .stButton button[kind="primary"], .stButton button[data-testid="stBaseButton-primary"] {
+        background: var(--amber) !important; color: #1A1203 !important; border: 1px solid var(--amber) !important;
     }
-    .progress-percent { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; color: #2563eb !important; letter-spacing: -1px; }
+    .stButton button[kind="primary"]:hover, .stButton button[data-testid="stBaseButton-primary"]:hover {
+        background: #FFBD3A !important; border-color: #FFBD3A !important; color:#1A1203 !important;
+    }
+    .stButton button[kind="secondary"], .stButton button[data-testid="stBaseButton-secondary"] {
+        background: var(--card); color: var(--ink); border: 1.5px solid var(--line);
+    }
+    .stButton button[kind="secondary"]:hover, .stButton button[data-testid="stBaseButton-secondary"]:hover {
+        border-color: var(--ink); color: var(--ink);
+    }
+    button:focus-visible { outline: 3px solid var(--sky) !important; outline-offset: 2px; }
 
-    div[data-testid="stMetric"] {
-        background: #ffffff !important;
-        padding: 20px;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    /* ---------- Karne (skor göstergesi) ---------- */
+    .report {
+        background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+        padding: 26px 30px; margin-top: 8px; margin-bottom: 22px;
+        display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: center;
     }
+    .gauge { text-align: center; }
+    .gauge svg { width: 100%; max-width: 220px; height: auto; display:block; margin: 0 auto; }
+    .gauge .num { font-family:'Barlow Semi Condensed',sans-serif; font-size: 2.6rem; font-weight: 700; fill: var(--ink); }
+    .gauge .of  { font-size: 0.8rem; fill: var(--ink-soft); }
+    .verdict .label { font-family:'Barlow Semi Condensed',sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+    .verdict .desc { color: var(--ink-soft); line-height: 1.55; margin-bottom: 14px; }
+    .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top: 6px; }
+    .chips-title { font-size: 0.8rem; color: var(--ink-soft); margin-top: 10px; font-weight: 600; }
+    .chip { border-radius: 6px; padding: 4px 10px; font-size: 0.82rem; font-weight: 500; border: 1px solid; }
+    .chip.ok   { color:#13795B; background:#EAF8F2; border-color:#9ADBC4; }
+    .chip.miss { color:#7A5A12; background:#FEF6E1; border-color:#F2D18A; }
+
+    .model-answer {
+        background: var(--panel); color: #E6EEF8; border-radius: 12px;
+        padding: 22px 28px; margin-bottom: 22px; border-left: 5px solid var(--green);
+    }
+    .model-answer .h { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:1.05rem; color: var(--green); margin-bottom: 8px; }
+    .model-answer .t { line-height: 1.7; font-size: 1rem; max-width: 760px; }
+
+    /* ---------- İpucu ---------- */
+    .tip {
+        background: transparent; border: 1px dashed #B5C0CF; border-radius: 12px;
+        padding: 16px 22px; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6;
+    }
+    .tip b { color: var(--ink); }
+
+    /* ---------- Uçuş ilerlemesi ---------- */
+    .flight {
+        background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px;
+    }
+    .flight .h { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:1.1rem; color: var(--ink); margin-bottom: 14px; }
+    .flight .pct { font-family:'Barlow Semi Condensed',sans-serif; font-size: 2.6rem; font-weight: 700; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+    .flight .track { position: relative; height: 4px; background: var(--line); border-radius: 4px; margin: 22px 8px 10px 8px; }
+    .flight .fill  { position:absolute; left:0; top:0; bottom:0; background: var(--amber); border-radius: 4px; }
+    .flight .dot   { position:absolute; top:50%; width: 16px; height: 16px; border-radius: 50%; background: var(--panel); border: 3px solid var(--amber); transform: translate(-50%, -50%); }
+    .flight .end   { position:absolute; right:-8px; top:50%; width: 10px; height: 10px; background: var(--ink); transform: translateY(-50%) rotate(45deg); }
+    .flight .legend { display:flex; justify-content:space-between; color: var(--ink-soft); font-size: 0.8rem; margin: 0 4px; }
+    .flight .note { margin-top: 14px; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.5; }
+    .flight .note b { color: var(--ink); }
+
+    @media (max-width: 800px) {
+        .strip { grid-template-columns: repeat(2, 1fr); }
+        .strip .cell:nth-child(2) { border-right: none; }
+        .strip .cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+        .report { grid-template-columns: 1fr; }
+        .hero { padding: 26px 22px 30px 22px; }
+        .hero .title { font-size: 2rem; }
+        .q-text { font-size: 1.35rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { .hero { animation: none; } }
 </style>
 """, unsafe_allow_html=True)
 
@@ -276,23 +337,48 @@ def reset_user_progress():
     st.session_state.last_processed_audio = None
     save_user_progress()
 
+# --- GÖRSEL YARDIMCILAR (sadece UI) ---
+SKOR_BILGI = {
+    100: ("Mükemmel", "#2FBF8F", "Yanıtınız beklenen cevapla tam uyumlu. Bu seviyeyi koruyun."),
+    80:  ("Çok iyi", "#2FBF8F", "Yanıtınız büyük oranda yeterli. Eksik kalan kavramları ekleyerek 100'e çıkabilirsiniz."),
+    60:  ("Orta seviye", "#F2A81D", "Temel fikir var ancak bazı önemli detaylar eksik kaldı."),
+    30:  ("Zayıf", "#D8483F", "Doğru yanıttan uzak kalındı. Örnek cevabı okuyup tekrar deneyin."),
+    0:   ("Yetersiz", "#D8483F", "Hedeflenen açıklamalar yanıtınızda bulunamadı."),
+}
+
+def gauge_svg(puan: int, renk: str) -> str:
+    # Yarım daire ibreli gösterge: yay uzunluğu = pi * 80
+    uzunluk = 251.33
+    dolu = uzunluk * (puan / 100)
+    return f"""
+    <svg viewBox="0 0 200 124" role="img" aria-label="Skor {puan} / 100">
+        <path d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="#E3E8EF" stroke-width="14" stroke-linecap="round"/>
+        <path d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="{renk}" stroke-width="14" stroke-linecap="round"
+              stroke-dasharray="{dolu:.1f} {uzunluk:.1f}"/>
+        <text x="100" y="92" text-anchor="middle" class="num">{puan}</text>
+        <text x="100" y="114" text-anchor="middle" class="of">/ 100</text>
+    </svg>"""
+
+def chips_html(items, css_class):
+    return "".join(f'<span class="chip {css_class}">{k}</span>' for k in items)
+
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
     st.markdown("""
-    <div class="hero-banner animated-element" style="text-align: center;">
-        <div class="hero-title">✈️ PilotInterviewPro</div>
-        <div class="hero-subtitle">Kişisel mülakat hazırlık alanınıza erişmek için giriş yapın veya kayıt olun.</div>
+    <div class="hero center">
+        <div class="title">✈️ PilotInterviewPro</div>
+        <div class="sub">Havayolu mülakatına teknik sorularla hazırlanın. İlerlemeniz hesabınızda saklanır.</div>
     </div>
     """, unsafe_allow_html=True)
-    
-    col_auth1, col_auth2, col_auth3 = st.columns([1, 2, 1])
+
+    col_auth1, col_auth2, col_auth3 = st.columns([1, 1.6, 1])
     with col_auth2:
-        tab_login, tab_signup = st.tabs(["🔑 Giriş Yap", "📝 Kayıt Ol"])
-        
+        tab_login, tab_signup = st.tabs(["Giriş yap", "Kayıt ol"])
+
         with tab_login:
-            login_email = st.text_input("E-Posta:", key="l_email")
-            login_pass = st.text_input("Şifre:", type="password", key="l_pass")
-            if st.button("Giriş Yap", type="primary", use_container_width=True):
+            login_email = st.text_input("E-posta", key="l_email")
+            login_pass = st.text_input("Şifre", type="password", key="l_pass")
+            if st.button("Giriş yap", type="primary", use_container_width=True):
                 if supabase:
                     try:
                         res = supabase.auth.sign_in_with_password({"email": login_email, "password": login_pass})
@@ -307,9 +393,9 @@ if not st.session_state.user:
                     st.error("Supabase bağlantı bilgileri eksik (Secrets).")
 
         with tab_signup:
-            signup_email = st.text_input("E-Posta:", key="s_email")
-            signup_pass = st.text_input("Şifre (Min 6 Karakter):", type="password", key="s_pass")
-            if st.button("Kayıt Ol", use_container_width=True):
+            signup_email = st.text_input("E-posta", key="s_email")
+            signup_pass = st.text_input("Şifre (en az 6 karakter)", type="password", key="s_pass")
+            if st.button("Hesap oluştur", use_container_width=True):
                 if supabase:
                     try:
                         res = supabase.auth.sign_up({"email": signup_email, "password": signup_pass})
@@ -333,7 +419,7 @@ def yeni_soru_getir(kategori_filtresi):
         filtre = questions_data
     else:
         filtre = [q for q in questions_data if q.get("category") == kategori_filtresi]
-    
+
     if not filtre:
         st.session_state.mevcut_soru = None
         return
@@ -351,15 +437,45 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.last_processed_audio = None
         save_user_progress()
 
+# Hesaplamalar (yan panel ve ana ekran ortak kullanır)
+toplam_soru = len(questions_data)
+tamamlanan = len(st.session_state.puanlar)
+ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
+
 # Sidebar
 st.sidebar.markdown(f"""
-<div style="padding: 10px 0 10px 0;">
-    <h2 style="color: #ffffff; margin:0; font-size: 1.5rem; font-weight:800;">✈️ PilotInterviewPro</h2>
-    <p style="color: #93c5fd; font-size: 0.85rem; margin-top:2px;">👤 {st.session_state.user.email}</p>
+<div class="side-brand">
+    <div class="name">✈️ Pilot<span>Interview</span>Pro</div>
+    <div class="who">{st.session_state.user.email}</div>
 </div>
 """, unsafe_allow_html=True)
 
-if st.sidebar.button("🚪 Çıkış Yap"):
+kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
+
+def on_kategori_change():
+    yeni_kat = st.session_state.kat_select_box
+    st.session_state.secilen_kategori = yeni_kat
+    yeni_soru_getir(yeni_kat)
+
+kat_index = kategoriler.index(st.session_state.secilen_kategori) if st.session_state.secilen_kategori in kategoriler else 0
+
+secilen_kategori = st.sidebar.selectbox("Mülakat kategorisi", kategoriler, index=kat_index, key="kat_select_box", on_change=on_kategori_change)
+
+st.sidebar.markdown(f"""
+<div style="margin-top:14px;">
+    <div class="side-stat"><span>Yanıtlanan</span><b>{tamamlanan}</b></div>
+    <div class="side-stat"><span>Ortalama skor</span><b>%{ort_skor:.0f}</b></div>
+    <div class="side-stat"><span>Hedef</span><b>%80+</b></div>
+</div>
+""", unsafe_allow_html=True)
+
+st.sidebar.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
+
+if st.sidebar.button("İlerlemeyi sıfırla", use_container_width=True, help="Tüm yanıt ve puan geçmişinizi sıfırlar."):
+    reset_user_progress()
+    st.rerun()
+
+if st.sidebar.button("Çıkış yap", use_container_width=True):
     if supabase:
         try:
             supabase.auth.sign_out()
@@ -371,107 +487,71 @@ if st.sidebar.button("🚪 Çıkış Yap"):
     st.session_state.puanlar = []
     st.rerun()
 
-st.sidebar.markdown("---")
-
-kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
-
-def on_kategori_change():
-    yeni_kat = st.session_state.kat_select_box
-    st.session_state.secilen_kategori = yeni_kat
-    yeni_soru_getir(yeni_kat)
-
-kat_index = kategoriler.index(st.session_state.secilen_kategori) if st.session_state.secilen_kategori in kategoriler else 0
-
-secilen_kategori = st.sidebar.selectbox("🎯 Mülakat Kategorisi", kategoriler, index=kat_index, key="kat_select_box", on_change=on_kategori_change)
-
 if st.session_state.mevcut_soru is None and questions_data:
     yeni_soru_getir(st.session_state.secilen_kategori)
 
 # Hero Banner
 st.markdown("""
-<div class="hero-banner animated-element">
-    <div class="hero-title">Pilot Mülakatına Hazırlanın</div>
-    <div class="hero-subtitle">Teknik bilginizi sesle yanıtlayın, ilermeniz hesabınızda otomatik kaydedilsin.</div>
+<div class="hero">
+    <div class="title">Pilot mülakatına hazırlanın</div>
+    <div class="sub">Teknik sorulara sesle yanıt verin, havacılık terminolojisini net kullanın. İlerlemeniz hesabınıza otomatik kaydedilir.</div>
 </div>
 """, unsafe_allow_html=True)
 
-toplam_soru = len(questions_data)
-tamamlanan = len(st.session_state.puanlar)
-ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
+# Enstrüman şeridi
+st.markdown(f"""
+<div class="strip">
+    <div class="cell"><div class="k">Toplam soru</div><div class="v">{toplam_soru}</div></div>
+    <div class="cell"><div class="k">Kategori</div><div class="v">{max(len(kategoriler)-1, 0)}</div></div>
+    <div class="cell"><div class="k">Ortalama skor</div><div class="v">%{ort_skor:.0f}</div></div>
+    <div class="cell"><div class="k">Hedef skor</div><div class="v">%80<small>ve üzeri</small></div></div>
+</div>
+""", unsafe_allow_html=True)
 
-st1, st2, st3, st4, st5 = st.columns([1, 1, 1, 1, 1.2])
-st1.metric("Toplam Soru", f"{toplam_soru}+")
-st2.metric("Kategori", f"{len(kategoriler)-1} Başlık")
-st3.metric("Ortalama Skor", f"%{ort_skor:.0f}")
-st4.metric("Hedef Skor", "%80+ Başarı")
-
-# SAĞ ÜST İLERLEMEYİ SIFIRLAMA BUTONU
-with st5:
-    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
-    if st.button("🔄 İlerlemeyi Sıfırla", use_container_width=True, help="Tüm yanıt ve puan geçmişinizi sıfırlar."):
-        reset_user_progress()
-        st.success("İlerlemeniz sıfırlandı!")
-        st.rerun()
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-col_left, col_right = st.columns([2.5, 1])
+col_left, col_right = st.columns([2.5, 1], gap="large")
 
 with col_left:
-    # Sol Taraf Kokpit & Taktik Kartı
-    st.markdown("""
-    <div class="cockpit-card animated-element">
-        <h3 style="margin:0 0 8px 0; font-size:1.4rem; color:#ffffff;">👨‍✈️ Kokpit Mülakat Modu</h3>
-        <p style="margin:0; font-size:0.95rem; color:#e2e8f0; line-height:1.5;">
-            Sorulara sesli yanıt verirken havacılık terminolojisini doğru ve net kullanmaya özen gösterin.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
     if st.session_state.mevcut_soru:
         soru = st.session_state.mevcut_soru
         input_key = f"answer_input_{soru.get('id')}"
-        
+
+        zorluk = soru.get('difficulty', 'Orta')
+        zorluk_css = {"Kolay": "kolay", "Orta": "orta", "Zor": "zor"}.get(zorluk, "orta")
+
         st.markdown(f"""
-        <div class="main-card animated-element">
-            <div>
-                <span class="badge-category">{soru.get('category', 'Genel')}</span>
-                <span class="badge-difficulty">{soru.get('difficulty', 'Orta')}</span>
+        <div class="brief">
+            <div class="tags">
+                <span class="tag-cat">{soru.get('category', 'Genel')}</span>
+                <span class="tag-diff {zorluk_css}">{zorluk}</span>
             </div>
-            <div class="question-title">❓ {soru.get('question', '')}</div>
+            <div class="q-text">{soru.get('question', '')}</div>
         </div>
         """, unsafe_allow_html=True)
-        
+
         # MODEL / DOĞRU CEVAP CÜMLEMİZİ HAZIRLAMA
         model_answer_text = soru.get("model_answer")
         if not model_answer_text:
             kw_list = soru.get("keywords", [])
             model_answer_text = "Bu soru için mülakatta açıklanması beklenen temel konu: " + ", ".join(kw_list) + " kavramlarının doğru usullerle ifade edilmesidir."
 
-        st.write("### 🎙️ Sesli Yanıt Verin")
-        
-        # MODERN MİKROFON BUTONU KARTI
-        st.markdown("""
-        <div class="mic-button-wrapper">
-            <div>
-                <b style="color:#0f172a; font-size:1rem;">Sesli Yanıt Başlatıcı</b><br>
-                <span style="color:#64748b; font-size:0.85rem;">Butona tıklayıp konuşmaya başlayın (5 sn susunca otomatik değerlendirilir).</span>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        audio_bytes = audio_recorder(
-            text="Mikrofona Bas ve Konuş",
-            recording_color="#e11d48",
-            neutral_color="#2563eb",
-            icon_name="microphone",
-            icon_size="2x",
-            pause_threshold=5.0
-        )
-        st.markdown("</div>", unsafe_allow_html=True)
+        # MİKROFON PANELİ (key => .st-key-mic_card ile stillenir)
+        with st.container(key="mic_card"):
+            st.markdown("""
+            <div class="mic-h">Sesli yanıt</div>
+            <div class="mic-s">Mikrofona basıp konuşun. 5 saniye sessizlik olursa yanıt otomatik değerlendirilir.</div>
+            """, unsafe_allow_html=True)
+            audio_bytes = audio_recorder(
+                text="Mikrofona bas ve konuş",
+                recording_color="#D8483F",
+                neutral_color="#0A1626",
+                icon_name="microphone",
+                icon_size="2x",
+                pause_threshold=5.0
+            )
 
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
             st.session_state.last_processed_audio = audio_bytes
-            with st.spinner("🔊 Ses çözümlenip değerlendiriliyor..."):
+            with st.spinner("Ses çözümleniyor ve değerlendiriliyor..."):
                 transcribed_text = transcribe_audio(audio_bytes)
                 if transcribed_text.strip():
                     st.session_state[input_key] = transcribed_text
@@ -482,16 +562,20 @@ with col_left:
                     st.session_state.son_analiz = {
                         "puan": puan,
                         "metin": transcribed_text,
-                        "model_answer": model_answer_text
+                        "model_answer": model_answer_text,
+                        "matched": eval_result["matched_keywords"],
+                        "missing": eval_result["missing_keywords"],
                     }
                     save_user_progress()
                     st.rerun()
+                else:
+                    st.warning("Ses anlaşılamadı. Mikrofona yakın konuşup tekrar deneyin ya da yanıtı aşağıya yazın.")
 
-        kullanici_cevabi = st.text_area("Algılanan / Yazılan Yanıtınız:", placeholder="Konuştuğunuzda metin buraya dökülür...", height=120, key=input_key)
+        kullanici_cevabi = st.text_area("Algılanan / yazılan yanıtınız", placeholder="Konuştuğunuzda metin buraya yazılır. İsterseniz elle de düzenleyebilirsiniz.", height=130, key=input_key)
 
         btn_c1, btn_c2 = st.columns([1, 1])
         with btn_c1:
-            if st.button("💾 Yanıtı Değerlendir", type="primary", use_container_width=True):
+            if st.button("Yanıtı değerlendir", type="primary", use_container_width=True):
                 if kullanici_cevabi.strip():
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
@@ -500,54 +584,66 @@ with col_left:
                     st.session_state.son_analiz = {
                         "puan": puan,
                         "metin": kullanici_cevabi,
-                        "model_answer": model_answer_text
+                        "model_answer": model_answer_text,
+                        "matched": eval_result["matched_keywords"],
+                        "missing": eval_result["missing_keywords"],
                     }
                     save_user_progress()
                     st.rerun()
-        
+                else:
+                    st.warning("Önce bir yanıt söyleyin veya yazın.")
+
         with btn_c2:
-            if st.button("Sonraki Soruya Geç ➔", use_container_width=True):
+            if st.button("Sonraki soru", use_container_width=True):
                 yeni_soru_getir(st.session_state.secilen_kategori)
                 st.rerun()
 
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
-            
-            st.markdown("---")
-            st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
-            st.subheader("📋 Mülakat Değerlendirme Karnesi")
-            
-            if puan == 100: st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! Beklenen yanıt ile tam uyumlu.")
-            elif puan == 80: st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi! Yanıtınız büyük oranda yeterli.")
-            elif puan == 60: st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye. Bazı önemli detaylar eksik kaldı.")
-            elif puan == 30: st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Doğru yanıttan uzak kalındı.")
-            else: st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda hedeflenen açıklamalar bulunamadı.")
+            etiket, renk, aciklama = SKOR_BILGI.get(puan, SKOR_BILGI[0])
 
-            # DOĞRU CEVAP CÜMLEMİZİ DOĞRUDAN KARNEDE SUNMA
-            st.markdown("#### 🎯 Mülakatta Beklenen Örnek Doğru Cevap:")
-            st.info(f"\"{res.get('model_answer', '')}\"")
-            st.markdown("</div>", unsafe_allow_html=True)
+            matched = res.get("matched", [])
+            missing = res.get("missing", [])
+            kw_html = ""
+            if matched:
+                kw_html += f'<div class="chips-title">Yanıtınızda geçen kavramlar</div><div class="chips">{chips_html(matched, "ok")}</div>'
+            if missing:
+                kw_html += f'<div class="chips-title">Eklenebilecek kavramlar</div><div class="chips">{chips_html(missing, "miss")}</div>'
 
-    # Sol Taraf Mülakat Taktikleri Kartı
+            st.markdown(f"""
+            <div class="report">
+                <div class="gauge">{gauge_svg(puan, renk)}</div>
+                <div class="verdict">
+                    <div class="label" style="color:{renk};">{etiket}</div>
+                    <div class="desc">{aciklama}</div>
+                    {kw_html}
+                </div>
+            </div>
+            <div class="model-answer">
+                <div class="h">Mülakatta beklenen örnek cevap</div>
+                <div class="t">{res.get('model_answer', '')}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
     st.markdown("""
-    <div class="tactic-card animated-element">
-        <h4 style="margin:0 0 8px 0; color:#1e293b; font-weight:700;">💡 Mülakat İpucu</h4>
-        <p style="margin:0; color:#64748b; font-size:0.9rem; line-height:1.5;">
-            Teknik mülakatlarda sistemlerin çalışmasını açıklarken <b>neden-sonuç ilişkisini</b> ve standart operasyon usullerini (SOP) vurgulamanız puanınızı artırır.
-        </p>
+    <div class="tip">
+        <b>Mülakat ipucu:</b> Sistemlerin çalışmasını anlatırken <b>neden-sonuç ilişkisini</b> ve standart operasyon usullerini (SOP) vurgulamak puanınızı artırır.
     </div>
     """, unsafe_allow_html=True)
 
 with col_right:
-    yuzde = int((tamamlanan / toplam_soru) * 100) if toplam_soru > 0 else 0
+    yuzde = min(int((tamamlanan / toplam_soru) * 100), 100) if toplam_soru > 0 else 0
     st.markdown(f"""
-    <div class="side-card animated-element">
-        <h4 style="margin:0 0 10px 0; color:#0f172a; font-weight:700;">📊 Genel İlerleme</h4>
-        <div class="progress-percent">%{yuzde}</div>
-        <p style="margin:6px 0 0 0; color:#64748b; font-size:0.9rem;">
-            Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.
-        </p>
+    <div class="flight">
+        <div class="h">Uçuş ilerlemesi</div>
+        <div class="pct">%{yuzde}</div>
+        <div class="track">
+            <div class="fill" style="width:{yuzde}%;"></div>
+            <div class="dot" style="left:{yuzde}%;"></div>
+            <div class="end"></div>
+        </div>
+        <div class="legend"><span>Kalkış</span><span>Varış</span></div>
+        <div class="note">Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.</div>
     </div>
     """, unsafe_allow_html=True)
-    st.progress(min(yuzde / 100, 1.0))
