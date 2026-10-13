@@ -334,8 +334,15 @@ def reset_user_progress():
     st.session_state.sorulan_ids = []
     st.session_state.puanlar = []
     st.session_state.son_analiz = None
-    st.session_state.last_processed_audio = None
     save_user_progress()
+
+def puan_kaydet(soru_id, puan):
+    # Her soru için tek puan: aynı soru tekrar değerlendirilirse son puanı günceller, yeni kayıt eklemez.
+    an = st.session_state.son_analiz
+    if an and an.get("soru_id") == soru_id and st.session_state.puanlar:
+        st.session_state.puanlar[-1] = puan
+    else:
+        st.session_state.puanlar.append(puan)
 
 # --- GÖRSEL YARDIMCILAR (sadece UI) ---
 SKOR_BILGI = {
@@ -434,7 +441,6 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.mevcut_soru = secilen
         st.session_state.sorulan_ids.append(secilen["id"])
         st.session_state.son_analiz = None
-        st.session_state.last_processed_audio = None
         save_user_progress()
 
 # Hesaplamalar (yan panel ve ana ekran ortak kullanır)
@@ -546,7 +552,8 @@ with col_left:
                 neutral_color="#0A1626",
                 icon_name="microphone",
                 icon_size="2x",
-                pause_threshold=5.0
+                pause_threshold=5.0,
+                key=f"rec_{soru.get('id')}_{len(st.session_state.sorulan_ids)}"
             )
 
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
@@ -558,8 +565,9 @@ with col_left:
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(transcribed_text, keywords)
                     puan = eval_result["score"]
-                    st.session_state.puanlar.append(puan)
+                    puan_kaydet(soru.get("id"), puan)
                     st.session_state.son_analiz = {
+                        "soru_id": soru.get("id"),
                         "puan": puan,
                         "metin": transcribed_text,
                         "model_answer": model_answer_text,
@@ -580,8 +588,9 @@ with col_left:
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
                     puan = eval_result["score"]
-                    st.session_state.puanlar.append(puan)
+                    puan_kaydet(soru.get("id"), puan)
                     st.session_state.son_analiz = {
+                        "soru_id": soru.get("id"),
                         "puan": puan,
                         "metin": kullanici_cevabi,
                         "model_answer": model_answer_text,
