@@ -4,6 +4,7 @@ import re
 import io
 import html
 import streamlit as st
+import streamlit.components.v1 as components
 import speech_recognition as sr
 from audio_recorder_streamlit import audio_recorder
 from supabase import create_client, Client
@@ -235,6 +236,167 @@ st.markdown("""
     .flight .note { margin-top: 14px; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.5; }
     .flight .note b { color: var(--ink); }
 
+
+
+    /* ---------- Premium polish: daha rafine yüzeyler ve etkileşimler ---------- */
+    .block-container { padding-bottom: 3rem; }
+    section[data-testid="stSidebar"] [data-testid="stSidebarContent"] { padding-top: 1.35rem; }
+    .hero {
+        box-shadow: 0 18px 44px rgba(10,22,38,.12);
+        border: 1px solid rgba(255,255,255,.08);
+    }
+    .hero .title { letter-spacing: -.4px; }
+    .strip {
+        box-shadow: 0 8px 24px rgba(14,26,43,.035);
+    }
+    .strip .cell { transition: background .2s ease; }
+    .strip .cell:hover { background: #F8FAFC; }
+    .brief {
+        box-shadow: 0 10px 28px rgba(14,26,43,.045);
+        transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .brief:hover { box-shadow: 0 14px 32px rgba(14,26,43,.075); }
+    .tag-cat { letter-spacing: .2px; }
+    .q-text { overflow-wrap: anywhere; }
+    .st-key-mic_card {
+        box-shadow: 0 10px 28px rgba(14,26,43,.045);
+        transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .st-key-mic_card:focus-within {
+        border-color: rgba(60,125,217,.6);
+        box-shadow: 0 0 0 3px rgba(60,125,217,.09), 0 10px 28px rgba(14,26,43,.045);
+    }
+    /* audio_recorder_streamlit düğmesi: mevcut kayıt işleyişine dokunmadan görsel vurgu */
+    .st-key-mic_card button {
+        border-radius: 14px !important;
+        box-shadow: 0 6px 18px rgba(10,22,38,.12);
+        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .st-key-mic_card button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(10,22,38,.18);
+        filter: brightness(1.08);
+    }
+    .report {
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 32px rgba(14,26,43,.055);
+    }
+    .report::before {
+        content: "FLIGHT PERFORMANCE";
+        position: absolute; top: 0; right: 0;
+        padding: 7px 12px;
+        border-bottom-left-radius: 8px;
+        background: #F3F6FA;
+        color: #6B7B90;
+        font-size: .65rem;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+    }
+    .gauge { padding-top: 8px; }
+    .verdict .label { letter-spacing: -.2px; }
+    .chip { overflow-wrap: anywhere; }
+    .model-answer {
+        box-shadow: 0 12px 30px rgba(10,22,38,.10);
+        overflow-wrap: anywhere;
+    }
+    .model-answer .t { white-space: pre-wrap; }
+    .flight {
+        box-shadow: 0 10px 28px rgba(14,26,43,.045);
+        overflow: hidden;
+    }
+    .tip { background: rgba(255,255,255,.45); }
+    div[data-testid="stAlert"] { border-radius: 10px; }
+    @media (max-width: 800px) {
+        .block-container { padding-top: 1rem; }
+        .strip .cell { padding: 13px 14px; }
+        .report { padding: 24px 18px; }
+        .report::before { font-size: .58rem; }
+        .st-key-mic_card { padding: 15px 14px 8px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .strip .cell, .brief, .st-key-mic_card, .st-key-mic_card button {
+            transition: none !important;
+        }
+        .st-key-mic_card button:hover { transform: none; }
+    }
+
+    /* ---------- Hareket: sakin, dikkat dağıtmayan ---------- */
+    .hero .plane {
+        position: absolute; z-index: 0; left: -160px; top: 64%;
+        width: 92px; opacity: .5; pointer-events: none;
+        transform: rotate(-5deg);
+        animation: planeFly 46s linear 3s infinite;
+    }
+    .hero .plane svg { width: 100%; height: auto; display: block; }
+    .hero .plane::before { /* iz bulutu */
+        content: ''; position: absolute; right: 88%; top: 50%; height: 2px; width: 190px;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.4));
+        border-radius: 2px;
+    }
+    @keyframes planeFly {
+        0%   { left: -160px; top: 66%; }
+        100% { left: 104%;  top: 14%; }
+    }
+    .hero .cloud {
+        position: absolute; z-index: 0; border-radius: 50%; pointer-events: none;
+        background: radial-gradient(closest-side, rgba(255,255,255,.10), rgba(255,255,255,0));
+        filter: blur(6px);
+    }
+    .hero .cloud.c1 { width: 340px; height: 70px; top: 18%; left: -360px; animation: cloudDrift 120s linear infinite; }
+    .hero .cloud.c2 { width: 260px; height: 54px; top: 52%; left: -300px; animation: cloudDrift 160s linear 25s infinite; opacity: .8; }
+    @keyframes cloudDrift { to { left: 105%; } }
+
+    /* soru kartı ve karne: değişince yumuşak giriş */
+    .brief { animation: softIn .45s ease-out both; }
+    .report, .model-answer { animation: softIn .5s ease-out both; }
+    @keyframes softIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* gösterge ibresi dolum animasyonu */
+    .gauge .arc { animation: gaugeFill 1.1s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes gaugeFill { from { stroke-dasharray: 0 251.33; } }
+
+    /* ilerleme çizgisi */
+    .flight .fill { animation: growX 1s cubic-bezier(.2,.8,.2,1) both; transform-origin: left; }
+    @keyframes growX { from { transform: scaleX(0); } }
+    .flight .dot::after {
+        content: ''; position: absolute; inset: -7px; border-radius: 50%;
+        border: 2px solid var(--amber); opacity: 0;
+        animation: ping 3s ease-out infinite;
+    }
+    @keyframes ping { 0% { transform: scale(.6); opacity: .7; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
+
+    /* yan panel radarı */
+    .radar {
+        position: relative; width: 112px; height: 112px; margin: 26px auto 8px auto; border-radius: 50%;
+        background:
+            radial-gradient(circle, transparent 0 24%, rgba(143,168,200,.22) 24.5% 25.5%, transparent 26% 49%, rgba(143,168,200,.22) 49.5% 50.5%, transparent 51% 74%, rgba(143,168,200,.22) 74.5% 75.5%, transparent 76%),
+            linear-gradient(90deg, transparent 49.5%, rgba(143,168,200,.18) 49.5% 50.5%, transparent 50.5%),
+            linear-gradient(0deg, transparent 49.5%, rgba(143,168,200,.18) 49.5% 50.5%, transparent 50.5%),
+            #0D1D33;
+        border: 1px solid var(--panel-line);
+        overflow: hidden;
+    }
+    .radar::before { /* tarama kolu */
+        content: ''; position: absolute; inset: 0; border-radius: 50%;
+        background: conic-gradient(from 0deg, rgba(47,191,143,0) 0deg, rgba(47,191,143,0) 290deg, rgba(47,191,143,.38) 360deg);
+        animation: sweep 7s linear infinite;
+    }
+    .radar .blip {
+        position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+        box-shadow: 0 0 6px var(--green); opacity: .15; animation: blip 7s linear infinite;
+    }
+    .radar .blip.b1 { top: 28%; left: 64%; animation-delay: 1.1s; }
+    .radar .blip.b2 { top: 66%; left: 34%; animation-delay: 4.4s; }
+    @keyframes sweep { to { transform: rotate(360deg); } }
+    @keyframes blip { 0%, 100% { opacity: .15; } 8% { opacity: 1; } 45% { opacity: .15; } }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero .plane, .hero .cloud, .brief, .report, .model-answer,
+        .gauge .arc, .flight .fill, .flight .dot::after, .radar::before, .radar .blip { animation: none !important; }
+        .hero .plane { display: none; }
+    }
+
     @media (max-width: 800px) {
         .strip { grid-template-columns: repeat(2, 1fr); }
         .strip .cell:nth-child(2) { border-right: none; }
@@ -371,14 +533,19 @@ def gauge_svg(puan: int, renk: str) -> str:
     return f"""
     <svg viewBox="0 0 200 124" role="img" aria-label="Skor {puan} / 100">
         <path d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="#E3E8EF" stroke-width="14" stroke-linecap="round"/>
-        <path d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="{renk}" stroke-width="14" stroke-linecap="round"
+        <path class="arc" d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="{renk}" stroke-width="14" stroke-linecap="round"
               stroke-dasharray="{dolu:.1f} {uzunluk:.1f}"/>
         <text x="100" y="92" text-anchor="middle" class="num">{puan}</text>
         <text x="100" y="114" text-anchor="middle" class="of">/ 100</text>
     </svg>"""
 
 def chips_html(items, css_class):
-    return "".join(f'<span class="chip {css_class}">{k}</span>' for k in items)
+    # JSON içeriğindeki metinlerin HTML olarak yorumlanmasını önle.
+    safe_class = "ok" if css_class == "ok" else "miss"
+    return "".join(
+        f'<span class="chip {safe_class}">{html.escape(str(k))}</span>'
+        for k in items
+    )
 
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
@@ -463,7 +630,7 @@ ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
 st.sidebar.markdown(f"""
 <div class="side-brand">
     <div class="name">✈️ Pilot<span>Interview</span>Pro</div>
-    <div class="who">{st.session_state.user.email}</div>
+    <div class="who">{html.escape(str(st.session_state.user.email or ""))}</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -491,6 +658,10 @@ st.sidebar.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
 if st.sidebar.button("İlerlemeyi sıfırla", use_container_width=True, help="Tüm yanıt ve puan geçmişinizi sıfırlar."):
     reset_user_progress()
     st.rerun()
+
+st.sidebar.markdown("""
+<div class="radar"><span class="blip b1"></span><span class="blip b2"></span></div>
+""", unsafe_allow_html=True)
 
 if st.sidebar.button("Çıkış yap", use_container_width=True):
     if supabase:
@@ -524,6 +695,8 @@ kullanici_adi_html = html.escape(kullanici_adi)
 # Hero Banner
 st.markdown(f"""
 <div class="hero">
+    <div class="cloud c1"></div><div class="cloud c2"></div>
+    <div class="plane"><svg viewBox="0 0 120 44" aria-hidden="true"><path fill="#fff" d="M4 24 Q4 19 14 19 L92 19 Q113 20 117 24 Q113 28 92 29 L14 29 Q4 29 4 24Z"/><path fill="#fff" d="M12 19 L3 5 L16 5 L30 19Z"/><path fill="#fff" d="M50 27 L72 41 L84 41 L70 27Z"/><path fill="#fff" opacity=".7" d="M52 20 L70 9 L80 9 L68 20Z"/><circle cx="100" cy="23.5" r="1.6" fill="#0A1626"/><circle cx="92" cy="23.5" r="1.6" fill="#0A1626"/><circle cx="84" cy="23.5" r="1.6" fill="#0A1626"/></svg></div>
     <div class="welcome">
         <div class="avatar">{avatar_harf}</div>
         <div>
@@ -553,16 +726,19 @@ with col_left:
         soru = st.session_state.mevcut_soru
         input_key = f"answer_input_{soru.get('id')}"
 
-        zorluk = soru.get('difficulty', 'Orta')
+        zorluk = str(soru.get('difficulty', 'Orta'))
         zorluk_css = {"Kolay": "kolay", "Orta": "orta", "Zor": "zor"}.get(zorluk, "orta")
+        kategori_html = html.escape(str(soru.get('category', 'Genel')))
+        zorluk_html = html.escape(zorluk)
+        soru_html = html.escape(str(soru.get('question', '')))
 
         st.markdown(f"""
         <div class="brief">
             <div class="tags">
-                <span class="tag-cat">{soru.get('category', 'Genel')}</span>
-                <span class="tag-diff {zorluk_css}">{zorluk}</span>
+                <span class="tag-cat">{kategori_html}</span>
+                <span class="tag-diff {zorluk_css}">{zorluk_html}</span>
             </div>
-            <div class="q-text">{soru.get('question', '')}</div>
+            <div class="q-text">{soru_html}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -652,18 +828,21 @@ with col_left:
             if missing:
                 kw_html += f'<div class="chips-title">Eklenebilecek kavramlar</div><div class="chips">{chips_html(missing, "miss")}</div>'
 
+            model_answer_html = html.escape(str(res.get('model_answer', '')))
+            etiket_html = html.escape(str(etiket))
+            aciklama_html = html.escape(str(aciklama))
             st.markdown(f"""
             <div class="report">
                 <div class="gauge">{gauge_svg(puan, renk)}</div>
                 <div class="verdict">
-                    <div class="label" style="color:{renk};">{etiket}</div>
-                    <div class="desc">{aciklama}</div>
+                    <div class="label" style="color:{renk};">{etiket_html}</div>
+                    <div class="desc">{aciklama_html}</div>
                     {kw_html}
                 </div>
             </div>
             <div class="model-answer">
                 <div class="h">Mülakatta beklenen örnek cevap</div>
-                <div class="t">{res.get('model_answer', '')}</div>
+                <div class="t">{model_answer_html}</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -688,3 +867,51 @@ with col_right:
         <div class="note">Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.</div>
     </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+    components.html("""
+    <html><head><style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
+      html,body{margin:0;background:transparent;font-family:'Barlow Semi Condensed',sans-serif;}
+      .card{background:#0A1626;border-radius:12px;padding:16px 18px;color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-sizing:border-box;}
+      .adi{width:104px;height:104px;flex-shrink:0;}
+      .horizon{transform-origin:60px 60px;animation:bank 11s ease-in-out infinite alternate;}
+      @keyframes bank{from{transform:rotate(-4deg) translateY(-3px);}to{transform:rotate(5deg) translateY(4px);}}
+      .clk{min-width:120px;}
+      .row{margin-bottom:8px;}
+      .lab{color:#8FA8C8;font-size:12px;font-weight:500;}
+      .t{font-size:26px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;}
+      .t.utc{color:#F2A81D;}
+      @media (prefers-reduced-motion: reduce){.horizon{animation:none;}}
+    </style></head><body>
+    <div class="card">
+      <svg class="adi" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><clipPath id="c"><circle cx="60" cy="60" r="52"/></clipPath></defs>
+        <g clip-path="url(#c)"><g class="horizon">
+          <rect x="-60" y="-60" width="240" height="120" fill="#3C7DD9"/>
+          <rect x="-60" y="60" width="240" height="120" fill="#7A5230"/>
+          <line x1="-60" y1="60" x2="180" y2="60" stroke="#fff" stroke-width="1.5"/>
+          <line x1="46" y1="48" x2="74" y2="48" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="52" y1="36" x2="68" y2="36" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="46" y1="72" x2="74" y2="72" stroke="#fff" stroke-width="1" opacity=".7"/>
+          <line x1="52" y1="84" x2="68" y2="84" stroke="#fff" stroke-width="1" opacity=".7"/>
+        </g></g>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#223A5A" stroke-width="5"/>
+        <path d="M60 4 L56 12 L64 12Z" fill="#F2A81D"/>
+        <path d="M28 62 H48 L52 66 M92 62 H72 L68 66" fill="none" stroke="#F2A81D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="60" cy="62" r="3" fill="#F2A81D"/>
+      </svg>
+      <div class="clk">
+        <div class="row"><div class="lab">UTC (Zulu)</div><div class="t utc" id="u">--:--:--</div></div>
+        <div class="row" style="margin-bottom:0"><div class="lab">Türkiye saati</div><div class="t" id="l">--:--:--</div></div>
+      </div>
+    </div>
+    <script>
+      function tick(){
+        var d=new Date();
+        document.getElementById('u').textContent=d.toLocaleTimeString('en-GB',{timeZone:'UTC',hour12:false});
+        document.getElementById('l').textContent=d.toLocaleTimeString('en-GB',{timeZone:'Europe/Istanbul',hour12:false});
+      }
+      tick(); setInterval(tick,1000);
+    </script></body></html>
+    """, height=140)
