@@ -136,7 +136,6 @@ st.markdown("""
         margin-bottom: 20px;
     }
 
-    /* Modernleştirilmiş Ses Butonu Konteyneri */
     .mic-button-wrapper {
         background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
         border: 2px solid #e2e8f0;
@@ -449,12 +448,9 @@ with col_left:
             kw_list = soru.get("keywords", [])
             model_answer_text = "Mülakatta bu soru için yanıtınızda şu kavramları içeren akıcı bir açıklama yapmanız beklenmektedir: " + ", ".join(kw_list) + "."
 
-        with st.expander("💡 Mülakatçı Beklentisi (Örnek Doğru Yanıt Cümlesi)"):
-            st.markdown(f"**Örnek Yanıt:** *\"{model_answer_text}\"*")
-
         st.write("### 🎙️ Sesli Yanıt Verin")
         
-        # YENİLENMİŞ MODERN MİKROFON BUTONU KARTI
+        # MODERN MİKROFON BUTONU KARTI
         st.markdown("""
         <div class="mic-button-wrapper">
             <div>
@@ -485,9 +481,6 @@ with col_left:
                     st.session_state.puanlar.append(puan)
                     st.session_state.son_analiz = {
                         "puan": puan,
-                        "matched_count": eval_result["matched_count"],
-                        "bulunanlar": eval_result["matched_keywords"],
-                        "bulunamayanlar": eval_result["missing_keywords"],
                         "metin": transcribed_text,
                         "model_answer": model_answer_text
                     }
@@ -506,9 +499,6 @@ with col_left:
                     st.session_state.puanlar.append(puan)
                     st.session_state.son_analiz = {
                         "puan": puan,
-                        "matched_count": eval_result["matched_count"],
-                        "bulunanlar": eval_result["matched_keywords"],
-                        "bulunamayanlar": eval_result["missing_keywords"],
                         "metin": kullanici_cevabi,
                         "model_answer": model_answer_text
                     }
@@ -523,28 +513,20 @@ with col_left:
         if st.session_state.son_analiz:
             res = st.session_state.son_analiz
             puan = res["puan"]
-            matched_cnt = res["matched_count"]
             
             st.markdown("---")
             st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
             
-            if puan == 100: st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel ({matched_cnt} kilit kavram tam eşleşti).")
-            elif puan == 80: st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi.")
-            elif puan == 60: st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye.")
-            elif puan == 30: st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf.")
-            else: st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz.")
+            if puan == 100: st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel! Beklenen yanıt ile tam uyumlu.")
+            elif puan == 80: st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi! Yanıtınız büyük oranda yeterli.")
+            elif puan == 60: st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye. Bazı önemli detaylar eksik kaldı.")
+            elif puan == 30: st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Doğru yanıttan uzak kalındı.")
+            else: st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda hedeflenen açıklamalar bulunamadı.")
 
-            # DOĞRU CEVAP CÜMLESİNİ KARNEDE DESTEK OLARAK GÖSTERME
-            st.info(f"✨ **Beklenen Örnek Doğru Cevap Cümlesi:**\n\"{res.get('model_answer', '')}\"")
-
-            c_pos, c_neg = st.columns(2)
-            with c_pos:
-                st.write("##### ✅ Yakalanan Kilit Kavramlar")
-                for b in res["bulunanlar"]: st.write(f"✔️ **{b}**")
-            with c_neg:
-                st.write("##### ❌ Eksik/Atlanan Kavramlar")
-                for ex in res["bulunamayanlar"]: st.write(f"✖️ {ex}")
+            # DOĞRU CEVAP CÜMLEMİZİ VE BEKLENEN YANITI DOĞRUDAN KARNEDE SUNMA
+            st.markdown("#### 🎯 Beklenen Doğru Cevap:")
+            st.info(f"\"{res.get('model_answer', '')}\"")
             st.markdown("</div>", unsafe_allow_html=True)
 
     # Sol Taraf Mülakat Taktikleri Kartı
