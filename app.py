@@ -524,6 +524,103 @@ st.markdown("""
         .st-key-mic_card button { min-width: 92px !important; min-height: 92px !important; }
     }
 
+
+    /* Category selector: intentionally light for clear contrast */
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] label,
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] label p {
+        color: #F1F6FF !important;
+        font-weight: 800 !important;
+        letter-spacing: .01em;
+    }
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+        background: #FFFFFF !important;
+        border: 1px solid #D5DFED !important;
+        border-radius: 12px !important;
+        color: #13243B !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,.12) !important;
+    }
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] span,
+    section[data-testid="stSidebar"] [data-testid="stSelectbox"] div[data-baseweb="select"] input {
+        color: #13243B !important;
+        -webkit-text-fill-color: #13243B !important;
+        font-weight: 650 !important;
+    }
+    /* Streamlit/BaseWeb dropdown menu and category labels */
+    div[data-baseweb="popover"] ul,
+    div[data-baseweb="popover"] li,
+    div[data-baseweb="menu"] li {
+        background: #FFFFFF !important;
+        color: #13243B !important;
+        font-weight: 700 !important;
+    }
+    div[data-baseweb="popover"] li:hover,
+    div[data-baseweb="menu"] li:hover {
+        background: #EAF2FC !important;
+    }
+    /* Section/category headings: dark, bold, high contrast */
+    .brief .q-text, .q-text, .mic-h, .flight .h,
+    .chips-title, .verdict .label,
+    [data-testid="stMarkdownContainer"] h1,
+    [data-testid="stMarkdownContainer"] h2,
+    [data-testid="stMarkdownContainer"] h3 {
+        color: #F3F7FF !important;
+        font-weight: 800 !important;
+        letter-spacing: -.015em;
+    }
+    /* Force the microphone control itself to be a prominent round cockpit button.
+       Covers both Streamlit button variants and common recorder component wrappers. */
+    .st-key-mic_card button,
+    .st-key-mic_card [data-testid="stBaseButton-secondary"],
+    .st-key-mic_card [data-testid="stBaseButton-primary"],
+    button[aria-label*="Mikrofon"],
+    button[title*="Mikrofon"] {
+        width: 116px !important;
+        height: 116px !important;
+        min-width: 116px !important;
+        min-height: 116px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        background: radial-gradient(circle at 32% 24%, #63B8FF 0%, #287CE1 42%, #0B347B 100%) !important;
+        border: 3px solid #8AE0FF !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 0 0 7px rgba(53,189,245,.12),
+                    0 0 28px rgba(41,132,255,.42),
+                    inset 0 2px 10px rgba(255,255,255,.25) !important;
+        transition: transform .18s ease, box-shadow .18s ease !important;
+    }
+    .st-key-mic_card button p,
+    .st-key-mic_card button span,
+    .st-key-mic_card button svg,
+    button[aria-label*="Mikrofon"] svg,
+    button[title*="Mikrofon"] svg {
+        color: #FFFFFF !important;
+        fill: currentColor !important;
+        stroke: currentColor !important;
+    }
+    .st-key-mic_card button:hover,
+    button[aria-label*="Mikrofon"]:hover,
+    button[title*="Mikrofon"]:hover {
+        transform: scale(1.045) !important;
+        box-shadow: 0 0 0 10px rgba(53,189,245,.15),
+                    0 0 42px rgba(41,132,255,.60),
+                    inset 0 2px 10px rgba(255,255,255,.28) !important;
+    }
+    .st-key-mic_card button:focus-visible {
+        outline: 3px solid #FFB52E !important;
+        outline-offset: 6px !important;
+    }
+    @media (max-width: 800px) {
+        .st-key-mic_card button,
+        .st-key-mic_card [data-testid="stBaseButton-secondary"],
+        .st-key-mic_card [data-testid="stBaseButton-primary"] {
+            width: 96px !important; height: 96px !important;
+            min-width: 96px !important; min-height: 96px !important;
+        }
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
