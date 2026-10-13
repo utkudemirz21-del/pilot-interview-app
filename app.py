@@ -136,6 +136,24 @@ st.markdown("""
         margin-bottom: 20px;
     }
 
+    /* Modernleştirilmiş Ses Butonu Konteyneri */
+    .mic-button-wrapper {
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        border: 2px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        margin-bottom: 16px;
+        transition: all 0.3s ease;
+    }
+    .mic-button-wrapper:hover {
+        border-color: #2563eb;
+        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.12);
+    }
+
     .stTextArea textarea {
         background-color: #ffffff !important; color: #0f172a !important;
         border: 1.5px solid #cbd5e1 !important; border-radius: 16px !important; padding: 18px !important;
@@ -251,6 +269,13 @@ def load_user_progress():
                 st.session_state.puanlar = data.get("puanlar", []) or []
         except Exception:
             pass
+
+def reset_user_progress():
+    st.session_state.sorulan_ids = []
+    st.session_state.puanlar = []
+    st.session_state.son_analiz = None
+    st.session_state.last_processed_audio = None
+    save_user_progress()
 
 # --- GİRİŞ / KAYIT EKRANI ---
 if not st.session_state.user:
@@ -375,11 +400,19 @@ toplam_soru = len(questions_data)
 tamamlanan = len(st.session_state.puanlar)
 ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
 
-st1, st2, st3, st4 = st.columns(4)
+st1, st2, st3, st4, st5 = st.columns([1, 1, 1, 1, 1.2])
 st1.metric("Toplam Soru", f"{toplam_soru}+")
 st2.metric("Kategori", f"{len(kategoriler)-1} Başlık")
 st3.metric("Ortalama Skor", f"%{ort_skor:.0f}")
 st4.metric("Hedef Skor", "%80+ Başarı")
+
+# SAĞ ÜST İLERLEMEYİ SIFIRLAMA BUTONU
+with st5:
+    st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+    if st.button("🔄 İlerlemeyi Sıfırla", use_container_width=True, help="Tüm yanıt ve puan geçmişinizi sıfırlar."):
+        reset_user_progress()
+        st.success("İlerlemeniz sıfırlandı!")
+        st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -410,12 +443,25 @@ with col_left:
         </div>
         """, unsafe_allow_html=True)
         
-        with st.expander("💡 Mülakatçı Beklentileri (Kilit Terim İpuçları)"):
+        # MODEL / DOĞRU CEVAP CÜMLEMİZİ EXPANDER İÇİNDE GÖSTERME
+        model_answer_text = soru.get("model_answer")
+        if not model_answer_text:
             kw_list = soru.get("keywords", [])
-            if kw_list:
-                for kp in kw_list[:2]: st.write(f"- **{kp}**")
+            model_answer_text = "Mülakatta bu soru için yanıtınızda şu kavramları içeren akıcı bir açıklama yapmanız beklenmektedir: " + ", ".join(kw_list) + "."
+
+        with st.expander("💡 Mülakatçı Beklentisi (Örnek Doğru Yanıt Cümlesi)"):
+            st.markdown(f"**Örnek Yanıt:** *\"{model_answer_text}\"*")
 
         st.write("### 🎙️ Sesli Yanıt Verin")
+        
+        # YENİLENMİŞ MODERN MİKROFON BUTONU KARTI
+        st.markdown("""
+        <div class="mic-button-wrapper">
+            <div>
+                <b style="color:#0f172a; font-size:1rem;">Sesli Yanıt Başlatıcı</b><br>
+                <span style="color:#64748b; font-size:0.85rem;">Butona tıklayıp konuşmaya başlayın (5 sn susunca otomatik değerlendirilir).</span>
+            </div>
+        """, unsafe_allow_html=True)
         
         audio_bytes = audio_recorder(
             text="Mikrofona Bas ve Konuş",
@@ -425,6 +471,7 @@ with col_left:
             icon_size="2x",
             pause_threshold=5.0
         )
+        st.markdown("</div>", unsafe_allow_html=True)
 
         if audio_bytes and audio_bytes != st.session_state.last_processed_audio:
             st.session_state.last_processed_audio = audio_bytes
@@ -441,7 +488,8 @@ with col_left:
                         "matched_count": eval_result["matched_count"],
                         "bulunanlar": eval_result["matched_keywords"],
                         "bulunamayanlar": eval_result["missing_keywords"],
-                        "metin": transcribed_text
+                        "metin": transcribed_text,
+                        "model_answer": model_answer_text
                     }
                     save_user_progress()
                     st.rerun()
@@ -461,7 +509,8 @@ with col_left:
                         "matched_count": eval_result["matched_count"],
                         "bulunanlar": eval_result["matched_keywords"],
                         "bulunamayanlar": eval_result["missing_keywords"],
-                        "metin": kullanici_cevabi
+                        "metin": kullanici_cevabi,
+                        "model_answer": model_answer_text
                     }
                     save_user_progress()
                     st.rerun()
@@ -480,11 +529,14 @@ with col_left:
             st.markdown("<div class='animated-element'>", unsafe_allow_html=True)
             st.subheader("📋 Mülakat Değerlendirme Karnesi")
             
-            if puan == 100: st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel ({matched_cnt} kilit kavram).")
+            if puan == 100: st.success(f"🏆 **Mülakat Skoru: 100 / 100** — Mükemmel ({matched_cnt} kilit kavram tam eşleşti).")
             elif puan == 80: st.info(f"🥇 **Mülakat Skoru: 80 / 100** — Çok İyi.")
             elif puan == 60: st.warning(f"⚠️ **Mülakat Skoru: 60 / 100** — Geçer/Orta Seviye.")
             elif puan == 30: st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf.")
             else: st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz.")
+
+            # DOĞRU CEVAP CÜMLESİNİ KARNEDE DESTEK OLARAK GÖSTERME
+            st.info(f"✨ **Beklenen Örnek Doğru Cevap Cümlesi:**\n\"{res.get('model_answer', '')}\"")
 
             c_pos, c_neg = st.columns(2)
             with c_pos:
