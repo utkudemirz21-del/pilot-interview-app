@@ -442,11 +442,11 @@ with col_left:
         </div>
         """, unsafe_allow_html=True)
         
-        # MODEL / DOĞRU CEVAP CÜMLEMİZİ EXPANDER İÇİNDE GÖSTERME
+        # MODEL / DOĞRU CEVAP CÜMLEMİZİ HAZIRLAMA
         model_answer_text = soru.get("model_answer")
         if not model_answer_text:
             kw_list = soru.get("keywords", [])
-            model_answer_text = "Mülakatta bu soru için yanıtınızda şu kavramları içeren akıcı bir açıklama yapmanız beklenmektedir: " + ", ".join(kw_list) + "."
+            model_answer_text = "Bu soru için mülakatta açıklanması beklenen temel konu: " + ", ".join(kw_list) + " kavramlarının doğru usullerle ifade edilmesidir."
 
         st.write("### 🎙️ Sesli Yanıt Verin")
         
@@ -524,8 +524,8 @@ with col_left:
             elif puan == 30: st.error(f"🔴 **Mülakat Skoru: 30 / 100** — Zayıf. Doğru yanıttan uzak kalındı.")
             else: st.error(f"❌ **Mülakat Skoru: 0 / 100** — Yetersiz. Yanıtınızda hedeflenen açıklamalar bulunamadı.")
 
-            # DOĞRU CEVAP CÜMLEMİZİ VE BEKLENEN YANITI DOĞRUDAN KARNEDE SUNMA
-            st.markdown("#### 🎯 Beklenen Doğru Cevap:")
+            # DOĞRU CEVAP CÜMLEMİZİ DOĞRUDAN KARNEDE SUNMA
+            st.markdown("#### 🎯 Mülakatta Beklenen Örnek Doğru Cevap:")
             st.info(f"\"{res.get('model_answer', '')}\"")
             st.markdown("</div>", unsafe_allow_html=True)
 
