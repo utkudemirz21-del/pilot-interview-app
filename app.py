@@ -28,8 +28,8 @@ def _live_speech_component():
 * { box-sizing: border-box; }
 html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(7,23,43,0) !important; background-color:transparent !important; color:#EAF2FF; overflow:hidden; }
 body { font-family:Arial,sans-serif; }
-.wrap { display:flex; align-items:center; gap:12px; padding:3px 2px; min-height:62px; background:transparent !important; }
-.mic { width:54px;height:54px;flex:0 0 54px;border-radius:50%;border:2px solid #83DFFF;
+.wrap { display:flex; align-items:center; gap:14px; padding:5px 2px; min-height:72px; background:transparent !important; }
+.mic { width:60px;height:60px;flex:0 0 60px;border-radius:50%;border:2px solid #83DFFF;
  background:radial-gradient(circle at 32% 24%,#63B8FF 0%,#287CE1 42%,#0B347B 100%);
  color:#fff;font-size:27px;cursor:pointer;box-shadow:0 0 0 6px rgba(53,189,245,.12),0 0 28px rgba(41,132,255,.38);
  transition:transform .18s,box-shadow .18s; }
@@ -126,7 +126,7 @@ body { font-family:Arial,sans-serif; }
   window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:componentReady', apiVersion:1}, '*');
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'streamlit:render') {
-      window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setFrameHeight', height:72}, '*');
+      window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setFrameHeight', height:82}, '*');
     }
   });
 })();
@@ -966,34 +966,34 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 }
 .st-key-mic_card iframe {
     display: block !important;
-    height: 74px !important;
-    min-height: 74px !important;
+    height: 84px !important;
+    min-height: 84px !important;
     border: 0 !important;
     outline: 0 !important;
 }
 .block-container { padding-top: .2rem !important; padding-bottom: .35rem !important; }
-.hero:not(.login-hero) { min-height: 112px !important; padding: 10px 22px !important; margin-bottom: 8px !important; }
-.hero:not(.login-hero) .title { font-size: 1.75rem !important; margin-bottom: 3px !important; }
-.hero:not(.login-hero) .sub { font-size: .82rem !important; line-height: 1.35 !important; }
+.hero:not(.login-hero) { min-height: 128px !important; padding: 13px 24px !important; margin-bottom: 9px !important; }
+.hero:not(.login-hero) .title { font-size: 1.9rem !important; margin-bottom: 4px !important; }
+.hero:not(.login-hero) .sub { font-size: .86rem !important; line-height: 1.4 !important; }
 .strip { margin-bottom: 8px !important; }
 .strip .cell { padding-top: 8px !important; padding-bottom: 8px !important; }
 .strip .v { font-size: 1.45rem !important; }
-.brief { padding: 14px 20px !important; margin-bottom: 8px !important; }
-.brief .q-text, .q-text { font-size: 1.22rem !important; line-height: 1.28 !important; }
+.brief { padding: 16px 22px !important; margin-bottom: 9px !important; }
+.brief .q-text, .q-text { font-size: 1.28rem !important; line-height: 1.32 !important; }
 .st-key-mic_card .mic-h { margin-bottom: 2px !important; font-size: 14px !important; }
 .st-key-mic_card .mic-s { margin-bottom: 2px !important; font-size: 11px !important; }
 div[data-testid="stTextArea"] { margin-top: 0 !important; margin-bottom: 2px !important; }
 div[data-testid="stTextArea"] label { margin-bottom: 2px !important; }
-.stTextArea textarea { height: 82px !important; min-height: 82px !important; padding: 8px 11px !important; }
+.stTextArea textarea { height: 92px !important; min-height: 92px !important; padding: 10px 12px !important; }
 div[data-testid="stButton"] button { min-height: 36px !important; padding-top: 5px !important; padding-bottom: 5px !important; }
 @media (max-height: 900px) {
-    .hero:not(.login-hero) { min-height: 96px !important; padding: 8px 18px !important; }
-    .hero:not(.login-hero) .title { font-size: 1.55rem !important; }
+    .hero:not(.login-hero) { min-height: 108px !important; padding: 10px 20px !important; }
+    .hero:not(.login-hero) .title { font-size: 1.68rem !important; }
     .strip .k { font-size: .68rem !important; }
     .strip .v { font-size: 1.28rem !important; }
-    .brief { padding: 11px 16px !important; }
-    .brief .q-text, .q-text { font-size: 1.1rem !important; }
-    .stTextArea textarea { height: 72px !important; min-height: 72px !important; }
+    .brief { padding: 13px 18px !important; }
+    .brief .q-text, .q-text { font-size: 1.17rem !important; }
+    .stTextArea textarea { height: 82px !important; min-height: 82px !important; }
 }
 
 </style>
