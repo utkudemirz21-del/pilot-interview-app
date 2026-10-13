@@ -141,7 +141,7 @@ live_speech_input = _live_speech_component()
 
 # Sayfa Yapılandırması
 st.set_page_config(
-    page_title="PilotInterviewPro",
+    page_title="PILOTPREP",
     page_icon="✈️",
     layout="wide",
     initial_sidebar_state="expanded"
