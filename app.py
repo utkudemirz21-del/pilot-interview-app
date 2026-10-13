@@ -24,12 +24,12 @@ def _live_speech_component():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-:root { color-scheme: dark; }
+:root { color-scheme: light; background: transparent !important; }
 * { box-sizing: border-box; }
-html, body { margin:0; padding:0; width:100%; background:transparent !important; color:#EAF2FF; overflow:hidden; }
+html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(7,23,43,0) !important; background-color:transparent !important; color:#EAF2FF; overflow:hidden; }
 body { font-family:Arial,sans-serif; }
-.wrap { display:flex; align-items:center; gap:15px; padding:9px 2px; min-height:82px; }
-.mic { width:64px;height:64px;flex:0 0 64px;border-radius:50%;border:2px solid #83DFFF;
+.wrap { display:flex; align-items:center; gap:12px; padding:3px 2px; min-height:62px; background:transparent !important; }
+.mic { width:54px;height:54px;flex:0 0 54px;border-radius:50%;border:2px solid #83DFFF;
  background:radial-gradient(circle at 32% 24%,#63B8FF 0%,#287CE1 42%,#0B347B 100%);
  color:#fff;font-size:27px;cursor:pointer;box-shadow:0 0 0 6px rgba(53,189,245,.12),0 0 28px rgba(41,132,255,.38);
  transition:transform .18s,box-shadow .18s; }
@@ -126,7 +126,7 @@ body { font-family:Arial,sans-serif; }
   window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:componentReady', apiVersion:1}, '*');
   window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'streamlit:render') {
-      window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setFrameHeight', height:105}, '*');
+      window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:setFrameHeight', height:72}, '*');
     }
   });
 })();
@@ -941,6 +941,60 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
         .st-key-mic_card { padding-top: 12px !important; padding-bottom: 10px !important; }
         .stTextArea textarea { min-height: 96px !important; height: 96px !important; }
     }
+
+
+/* Final compact layout + transparent speech iframe fix */
+.st-key-mic_card,
+.st-key-mic_card > div,
+.st-key-mic_card [data-testid="stVerticalBlock"],
+.st-key-mic_card [data-testid="stElementContainer"],
+.st-key-mic_card [data-testid="stCustomComponentV1"],
+.st-key-mic_card [data-testid="stCustomComponentV1"] > div,
+.st-key-mic_card iframe {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+.st-key-mic_card {
+    background: linear-gradient(145deg, #0C213B 0%, #07172B 100%) !important;
+    border: 1px solid #24486F !important;
+    border-radius: 20px !important;
+    padding: 12px 16px 10px !important;
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+}
+.st-key-mic_card iframe {
+    display: block !important;
+    height: 74px !important;
+    min-height: 74px !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+.block-container { padding-top: .2rem !important; padding-bottom: .35rem !important; }
+.hero:not(.login-hero) { min-height: 112px !important; padding: 10px 22px !important; margin-bottom: 8px !important; }
+.hero:not(.login-hero) .title { font-size: 1.75rem !important; margin-bottom: 3px !important; }
+.hero:not(.login-hero) .sub { font-size: .82rem !important; line-height: 1.35 !important; }
+.strip { margin-bottom: 8px !important; }
+.strip .cell { padding-top: 8px !important; padding-bottom: 8px !important; }
+.strip .v { font-size: 1.45rem !important; }
+.brief { padding: 14px 20px !important; margin-bottom: 8px !important; }
+.brief .q-text, .q-text { font-size: 1.22rem !important; line-height: 1.28 !important; }
+.st-key-mic_card .mic-h { margin-bottom: 2px !important; font-size: 14px !important; }
+.st-key-mic_card .mic-s { margin-bottom: 2px !important; font-size: 11px !important; }
+div[data-testid="stTextArea"] { margin-top: 0 !important; margin-bottom: 2px !important; }
+div[data-testid="stTextArea"] label { margin-bottom: 2px !important; }
+.stTextArea textarea { height: 82px !important; min-height: 82px !important; padding: 8px 11px !important; }
+div[data-testid="stButton"] button { min-height: 36px !important; padding-top: 5px !important; padding-bottom: 5px !important; }
+@media (max-height: 900px) {
+    .hero:not(.login-hero) { min-height: 96px !important; padding: 8px 18px !important; }
+    .hero:not(.login-hero) .title { font-size: 1.55rem !important; }
+    .strip .k { font-size: .68rem !important; }
+    .strip .v { font-size: 1.28rem !important; }
+    .brief { padding: 11px 16px !important; }
+    .brief .q-text, .q-text { font-size: 1.1rem !important; }
+    .stTextArea textarea { height: 72px !important; min-height: 72px !important; }
+}
 
 </style>
 """, unsafe_allow_html=True)
