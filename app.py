@@ -26,7 +26,8 @@ def _live_speech_component():
 <style>
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }
-body { margin:0; font-family:Arial,sans-serif; background:transparent; color:#EAF2FF; }
+html, body { margin:0; padding:0; width:100%; background:transparent !important; color:#EAF2FF; overflow:hidden; }
+body { font-family:Arial,sans-serif; }
 .wrap { display:flex; align-items:center; gap:15px; padding:9px 2px; min-height:82px; }
 .mic { width:64px;height:64px;flex:0 0 64px;border-radius:50%;border:2px solid #83DFFF;
  background:radial-gradient(circle at 32% 24%,#63B8FF 0%,#287CE1 42%,#0B347B 100%);
@@ -881,6 +882,65 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 @media (prefers-reduced-motion: reduce) {
  .login-hero,.live-dot,.orbit-plane,.orbit-dot,.login-widget,.mini-bars i,.widget-pulse { animation:none !important; }
 }
+
+
+    /* Unified live-mic surface and compact above-the-fold response area */
+    .st-key-mic_card,
+    .st-key-mic_card [data-testid="stVerticalBlock"],
+    .st-key-mic_card [data-testid="stHorizontalBlock"],
+    .st-key-mic_card [data-testid="stElementContainer"],
+    .st-key-mic_card iframe,
+    .st-key-mic_card [data-testid="stCustomComponentV1"] {
+        background: transparent !important;
+        background-color: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+    .st-key-mic_card {
+        background: linear-gradient(145deg, rgba(12,33,59,.98), rgba(7,23,43,.98)) !important;
+        border: 1px solid #24486F !important;
+        border-radius: 23px !important;
+        padding: 16px 20px 14px !important;
+        overflow: hidden !important;
+    }
+    .st-key-mic_card iframe { display:block !important; width:100% !important; }
+    .st-key-mic_card [data-testid="stCustomComponentV1"] > div {
+        background: transparent !important;
+    }
+    /* Shrink the vertical footprint so the answer and actions fit on one screen. */
+    .block-container { padding-top: .65rem !important; padding-bottom: 1rem !important; }
+    .hero { margin-bottom: 12px !important; }
+    .hero:not(.login-hero) { padding-top: 18px !important; padding-bottom: 18px !important; }
+    .strip { margin-bottom: 12px !important; }
+    .brief { padding: 19px 24px !important; margin-bottom: 12px !important; }
+    .st-key-mic_card { margin-bottom: 8px !important; }
+    .stTextArea textarea {
+        min-height: 112px !important;
+        height: 112px !important;
+        resize: vertical !important;
+        background: #071A31 !important;
+        color: #EAF2FF !important;
+        border: 1px solid #2B507A !important;
+        border-radius: 14px !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.03) !important;
+        padding: 12px 14px !important;
+    }
+    div[data-testid="stTextArea"] { margin-bottom: 4px !important; }
+    div[data-testid="stTextArea"] label { margin-bottom: 3px !important; }
+    .stButton button { min-height: 40px !important; }
+    @media (min-width: 900px) {
+        .hero:not(.login-hero) { min-height: 150px !important; }
+        .hero:not(.login-hero) .title { font-size: 2rem !important; }
+        .hero:not(.login-hero) .sub { font-size: .9rem !important; }
+    }
+    @media (max-height: 850px) {
+        .block-container { padding-top: .35rem !important; }
+        .hero:not(.login-hero) { min-height: 130px !important; padding-top: 12px !important; padding-bottom: 12px !important; }
+        .strip { padding-top: 8px !important; padding-bottom: 8px !important; }
+        .brief { padding-top: 15px !important; padding-bottom: 15px !important; }
+        .st-key-mic_card { padding-top: 12px !important; padding-bottom: 10px !important; }
+        .stTextArea textarea { min-height: 96px !important; height: 96px !important; }
+    }
 
 </style>
 """, unsafe_allow_html=True)
