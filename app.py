@@ -11,14 +11,14 @@ import speech_recognition as sr
 from supabase import create_client, Client
 
 
-# --- CANLI KONUŞMA TANIMA (ses dosyası kaydetmeden) ---
+# --- LIVE SPEECH RECOGNITION (no audio file is saved) ---
 @st.cache_resource
 def _live_speech_component():
     component_dir = Path(tempfile.gettempdir()) / "pilotinterviewpro_live_speech_component"
     component_dir.mkdir(parents=True, exist_ok=True)
     html_path = component_dir / "index.html"
     html_path.write_text(r"""<!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,10 +43,10 @@ body { font-family:Arial,sans-serif; }
 </head>
 <body>
 <div class="wrap">
-  <button id="mic" class="mic" aria-label="Mikrofonu başlat" title="Konuşmayı başlat">🎙</button>
+  <button id="mic" class="mic" aria-label="Start microphone" title="Start speaking">🎙</button>
   <div class="texts">
-    <div class="title">Canlı sesli yanıt</div>
-    <div id="status" class="status">Başlamak için mikrofona dokunun. Konuşmanız anlık olarak yazıya çevrilir.</div>
+    <div class="title">Live voice answer</div>
+    <div id="status" class="status">Tap the mic to start. Your speech is transcribed in real time.</div>
   </div>
 </div>
 <script>
@@ -68,29 +68,29 @@ body { font-family:Arial,sans-serif; }
   function stop() {
     active = false;
     mic.classList.remove('live');
-    mic.setAttribute('aria-label','Mikrofonu başlat');
-    mic.title = 'Konuşmayı başlat';
+    mic.setAttribute('aria-label','Start microphone');
+    mic.title = 'Start speaking';
     try { if (recognition) recognition.stop(); } catch(e) {}
-    setStatus('Konuşma durduruldu. Metin yanıt kutusuna aktarıldı.');
+    setStatus('Speech stopped. Text transferred to response box.');
   }
   function start() {
     if (!SpeechRecognition) {
-      setStatus('Bu tarayıcı canlı konuşma tanımayı desteklemiyor. Güncel Chrome kullanın.');
+      setStatus('This browser does not support live speech recognition. Please use the latest version of Chrome.');
       return;
     }
     finalText = '';
     lastSent = '';
     recognition = new SpeechRecognition();
-    recognition.lang = 'tr-TR';
+    recognition.lang = 'en-US';
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.maxAlternatives = 1;
     recognition.onstart = () => {
       active = true;
       mic.classList.add('live');
-      mic.setAttribute('aria-label','Mikrofonu durdur');
-      mic.title = 'Konuşmayı durdur';
-      setStatus('Dinleniyor… Konuştukça metin güncellenir.', true);
+      mic.setAttribute('aria-label','Stop microphone');
+      mic.title = 'Stop speaking';
+      setStatus('Listening… Text updates as you speak.', true);
     };
     recognition.onresult = (event) => {
       let interim = '';
@@ -101,13 +101,13 @@ body { font-family:Arial,sans-serif; }
       }
       const current = (finalText + interim).trim();
       if (current) sendValue(current);
-      setStatus(current ? current : 'Dinleniyor…', true);
+      setStatus(current ? current : 'Listening…', true);
     };
     recognition.onerror = (event) => {
       if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
-        setStatus('Mikrofon izni verilmedi. Tarayıcı izinlerinden mikrofona izin verin.');
+        setStatus('Microphone permission denied. Allow microphone access in your browser settings.');
       } else if (event.error !== 'no-speech' && event.error !== 'aborted') {
-        setStatus('Konuşma tanıma hatası: ' + event.error);
+        setStatus('Speech recognition error: ' + event.error);
       }
     };
     recognition.onend = () => {
@@ -118,7 +118,7 @@ body { font-family:Arial,sans-serif; }
       }
     };
     try { recognition.start(); }
-    catch(e) { setStatus('Mikrofon başlatılamadı. Sayfayı yenileyip tekrar deneyin.'); }
+    catch(e) { setStatus('Could not start the microphone. Refresh the page and try again.'); }
   }
   mic.addEventListener('click', () => active ? stop() : start());
   window.parent.postMessage({isStreamlitMessage:true, type:'streamlit:componentReady', apiVersion:1}, '*');
@@ -139,7 +139,7 @@ body { font-family:Arial,sans-serif; }
 live_speech_input = _live_speech_component()
 
 
-# Sayfa Yapılandırması
+# Page configuration
 st.set_page_config(
     page_title="PILOTPREP",
     page_icon="✈️",
@@ -147,7 +147,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- SUPABASE BAĞLANTISI VE OTURUM YÖNETİMİ ---
+# --- SUPABASE CONNECTION AND SESSION MANAGEMENT ---
 @st.cache_resource
 def init_supabase() -> Client:
     url = st.secrets.get("SUPABASE_URL", "")
@@ -158,7 +158,7 @@ def init_supabase() -> Client:
 
 supabase = init_supabase()
 
-# 🎨 TASARIM SİSTEMİ — "Flight Deck"
+# 🎨 DESIGN SYSTEM — "Flight Deck"
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
@@ -187,7 +187,7 @@ st.markdown("""
     footer, #MainMenu { visibility: hidden; }
     .block-container { padding-top: 2rem; max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; }
 
-    /* ---------- Yan panel (kokpit paneli) ---------- */
+    /* ---------- Sidebar (cockpit panel) ---------- */
     section[data-testid="stSidebar"] {
         background: var(--panel) !important;
         border-right: 1px solid var(--panel-line);
@@ -252,7 +252,7 @@ st.markdown("""
     .hero.center .sub { margin: 0 auto; }
     @keyframes heroIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-    /* ---------- Enstrüman şeridi (özet metrikler) ---------- */
+    /* ---------- Instrument strip (summary metrics) ---------- */
     .strip {
         display: grid; grid-template-columns: repeat(4, 1fr);
         background: var(--card); border: 1px solid var(--line); border-radius: 12px;
@@ -264,7 +264,7 @@ st.markdown("""
     .strip .v { font-family:'Barlow Semi Condensed',sans-serif; font-size: 1.9rem; font-weight: 600; color: var(--ink); line-height: 1.1; font-variant-numeric: tabular-nums; }
     .strip .v small { font-size: 0.95rem; color: var(--ink-soft); font-weight: 500; margin-left: 4px; }
 
-    /* ---------- Soru kartı (briefing) ---------- */
+    /* ---------- Question card (briefing) ---------- */
     .brief {
         background: var(--card);
         border: 1px solid var(--line);
@@ -276,12 +276,12 @@ st.markdown("""
     .tags { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
     .tag-cat { background: var(--panel); color:#fff; border-radius: 6px; padding: 5px 12px; font-size: 0.82rem; font-weight: 500; }
     .tag-diff { border-radius: 6px; padding: 5px 12px; font-size: 0.82rem; font-weight: 600; border: 1px solid; }
-    .tag-diff.kolay { color:#13795B; border-color:#9ADBC4; background:#EAF8F2; }
-    .tag-diff.orta  { color:#8A5B00; border-color:#F2D18A; background:#FEF6E1; }
-    .tag-diff.zor   { color:#A82F28; border-color:#EFB1AC; background:#FDEEEC; }
+    .tag-diff.easy   { color:#13795B; border-color:#9ADBC4; background:#EAF8F2; }
+    .tag-diff.medium { color:#8A5B00; border-color:#F2D18A; background:#FEF6E1; }
+    .tag-diff.hard   { color:#A82F28; border-color:#EFB1AC; background:#FDEEEC; }
     .q-text { font-family:'Barlow Semi Condensed',sans-serif; font-size: 2.1rem !important; font-weight: 700 !important; color: var(--ink); line-height: 1.35; max-width: 100%; }
 
-    /* ---------- Mikrofon paneli ---------- */
+    /* ---------- Microphone panel ---------- */
     .st-key-mic_card {
         background: var(--card);
         border: 1px solid var(--line);
@@ -292,7 +292,7 @@ st.markdown("""
     .mic-h { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:1.15rem; color:var(--ink); }
     .mic-s { color: var(--ink-soft); font-size: 0.88rem; margin: 2px 0 10px 0; }
 
-    /* ---------- Form elemanları ---------- */
+    /* ---------- Form elements ---------- */
     .stTextArea label p { font-weight: 600; color: var(--ink); }
     .stTextArea textarea {
         background: var(--card) !important; color: var(--ink) !important;
@@ -317,7 +317,7 @@ st.markdown("""
     }
     button:focus-visible { outline: 3px solid var(--sky) !important; outline-offset: 2px; }
 
-    /* ---------- Karne (skor göstergesi) ---------- */
+    /* ---------- Report card (score gauge) ---------- */
     .report {
         background: var(--card); border: 1px solid var(--line); border-radius: 12px;
         padding: 26px 30px; margin-top: 8px; margin-bottom: 22px;
@@ -342,14 +342,14 @@ st.markdown("""
     .model-answer .h { font-family:'Barlow Semi Condensed',sans-serif; font-weight:600; font-size:1.05rem; color: var(--green); margin-bottom: 8px; }
     .model-answer .t { line-height: 1.7; font-size: 1rem; max-width: 100%; }
 
-    /* ---------- İpucu ---------- */
+    /* ---------- Tip ---------- */
     .tip {
         background: transparent; border: 1px dashed #B5C0CF; border-radius: 12px;
         padding: 16px 22px; color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6;
     }
     .tip b { color: var(--ink); }
 
-    /* ---------- Uçuş ilerlemesi ---------- */
+    /* ---------- Flight progress ---------- */
     .flight {
         background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px;
     }
@@ -432,7 +432,7 @@ st.markdown("""
     .tip { background: rgba(255,255,255,.45); }
     div[data-testid="stAlert"] { border-radius: 10px; }
 
-    /* ---------- Hareket ---------- */
+    /* ---------- Motion ---------- */
     .hero .plane {
         position: absolute; z-index: 0; left: -160px; top: 64%;
         width: 92px; opacity: .5; pointer-events: none;
@@ -561,9 +561,9 @@ st.markdown("""
     .chips-title, .tip { color: #9DB5D5 !important; }
     .tag-cat { background: #17365E !important; border: 1px solid #315A88; border-radius: 999px !important; }
     .tag-diff { border-radius: 999px !important; }
-    .tag-diff.kolay { color: #65E7C1 !important; border-color: #226C65 !important; background: #0C393B !important; }
-    .tag-diff.orta { color: #FFD16A !important; border-color: #745B29 !important; background: #3A2D17 !important; }
-    .tag-diff.zor { color: #FF9DA6 !important; border-color: #783D4A !important; background: #3A1E2B !important; }
+    .tag-diff.easy { color: #65E7C1 !important; border-color: #226C65 !important; background: #0C393B !important; }
+    .tag-diff.medium { color: #FFD16A !important; border-color: #745B29 !important; background: #3A2D17 !important; }
+    .tag-diff.hard { color: #FF9DA6 !important; border-color: #783D4A !important; background: #3A1E2B !important; }
     .stTextArea textarea, .stTextInput input {
         background: #06172D !important; color: #EAF2FF !important;
         border: 1px solid #254A75 !important; border-radius: 17px !important;
@@ -653,8 +653,8 @@ st.markdown("""
     .st-key-mic_card button,
     .st-key-mic_card [data-testid="stBaseButton-secondary"],
     .st-key-mic_card [data-testid="stBaseButton-primary"],
-    button[aria-label*="Mikrofon"],
-    button[title*="Mikrofon"] {
+    button[aria-label*="Mic"],
+    button[title*="Mic"] {
         width: 116px !important;
         height: 116px !important;
         min-width: 116px !important;
@@ -675,15 +675,15 @@ st.markdown("""
     .st-key-mic_card button p,
     .st-key-mic_card button span,
     .st-key-mic_card button svg,
-    button[aria-label*="Mikrofon"] svg,
-    button[title*="Mikrofon"] svg {
+    button[aria-label*="Mic"] svg,
+    button[title*="Mic"] svg {
         color: #FFFFFF !important;
         fill: currentColor !important;
         stroke: currentColor !important;
     }
     .st-key-mic_card button:hover,
-    button[aria-label*="Mikrofon"]:hover,
-    button[title*="Mikrofon"]:hover {
+    button[aria-label*="Mic"]:hover,
+    button[title*="Mic"]:hover {
         transform: scale(1.045) !important;
         box-shadow: 0 0 0 10px rgba(53,189,245,.15),
                     0 0 42px rgba(41,132,255,.60),
@@ -923,11 +923,13 @@ div[data-testid="stTextArea"] label { margin-bottom: 2px !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# Helper Fonksiyonlar
-def turkish_lower(text: str) -> str:
-    if not text: return ""
-    rep = {'I': 'ı', 'İ': 'i', 'Ç': 'ç', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö'}
-    for search, replace in rep.items(): text = text.replace(search, replace)
+ALL_CATEGORIES = "All Categories"
+
+# Helper functions
+def normalize_text(text: str) -> str:
+    """Lowercase text for English matching (standard Unicode casing)."""
+    if not text:
+        return ""
     return text.lower()
 
 def transcribe_audio(audio_bytes):
@@ -936,12 +938,12 @@ def transcribe_audio(audio_bytes):
         audio_file = io.BytesIO(audio_bytes)
         with sr.AudioFile(audio_file) as source:
             audio_data = recognizer.record(source)
-            return recognizer.recognize_google(audio_data, language="tr-TR")
+            return recognizer.recognize_google(audio_data, language="en-US")
     except Exception:
         return ""
 
 def is_flexible_match(keyword: str, clean_answer: str) -> bool:
-    clean_kw = turkish_lower(str(keyword).strip())
+    clean_kw = normalize_text(str(keyword).strip())
     clean_kw = re.sub(r'[^\w\s]', '', clean_kw)
     if not clean_kw: return False
     if clean_kw in clean_answer: return True
@@ -956,7 +958,7 @@ def is_flexible_match(keyword: str, clean_answer: str) -> bool:
 def calculate_score(user_answer: str, keywords: list) -> dict:
     if not user_answer or not user_answer.strip():
         return {"score": 0, "matched_count": 0, "matched_keywords": [], "missing_keywords": keywords}
-    clean_answer = re.sub(r'[^\w\s]', ' ', turkish_lower(user_answer))
+    clean_answer = re.sub(r'[^\w\s]', ' ', normalize_text(user_answer))
     matched_keywords = [kw for kw in keywords if is_flexible_match(kw, clean_answer)]
     missing_keywords = [kw for kw in keywords if kw not in matched_keywords]
     match_count = len(matched_keywords)
@@ -973,17 +975,17 @@ def load_questions():
 
 questions_data = load_questions()
 
-# Session State Başlatma
+# Session state initialization
 if "user" not in st.session_state: st.session_state.user = None
 if "session" not in st.session_state: st.session_state.session = None
 if "sorulan_ids" not in st.session_state: st.session_state.sorulan_ids = []
 if "puanlar" not in st.session_state: st.session_state.puanlar = []
 if "mevcut_soru" not in st.session_state: st.session_state.mevcut_soru = None
 if "son_analiz" not in st.session_state: st.session_state.son_analiz = None
-if "secilen_kategori" not in st.session_state: st.session_state.secilen_kategori = "Tüm Kategoriler"
+if "secilen_kategori" not in st.session_state: st.session_state.secilen_kategori = ALL_CATEGORIES
 if "last_processed_audio" not in st.session_state: st.session_state.last_processed_audio = None
 
-# SUPABASE KONTROLÜ VE OTURUMU GERİ YÜKLEME
+# SUPABASE CHECK AND SESSION RESTORE
 if supabase and not st.session_state.user:
     try:
         curr_session = supabase.auth.get_session()
@@ -1029,20 +1031,20 @@ def puan_kaydet(soru_id, puan):
     else:
         st.session_state.puanlar.append(puan)
 
-# --- GÖRSEL YARDIMCILAR (sadece UI) ---
+# --- VISUAL HELPERS (UI only) ---
 SKOR_BILGI = {
-    100: ("Mükemmel", "#2FBF8F", "Yanıtınız beklenen cevapla tam uyumlu. Bu seviyeyi koruyun."),
-    80:  ("Çok iyi", "#2FBF8F", "Yanıtınız büyük oranda yeterli. Eksik kalan kavramları ekleyerek 100'e çıkabilirsiniz."),
-    60:  ("Orta seviye", "#F2A81D", "Temel fikir var ancak bazı önemli detaylar eksik kaldı."),
-    30:  ("Zayıf", "#D8483F", "Doğru yanıttan uzak kalındı. Örnek cevabı okuyup tekrar deneyin."),
-    0:   ("Yetersiz", "#D8483F", "Hedeflenen açıklamalar yanıtınızda bulunamadı."),
+    100: ("Excellent", "#2FBF8F", "Your answer fully matches the expected response. Keep up this level."),
+    80:  ("Very Good", "#2FBF8F", "Your answer is largely sufficient. Add the missing concepts to reach 100."),
+    60:  ("Moderate", "#F2A81D", "The core idea is there, but some important details are missing."),
+    30:  ("Needs Work", "#D8483F", "Your answer is far from the correct one. Read the sample answer and try again."),
+    0:   ("Inadequate", "#D8483F", "The targeted explanations were not found in your answer."),
 }
 
 def gauge_svg(puan: int, renk: str) -> str:
     uzunluk = 251.33
     dolu = uzunluk * (puan / 100)
     return f"""
-    <svg viewBox="0 0 200 124" role="img" aria-label="Skor {puan} / 100">
+    <svg viewBox="0 0 200 124" role="img" aria-label="Score {puan} / 100">
         <path d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="#E3E8EF" stroke-width="14" stroke-linecap="round"/>
         <path class="arc" d="M20 104 A80 80 0 0 1 180 104" fill="none" stroke="{renk}" stroke-width="14" stroke-linecap="round"
               stroke-dasharray="{dolu:.1f} {uzunluk:.1f}"/>
@@ -1057,7 +1059,7 @@ def chips_html(items, css_class):
         for k in items
     )
 
-# --- GİRİŞ / KAYIT EKRANI ---
+# --- LOGIN / SIGN-UP SCREEN ---
 if not st.session_state.user:
     st.markdown("""
     <div class="hero center login-hero">
@@ -1069,60 +1071,60 @@ if not st.session_state.user:
         </div>
         <div class="login-kicker"><span class="live-dot"></span> FLIGHT DECK · INTERVIEW TRAINING</div>
         <div class="title">✈️ PilotInterviewPro</div>
-        <div class="sub">Havayolu mülakatına teknik sorularla hazırlanın. İlerlemeniz hesabınızda saklanır.</div>
+        <div class="sub">Prepare for your airline interview with technical questions. Your progress is saved to your account.</div>
         <div class="login-widgets">
-            <div class="login-widget"><span class="widget-icon">◉</span><span><b>Canlı pratik</b><small>Konuşarak yanıtlayın</small></span><i class="widget-pulse"></i></div>
-            <div class="login-widget"><span class="widget-icon">⌁</span><span><b>Uçuş göstergeleri</b><small>İlerlemenizi takip edin</small></span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span></div>
-            <div class="login-widget"><span class="widget-icon">✦</span><span><b>Akıllı değerlendirme</b><small>Yanıtınıza geri bildirim</small></span><span class="widget-check">✓</span></div>
+            <div class="login-widget"><span class="widget-icon">◉</span><span><b>Live practice</b><small>Answer by speaking</small></span><i class="widget-pulse"></i></div>
+            <div class="login-widget"><span class="widget-icon">⌁</span><span><b>Flight instruments</b><small>Track your progress</small></span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span></div>
+            <div class="login-widget"><span class="widget-icon">✦</span><span><b>Smart evaluation</b><small>Feedback on your answer</small></span><span class="widget-check">✓</span></div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
     col_auth1, col_auth2, col_auth3 = st.columns([1, 1.7, 1])
     with col_auth2:
-        tab_login, tab_signup = st.tabs(["Giriş yap", "Kayıt ol"])
+        tab_login, tab_signup = st.tabs(["Log in", "Sign up"])
 
         with tab_login:
-            login_email = st.text_input("E-posta", key="l_email")
-            login_pass = st.text_input("Şifre", type="password", key="l_pass")
-            if st.button("Giriş yap", type="primary", use_container_width=True):
+            login_email = st.text_input("Email", key="l_email")
+            login_pass = st.text_input("Password", type="password", key="l_pass")
+            if st.button("Log in", type="primary", use_container_width=True):
                 if supabase:
                     try:
                         res = supabase.auth.sign_in_with_password({"email": login_email, "password": login_pass})
                         st.session_state.user = res.user
                         st.session_state.session = res.session
                         load_user_progress()
-                        st.success("Giriş başarılı!")
+                        st.success("Login successful!")
                         st.rerun()
                     except Exception as e:
-                        st.error(f"Giriş hatası: {e}")
+                        st.error(f"Login error: {e}")
                 else:
-                    st.error("Supabase bağlantı bilgileri eksik (Secrets).")
+                    st.error("Supabase connection details are missing (Secrets).")
 
         with tab_signup:
-            signup_email = st.text_input("E-posta", key="s_email")
-            signup_pass = st.text_input("Şifre (en az 6 karakter)", type="password", key="s_pass")
-            if st.button("Hesap oluştur", use_container_width=True):
+            signup_email = st.text_input("Email", key="s_email")
+            signup_pass = st.text_input("Password (at least 6 characters)", type="password", key="s_pass")
+            if st.button("Create account", use_container_width=True):
                 if supabase:
                     try:
                         res = supabase.auth.sign_up({"email": signup_email, "password": signup_pass})
                         st.session_state.user = res.user
                         st.session_state.session = res.session
                         save_user_progress()
-                        st.success("Hesabınız oluşturuldu!")
+                        st.success("Your account has been created!")
                         st.rerun()
                     except Exception as e:
-                        st.error(f"Kayıt hatası: {e}")
+                        st.error(f"Sign-up error: {e}")
     st.stop()
 
-# Oturum Açık ise İlerlemeyi Yükle (İlk Yüklemede)
+# If logged in, load progress (on first load)
 if st.session_state.user and not st.session_state.sorulan_ids and not st.session_state.puanlar:
     load_user_progress()
 
-# --- GİRİŞ YAPILDIKTAN SONRAKİ UYGULAMA AKIŞI ---
+# --- APPLICATION FLOW AFTER LOGIN ---
 
 def yeni_soru_getir(kategori_filtresi):
-    if kategori_filtresi == "Tüm Kategoriler":
+    if kategori_filtresi == ALL_CATEGORIES:
         filtre = questions_data
     else:
         filtre = [q for q in questions_data if q.get("category") == kategori_filtresi]
@@ -1143,7 +1145,7 @@ def yeni_soru_getir(kategori_filtresi):
         st.session_state.son_analiz = None
         save_user_progress()
 
-# Hesaplamalar
+# Calculations
 toplam_soru = len(questions_data)
 tamamlanan = len(st.session_state.puanlar)
 ort_skor = (sum(st.session_state.puanlar) / tamamlanan) if tamamlanan > 0 else 0
@@ -1156,7 +1158,7 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-kategoriler = ["Tüm Kategoriler"] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
+kategoriler = [ALL_CATEGORIES] + sorted(list(set(q["category"] for q in questions_data))) if questions_data else []
 
 def on_kategori_change():
     yeni_kat = st.session_state.kat_select_box
@@ -1165,19 +1167,19 @@ def on_kategori_change():
 
 kat_index = kategoriler.index(st.session_state.secilen_kategori) if st.session_state.secilen_kategori in kategoriler else 0
 
-secilen_kategori = st.sidebar.selectbox("Mülakat kategorisi", kategoriler, index=kat_index, key="kat_select_box", on_change=on_kategori_change)
+secilen_kategori = st.sidebar.selectbox("Interview category", kategoriler, index=kat_index, key="kat_select_box", on_change=on_kategori_change)
 
 st.sidebar.markdown(f"""
 <div style="margin-top:14px;">
-    <div class="side-stat"><span>Yanıtlanan</span><b>{tamamlanan}</b></div>
-    <div class="side-stat"><span>Ortalama skor</span><b>%{ort_skor:.0f}</b></div>
-    <div class="side-stat"><span>Hedef</span><b>%80+</b></div>
+    <div class="side-stat"><span>Answered</span><b>{tamamlanan}</b></div>
+    <div class="side-stat"><span>Average score</span><b>{ort_skor:.0f}%</b></div>
+    <div class="side-stat"><span>Target</span><b>80%+</b></div>
 </div>
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
 
-if st.sidebar.button("İlerlemeyi sıfırla", use_container_width=True, help="Tüm yanıt ve puan geçmişinizi sıfırlar."):
+if st.sidebar.button("Reset progress", use_container_width=True, help="Resets all your answer and score history."):
     reset_user_progress()
     st.rerun()
 
@@ -1185,7 +1187,7 @@ st.sidebar.markdown("""
 <div class="radar"><span class="blip b1"></span><span class="blip b2"></span></div>
 """, unsafe_allow_html=True)
 
-if st.sidebar.button("Çıkış yap", use_container_width=True):
+if st.sidebar.button("Sign out", use_container_width=True):
     if supabase:
         try:
             supabase.auth.sign_out()
@@ -1200,21 +1202,18 @@ if st.sidebar.button("Çıkış yap", use_container_width=True):
 if st.session_state.mevcut_soru is None and questions_data:
     yeni_soru_getir(st.session_state.secilen_kategori)
 
-# Kullanıcı adı
+# User display name
 def display_name(email: str) -> str:
     local = (email or "").split("@")[0]
     words = [w for w in re.split(r"[._\-\s]+", local) if w]
-    out = []
-    for w in words:
-        first = "İ" if w[0] == "i" else ("I" if w[0] == "ı" else w[0].upper())
-        out.append(first + turkish_lower(w[1:]))
-    return " ".join(out) if out else "Pilot Adayı"
+    out = [w[0].upper() + normalize_text(w[1:]) for w in words]
+    return " ".join(out) if out else "Pilot Candidate"
 
 kullanici_adi = display_name(st.session_state.user.email)
 avatar_harf = html.escape(kullanici_adi[0])
 kullanici_adi_html = html.escape(kullanici_adi)
 
-# Hero Banner
+# Hero banner
 st.markdown(f"""
 <div class="hero">
     <div class="cloud c1"></div><div class="cloud c2"></div>
@@ -1222,22 +1221,22 @@ st.markdown(f"""
     <div class="welcome">
         <div class="avatar">{avatar_harf}</div>
         <div>
-            <div class="hi">Hoş geldiniz</div>
+            <div class="hi">Welcome</div>
             <div class="name">{kullanici_adi_html}</div>
         </div>
     </div>
-    <div class="title">Pilot mülakatına hazırlanın</div>
-    <div class="sub">Teknik sorulara sesle yanıt verin, havacılık terminolojisini net kullanın. İlerlemeniz hesabınıza otomatik kaydedilir.</div>
+    <div class="title">Prepare for your pilot interview</div>
+    <div class="sub">Answer technical questions by voice and use aviation terminology clearly. Your progress is saved to your account automatically.</div>
 </div>
 """, unsafe_allow_html=True)
 
-# Enstrüman şeridi
+# Instrument strip
 st.markdown(f"""
 <div class="strip">
-    <div class="cell"><div class="k">Toplam soru</div><div class="v">{toplam_soru}</div></div>
-    <div class="cell"><div class="k">Kategori</div><div class="v">{max(len(kategoriler)-1, 0)}</div></div>
-    <div class="cell"><div class="k">Ortalama skor</div><div class="v">%{ort_skor:.0f}</div></div>
-    <div class="cell"><div class="k">Hedef skor</div><div class="v">%80<small>ve üzeri</small></div></div>
+    <div class="cell"><div class="k">Total questions</div><div class="v">{toplam_soru}</div></div>
+    <div class="cell"><div class="k">Categories</div><div class="v">{max(len(kategoriler)-1, 0)}</div></div>
+    <div class="cell"><div class="k">Average score</div><div class="v">{ort_skor:.0f}%</div></div>
+    <div class="cell"><div class="k">Target score</div><div class="v">80%<small>and above</small></div></div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -1248,9 +1247,9 @@ with col_left:
         soru = st.session_state.mevcut_soru
         input_key = f"answer_input_{soru.get('id')}"
 
-        zorluk = str(soru.get('difficulty', 'Orta'))
-        zorluk_css = {"Kolay": "kolay", "Orta": "orta", "Zor": "zor"}.get(zorluk, "orta")
-        kategori_html = html.escape(str(soru.get('category', 'Genel')))
+        zorluk = str(soru.get('difficulty', 'Medium'))
+        zorluk_css = {"Easy": "easy", "Medium": "medium", "Hard": "hard"}.get(zorluk, "medium")
+        kategori_html = html.escape(str(soru.get('category', 'General')))
         zorluk_html = html.escape(zorluk)
         soru_html = html.escape(str(soru.get('question', '')))
 
@@ -1267,12 +1266,12 @@ with col_left:
         model_answer_text = soru.get("model_answer")
         if not model_answer_text:
             kw_list = soru.get("keywords", [])
-            model_answer_text = "Bu soru için mülakatta açıklanması beklenen temel konu: " + ", ".join(kw_list) + " kavramlarının doğru usullerle ifade edilmesidir."
+            model_answer_text = "Key topic expected to be covered in the interview for this question: a correct and precise explanation of the following concepts: " + ", ".join(kw_list) + "."
 
         with st.container(key="mic_card"):
             st.markdown("""
-            <div class="mic-h">Sesli yanıt</div>
-            <div class="mic-s">Mikrofonu açıp konuşun. Söyledikleriniz eş zamanlı olarak metne aktarılır; ses dosyası kaydedilmez.</div>
+            <div class="mic-h">Voice answer</div>
+            <div class="mic-s">Turn on the microphone and speak. Your words are transcribed to text in real time; no audio file is saved.</div>
             """, unsafe_allow_html=True)
             live_text = live_speech_input(
                 key=f"live_{soru.get('id')}_{len(st.session_state.sorulan_ids)}",
@@ -1281,11 +1280,11 @@ with col_left:
             if isinstance(live_text, str) and live_text.strip():
                 st.session_state[input_key] = live_text
 
-        kullanici_cevabi = st.text_area("Algılanan / yazılan yanıtınız", placeholder="Mikrofonda konuştukça metin burada belirir. İsterseniz elle de düzenleyebilirsiniz.", height=130, key=input_key)
+        kullanici_cevabi = st.text_area("Detected / typed answer", placeholder="Text appears here as you speak into the microphone. You can also edit it manually.", height=130, key=input_key)
 
         btn_c1, btn_c2 = st.columns([1, 1])
         with btn_c1:
-            if st.button("Yanıtı değerlendir", type="primary", use_container_width=True):
+            if st.button("Evaluate answer", type="primary", use_container_width=True):
                 if kullanici_cevabi.strip():
                     keywords = soru.get("keywords", [])
                     eval_result = calculate_score(kullanici_cevabi, keywords)
@@ -1302,10 +1301,10 @@ with col_left:
                     save_user_progress()
                     st.rerun()
                 else:
-                    st.warning("Önce bir yanıt söyleyin veya yazın.")
+                    st.warning("Please speak or type an answer first.")
 
         with btn_c2:
-            if st.button("Sonraki soru", use_container_width=True):
+            if st.button("Next question", use_container_width=True):
                 yeni_soru_getir(st.session_state.secilen_kategori)
                 st.rerun()
 
@@ -1318,9 +1317,9 @@ with col_left:
             missing = res.get("missing", [])
             kw_html = ""
             if matched:
-                kw_html += f'<div class="chips-title">Yanıtınızda geçen kavramlar</div><div class="chips">{chips_html(matched, "ok")}</div>'
+                kw_html += f'<div class="chips-title">Concepts found in your answer</div><div class="chips">{chips_html(matched, "ok")}</div>'
             if missing:
-                kw_html += f'<div class="chips-title">Eklenebilecek kavramlar</div><div class="chips">{chips_html(missing, "miss")}</div>'
+                kw_html += f'<div class="chips-title">Concepts you could add</div><div class="chips">{chips_html(missing, "miss")}</div>'
 
             model_answer_html = html.escape(str(res.get('model_answer', '')))
             etiket_html = html.escape(str(etiket))
@@ -1335,14 +1334,14 @@ with col_left:
                 </div>
             </div>
             <div class="model-answer">
-                <div class="h">Mülakatta beklenen örnek cevap</div>
+                <div class="h">Expected sample answer in the interview</div>
                 <div class="t">{model_answer_html}</div>
             </div>
             """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="tip">
-        <b>Mülakat ipucu:</b> Sistemlerin çalışmasını anlatırken <b>neden-sonuç ilişkisini</b> ve standart operasyon usullerini (SOP) vurgulamak puanınızı artırır.
+        <b>Interview tip:</b> When explaining how systems work, emphasizing <b>cause-and-effect relationships</b> and standard operating procedures (SOPs) will improve your score.
     </div>
     """, unsafe_allow_html=True)
 
@@ -1350,15 +1349,15 @@ with col_right:
     yuzde = min(int((tamamlanan / toplam_soru) * 100), 100) if toplam_soru > 0 else 0
     st.markdown(f"""
     <div class="flight">
-        <div class="h">Uçuş ilerlemesi</div>
-        <div class="pct">%{yuzde}</div>
+        <div class="h">Flight progress</div>
+        <div class="pct">{yuzde}%</div>
         <div class="track">
             <div class="fill" style="width:{yuzde}%;"></div>
             <div class="dot" style="left:{yuzde}%;"></div>
             <div class="end"></div>
         </div>
-        <div class="legend"><span>Kalkış</span><span>Varış</span></div>
-        <div class="note">Toplam <b>{toplam_soru}</b> sorudan <b>{tamamlanan}</b> tanesi yanıtlandı.</div>
+        <div class="legend"><span>Departure</span><span>Arrival</span></div>
+        <div class="note">You have answered <b>{tamamlanan}</b> of <b>{toplam_soru}</b> questions.</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1397,7 +1396,7 @@ with col_right:
       </svg>
       <div class="clk">
         <div class="row"><div class="lab">UTC (Zulu)</div><div class="t utc" id="u">--:--:--</div></div>
-        <div class="row" style="margin-bottom:0"><div class="lab">Türkiye saati</div><div class="t" id="l">--:--:--</div></div>
+        <div class="row" style="margin-bottom:0"><div class="lab">Local time (Türkiye)</div><div class="t" id="l">--:--:--</div></div>
       </div>
     </div>
     <script>
