@@ -2,161 +2,1355 @@
   {
     "id": 1,
     "category": "Aerodynamics & Flight Principles",
-    "difficulty": "Medium",
-    "question": "When does wake turbulence (wingtip vortices) begin to form during takeoff, and how can it be avoided?",
-    "keywords": ["vortex", "weight", "takeoff", "time", "lift"],
-    "model_answer": "Wake turbulence begins as soon as the wing starts producing lift, which is at rotation, when the nose wheel leaves the runway. The vortices persist until the aircraft touches down. To avoid them when departing behind a heavier aircraft, note its rotation point, rotate before that point, and climb above and upwind of its flight path. Apply the required time separation (typically two to three minutes behind a heavy aircraft) and take into account the wind, which can hold vortices on the runway."
+    "difficulty": "Easy",
+    "question": "What are the indications of an aerodynamic stall, and how should a pilot recover?",
+    "keywords": [
+      "angle of attack",
+      "stall warning",
+      "buffet",
+      "reduce angle of attack",
+      "apply power",
+      "minimise altitude loss"
+    ],
+    "model_answer": "A stall occurs when the wing exceeds its critical angle of attack. Indications may include stall warnings, buffet, reduced control effectiveness, or an uncommanded roll. Reduce angle of attack first, apply appropriate power, level the wings as the aircraft permits, and follow the aircraft's approved recovery procedure while minimising altitude loss."
   },
   {
     "id": 2,
-    "category": "Engines & Systems",
-    "difficulty": "Hard",
-    "question": "What is the primary function of the FADEC (Full Authority Digital Engine Control) system on the Diamond DA42 NG, and how does it behave in the event of a failure?",
-    "keywords": ["ECU", "automatic", "fuel", "backup", "electronic"],
-    "model_answer": "FADEC is an electronic system that automatically controls fuel injection, propeller governing and power settings through the Engine Control Units (ECU). Its dual-channel design (ECU A and ECU B) provides redundancy: if one channel fails, the system switches to the backup channel so that engine performance and power output continue without interruption. The crew monitors the ECU warning annunciations and follows the checklist."
+    "category": "Aerodynamics & Flight Principles",
+    "difficulty": "Medium",
+    "question": "Explain the relationship between lift, weight, thrust, and drag in straight-and-level flight.",
+    "keywords": [
+      "lift equals weight",
+      "thrust equals drag",
+      "steady flight",
+      "forces"
+    ],
+    "model_answer": "In steady, straight-and-level flight, lift balances weight and thrust balances drag. If these forces become unbalanced, the aircraft accelerates, decelerates, climbs, descends, or changes flight path."
   },
   {
     "id": 3,
     "category": "Aerodynamics & Flight Principles",
-    "difficulty": "Easy",
-    "question": "What is a propeller stall and how does it occur?",
-    "keywords": ["angle of attack", "airflow", "blade", "power", "stall"],
-    "model_answer": "A propeller stall occurs when the blade exceeds its critical angle of attack and the smooth airflow over the blade separates. It is most likely at high blade pitch settings, low airspeed and high power, or during abrupt power changes. The separated airflow reduces thrust and increases drag, and the blade stalls just like a wing."
+    "difficulty": "Medium",
+    "question": "What is angle of attack, and why is it important?",
+    "keywords": [
+      "relative airflow",
+      "chord line",
+      "critical angle",
+      "stall"
+    ],
+    "model_answer": "Angle of attack is the angle between the wing chord line and the relative airflow. Lift generally increases with angle of attack until the critical angle is exceeded, at which point the wing stalls."
   },
   {
     "id": 4,
-    "category": "Instrument Flight & Navigation",
+    "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "What should you pay attention to on a Jeppesen SID (Standard Instrument Departure) chart?",
-    "keywords": ["altitude", "restriction", "climb", "frequency", "routing"],
-    "model_answer": "On a SID chart, review the departure routing and transitions, altitude and speed restrictions, the minimum climb gradient, initial altitude and level-off constraints, the departure control frequencies, and any noise abatement or engine-out procedures. All of these must be checked carefully and included in the departure briefing."
+    "question": "What is the difference between indicated airspeed, true airspeed, and ground speed?",
+    "keywords": [
+      "IAS",
+      "TAS",
+      "wind",
+      "air density",
+      "groundspeed"
+    ],
+    "model_answer": "Indicated airspeed is read from the airspeed indicator, TAS is the aircraft's speed through the surrounding air corrected for density and instrument effects, and groundspeed is speed over the ground after wind is considered."
   },
   {
     "id": 5,
     "category": "Aerodynamics & Flight Principles",
-    "difficulty": "Medium",
-    "question": "What is induced drag, and how is it affected by airspeed and altitude?",
-    "keywords": ["angle of attack", "speed", "wingtip", "vortex", "lift"],
-    "model_answer": "Induced drag is the drag created as a by-product of lift, caused by wingtip vortices and downwash. It is greatest at low airspeeds and high angles of attack and decreases as the aircraft accelerates, because the required angle of attack gets smaller. At higher altitude, the thinner air requires a higher true airspeed and angle of attack to produce the same lift, so induced drag depends on the aircraft's weight and its speed relative to the minimum drag speed."
+    "difficulty": "Hard",
+    "question": "How does increasing bank angle affect stall speed in a level turn?",
+    "keywords": [
+      "load factor",
+      "increased lift demand",
+      "stall speed increases"
+    ],
+    "model_answer": "In a coordinated level turn, increasing bank angle increases load factor and the lift required to maintain altitude. The aircraft therefore reaches the critical angle of attack at a higher speed, increasing stall speed."
   },
   {
     "id": 6,
-    "category": "Meteorology & Safety",
-    "difficulty": "Hard",
-    "question": "What is a microburst, how does it endanger flight safety, and how is it recognized on approach?",
-    "keywords": ["wind shear", "downburst", "airspeed", "piston", "go-around"],
-    "model_answer": "A microburst is a small, intense downburst from a convective cloud that descends rapidly, hits the ground and spreads outward, creating severe wind shear. An aircraft on approach first meets a strong headwind and tends to balloon above the glidepath and gain airspeed. After entering the core it experiences a strong downdraft, then a tailwind, which causes a rapid loss of airspeed and altitude. Warning signs include sudden airspeed and vertical speed fluctuations, nearby thunderstorms or virga, and a wind shear alert. The correct response is to execute an immediate go-around with maximum thrust."
+    "category": "Aerodynamics & Flight Principles",
+    "difficulty": "Easy",
+    "question": "What is the difference between induced drag and parasite drag?",
+    "keywords": [
+      "induced drag",
+      "lift production",
+      "parasite drag",
+      "speed"
+    ],
+    "model_answer": "Induced drag is associated with producing lift and is generally greater at low speeds and high lift demand. Parasite drag comes from form, skin friction, and interference, and generally increases with airspeed."
   },
   {
     "id": 7,
-    "category": "Instrument Flight & Navigation",
+    "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "How do you respond to a glideslope or localizer signal loss during an ILS approach?",
-    "keywords": ["go-around", "localizer", "glideslope", "decision height", "precision"],
-    "model_answer": "On an ILS approach the localizer provides lateral guidance and the glideslope provides vertical guidance. If the glideslope signal is lost before reaching the decision height (DH), the approach becomes a non-precision localizer-only approach and you may continue to the localizer minimums if permitted; otherwise go around. If the localizer signal is lost, execute the missed approach procedure immediately. Always inform ATC."
+    "question": "What is the purpose of flaps during take-off and landing?",
+    "keywords": [
+      "increase camber",
+      "lift",
+      "drag",
+      "lower speeds",
+      "aircraft handbook"
+    ],
+    "model_answer": "Flaps change wing camber and often increase wing area, allowing more lift at lower speeds. They also increase drag, which can help on approach and landing. The setting and limitations must follow the aircraft handbook."
   },
   {
     "id": 8,
-    "category": "Engines & Systems",
+    "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "What is the critical engine on a multi-engine aircraft, and what control difficulties arise when it fails?",
-    "keywords": ["P-factor", "asymmetric", "yaw", "thrust", "slipstream"],
-    "model_answer": "The critical engine is the engine whose failure most adversely affects the aircraft's controllability and climb performance. On aircraft with conventional propellers rotating in the same direction, it is usually the left engine because of P-factor, accelerated slipstream, spiraling slipstream and torque effects. After failure of the critical engine the aircraft shows a strong tendency to yaw and roll toward the dead engine, and large rudder input is required to counter the asymmetric thrust. Aircraft with counter-rotating propellers, such as the DA42, do not have a critical engine."
+    "question": "What is the difference between a spin and a spiral dive?",
+    "keywords": [
+      "stall",
+      "autorotation",
+      "steep descending turn",
+      "airspeed"
+    ],
+    "model_answer": "A spin is an autorotative descent following a stalled, yawed condition. A spiral dive is a steep descending turn in which the wing is not necessarily stalled and airspeed and load factor can rise rapidly."
   },
   {
     "id": 9,
-    "category": "Human Factors & CRM",
-    "difficulty": "Easy",
-    "question": "Within CRM (Crew Resource Management), what are the signs of loss of Situational Awareness?",
-    "keywords": ["fixation", "communication", "time", "awareness", "deviation"],
-    "model_answer": "The main signs of lost situational awareness are fixation on a single instrument or problem, unexplained deviations from the flight plan or target parameters, loss of time perception, ambiguity or confusion, unresolved discrepancies, and a breakdown of communication within the cockpit."
+    "category": "Aerodynamics & Flight Principles",
+    "difficulty": "Hard",
+    "question": "What causes wind shear, and why is it hazardous near the runway?",
+    "keywords": [
+      "rapid wind change",
+      "airspeed",
+      "lift",
+      "flight path",
+      "go-around"
+    ],
+    "model_answer": "Wind shear is a rapid change in wind speed or direction over a short distance. Near the ground it can cause sudden changes in airspeed and flight path, so pilots should follow published wind-shear procedures and go around when required."
   },
   {
     "id": 10,
-    "category": "Emergency Procedures",
-    "difficulty": "Hard",
-    "question": "What are the first actions of the pilots in the event of a rapid depressurization at cruise altitude?",
-    "keywords": ["oxygen", "emergency descent", "mask", "altitude", "7700"],
-    "model_answer": "The first action is to don the oxygen masks and establish crew communication. Then initiate an emergency descent, turning off the airway if necessary, select squawk 7700, and declare an emergency to ATC. Descend to a safe altitude of 10,000 ft or the Minimum Safe Altitude (MSA), whichever is higher, and then decide on a diversion."
+    "category": "Aerodynamics & Flight Principles",
+    "difficulty": "Medium",
+    "question": "What is ground effect, and how can it affect landing?",
+    "keywords": [
+      "reduced induced drag",
+      "cushion",
+      "float",
+      "flare"
+    ],
+    "model_answer": "Ground effect near the surface reduces wingtip-vortex effects and induced drag. The aircraft may float during landing or appear to need less thrust close to the ground."
   },
   {
     "id": 11,
     "category": "Aerodynamics & Flight Principles",
-    "difficulty": "Medium",
-    "question": "What are the symptoms of a stall and what is the recovery procedure?",
-    "keywords": ["angle of attack", "buffet", "pitch", "power", "wings level"],
-    "model_answer": "Stall symptoms include mushy flight controls, buffet, the stall warning, a high pitch attitude and a high sink rate. To recover, immediately reduce the angle of attack by lowering the nose (pitch forward), apply power as needed, level the wings, and then ease back into level flight or a climb once a safe airspeed is regained, minimizing the altitude loss."
+    "difficulty": "Easy",
+    "question": "What is the purpose of trim, and what does it not replace?",
+    "keywords": [
+      "reduce control pressure",
+      "balance forces",
+      "not autopilot",
+      "monitor aircraft"
+    ],
+    "model_answer": "Trim reduces sustained control pressure by balancing aerodynamic forces. It does not replace active flight-path control or monitoring, and the aircraft must still be flown within its limitations."
   },
   {
     "id": 12,
     "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "How does ground effect influence the takeoff and landing performance of an aircraft?",
-    "keywords": ["cushion", "drag", "vortex", "wingspan", "float"],
-    "model_answer": "Ground effect occurs within about one wingspan of the surface, and is most significant at a height of half a wingspan or less, where the ground restricts the wingtip vortices and downwash and reduces induced drag. During landing the aircraft floats on a cushion of air and can use up a great deal of runway during the flare. On takeoff the aircraft can lift off at an insufficient airspeed and may sink back or struggle to climb when it leaves ground effect."
+    "question": "How does density altitude affect aircraft performance?",
+    "keywords": [
+      "high temperature",
+      "low pressure",
+      "high elevation",
+      "reduced engine and wing performance"
+    ],
+    "model_answer": "Density altitude increases when air density decreases, such as in hot, high, or humid conditions. Lower density can reduce engine power, propeller efficiency, and wing performance, increasing take-off distance and reducing climb performance."
   },
   {
     "id": 13,
-    "category": "Engines & Systems",
-    "difficulty": "Medium",
-    "question": "What is Vmc (Minimum Control Speed) and what affects it?",
-    "keywords": ["asymmetric", "control", "rudder", "yaw", "critical engine"],
-    "model_answer": "Vmc is the minimum airspeed at which directional control can be maintained with the critical engine inoperative, using full rudder and a maximum of 5 degrees of bank. If airspeed drops below Vmc, asymmetric thrust overpowers the rudder and the aircraft can no longer be controlled. Vmc is raised by high power on the operating engine, aft center of gravity, a windmilling propeller, extended gear and flaps, and high density altitude."
+    "category": "Aerodynamics & Flight Principles",
+    "difficulty": "Hard",
+    "question": "Why does an aircraft need a higher angle of attack at low speed to maintain lift?",
+    "keywords": [
+      "lift equation",
+      "dynamic pressure",
+      "compensate",
+      "critical angle"
+    ],
+    "model_answer": "At lower speed, dynamic pressure decreases. To maintain the required lift, the wing generally needs a higher angle of attack, until the critical angle is reached."
   },
   {
     "id": 14,
-    "category": "Meteorology & Safety",
+    "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "What are the types of hydroplaning and how can it be prevented?",
-    "keywords": ["dynamic", "viscous", "rubber", "braking", "tire"],
-    "model_answer": "There are three types: dynamic hydroplaning, viscous hydroplaning and reverted rubber hydroplaning. To reduce the risk, touch down firmly at the correct speed without floating, use spoilers and reverse thrust promptly, avoid excessive braking, consider runway condition reports and crosswind, and make sure the tires have adequate tread and correct pressure."
+    "question": "What is the difference between a stable and an unstable aircraft?",
+    "keywords": [
+      "return tendency",
+      "disturbance",
+      "static stability",
+      "dynamic response"
+    ],
+    "model_answer": "Static stability describes the initial tendency to return toward equilibrium after a disturbance. Dynamic stability describes how the motion develops with time, such as whether oscillations damp out or grow."
   },
   {
     "id": 15,
-    "category": "Human Factors & CRM",
+    "category": "Aerodynamics & Flight Principles",
     "difficulty": "Medium",
-    "question": "What are the types and symptoms of hypoxia?",
-    "keywords": ["hypoxic", "hypemic", "stagnant", "histotoxic", "cyanosis"],
-    "model_answer": "Hypoxia is divided into four types: hypoxic, hypemic (anemic), stagnant and histotoxic. Symptoms include euphoria, headache, tunnel vision, impaired judgment, blue discoloration of the lips and fingernails (cyanosis), and reduced mental performance. At altitude, use supplemental oxygen and descend immediately if symptoms appear."
+    "question": "What is the purpose of spoilers or speed brakes?",
+    "keywords": [
+      "increase drag",
+      "reduce lift",
+      "descent",
+      "landing",
+      "aircraft limitations"
+    ],
+    "model_answer": "Spoilers disrupt airflow over the wing, reducing lift and increasing drag. Depending on the aircraft, they can assist descent, deceleration, and lift dump after touchdown, within approved procedures."
   },
   {
     "id": 16,
-    "category": "Instrument Flight & Navigation",
-    "difficulty": "Medium",
-    "question": "What are the differences between the altimeter settings QNH, QFE and QNE?",
-    "keywords": ["sea level", "aerodrome", "standard", "1013", "altitude"],
-    "model_answer": "QNH is the pressure setting that makes the altimeter read altitude above mean sea level (MSL); on the ground it shows the airfield elevation. QFE is the aerodrome pressure and makes the altimeter read height above the airfield, showing zero on the runway. QNE is the standard pressure setting of 1013.25 hPa, which is used above the transition altitude and gives Flight Levels."
+    "category": "Engines & Systems",
+    "difficulty": "Easy",
+    "question": "Explain the basic operating principle of a gas-turbine engine.",
+    "keywords": [
+      "compressor",
+      "combustion",
+      "turbine",
+      "exhaust",
+      "thrust"
+    ],
+    "model_answer": "A gas-turbine engine compresses incoming air, adds and burns fuel in the combustion section, and extracts energy through the turbine to drive the compressor. The accelerating exhaust and, in some designs, bypass airflow produce thrust."
   },
   {
     "id": 17,
-    "category": "Regulations & Procedures",
-    "difficulty": "Easy",
-    "question": "What are the main differences between VFR and IFR flight?",
-    "keywords": ["visual", "instruments", "meteorological", "separation", "ATC"],
-    "model_answer": "VFR is flight under visual meteorological conditions, in which the pilot navigates and avoids traffic by visual reference to the outside. IFR is flight by reference to the flight instruments, normally under an ATC clearance with ATC separation, and is required in instrument meteorological conditions. IFR flight requires an instrument rating, a filed flight plan and adherence to published procedures."
+    "category": "Engines & Systems",
+    "difficulty": "Hard",
+    "question": "What is the difference between a piston engine and a turbofan engine?",
+    "keywords": [
+      "reciprocating combustion",
+      "continuous combustion",
+      "propeller or fan",
+      "operating envelope"
+    ],
+    "model_answer": "A piston engine uses reciprocating pistons and typically drives a propeller. A turbofan uses continuous combustion and turbines to drive a fan and compressor stages, producing thrust through bypass and core airflow."
   },
   {
     "id": 18,
-    "category": "Meteorology & Safety",
-    "difficulty": "Hard",
-    "question": "What is the recovery technique when encountering windshear?",
-    "keywords": ["TOGA", "pitch", "configuration", "airspeed", "go-around"],
-    "model_answer": "On encountering windshear, immediately apply maximum thrust (TOGA), disconnect the autopilot if required and fly the recommended pitch attitude, going up to stick shaker onset if necessary. Do not change the flap and landing gear configuration until the aircraft is clear of the windshear, and do not chase airspeed. Continue the go-around, climb away and inform ATC."
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What is compressor stall or surge in a turbine engine?",
+    "keywords": [
+      "airflow breakdown",
+      "pressure disturbance",
+      "bangs",
+      "thrust loss",
+      "follow checklist"
+    ],
+    "model_answer": "It is a disruption of stable airflow through the compressor. It may cause abnormal noise, vibration, temperature changes, or thrust loss. The crew should use the aircraft-specific checklist and monitor engine parameters."
   },
   {
     "id": 19,
-    "category": "Emergency Procedures",
-    "difficulty": "Hard",
-    "question": "What should the pilot do when a TCAS (Traffic Collision Avoidance System) 'RA' (Resolution Advisory) is received?",
-    "keywords": ["autopilot", "control", "ATC", "vertical", "instruction"],
-    "model_answer": "When an RA is received, the pilot must immediately and smoothly follow the vertical instructions displayed, disengaging the autopilot if required by the aircraft's procedures. If an ATC instruction conflicts with the TCAS RA, follow the RA. Do not maneuver against the RA, and inform ATC as soon as workload permits and again once clear of conflict."
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What is the purpose of an aircraft's electrical system?",
+    "keywords": [
+      "generate",
+      "distribute",
+      "batteries",
+      "buses",
+      "essential loads"
+    ],
+    "model_answer": "The electrical system generates, stores, and distributes electrical power to aircraft equipment. Batteries and essential buses may provide backup power, depending on the aircraft design."
   },
   {
     "id": 20,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "How does a hydraulic system help operate an aircraft?",
+    "keywords": [
+      "pressurised fluid",
+      "actuators",
+      "landing gear",
+      "brakes",
+      "flight controls"
+    ],
+    "model_answer": "A hydraulic system transmits force through pressurised fluid to operate components such as landing gear, brakes, and some flight controls. Pilots monitor pressure and quantity indications and follow abnormal procedures for failures."
+  },
+  {
+    "id": 21,
+    "category": "Engines & Systems",
+    "difficulty": "Easy",
+    "question": "What is the purpose of a bleed-air system?",
+    "keywords": [
+      "compressed air",
+      "air conditioning",
+      "pressurisation",
+      "anti-ice",
+      "engine-specific design"
+    ],
+    "model_answer": "Bleed air, where fitted, uses compressed air from the engine to support systems such as air conditioning, pressurisation, and anti-ice. The exact uses and limitations depend on aircraft design."
+  },
+  {
+    "id": 22,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "How does cabin pressurisation work?",
+    "keywords": [
+      "regulated cabin pressure",
+      "outflow valve",
+      "differential pressure",
+      "cabin altitude"
+    ],
+    "model_answer": "Pressurisation regulates cabin pressure, typically by controlling outflow from the cabin while supplying conditioned air. The system maintains cabin altitude within limits and protects against excessive differential pressure."
+  },
+  {
+    "id": 23,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What is the purpose of an aircraft fuel system?",
+    "keywords": [
+      "store",
+      "feed engines",
+      "pumps",
+      "crossfeed",
+      "quantity and balance"
+    ],
+    "model_answer": "The fuel system stores and supplies fuel to the engines at the required pressure and flow. It may include pumps, valves, filters, crossfeed, and quantity monitoring; fuel balance and limitations must be observed."
+  },
+  {
+    "id": 24,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What is the difference between anti-icing and de-icing?",
+    "keywords": [
+      "prevent accumulation",
+      "remove accumulated ice",
+      "system-specific use"
+    ],
+    "model_answer": "Anti-icing systems aim to prevent ice from forming, while de-icing systems remove ice that has already accumulated. Pilots must use the systems and procedures specified for the aircraft and conditions."
+  },
+  {
+    "id": 25,
+    "category": "Engines & Systems",
+    "difficulty": "Hard",
+    "question": "What is the purpose of an APU?",
+    "keywords": [
+      "auxiliary power unit",
+      "electrical power",
+      "bleed air",
+      "ground operations",
+      "limitations"
+    ],
+    "model_answer": "An auxiliary power unit is a small onboard power source that can provide electrical power and, on many aircraft, pneumatic air for engine starting or air conditioning. Its use is subject to aircraft and operating limitations."
+  },
+  {
+    "id": 26,
+    "category": "Engines & Systems",
+    "difficulty": "Easy",
+    "question": "What indications might suggest an engine fire?",
+    "keywords": [
+      "fire warning",
+      "temperature",
+      "smoke",
+      "checklist",
+      "memory items"
+    ],
+    "model_answer": "Indications depend on the aircraft and may include a fire warning, abnormal temperature, or smoke. The crew should carry out the applicable fire checklist and memory actions as trained, while maintaining aircraft control."
+  },
+  {
+    "id": 27,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "Why are engine parameters monitored during flight?",
+    "keywords": [
+      "EGT",
+      "N1/N2",
+      "oil pressure",
+      "temperature",
+      "detect abnormal trends"
+    ],
+    "model_answer": "Engine parameters such as temperature, rotational speed, oil pressure, and oil temperature help confirm normal operation and identify developing faults. Limits and procedures are aircraft-specific."
+  },
+  {
+    "id": 28,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What is the function of the landing gear shock absorber?",
+    "keywords": [
+      "absorb landing energy",
+      "reduce loads",
+      "oleo-pneumatic"
+    ],
+    "model_answer": "Landing gear shock absorbers reduce the loads transmitted to the airframe during landing and taxi. Many use an oleo-pneumatic arrangement to absorb energy through fluid displacement and gas compression."
+  },
+  {
+    "id": 29,
+    "category": "Engines & Systems",
+    "difficulty": "Hard",
+    "question": "What is the purpose of a flight control system?",
+    "keywords": [
+      "pilot inputs",
+      "control surfaces",
+      "pitch roll yaw",
+      "mechanical or fly-by-wire"
+    ],
+    "model_answer": "The flight control system transmits pilot commands to control surfaces or actuators to control pitch, roll, and yaw. Some aircraft use mechanical linkages, while others use electronic fly-by-wire systems."
+  },
+  {
+    "id": 30,
+    "category": "Engines & Systems",
+    "difficulty": "Medium",
+    "question": "What should pilots do after an important system failure?",
+    "keywords": [
+      "aviate navigate communicate",
+      "identify",
+      "checklist",
+      "verify",
+      "coordinate"
+    ],
+    "model_answer": "Maintain aircraft control first, identify and confirm the failure using available indications, and apply the relevant checklist. Coordinate with the other pilot and ATC as appropriate, and assess whether diversion or landing is needed."
+  },
+  {
+    "id": 31,
+    "category": "Meteorology & Safety",
+    "difficulty": "Easy",
+    "question": "What conditions are required for thunderstorms to develop?",
+    "keywords": [
+      "moisture",
+      "instability",
+      "lifting mechanism",
+      "cumulonimbus",
+      "avoid"
+    ],
+    "model_answer": "Thunderstorms generally require moisture, atmospheric instability, and a lifting mechanism. Cumulonimbus clouds can produce severe turbulence, hail, lightning, icing, and wind shear, so they should be avoided with appropriate margins."
+  },
+  {
+    "id": 32,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What is the difference between a METAR and a TAF?",
+    "keywords": [
+      "METAR observation",
+      "TAF forecast",
+      "aerodrome weather",
+      "validity period"
+    ],
+    "model_answer": "A METAR reports observed aerodrome weather at a particular time. A TAF forecasts expected meteorological conditions for an aerodrome over a stated validity period."
+  },
+  {
+    "id": 33,
+    "category": "Meteorology & Safety",
+    "difficulty": "Hard",
+    "question": "How does airframe icing affect aircraft performance?",
+    "keywords": [
+      "weight",
+      "drag",
+      "lift reduction",
+      "stall characteristics",
+      "approved anti-ice"
+    ],
+    "model_answer": "Ice can increase weight and drag, reduce lift, and alter stall characteristics. Use approved anti-ice or de-ice systems and procedures, and avoid or exit icing conditions as directed by the aircraft handbook and operational guidance."
+  },
+  {
+    "id": 34,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What is the difference between radiation fog and advection fog?",
+    "keywords": [
+      "surface cooling",
+      "warm moist air",
+      "cold surface",
+      "wind"
+    ],
+    "model_answer": "Radiation fog forms when the ground cools the air near the surface, commonly on clear, calm nights. Advection fog forms when moist air moves over a colder surface and cools to saturation."
+  },
+  {
+    "id": 35,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What does a cold front typically bring?",
+    "keywords": [
+      "cold air advances",
+      "lifting",
+      "showers",
+      "wind shift",
+      "variable conditions"
+    ],
+    "model_answer": "A cold front occurs when colder air advances and lifts warmer air. It may bring a wind shift, showers or thunderstorms, turbulence, and a rapid change in temperature and pressure, though actual conditions vary."
+  },
+  {
+    "id": 36,
+    "category": "Meteorology & Safety",
+    "difficulty": "Easy",
+    "question": "What is the difference between QNH, QFE, and standard pressure setting?",
+    "keywords": [
+      "QNH",
+      "sea-level pressure",
+      "QFE",
+      "aerodrome elevation",
+      "1013.25 hPa"
+    ],
+    "model_answer": "QNH makes the altimeter indicate altitude above mean sea level on the ground at the reference aerodrome. QFE makes it indicate height above the reference datum, commonly the aerodrome. Standard setting is 1013.25 hPa for flight levels where applicable."
+  },
+  {
+    "id": 37,
+    "category": "Meteorology & Safety",
+    "difficulty": "Hard",
+    "question": "What causes turbulence in clear air?",
+    "keywords": [
+      "jet streams",
+      "wind shear",
+      "temperature gradients",
+      "no visible cloud required"
+    ],
+    "model_answer": "Clear-air turbulence can occur near jet streams, strong wind shear, and atmospheric temperature gradients without visible cloud. Pilots should use forecasts and reports, secure the cabin when required, and follow turbulence procedures."
+  },
+  {
+    "id": 38,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What is microburst wind shear?",
+    "keywords": [
+      "small intense downdraft",
+      "outflow",
+      "rapid performance changes",
+      "escape guidance"
+    ],
+    "model_answer": "A microburst is an intense, localised downdraft that spreads outward near the surface. It can cause rapid headwind-to-tailwind changes and severe performance loss during take-off or landing; crews must follow aircraft-specific wind-shear escape procedures."
+  },
+  {
+    "id": 39,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "How can temperature and dew point help assess fog risk?",
+    "keywords": [
+      "small spread",
+      "saturation",
+      "cooling",
+      "visibility"
+    ],
+    "model_answer": "A small temperature-dew-point spread indicates air close to saturation. If the air cools further or moisture increases, fog or low cloud may form, depending on wind and local conditions."
+  },
+  {
+    "id": 40,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What is the significance of a freezing level?",
+    "keywords": [
+      "0°C level",
+      "icing risk",
+      "cloud moisture",
+      "terrain and route planning"
+    ],
+    "model_answer": "The freezing level is the altitude where air temperature is approximately 0°C. It helps assess potential icing conditions, but icing depends on moisture, cloud, temperature profile, and aircraft exposure."
+  },
+  {
+    "id": 41,
+    "category": "Meteorology & Safety",
+    "difficulty": "Easy",
+    "question": "What information does a SIGMET provide?",
+    "keywords": [
+      "significant en-route weather",
+      "hazards",
+      "area and validity",
+      "operational impact"
+    ],
+    "model_answer": "A SIGMET warns of specified significant en-route weather hazards within an area and validity period. Pilots should assess its impact on the route and consider avoidance or operational changes."
+  },
+  {
+    "id": 42,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "Why is wake turbulence dangerous, and how can it be managed?",
+    "keywords": [
+      "wingtip vortices",
+      "heavy aircraft",
+      "spacing",
+      "wind",
+      "ATC procedures"
+    ],
+    "model_answer": "Wake turbulence is generated by wingtip vortices and can cause abrupt rolling moments, especially for smaller aircraft. Manage it using published separation guidance, runway and approach procedures, and awareness of wind and preceding aircraft."
+  },
+  {
+    "id": 43,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What are the main risks of volcanic ash to an aircraft?",
+    "keywords": [
+      "engine damage",
+      "abrasion",
+      "visibility",
+      "pitot/static",
+      "avoid ash"
+    ],
+    "model_answer": "Volcanic ash can damage engines and surfaces, impair visibility, and affect sensors. Crews should avoid forecast or reported ash and follow operator and manufacturer procedures if an encounter is suspected."
+  },
+  {
+    "id": 44,
+    "category": "Meteorology & Safety",
+    "difficulty": "Medium",
+    "question": "What factors affect take-off and landing performance in adverse weather?",
+    "keywords": [
+      "wind",
+      "runway contamination",
+      "temperature",
+      "pressure altitude",
+      "weight",
+      "visibility"
+    ],
+    "model_answer": "Performance is affected by wind, runway condition, temperature, pressure altitude, aircraft mass, and system configuration. Use approved performance calculations and limitations, and do not rely on rules of thumb."
+  },
+  {
+    "id": 45,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Easy",
+    "question": "What is the difference between an ILS localizer and glideslope?",
+    "keywords": [
+      "localizer lateral guidance",
+      "glideslope vertical guidance",
+      "approach"
+    ],
+    "model_answer": "The localizer provides lateral guidance to the runway centreline, while the glideslope provides vertical guidance for the approach path. Both must be monitored with the applicable minima and procedures."
+  },
+  {
+    "id": 46,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is the difference between RNAV and RNP?",
+    "keywords": [
+      "area navigation",
+      "performance monitoring and alerting",
+      "specification"
+    ],
+    "model_answer": "RNAV allows navigation along a desired path within the capability of onboard systems. RNP additionally requires onboard performance monitoring and alerting. The aircraft and crew must be approved for the relevant specification."
+  },
+  {
+    "id": 47,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is a missed approach, and when should it be initiated?",
+    "keywords": [
+      "published procedure",
+      "unstable approach",
+      "minima",
+      "safety",
+      "ATC"
+    ],
+    "model_answer": "A missed approach is the published procedure to follow when an approach cannot safely be continued to landing. It should be initiated when required by the procedure, when visual references are insufficient at minima, or whenever the approach is unstable or unsafe."
+  },
+  {
+    "id": 48,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Hard",
+    "question": "What is the purpose of the altimeter, and what errors can affect it?",
+    "keywords": [
+      "static pressure",
+      "pressure setting",
+      "temperature",
+      "instrument errors"
+    ],
+    "model_answer": "The altimeter converts static pressure into an altitude indication. Incorrect pressure settings, temperature effects, and instrument or static-source errors can cause differences between indicated and true altitude."
+  },
+  {
+    "id": 49,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "How does an attitude indicator help the pilot?",
+    "keywords": [
+      "pitch",
+      "bank",
+      "artificial horizon",
+      "instrument cross-check"
+    ],
+    "model_answer": "The attitude indicator displays aircraft pitch and bank relative to an artificial horizon. It is a primary reference in instrument conditions and should be cross-checked with other flight instruments."
+  },
+  {
+    "id": 50,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Easy",
+    "question": "What is the difference between heading, track, and bearing?",
+    "keywords": [
+      "heading nose direction",
+      "track path over ground",
+      "bearing direction to/from point"
+    ],
+    "model_answer": "Heading is the direction the aircraft's nose points. Track is its path over the ground, affected by wind. Bearing is the direction of one position from another, referenced to a stated north reference."
+  },
+  {
+    "id": 51,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is a VOR, and how is it used?",
+    "keywords": [
+      "VHF omnidirectional range",
+      "radials",
+      "course indication",
+      "service volume"
+    ],
+    "model_answer": "A VOR provides azimuth information through radials referenced to the station. Pilots select the desired course and interpret the CDI and TO/FROM indication while accounting for limitations and NOTAMs."
+  },
+  {
+    "id": 52,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Hard",
+    "question": "What is the purpose of DME?",
+    "keywords": [
+      "distance",
+      "slant range",
+      "station",
+      "time measurement"
+    ],
+    "model_answer": "DME provides slant-range distance from the aircraft to a ground station. At short distances or high altitude, the indicated value may differ noticeably from horizontal ground distance."
+  },
+  {
+    "id": 53,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is a transponder, and what are common Mode A, C, and S functions?",
+    "keywords": [
+      "identify",
+      "code",
+      "altitude reporting",
+      "selective addressing"
+    ],
+    "model_answer": "A transponder replies to interrogations from surveillance systems. Mode A sends a code, Mode C provides pressure-altitude information, and Mode S supports selective addressing and additional data depending on equipment."
+  },
+  {
+    "id": 54,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is the difference between true north, magnetic north, and compass north?",
+    "keywords": [
+      "geographic pole",
+      "magnetic field",
+      "variation",
+      "deviation"
+    ],
+    "model_answer": "True north points toward the geographic North Pole. Magnetic north follows Earth's magnetic field, with variation between true and magnetic north. Compass deviation is error caused by magnetic influences in the aircraft."
+  },
+  {
+    "id": 55,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Easy",
+    "question": "What is a NOTAM, and why should it be reviewed before flight?",
+    "keywords": [
+      "notice to air missions",
+      "facilities",
+      "procedures",
+      "hazards",
+      "validity"
+    ],
+    "model_answer": "A NOTAM communicates time-critical information about facilities, services, procedures, or hazards relevant to flight operations. Pilots review relevant NOTAMs during pre-flight planning and assess their operational impact."
+  },
+  {
+    "id": 56,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Hard",
+    "question": "What is the purpose of a SID and a STAR?",
+    "keywords": [
+      "standard instrument departure",
+      "standard arrival",
+      "ATC",
+      "route structure"
+    ],
+    "model_answer": "A SID is a published standard instrument departure route, while a STAR is a standard arrival route. They help organise traffic and connect the aerodrome with the en-route structure, subject to clearance and chart requirements."
+  },
+  {
+    "id": 57,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is the difference between decision altitude and minimum descent altitude?",
+    "keywords": [
+      "DA",
+      "approach decision",
+      "MDA",
+      "do not descend below",
+      "procedure-specific"
+    ],
+    "model_answer": "Decision altitude is the altitude at which a missed approach must be initiated if the required visual references are not established. Minimum descent altitude is a minimum altitude in a non-precision or circling approach below which descent is not permitted without the required references."
+  },
+  {
+    "id": 58,
+    "category": "Instrument Flight & Navigation",
+    "difficulty": "Medium",
+    "question": "What is an RAIM alert, and why does it matter?",
+    "keywords": [
+      "GNSS integrity",
+      "receiver autonomous monitoring",
+      "navigation availability"
+    ],
+    "model_answer": "RAIM is receiver autonomous integrity monitoring for GNSS. An alert or lack of required integrity means the navigation solution may not meet the operation's requirements, so pilots must follow applicable procedures and use an approved alternative."
+  },
+  {
+    "id": 59,
+    "category": "Human Factors & CRM",
+    "difficulty": "Easy",
+    "question": "Within Crew Resource Management, what are the signs of loss of situational awareness?",
+    "keywords": [
+      "fixation",
+      "confusion",
+      "missed calls",
+      "incorrect mental model",
+      "monitoring"
+    ],
+    "model_answer": "Signs include fixation, confusion about position or status, missed communications, unexpected deviations, and an incorrect mental model. A crew should verbalise concerns, cross-check information, and re-establish a shared picture."
+  },
+  {
+    "id": 60,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "What is Crew Resource Management, and why is it important?",
+    "keywords": [
+      "communication",
+      "teamwork",
+      "leadership",
+      "decision-making",
+      "threat and error management"
+    ],
+    "model_answer": "CRM is the effective use of people, procedures, equipment, and information to operate safely. It supports clear communication, teamwork, leadership, decision-making, workload management, and threat and error management."
+  },
+  {
+    "id": 61,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "How would you challenge a captain who is making an unsafe decision?",
+    "keywords": [
+      "assertive communication",
+      "state concern",
+      "facts",
+      "escalation",
+      "SOP"
+    ],
+    "model_answer": "I would state my concern clearly and respectfully, using specific facts and SOP references. If the risk continued, I would escalate assertively using the operator's intervention policy while maintaining aircraft safety."
+  },
+  {
+    "id": 62,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "What is the difference between an error and a violation?",
+    "keywords": [
+      "unintentional action",
+      "intentional deviation",
+      "context",
+      "reporting"
+    ],
+    "model_answer": "An error is an unintended action or omission, while a violation is a deliberate deviation from a rule or procedure. Both require appropriate handling, and a just safety culture focuses on learning while addressing deliberate unsafe conduct."
+  },
+  {
+    "id": 63,
+    "category": "Human Factors & CRM",
+    "difficulty": "Hard",
+    "question": "What is confirmation bias, and how can pilots reduce it?",
+    "keywords": [
+      "seek supporting evidence",
+      "alternative hypotheses",
+      "cross-check",
+      "challenge"
+    ],
+    "model_answer": "Confirmation bias is favouring information that supports an existing belief. Pilots can reduce it by actively checking alternatives, using independent cross-checks, inviting challenge, and following structured decision processes."
+  },
+  {
+    "id": 64,
+    "category": "Human Factors & CRM",
+    "difficulty": "Easy",
+    "question": "How can fatigue affect pilot performance?",
+    "keywords": [
+      "attention",
+      "reaction time",
+      "judgement",
+      "memory",
+      "fitness for duty"
+    ],
+    "model_answer": "Fatigue can impair attention, reaction time, memory, communication, and judgement. Pilots should report fatigue, comply with duty and rest rules, use fatigue-risk processes, and not operate when unfit."
+  },
+  {
+    "id": 65,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "What is the startle effect, and how can crews manage it?",
+    "keywords": [
+      "unexpected event",
+      "temporary performance disruption",
+      "trained actions",
+      "checklist"
+    ],
+    "model_answer": "The startle effect is a temporary disruption after an unexpected event. Training, clear task-sharing, standard callouts, memory items where applicable, and returning to the checklist can help the crew regain a structured response."
+  },
+  {
+    "id": 66,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "How do you manage a disagreement between two crew members?",
+    "keywords": [
+      "professional",
+      "listen",
+      "facts",
+      "SOP",
+      "safety priority",
+      "resolve or escalate"
+    ],
+    "model_answer": "I would keep the discussion professional, listen to each perspective, focus on facts and procedures, and agree on the safest course. If the disagreement affects safety and remains unresolved, I would use the command structure and escalation procedures."
+  },
+  {
+    "id": 67,
+    "category": "Human Factors & CRM",
+    "difficulty": "Hard",
+    "question": "What is threat and error management?",
+    "keywords": [
+      "identify threats",
+      "trap errors",
+      "mitigate undesired aircraft state",
+      "proactive"
+    ],
+    "model_answer": "Threat and error management is a structured way to identify operational threats, prevent or trap errors, and manage undesired aircraft states before they lead to an incident."
+  },
+  {
+    "id": 68,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "Why are standard operating procedures important?",
+    "keywords": [
+      "consistency",
+      "predictable actions",
+      "workload",
+      "shared expectations",
+      "safety"
+    ],
+    "model_answer": "SOPs create a consistent framework, reduce ambiguity and workload, and help crew members anticipate each other's actions. Deviations should be justified only when necessary for safety and handled according to policy."
+  },
+  {
+    "id": 69,
+    "category": "Human Factors & CRM",
+    "difficulty": "Easy",
+    "question": "What makes an effective pilot leader?",
+    "keywords": [
+      "clear communication",
+      "accountability",
+      "calm",
+      "listen",
+      "decisions",
+      "team"
+    ],
+    "model_answer": "An effective pilot leader communicates clearly, listens to the crew, makes timely decisions, remains calm, and accepts responsibility. Leadership should encourage appropriate challenge and a shared commitment to safety."
+  },
+  {
+    "id": 70,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "How would you manage high workload during an abnormal situation?",
+    "keywords": [
+      "aviate navigate communicate",
+      "prioritise",
+      "delegate",
+      "checklist",
+      "monitor"
+    ],
+    "model_answer": "I would prioritise aircraft control, flight path, and immediate threats, then delegate tasks clearly, use the checklist, and communicate with ATC when able. I would continuously reassess workload and the aircraft's condition."
+  },
+  {
+    "id": 71,
+    "category": "Human Factors & CRM",
+    "difficulty": "Hard",
+    "question": "What is a sterile cockpit, and when is it used?",
+    "keywords": [
+      "critical phases",
+      "non-essential conversation",
+      "focus",
+      "operator policy"
+    ],
+    "model_answer": "A sterile cockpit limits non-essential conversation and activity during critical phases of flight so the crew can focus on aircraft operation and monitoring. The exact phases and requirements are defined by regulations and operator SOPs."
+  },
+  {
+    "id": 72,
+    "category": "Human Factors & CRM",
+    "difficulty": "Medium",
+    "question": "How should a pilot respond to a colleague who appears unfit for duty?",
+    "keywords": [
+      "safety",
+      "respectful concern",
+      "report",
+      "established procedure",
+      "no assumption"
+    ],
+    "model_answer": "I would raise the concern privately and respectfully where possible, focus on observable behaviour and safety, and follow company reporting or fitness-for-duty procedures. I would not ignore a credible safety concern."
+  },
+  {
+    "id": 73,
+    "category": "Emergency Procedures",
+    "difficulty": "Easy",
+    "question": "What are your priorities after an engine failure after take-off?",
+    "keywords": [
+      "control aircraft",
+      "pitch",
+      "flight path",
+      "memory items",
+      "checklist",
+      "communicate"
+    ],
+    "model_answer": "The first priority is to maintain control and the required flight path. I would carry out the aircraft-specific memory actions, assess whether a safe return or landing is possible, then use the checklist and communicate when workload permits."
+  },
+  {
+    "id": 74,
+    "category": "Emergency Procedures",
+    "difficulty": "Hard",
+    "question": "What should a crew do if cabin decompression occurs?",
+    "keywords": [
+      "oxygen masks",
+      "establish control",
+      "emergency descent",
+      "ATC",
+      "checklist"
+    ],
+    "model_answer": "The crew should don oxygen masks and establish communications, maintain aircraft control, and initiate the aircraft-specific emergency descent when required. They should notify ATC when able and complete the relevant checklist."
+  },
+  {
+    "id": 75,
     "category": "Emergency Procedures",
     "difficulty": "Medium",
-    "question": "What should be done in response to an EGPWS / TAWS (Terrain Awareness Warning System) 'PULL UP' warning?",
-    "keywords": ["maximum thrust", "climb", "pull up", "terrain", "autopilot"],
-    "model_answer": "When a PULL UP warning is received, react without hesitation: disconnect the autopilot, pull up to the recommended pitch attitude and apply maximum thrust. Retract the speed brakes and keep the wings level. Maintain the climb until the aircraft is clear of terrain and the warning has stopped, and then inform ATC."
+    "question": "How should pilots respond to a suspected onboard fire or smoke?",
+    "keywords": [
+      "protect breathing",
+      "identify source if possible",
+      "checklist",
+      "land as soon as practical"
+    ],
+    "model_answer": "Follow the aircraft-specific fire or smoke checklist immediately, protect the crew's breathing, and manage ventilation or electrical sources as directed. Declare an emergency and land as soon as the checklist and situation require."
+  },
+  {
+    "id": 76,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "What is the correct response to a windshear warning on approach?",
+    "keywords": [
+      "escape manoeuvre",
+      "follow aircraft guidance",
+      "avoid configuration changes unless directed"
+    ],
+    "model_answer": "Follow the aircraft-specific windshear escape guidance immediately, using the prescribed thrust and flight path. Avoid actions that conflict with the procedure and advise ATC when workload permits."
+  },
+  {
+    "id": 77,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "What would you do if an unreliable airspeed indication occurred in instrument conditions?",
+    "keywords": [
+      "pitch and power",
+      "cross-check",
+      "checklist",
+      "maintain safe flight path"
+    ],
+    "model_answer": "I would maintain control using the aircraft-specific pitch-and-power guidance, cross-check other reliable instruments, and carry out the unreliable-airspeed checklist. I would communicate and consider diversion once the aircraft is stabilised."
+  },
+  {
+    "id": 78,
+    "category": "Emergency Procedures",
+    "difficulty": "Easy",
+    "question": "How should a crew handle a rejected take-off decision?",
+    "keywords": [
+      "decision speed",
+      "aircraft-specific SOP",
+      "stop criteria",
+      "directional control"
+    ],
+    "model_answer": "The decision depends on the aircraft's SOP and the phase of the take-off. The crew must use defined reject criteria, maintain directional control, and apply the appropriate stopping procedure without improvising beyond training."
+  },
+  {
+    "id": 79,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "What factors influence whether to divert to an alternate?",
+    "keywords": [
+      "weather",
+      "fuel",
+      "aircraft status",
+      "runway",
+      "facilities",
+      "crew and passenger needs"
+    ],
+    "model_answer": "I would compare current and forecast weather, fuel, aircraft condition, runway and airport facilities, operational restrictions, and passenger or crew needs. The decision should preserve safe margins and comply with company procedures."
+  },
+  {
+    "id": 80,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "What should a pilot do after a bird strike?",
+    "keywords": [
+      "maintain control",
+      "assess indications",
+      "engine parameters",
+      "checklist",
+      "inspect before further flight"
+    ],
+    "model_answer": "Maintain aircraft control and assess engine, flight-control, and structural indications. Follow the relevant checklist, inform ATC if necessary, and arrange inspection before further flight when required."
+  },
+  {
+    "id": 81,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "How would you respond to a hydraulic system failure?",
+    "keywords": [
+      "identify affected systems",
+      "checklist",
+      "control aircraft",
+      "landing implications"
+    ],
+    "model_answer": "I would identify the affected system from indications, apply the aircraft-specific checklist, and assess impacts on flight controls, landing gear, brakes, or other systems. I would plan the approach and landing with the applicable limitations."
+  },
+  {
+    "id": 82,
+    "category": "Emergency Procedures",
+    "difficulty": "Hard",
+    "question": "What actions are required if a runway becomes unavailable during approach?",
+    "keywords": [
+      "go-around",
+      "follow clearance",
+      "reassess",
+      "ATC",
+      "alternate plan"
+    ],
+    "model_answer": "If landing is no longer safe or authorised, I would go around using the published procedure and follow ATC instructions. I would reassess the situation and plan another approach or divert as needed."
+  },
+  {
+    "id": 83,
+    "category": "Emergency Procedures",
+    "difficulty": "Easy",
+    "question": "What is the purpose of an emergency checklist?",
+    "keywords": [
+      "memory actions",
+      "systematic steps",
+      "verify",
+      "reduce omission"
+    ],
+    "model_answer": "An emergency checklist provides a structured sequence to manage abnormal conditions, reduce omissions, and verify actions. Memory items are used only where trained and specified, followed by the checklist as soon as practical."
+  },
+  {
+    "id": 84,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "What should you do if you suspect a fuel leak or fuel imbalance?",
+    "keywords": [
+      "cross-check quantity",
+      "indications",
+      "checklist",
+      "balance limits",
+      "diversion assessment"
+    ],
+    "model_answer": "I would cross-check fuel quantity and system indications, identify whether the issue is a leak or imbalance, and follow the relevant checklist. I would reassess endurance and landing options while remaining within approved limits."
+  },
+  {
+    "id": 85,
+    "category": "Emergency Procedures",
+    "difficulty": "Medium",
+    "question": "How would you handle a passenger medical emergency in flight?",
+    "keywords": [
+      "inform cabin crew",
+      "assess",
+      "medical support",
+      "diversion factors",
+      "coordinate"
+    ],
+    "model_answer": "I would coordinate with cabin crew, request onboard medical assistance if available, and assess the situation with the available support. The captain would weigh medical advice, fuel, weather, and airport options when deciding whether to divert."
+  },
+  {
+    "id": 86,
+    "category": "Emergency Procedures",
+    "difficulty": "Hard",
+    "question": "What should a crew do if an aircraft warning appears but the cause is unclear?",
+    "keywords": [
+      "fly aircraft",
+      "verify warning",
+      "checklist",
+      "avoid assumptions",
+      "communicate"
+    ],
+    "model_answer": "Maintain aircraft control, verify the warning and related indications, and use the appropriate checklist. Avoid guessing or resetting systems without guidance, and coordinate with the other pilot and ATC as appropriate."
+  },
+  {
+    "id": 87,
+    "category": "Regulations & Procedures",
+    "difficulty": "Easy",
+    "question": "What are the main responsibilities of the pilot-in-command?",
+    "keywords": [
+      "safety",
+      "authority",
+      "compliance",
+      "aircraft and occupants",
+      "operational decisions"
+    ],
+    "model_answer": "The pilot-in-command is responsible for the safe operation of the aircraft and the safety of occupants, within applicable law and procedures. The PIC makes operational decisions and ensures compliance with relevant requirements."
+  },
+  {
+    "id": 88,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the difference between VFR and IFR?",
+    "keywords": [
+      "visual meteorological conditions",
+      "instrument flight rules",
+      "clearance",
+      "equipment"
+    ],
+    "model_answer": "VFR operations rely on visual references and must meet applicable weather minima and rules. IFR operations follow instrument flight rules and require appropriate clearance, equipment, and procedures."
+  },
+  {
+    "id": 89,
+    "category": "Regulations & Procedures",
+    "difficulty": "Hard",
+    "question": "What is the purpose of a pre-flight inspection?",
+    "keywords": [
+      "airworthiness",
+      "defects",
+      "fluids",
+      "control surfaces",
+      "tyres",
+      "documentation"
+    ],
+    "model_answer": "A pre-flight inspection helps identify defects or conditions that could affect airworthiness. It includes the checks required by the aircraft checklist, relevant documentation, and reporting or resolving defects before departure."
+  },
+  {
+    "id": 90,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the difference between a controlled and uncontrolled aerodrome?",
+    "keywords": [
+      "air traffic control service",
+      "traffic information",
+      "procedures",
+      "radio"
+    ],
+    "model_answer": "A controlled aerodrome provides an air traffic control service within its defined scope. At an uncontrolled aerodrome, pilots follow published procedures and communicate with other traffic as required; the exact services depend on the location."
+  },
+  {
+    "id": 91,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the purpose of an ATC clearance, and what should you do if it is unclear?",
+    "keywords": [
+      "authorisation",
+      "readback",
+      "clarify",
+      "comply",
+      "unable to comply"
+    ],
+    "model_answer": "An ATC clearance authorises specified actions under stated conditions. I would read back required elements and ask ATC to clarify any ambiguity before acting; if unable to comply, I would advise ATC."
+  },
+  {
+    "id": 92,
+    "category": "Regulations & Procedures",
+    "difficulty": "Easy",
+    "question": "Which elements of an ATC instruction normally require readback?",
+    "keywords": [
+      "runway",
+      "altitude",
+      "heading",
+      "route",
+      "level",
+      "squawk",
+      "applicable rules"
+    ],
+    "model_answer": "Readback requirements depend on applicable regulations and local procedures, but commonly include runway instructions, route or level clearances, headings, and transponder codes. The pilot should use the prescribed readback format."
+  },
+  {
+    "id": 93,
+    "category": "Regulations & Procedures",
+    "difficulty": "Hard",
+    "question": "What is the difference between an alternate aerodrome and a destination aerodrome?",
+    "keywords": [
+      "planned destination",
+      "suitable backup",
+      "weather",
+      "fuel",
+      "operational requirements"
+    ],
+    "model_answer": "The destination is the aerodrome planned for landing. An alternate is a suitable aerodrome planned for use if landing at the destination is not possible or advisable, subject to fuel and regulatory planning requirements."
+  },
+  {
+    "id": 94,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the purpose of a flight plan?",
+    "keywords": [
+      "route",
+      "timing",
+      "aircraft identity",
+      "search and rescue",
+      "ATS coordination"
+    ],
+    "model_answer": "A flight plan provides relevant information about the intended flight, including aircraft identity, route, timing, and other required details. It supports air traffic services and alerting or search-and-rescue processes."
+  },
+  {
+    "id": 95,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What does minimum equipment list mean?",
+    "keywords": [
+      "MEL",
+      "dispatch conditions",
+      "inoperative equipment",
+      "limitations",
+      "approved document"
+    ],
+    "model_answer": "An MEL is an approved document that permits dispatch with specified inoperative items under stated conditions and limitations. The crew must confirm applicability, required maintenance or operational procedures, and any restrictions before flight."
+  },
+  {
+    "id": 96,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the purpose of an operational NOTAM briefing and weather briefing?",
+    "keywords": [
+      "hazards",
+      "closures",
+      "restrictions",
+      "forecasts",
+      "route and alternate planning"
+    ],
+    "model_answer": "These briefings identify current restrictions, facility status, hazards, and expected weather that may affect the route, destination, and alternates. The crew uses them to determine whether the flight can be conducted safely and legally."
+  },
+  {
+    "id": 97,
+    "category": "Regulations & Procedures",
+    "difficulty": "Easy",
+    "question": "What are the key considerations when calculating fuel for a flight?",
+    "keywords": [
+      "trip",
+      "contingency",
+      "alternate",
+      "final reserve",
+      "extra fuel",
+      "regulations"
+    ],
+    "model_answer": "Fuel planning includes the required trip fuel and applicable contingency, alternate, final reserve, and any additional fuel required by regulations, conditions, or company policy. The calculation must use current data and approved procedures."
+  },
+  {
+    "id": 98,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the difference between an incident and an accident in aviation?",
+    "keywords": [
+      "definitions",
+      "damage",
+      "injury",
+      "safety reporting",
+      "authority"
+    ],
+    "model_answer": "The formal distinction is defined by the applicable aviation regulations and investigation framework. In general, an accident involves specified serious consequences such as fatal or serious injury or substantial aircraft damage, while an incident is an occurrence affecting or potentially affecting safety."
+  },
+  {
+    "id": 99,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "Why must pilots respect aircraft operating limitations?",
+    "keywords": [
+      "certification basis",
+      "performance",
+      "structural and system limits",
+      "safety"
+    ],
+    "model_answer": "Operating limitations reflect the conditions under which the aircraft has been approved to operate. Exceeding them can compromise structural integrity, controllability, or system reliability, so crews must use approved manuals and performance data."
+  },
+  {
+    "id": 100,
+    "category": "Regulations & Procedures",
+    "difficulty": "Medium",
+    "question": "What is the purpose of a go-around policy?",
+    "keywords": [
+      "unstable approach",
+      "safety margins",
+      "decision gates",
+      "SOP"
+    ],
+    "model_answer": "A go-around provides a safe alternative when an approach or landing cannot be completed within required criteria. Clear decision gates and SOPs help crews act early rather than continue an unstable approach."
   }
 ]
