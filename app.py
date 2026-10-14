@@ -23,11 +23,11 @@ def _live_speech_component():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-:root { color-scheme: light; background: #0d1b2a !important; }
+:root { color-scheme: light; background: transparent !important; }
 * { box-sizing: border-box; }
-html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(255,255,255,0) !important; background-color:#0d1b2a !important; color:#0F172A; overflow:hidden; }
+html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(255,255,255,0) !important; background-color:transparent !important; color:#0F172A; overflow:hidden; }
 body { font-family:Arial,sans-serif; }
-.wrap { display:flex; align-items:center; gap:14px; padding:5px 2px; min-height:72px; background:#0d1b2a !important; }
+.wrap { display:flex; align-items:center; gap:14px; padding:5px 2px; min-height:72px; background:transparent !important; }
 .mic { width:60px;height:60px;flex:0 0 60px;border-radius:50%;border:2px solid #2563EB;
  background:radial-gradient(circle at 32% 24%,#3B82F6 0%,#1D4ED8 42%,#1E40AF 100%);
  color:#fff;font-size:27px;cursor:pointer;box-shadow:0 0 0 6px rgba(37,99,235,.12),0 0 28px rgba(29,78,216,.25);
@@ -183,7 +183,7 @@ st.markdown("""
     h1, h2, h3, h4, .display { font-family: 'Barlow Semi Condensed', sans-serif !important; letter-spacing: 0.1px; }
 
     .stApp { background: var(--paper) !important; color: var(--ink) !important; }
-    header[data-testid="stHeader"] { background: #0d1b2a !important; }
+    header[data-testid="stHeader"] { background: transparent !important; }
     footer, #MainMenu { visibility: hidden; }
     .block-container { padding-top: 2rem; max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; }
 
@@ -226,8 +226,8 @@ st.markdown("""
     .hero::before {
         content: ''; position: absolute; inset: 0;
         background:
-            linear-gradient(180deg, #0d1b2a 0 58%, rgba(2,132,199,.08) 58.2%, rgba(2,132,199,.02) 100%),
-            repeating-linear-gradient(90deg, rgba(15,23,42,.03) 0 1px, #0d1b2a 1px 48px);
+            linear-gradient(180deg, transparent 0 58%, rgba(2,132,199,.08) 58.2%, rgba(2,132,199,.02) 100%),
+            repeating-linear-gradient(90deg, rgba(15,23,42,.03) 0 1px, transparent 1px 48px);
         pointer-events: none;
     }
     .hero::after {
@@ -477,9 +477,9 @@ st.markdown("""
     .radar {
         position: relative; width: 112px; height: 112px; margin: 26px auto 8px auto; border-radius: 50%;
         background:
-            radial-gradient(circle, #0d1b2a 0 24%, rgba(100,116,139,.18) 24.5% 25.5%, #0d1b2a 26% 49%, rgba(100,116,139,.18) 49.5% 50.5%, #0d1b2a 51% 74%, rgba(100,116,139,.18) 74.5% 75.5%, #0d1b2a 76%),
-            linear-gradient(90deg, #0d1b2a 49.5%, rgba(100,116,139,.15) 49.5% 50.5%, #0d1b2a 50.5%),
-            linear-gradient(0deg, #0d1b2a 49.5%, rgba(100,116,139,.15) 49.5% 50.5%, #0d1b2a 50.5%),
+            radial-gradient(circle, transparent 0 24%, rgba(100,116,139,.18) 24.5% 25.5%, transparent 26% 49%, rgba(100,116,139,.18) 49.5% 50.5%, transparent 51% 74%, rgba(100,116,139,.18) 74.5% 75.5%, transparent 76%),
+            linear-gradient(90deg, transparent 49.5%, rgba(100,116,139,.15) 49.5% 50.5%, transparent 50.5%),
+            linear-gradient(0deg, transparent 49.5%, rgba(100,116,139,.15) 49.5% 50.5%, transparent 50.5%),
             #F1F5F9;
         border: 1px solid var(--panel-line);
         overflow: hidden;
@@ -504,7 +504,7 @@ st.markdown("""
         color: #0F172A !important;
     }
     .block-container { max-width: 100% !important; padding-left: 2rem !important; padding-right: 2rem !important; padding-top: 1.5rem; padding-bottom: 3rem; }
-    [data-testid="stMain"] { background: #0d1b2a !important; }
+    [data-testid="stMain"] { background: transparent !important; }
     section[data-testid="stSidebar"] {
         background: #F8FAFC !important;
         border-right: 1px solid #E2E8F0 !important;
@@ -786,7 +786,7 @@ div[data-testid="stTextInput"] input {
 div[data-testid="stTextInput"] input::placeholder { color:#94A3B8 !important;opacity:1 !important; }
 div[data-testid="stTextInput"] input:focus { border-color:#0284C7 !important;box-shadow:0 0 0 4px rgba(2,132,199,.18) !important; }
 div[data-testid="stTextInput"] [data-baseweb="input"] { background:#FFFFFF !important;border-radius:14px !important; }
-div[data-testid="stTextInput"] [data-baseweb="input"] > div { background:#0d1b2a !important; }
+div[data-testid="stTextInput"] [data-baseweb="input"] > div { background:transparent !important; }
 div[data-testid="stTextInput"] button { color:#475569 !important; }
 div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;border-radius:14px !important;font-weight:800 !important;letter-spacing:.01em; }
 
@@ -797,8 +797,8 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 .st-key-mic_card [data-testid="stElementContainer"],
 .st-key-mic_card iframe,
 .st-key-mic_card [data-testid="stCustomComponentV1"] {
-    background: #0d1b2a !important;
-    background-color: #0d1b2a !important;
+    background: transparent !important;
+    background-color: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
 }
@@ -811,7 +811,7 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 }
 .st-key-mic_card iframe { display:block !important; width:100% !important; }
 .st-key-mic_card [data-testid="stCustomComponentV1"] > div {
-    background: #0d1b2a !important;
+    background: transparent !important;
 }
 .block-container { padding-top: .65rem !important; padding-bottom: 1rem !important; }
 .hero { margin-bottom: 12px !important; }
@@ -833,7 +833,7 @@ div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;
 div[data-testid="stTextArea"] { margin-bottom: 4px !important; }
 div[data-testid="stTextArea"] label { margin-bottom: 3px !important; }
 
-/* Final compact layout + #0d1b2a speech iframe fix */
+/* Final compact layout + transparent speech iframe fix */
 .st-key-mic_card,
 .st-key-mic_card > div,
 .st-key-mic_card [data-testid="stVerticalBlock"],
@@ -841,8 +841,8 @@ div[data-testid="stTextArea"] label { margin-bottom: 3px !important; }
 .st-key-mic_card [data-testid="stCustomComponentV1"],
 .st-key-mic_card [data-testid="stCustomComponentV1"] > div,
 .st-key-mic_card iframe {
-    background: #0d1b2a !important;
-    background-color: #0d1b2a !important;
+    background: transparent !important;
+    background-color: transparent !important;
     background-image: none !important;
     box-shadow: none !important;
 }
@@ -1347,7 +1347,7 @@ with col_right:
     components.html("""
     <html><head><style>
       @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&display=swap');
-      html,body{margin:0;background:#0d1b2a;font-family:'Barlow Semi Condensed',sans-serif;}
+      html,body{margin:0;background:transparent;font-family:'Barlow Semi Condensed',sans-serif;}
       .card{background:#FFFFFF;border:1px solid #E2E8F0;border-radius:12px;padding:16px 18px;color:#0F172A;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-sizing:border-box;box-shadow:0 4px 16px rgba(0,0,0,.03);}
       .adi{width:104px;height:104px;flex-shrink:0;}
       .horizon{transform-origin:60px 60px;animation:bank 11s ease-in-out infinite alternate;}
