@@ -35,8 +35,8 @@ body { font-family:Arial,sans-serif; }
 .mic:hover { transform:scale(1.05);box-shadow:0 0 0 9px rgba(53,189,245,.15),0 0 38px rgba(41,132,255,.5); }
 .mic.live { background:radial-gradient(circle at 32% 24%,#ff9a9a 0%,#d94358 48%,#711d39 100%);border-color:#ffb0ba; }
 .texts { min-width:0; }
-.title { font-size:14px;font-weight:700;margin-bottom:6px;color:#FFFFFF !important; }
-.status { font-size:12px;color:#FFFFFF !important;line-height:1.5; }
+.title { font-size:14px;font-weight:700;margin-bottom:6px;color:#F3F7FF; }
+.status { font-size:12px;color:#9DB5D5;line-height:1.5; }
 .status.live { color:#55DCCB; }
 .pulse { display:inline-block;width:7px;height:7px;border-radius:50%;background:#39D6C6;margin-right:6px; }
 </style>
@@ -920,22 +920,6 @@ div[data-testid="stTextArea"] label { margin-bottom: 2px !important; }
         box-sizing: border-box !important;
     }
 
-    /* User-requested visual-only adjustments: white page canvas, preserve navy UI panels. */
-    :root { --paper: #FFFFFF !important; }
-    html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
-        background: #FFFFFF !important;
-        background-color: #FFFFFF !important;
-    }
-    /* Keep all app surfaces and panels navy even with the white outer canvas. */
-    section[data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #07172C 0%, #061225 100%) !important;
-    }
-    .hero, .strip, .brief, .st-key-mic_card, .report, .flight, .tip, .model-answer {
-        color: #EAF2FF !important;
-    }
-    /* The circled live voice text is rendered inside the embedded speech component. */
-    .title { color: #FFFFFF !important; }
-    .status { color: #FFFFFF !important; }
 </style>
 """, unsafe_allow_html=True)
 
