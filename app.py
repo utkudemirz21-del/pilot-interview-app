@@ -754,59 +754,66 @@ st.markdown("""
     padding: 30px 34px 26px !important;
     margin-bottom: 24px;
     background:
-      radial-gradient(ellipse at 80% 5%, rgba(110,202,255,.24), transparent 38%),
-      linear-gradient(125deg, #EAF6FF 0%, #D7EEFF 43%, #B8E0FF 100%) !important;
-    border: 1px solid #9BCDF5 !important;
-    border-radius: 28px !important;
-    color: #102C4B !important;
-    box-shadow: 0 18px 48px rgba(35,116,180,.16), inset 0 1px rgba(255,255,255,.8) !important;
-    animation: login-arrive .7s ease-out both;
+      radial-gradient(ellipse at 78% 0%, rgba(73,132,183,.13), transparent 42%),
+      linear-gradient(135deg, #172B41 0%, #13253A 55%, #102033 100%) !important;
+    border: 1px solid #2D4763 !important;
+    border-radius: 22px !important;
+    color: #EDF3FC !important;
+    box-shadow: 0 10px 26px rgba(3,10,20,.16) !important;
+    animation: login-arrive .45s ease-out both;
 }
-.login-hero .title { color:#102C4B !important; font-size:clamp(2rem,4vw,3.2rem) !important; position:relative; z-index:2; }
-.login-hero .sub { color:#416582 !important; position:relative; z-index:2; }
-.login-kicker { display:inline-flex; align-items:center; gap:8px; color:#28618C; font-size:11px; font-weight:800; letter-spacing:.14em; margin-bottom:9px; position:relative; z-index:2; }
+.login-hero .title { color:#EDF3FC !important; font-size:clamp(2rem,4vw,3.2rem) !important; position:relative; z-index:2; }
+.login-hero .sub { color:#B4C5D9 !important; position:relative; z-index:2; }
+.login-kicker { display:inline-flex; align-items:center; gap:8px; color:#8BB8D9; font-size:11px; font-weight:800; letter-spacing:.14em; margin-bottom:9px; position:relative; z-index:2; }
 .live-dot { width:8px; height:8px; background:#19B99A; border-radius:50%; box-shadow:0 0 0 4px rgba(25,185,154,.13); animation: dot-beat 1.8s ease-in-out infinite; }
-.login-orbit { position:absolute; width:230px; height:150px; right:5%; top:7px; opacity:.72; pointer-events:none; }
-.orbit-ring { position:absolute; border:1px solid rgba(39,117,177,.35); border-radius:50%; transform:rotate(-18deg); }
+.login-orbit { position:absolute; width:230px; height:150px; right:5%; top:7px; opacity:.42; pointer-events:none; }
+.orbit-ring { position:absolute; border:1px solid rgba(120,166,207,.24); border-radius:50%; transform:rotate(-18deg); }
 .ring-a { width:210px;height:76px;top:22px;left:5px; }
 .ring-b { width:160px;height:115px;top:3px;left:30px;transform:rotate(38deg); }
-.orbit-plane { position:absolute; left:98px;top:48px;font-size:34px;color:#287FC0;filter:drop-shadow(0 4px 6px rgba(40,127,192,.22));animation: plane-float 4.5s ease-in-out infinite; }
+.orbit-plane { position:absolute; left:98px;top:48px;font-size:34px;color:#8BC8E8;filter:none;animation: plane-float 6s ease-in-out infinite; }
 .orbit-dot { position:absolute;width:7px;height:7px;background:#F5A623;border-radius:50%;box-shadow:0 0 0 5px rgba(245,166,35,.13); }
 .dot-a { left:29px;top:56px;animation: dot-beat 2.2s infinite; }
 .dot-b { right:12px;top:94px;background:#19B99A;animation: dot-beat 1.7s infinite .4s; }
 .login-widgets { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:2; }
-.login-widget { display:flex;align-items:center;gap:10px;min-width:190px;text-align:left;padding:10px 13px;background:rgba(255,255,255,.58);border:1px solid rgba(93,155,202,.30);border-radius:15px;backdrop-filter:blur(8px);box-shadow:0 5px 15px rgba(47,116,168,.06);animation: widget-up .6s ease-out both; }
+.login-widget { display:flex;align-items:center;gap:10px;min-width:190px;text-align:left;padding:10px 13px;background:rgba(255,255,255,.045);border:1px solid #304A65;border-radius:13px;backdrop-filter:none;box-shadow:none;animation: widget-up .45s ease-out both; }
 .login-widget:nth-child(2) { animation-delay:.12s; }
 .login-widget:nth-child(3) { animation-delay:.24s; }
-.widget-icon { width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#D2EBFF;color:#176AA8;font-size:19px;font-weight:800; }
-.login-widget b { display:block;font-size:12px;color:#173E60;font-weight:800; }
-.login-widget small { display:block;font-size:10px;color:#587894;margin-top:2px; }
+.widget-icon { width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:#213D59;color:#A7D9F2;font-size:19px;font-weight:800; }
+.login-widget b { display:block;font-size:12px;color:#E8F0FA;font-weight:800; }
+.login-widget small { display:block;font-size:10px;color:#A8BCD2;margin-top:2px; }
 .widget-pulse { width:8px;height:8px;margin-left:auto;background:#18B99A;border-radius:50%;box-shadow:0 0 0 4px rgba(24,185,154,.12);animation:dot-beat 1.8s infinite; }
 .mini-bars { margin-left:auto;height:23px;display:flex;align-items:end;gap:3px; }
 .mini-bars i { width:4px;border-radius:4px;background:#278DD0;animation:bar-bounce 1s ease-in-out infinite alternate; }
 .mini-bars i:nth-child(1){height:8px}.mini-bars i:nth-child(2){height:16px;animation-delay:.2s}.mini-bars i:nth-child(3){height:12px;animation-delay:.35s}.mini-bars i:nth-child(4){height:22px;animation-delay:.1s}.mini-bars i:nth-child(5){height:10px;animation-delay:.4s}
 .widget-check { margin-left:auto;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#D3F8EF;color:#078B76;font-weight:900; }
 div[data-testid="stTabs"] { margin-top: 8px; }
-div[data-testid="stTabs"] [role="tablist"] { background:#DCEFFF !important;border:1px solid #B7D9F4 !important;border-radius:16px !important;padding:5px !important;gap:5px !important; }
-div[data-testid="stTabs"] button[role="tab"] { border-radius:12px !important;color:#426582 !important;font-weight:750 !important;transition:all .2s ease !important; }
-div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] { background:#FFFFFF !important;color:#155A91 !important;box-shadow:0 3px 10px rgba(26,91,143,.12) !important; }
+div[data-testid="stTabs"] [role="tablist"] { background:#13263B !important;border:1px solid #2D4763 !important;border-radius:14px !important;padding:5px !important;gap:5px !important; }
+div[data-testid="stTabs"] button[role="tab"] { border-radius:10px !important;color:#A8BCD2 !important;font-weight:750 !important;transition:color .15s ease, background-color .15s ease !important; }
+div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] { background:#243D58 !important;color:#F0F5FC !important;box-shadow:none !important; }
 div[data-testid="stTabs"] button[role="tab"] p { color:inherit !important;font-weight:800 !important; }
 div[data-testid="stTextInput"] { margin-bottom:12px; }
-div[data-testid="stTextInput"] label, div[data-testid="stTextInput"] label p { color:#BFDFFF !important;font-size:13px !important;font-weight:800 !important; }
+div[data-testid="stTextInput"] label, div[data-testid="stTextInput"] label p { color:#B8C9DD !important;font-size:13px !important;font-weight:800 !important; }
 div[data-testid="stTextInput"] input {
     height:50px !important;box-sizing:border-box !important;
-    background:#F7FBFF !important;color:#142D48 !important;
-    -webkit-text-fill-color:#142D48 !important;
-    border:1.5px solid #A9CBE8 !important;border-radius:14px !important;
+    background:#0F2033 !important;color:#EDF3FC !important;
+    -webkit-text-fill-color:#EDF3FC !important;
+    border:1.5px solid #304A65 !important;border-radius:12px !important;
     padding:0 15px !important;box-shadow:0 4px 14px rgba(0,0,0,.08) !important;
-    caret-color:#176AA8 !important;
+    caret-color:#8BC8E8 !important;
 }
-div[data-testid="stTextInput"] input::placeholder { color:#7893AA !important;opacity:1 !important; }
-div[data-testid="stTextInput"] input:focus { border-color:#4DADEB !important;box-shadow:0 0 0 4px rgba(77,173,235,.18) !important; }
-div[data-testid="stTextInput"] [data-baseweb="input"] { background:#F7FBFF !important;border-radius:14px !important; }
+div[data-testid="stTextInput"] input::placeholder { color:#8197B0 !important;opacity:1 !important; }
+div[data-testid="stTextInput"] input:focus { border-color:#65B9DE !important;box-shadow:0 0 0 2px rgba(101,185,222,.12) !important; }
+div[data-testid="stTextInput"] [data-baseweb="input"] { background:#0F2033 !important;border-radius:12px !important; }
 div[data-testid="stTextInput"] [data-baseweb="input"] > div { background:transparent !important; }
-div[data-testid="stTextInput"] button { color:#254967 !important; }
+div[data-testid="stTextInput"] button { color:#B8C9DD !important; }
 div[data-testid="stButton"] button[kind="primary"] { min-height:49px !important;border-radius:14px !important;font-weight:800 !important;letter-spacing:.01em; }
+@media (prefers-reduced-motion: reduce) {
+    .login-hero, .login-widget, .live-dot, .orbit-plane, .orbit-dot,
+    .mini-bars i, .widget-pulse {
+        animation: none !important;
+    }
+}
+
 
 /* Unified live-mic surface */
 .st-key-mic_card,
@@ -1122,28 +1129,19 @@ def logout_user():
     st.rerun()
 
 def render_pilotprep_header(show_logout=False):
-    if show_logout:
-        left, right = st.columns([5, 1])
-    else:
-        left = st.container()
-        right = None
-    with left:
-        st.markdown(f"""
-        <div class="pilotprep-topbar">
-          <div class="pilotprep-brand-group">
-            <div class="pilotprep-wordmark">
-              <span class="pilotprep-mark">✈</span>
-              <span>Pilot<span class="prep">Prep</span></span>
-            </div>
-            <img class="icao-logo" src="{_ICAO_LOGO_DATA_URI}" alt="ICAO logo">
-          </div>
+    # Keep the shared brand header free of a second logout control.
+    # The existing sidebar logout button remains the single sign-out entry point.
+    st.markdown(f"""
+    <div class="pilotprep-topbar">
+      <div class="pilotprep-brand-group">
+        <div class="pilotprep-wordmark">
+          <span class="pilotprep-mark">✈</span>
+          <span>Pilot<span class="prep">Prep</span></span>
         </div>
-        """, unsafe_allow_html=True)
-    if show_logout:
-        with right:
-            st.markdown("<div style='height:3px'></div>", unsafe_allow_html=True)
-            if st.button("Log out", key="topbar_logout", use_container_width=True):
-                logout_user()
+        <img class="icao-logo" src="{_ICAO_LOGO_DATA_URI}" alt="ICAO logo">
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # --- LOGIN / SIGN-UP SCREEN ---
 render_pilotprep_header(show_logout=bool(st.session_state.user))
