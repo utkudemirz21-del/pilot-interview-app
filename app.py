@@ -25,7 +25,7 @@ def _live_speech_component():
 <style>
 :root { color-scheme: light; background: transparent !important; }
 * { box-sizing: border-box; }
-html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(7,23,43,0) !important; background-color:transparent !important; color:#EAF2FF; overflow:hidden; }
+html, body { margin:0 !important; padding:0 !important; width:100%; min-height:0 !important; background:rgba(7,23,43,0) !important; background-color:transparent !important; color:#FFFFFF; overflow:hidden; }
 body { font-family:Arial,sans-serif; }
 .wrap { display:flex; align-items:center; gap:14px; padding:5px 2px; min-height:72px; background:transparent !important; }
 .mic { width:60px;height:60px;flex:0 0 60px;border-radius:50%;border:2px solid #83DFFF;
