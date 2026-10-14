@@ -1376,7 +1376,123 @@ with col_right:
       .t{font-size:26px;font-weight:600;line-height:1.05;font-variant-numeric:tabular-nums;}
       .t.utc{color:#F2A81D;}
       @media (prefers-reduced-motion: reduce){.horizon{animation:none;}}
-    </style></head><body>
+    
+
+    /* ---------- Flight-deck refinement: visual-only overrides ---------- */
+    :root {
+        --paper: #1B2A3B;
+        --panel: #142337;
+        --panel-2: #172B42;
+        --card: #10233A;
+        --panel-line: #304761;
+        --line: #304761;
+        --ink: #F0F5FC;
+        --ink-soft: #B2C1D4;
+    }
+
+    .stApp {
+        background:
+            radial-gradient(ellipse at 55% 0%, rgba(86, 119, 157, .10), transparent 46%),
+            #1B2A3B !important;
+        color: #F0F5FC !important;
+    }
+    [data-testid="stMain"],
+    [data-testid="stMainBlockContainer"] {
+        background: transparent !important;
+    }
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #142337 0%, #101D2D 100%) !important;
+        border-right: 1px solid #304761 !important;
+    }
+
+    .hero {
+        background:
+            linear-gradient(105deg, rgba(12, 29, 49, .98) 0%, rgba(17, 42, 68, .96) 62%, rgba(24, 48, 73, .93) 100%) !important;
+        border-color: #3A5572 !important;
+        box-shadow: 0 8px 22px rgba(3, 10, 20, .16), inset 0 1px rgba(255,255,255,.025) !important;
+    }
+    .hero::after {
+        background: repeating-linear-gradient(90deg, transparent 0 43px, rgba(164, 190, 220, .028) 44px 45px) !important;
+    }
+    .hero .sub, .hero .hi { color: #B8C9DD !important; }
+
+    .strip {
+        background: #13263B !important;
+        border-color: #304761 !important;
+        box-shadow: 0 5px 14px rgba(3, 10, 20, .10) !important;
+    }
+    .strip .cell { border-right-color: #304761 !important; }
+    .strip .cell:hover { background: rgba(255,255,255,.025) !important; }
+    .strip .k { color: #B2C1D4 !important; }
+    .strip .v { color: #F0F5FC !important; }
+
+    .brief, .st-key-mic_card, .report, .flight, .tip, .model-answer {
+        background: #11243A !important;
+        border-color: #304761 !important;
+        box-shadow: 0 6px 16px rgba(3, 10, 20, .12) !important;
+        color: #F0F5FC !important;
+    }
+    .brief { border-left-color: #F0B43B !important; }
+    .brief:hover {
+        transform: none !important;
+        box-shadow: 0 7px 17px rgba(3, 10, 20, .14) !important;
+    }
+    .q-text, .mic-h, .flight .h, .flight .pct, .flight .note b,
+    .stTextArea label p, .verdict .label, .chips-title, .tip b {
+        color: #F0F5FC !important;
+    }
+    .mic-s, .flight .legend, .flight .note, .verdict .desc,
+    .chips-title, .tip { color: #B2C1D4 !important; }
+
+    .stTextArea textarea, .stTextInput input {
+        background: #0E2034 !important;
+        color: #F0F5FC !important;
+        border-color: #3A5572 !important;
+    }
+    .stTextArea textarea::placeholder, .stTextInput input::placeholder {
+        color: #9AAFC8 !important;
+    }
+    .stTextArea textarea:focus, .stTextInput input:focus {
+        border-color: #58BFE8 !important;
+        box-shadow: 0 0 0 2px rgba(88,191,232,.10) !important;
+    }
+
+    .stButton button {
+        transition: background-color .15s ease, border-color .15s ease !important;
+    }
+    .stButton button:hover {
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(3,10,20,.16) !important;
+    }
+    .stButton button[kind="primary"],
+    .stButton button[data-testid="stBaseButton-primary"] {
+        background: linear-gradient(135deg, #F6BE4D, #EBAA2D) !important;
+        border-color: #F0B43B !important;
+        box-shadow: 0 3px 10px rgba(235,170,45,.10) !important;
+    }
+    .stButton button[kind="secondary"],
+    .stButton button[data-testid="stBaseButton-secondary"] {
+        background: #172E48 !important;
+        color: #E7EFFA !important;
+        border-color: #3A5572 !important;
+    }
+
+    .st-key-mic_card button {
+        box-shadow: 0 0 0 5px rgba(53,189,245,.075),
+                    0 5px 14px rgba(8,30,60,.22),
+                    inset 0 2px 8px rgba(255,255,255,.16) !important;
+    }
+    .st-key-mic_card button:hover {
+        transform: scale(1.02) !important;
+        box-shadow: 0 0 0 6px rgba(53,189,245,.09),
+                    0 6px 16px rgba(8,30,60,.24) !important;
+    }
+    .hero .plane { opacity: .30 !important; }
+    .hero .cloud { opacity: .34 !important; }
+    .flight .track { background: #304761 !important; }
+    .report::before { background: #1A3049 !important; color: #B2C1D4 !important; }
+
+</style></head><body>
     <div class="card">
       <svg class="adi" viewBox="0 0 120 120" aria-hidden="true">
         <defs><clipPath id="c"><circle cx="60" cy="60" r="52"/></clipPath></defs>
