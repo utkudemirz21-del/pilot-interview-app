@@ -1122,7 +1122,11 @@ def logout_user():
     st.rerun()
 
 def render_pilotprep_header(show_logout=False):
-    left, right = st.columns([5, 1] if show_logout else [1])
+    if show_logout:
+        left, right = st.columns([5, 1])
+    else:
+        left = st.container()
+        right = None
     with left:
         st.markdown(f"""
         <div class="pilotprep-topbar">
